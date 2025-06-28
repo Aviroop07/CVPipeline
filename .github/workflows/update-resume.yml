@@ -38,6 +38,7 @@ jobs:
     # 5 — transform → resume.json
     - name: Transform to JSON-Resume
       run: python scripts/transform_linkedin_to_resume.py
+      continue-on-error: true
 
     # 6 — commit only if something changed
     - name: Commit & push if updated

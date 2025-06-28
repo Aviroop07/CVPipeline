@@ -1,0 +1,15 @@
+{
+    "basics": {
+        "name": "Aviroop Mitra",
+        "label": "Machine Learning Engineer",
+        "email": "you@example.com",
+        "location": {
+            "city": "City",
+            "countryCode": "IN"
+        },
+        "summary": "Short professional summary."
+    },
+    "work": [],
+    "education": [],
+    "skills": []
+}

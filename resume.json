@@ -1,15 +1,139 @@
 {
-    "basics": {
-        "name": "Aviroop Mitra",
-        "label": "Machine Learning Engineer",
-        "email": "you@example.com",
-        "location": {
-            "city": "City",
-            "countryCode": "IN"
-        },
-        "summary": "Short professional summary."
+  "basics": {
+    "name": "Aviroop Mitra",
+    "label": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • CSE undergrad at Jadavpur University, 2025",
+    "email": "aviroopmitra5@gmail.com",
+    "phone": "+91 79809 58951",
+    "location": {
+      "city": "Kolkata, West Bengal",
+      "countryCode": "in"
     },
-    "work": [],
-    "education": [],
-    "skills": []
+    "summary": "👋 Hey there, I'm Aviroop Mitra, a Computer Science and Engineering student at Jadavpur University. My academic journey is driven by a fascination for Machine Learning, AI, and logic building.\n\n💻 Beyond my coursework, I actively delve into Full Stack Web Development, exploring web technologies.\n\n🚀 Passionate about hackathons, I enjoy collaborative problem-solving and code reviews. I also contribute by posting solutions on coding platforms.\n\n🧩 In my free time, you'll often find me engrossed in chess games, relishing their strategic depth, or solving Sudoku puzzles to sharpen my logical thinking.\n\n🌟 Currently, I'm working on multiple small-scale personal projects in Machine Learning, applying my knowledge to practical solutions.\n\n📬 Feel free to reach out at aviroopmitra5@gmail.com for engaging discussions and the opportunity to innovate in technology and artificial intelligence!"
+  },
+  "work": [
+    {
+      "name": "Neurologic-ai",
+      "position": "Machine Learning Intern",
+      "location": "Hyderabad, Telangana, India",
+      "startDate": "2023-11",
+      "endDate": null,
+      "summary": "LLM fine-tuning, RAG-pipeline design, Data Analysis, Backend Migration, Database Migration,  Imbuing AI into basic software"
+    },
+    {
+      "name": "PwC India",
+      "position": "Advisory Intern",
+      "location": "Kolkata, West Bengal, India",
+      "startDate": "2024-06",
+      "endDate": "2024-07",
+      "summary": ""
+    }
+  ],
+  "education": [
+    {
+      "institution": "Jadavpur University",
+      "area": "Computer Science and Engineering",
+      "studyType": "Bachelor of Technology - BTech",
+      "score": "8.16 ( uptil 7th semester )",
+      "startDate": "2021-12",
+      "endDate": "2025-07"
+    },
+    {
+      "institution": "Burdwan Municipal High School",
+      "area": "Science",
+      "studyType": "Higher Secondary ",
+      "score": "O",
+      "startDate": "2019-07",
+      "endDate": "2021-03"
+    },
+    {
+      "institution": "Burdwan Town School",
+      "area": "",
+      "studyType": "Secondary",
+      "score": "AA",
+      "startDate": "2011-01",
+      "endDate": "2019-03"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "PERCEPTRON - The Turing Show, Coding Competition ",
+      "issuer": "RKMVERI, Belur",
+      "date": "2023-01",
+      "url": "https://drive.google.com/file/d/17nqnatBptOD0y1dSeYsjNiMZG-kg4A57/view?usp=drivesdk"
+    },
+    {
+      "name": "Programming in java",
+      "issuer": "NPTEL",
+      "date": "2023-11",
+      "url": "https://drive.google.com/file/d/1Rz42-BO7EmdyhEdpkgr642fpl1BktCdc/view?usp=drive_link"
+    }
+  ],
+  "awards": [
+    {
+      "title": "1st Runner up in the Coding competition, 'The Turing Show', organised by RKMVERI, Belur",
+      "date": "2023-01",
+      "awarder": "RKMVERI, Belur",
+      "summary": "It was a part of PERCEPTRON, the annual Tech fest of RKMVERI. It was an enlightening experience to interact with a pool of bright minds."
+    },
+    {
+      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
+      "date": "2022-07",
+      "awarder": "JBNSTS",
+      "summary": "98.98 percentile"
+    },
+    {
+      "title": "Jagadish Bose National Science Talent Search, Junior Scholar",
+      "date": "2020-03",
+      "awarder": "JBNSTS",
+      "summary": "98.5 percentile"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Distributed P2P Network",
+      "description": "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)",
+      "startDate": "2025-02",
+      "endDate": "2025-05"
+    },
+    {
+      "name": "LinkedIn Puzzle Solver",
+      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
+      "startDate": "2024-08",
+      "endDate": "2024-08"
+    },
+    {
+      "name": "Compiler Design Project",
+      "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
+      "startDate": "2024-02",
+      "endDate": "2024-04"
+    }
+  ],
+  "skills": [
+    {
+      "name": "DSA"
+    },
+    {
+      "name": "Machine Learning"
+    },
+    {
+      "name": "Large Language Models (LLM)"
+    },
+    {
+      "name": "API Gateways"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Bengali",
+      "fluency": "NATIVE_OR_BILINGUAL"
+    },
+    {
+      "language": "English",
+      "fluency": "PROFESSIONAL_WORKING"
+    },
+    {
+      "language": "French",
+      "fluency": "ELEMENTARY"
+    }
+  ]
 }

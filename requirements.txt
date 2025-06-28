@@ -1,2 +1,3 @@
 linkedin-api
 dotenv
+pyotp

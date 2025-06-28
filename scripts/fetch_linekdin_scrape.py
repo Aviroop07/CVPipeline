@@ -1,34 +1,55 @@
-from linkedin_api import Linkedin
+#!/usr/bin/env python3
 import json, os, pathlib, sys, dotenv
-
-OUT = pathlib.Path(__file__).resolve().parent.parent / "data"
-OUT.mkdir(exist_ok=True)
-DST = OUT / "linkedin_raw.json"
-
 dotenv.load_dotenv()
+from linkedin_api import Linkedin
+from requests.cookies import RequestsCookieJar
 
-def main() -> None:
-    # ── 1. Read creds from env ─────────────────────────
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT  = ROOT / "data";      OUT.mkdir(exist_ok=True)
+DST  = OUT  / "linkedin_raw.json"
+        
+
+def main():
     try:
-        user = os.environ["LI_USER"]
-        pwd  = os.environ["LI_PASS"]
-        public_id = os.environ["LI_PID"]
-        # print(f"User: {user}, Password: {pwd}")
+        user  = os.environ["LI_USER"]
+        pwd   = os.environ["LI_PASS"]
+        seed  = os.environ["LI_TOTP_SECRET"]
     except KeyError as miss:
-        sys.exit(f"Env var {miss} missing")
+        sys.exit(f"✖ missing env var {miss}")
 
-    # ── 2. Login the way the library expects ───────────
-    api = Linkedin(user, pwd, refresh_cookies=False)
+    try:
+        print("🔐 Authenticating with LinkedIn via cookies...")
 
-    profile = api.get_profile(public_id=public_id)                         # ← no contact_info arg
-    contact = api.get_profile_contact_info(
-        public_id=profile.get("public_id")
-    )
-    profile["contact_info"] = contact                  # merge if you want it
-    # print(profile)
-    # 4 ─ write to disk
-    DST.write_text(json.dumps(profile, indent=2, ensure_ascii=False), encoding='utf-8')
-    print(f"✅ wrote {DST.relative_to(OUT)}")
+        # Build a cookie jar with existing session cookies
+        jar = RequestsCookieJar()
+        jar.set("li_at", os.environ["LI_AT"], domain=".linkedin.com", path="/")
+        jar.set("JSESSIONID", os.environ["LI_JSESSIONID"], domain=".linkedin.com", path="/")
+
+        # Initialize LinkedIn API with cookie jar (username/password are unused in this case)
+        api = Linkedin("", "", cookies=jar)
+        print("✅ Authentication successful")
+        
+        print("📄 Fetching profile...")
+        profile = api.get_profile(public_id=os.environ["LI_PID"])
+        print("✅ Profile fetched successfully")
+        
+        print("📞 Fetching contact info...")
+        profile["contact_info"] = api.get_profile_contact_info(
+            public_id=profile["public_id"]
+        )
+        print("✅ Contact info fetched successfully")
+
+        DST.write_text(
+            json.dumps(profile, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        print(f"✅ wrote {DST.relative_to(ROOT)}")
+        
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        print(f"Error type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

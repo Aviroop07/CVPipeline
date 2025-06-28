@@ -30,9 +30,12 @@ jobs:
     # 4 — scrape LinkedIn
     - name: Fetch profile from LinkedIn
       env:
-        LI_USER: ${{ secrets.LI_USER }}
-        LI_PASS: ${{ secrets.LI_PASS }}
-        LI_PID:  ${{ secrets.LI_PID }}
+        LI_USER:         ${{ secrets.LI_USER }}
+        LI_PASS:         ${{ secrets.LI_PASS }}
+        LI_TOTP_SECRET:  ${{ secrets.LI_TOTP_SECRET }}
+        LI_AT:           ${{ secrets.LI_AT }}
+        LI_JSESSIONID:   ${{ secrets.LI_JSESSIONID }}
+        LI_PID:          ${{ secrets.LI_PID }}
       run: python scripts/fetch_linekdin_scrape.py
 
     # 5 — transform → resume.json

@@ -14,20 +14,40 @@ def main():
         user  = os.environ["LI_USER"]
         pwd   = os.environ["LI_PASS"]
         seed  = os.environ["LI_TOTP_SECRET"]
+        # Debug: print environment variables in use
+        print("🔧 Environment variables:")
+        for var in (
+            "LI_USER",
+            "LI_PASS",
+            "LI_TOTP_SECRET",
+            "LI_AT",
+            "LI_JSESSIONID",
+            "LI_PID",
+        ):
+            print(f"  {var} = {os.getenv(var)}")
     except KeyError as miss:
         sys.exit(f"✖ missing env var {miss}")
 
     try:
         print("🔐 Authenticating with LinkedIn via cookies...")
 
-        # Build a cookie jar with existing session cookies
-        jar = RequestsCookieJar()
-        jar.set("li_at", os.environ["LI_AT"], domain=".linkedin.com", path="/")
-        jar.set("JSESSIONID", os.environ["LI_JSESSIONID"], domain=".linkedin.com", path="/")
+        li_at       = os.getenv("LI_AT", "").strip()
+        jsessionid  = os.getenv("LI_JSESSIONID", "").strip()
 
-        # Initialize LinkedIn API with cookie jar (username/password are unused in this case)
-        api = Linkedin("", "", cookies=jar)
-        print("✅ Authentication successful")
+        if li_at and jsessionid:
+            # Build a cookie jar with existing session cookies
+            jar = RequestsCookieJar()
+            jar.set("li_at", li_at, domain=".linkedin.com", path="/")
+            jar.set("JSESSIONID", jsessionid, domain=".linkedin.com", path="/")
+
+            # Initialize LinkedIn API with cookie jar (username/password are unused in this case)
+            api = Linkedin("", "", cookies=jar)
+            print("✅ Authenticated via cookies")
+        else:
+            # Fallback to username/password auth (may trigger 2FA challenge)
+            print("🔐 Cookies not provided – falling back to username/password auth. This may be less reliable on GitHub Actions.")
+            api = Linkedin(user, pwd)
+            print("✅ Authenticated via credentials")
         
         print("📄 Fetching profile...")
         profile = api.get_profile(public_id=os.environ["LI_PID"])

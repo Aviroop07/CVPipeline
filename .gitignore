@@ -1,3 +1,6 @@
 .env
 *.json
 *env/
+# Allow tracked resume files despite the above rule
+!resume.json
+!data/linkedin_raw.json

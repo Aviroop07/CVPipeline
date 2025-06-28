@@ -1,0 +1,599 @@
+{
+  "lastName": "Mitra",
+  "student": false,
+  "geoCountryUrn": "urn:li:fs_geo:102713980",
+  "geoLocationBackfilled": false,
+  "entityUrn": "urn:li:fs_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+  "headline": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • CSE undergrad at Jadavpur University, 2025",
+  "summary": "👋 Hey there, I'm Aviroop Mitra, a Computer Science and Engineering student at Jadavpur University. My academic journey is driven by a fascination for ML, AI, and logic building.\n\n💻 Beyond my coursework, I actively delve into Full Stack Web Development, exploring web technologies.\n\n🚀 Passionate about hackathons, I enjoy collaborative problem-solving and code reviews. I also contribute by posting solutions on coding platforms.\n\n🧩 In my free time, you'll often find me engrossed in chess games, relishing their strategic depth, or solving Sudoku puzzles to sharpen my logical thinking.\n\n🌟 Currently, I'm working on multiple small-scale personal projects in Machine Learning, applying my knowledge to practical solutions.\n\n📬 Feel free to reach out at aviroopmitra5@gmail.com for engaging discussions and the opportunity to innovate in technology and artificial intelligence!",
+  "industryName": "Software Development",
+  "address": "13 Nivedita Sarani, Parnasreepally, Kolkata 70060",
+  "locationName": "India",
+  "geoCountryName": "India",
+  "elt": true,
+  "profilePictureOriginalImage": {
+    "com.linkedin.common.VectorImage": {
+      "artifacts": [
+        {
+          "width": 794,
+          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQLytraxTspIXQAAAZe3pJTtXuSnKmcE5nls4NSu3SG_YMiJJD4ZZD5PjA&e=1751219106&v=beta&t=e_Jjp_JDKG9-mkPP6UuX6ndDOnkXJ9ROhPoLHAPqWUw",
+          "expiresAt": 1751219106000,
+          "height": 804
+        },
+        {
+          "width": 444,
+          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQJHZBgn4BYDwQAAAZe3pJTtwlEUB25wafUkmN4dXLcC0Mbd9dV4R-OROQ&e=1751219106&v=beta&t=8G7nTw-na7OgsLiKgEHvadsms_mDjFSUW5Kdhc_uZy0",
+          "expiresAt": 1751219106000,
+          "height": 450
+        }
+      ],
+      "rootUrl": "https://www.linkedin.com/dms/prv/image/v2/D5604AQEbadxv-Jqx5g/profile-originalphoto-shrink_"
+    }
+  },
+  "birthDate": {
+    "month": 10,
+    "day": 7
+  },
+  "industryUrn": "urn:li:fs_industry:4",
+  "firstName": "Aviroop",
+  "profilePicture": {
+    "displayImage": "urn:li:digitalmediaAsset:D5603AQFGdKYg-7obQw",
+    "originalImage": "urn:li:digitalmediaAsset:D5604AQEbadxv-Jqx5g",
+    "photoFilterEditInfo": {
+      "bottomLeft": {
+        "x": -7.152557373046875e-07,
+        "y": 0.9875611066818237
+      },
+      "saturation": 0.0,
+      "brightness": 0.0,
+      "vignette": 0.0,
+      "photoFilterType": "ORIGINAL",
+      "bottomRight": {
+        "x": 1.0000007152557373,
+        "y": 0.9875609874725342
+      },
+      "topLeft": {
+        "x": -6.92903995513916e-07,
+        "y": 1.6354024410247803e-06
+      },
+      "contrast": 0.0,
+      "topRight": {
+        "x": 1.0000007152557373,
+        "y": 1.4901161193847656e-06
+      }
+    }
+  },
+  "geoLocation": {
+    "geoUrn": "urn:li:fs_geo:103705419"
+  },
+  "geoLocationName": "Kolkata, West Bengal",
+  "location": {
+    "basicLocation": {
+      "countryCode": "in"
+    }
+  },
+  "displayPictureUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_",
+  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751738400&v=beta&t=MrB4mC-M7wgKdPWRbTZytcW9dJRiZgRnN5ln-g-fu9U",
+  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751738400&v=beta&t=HW8wmSySj_DV99kdVyL5-G14NipNdNSCx_UnyGAGQuQ",
+  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751738400&v=beta&t=YW74u3cyHUhHw9l3pR-BglB6-sSGspatve3lAj2ivzY",
+  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751738400&v=beta&t=Kr0XPL6O7m24wDBZDqhxrp9hLWNgki4nmfh3_3zywFU",
+  "profile_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+  "profile_urn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+  "member_urn": "urn:li:member:946910996",
+  "public_id": "aviroopmitra071003",
+  "experience": [
+    {
+      "locationName": "Hyderabad, Telangana, India",
+      "entityUrn": "urn:li:fs_position:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2418598327)",
+      "geoLocationName": "Hyderabad, Telangana, India",
+      "geoUrn": "urn:li:fs_geo:105556991",
+      "companyName": "Neurologic-ai",
+      "timePeriod": {
+        "startDate": {
+          "month": 11,
+          "year": 2023
+        }
+      },
+      "description": "LLM fine-tuning, RAG-pipeline design, Data Analysis, Backend Migration, Database Migration,  Imbuing AI into basic software",
+      "company": {
+        "employeeCountRange": {
+          "start": 11,
+          "end": 50
+        },
+        "industries": [
+          "Information Technology and Services"
+        ]
+      },
+      "title": "Machine Learning Intern",
+      "region": "urn:li:fs_region:(in,0)",
+      "companyUrn": "urn:li:fs_miniCompany:92502744",
+      "companyLogoUrl": "https://media.licdn.com/dms/image/v2/C4D0BAQGStPN3fgny-w/company-logo_"
+    },
+    {
+      "locationName": "Kolkata, West Bengal, India",
+      "entityUrn": "urn:li:fs_position:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2421603218)",
+      "geoLocationName": "Kolkata, West Bengal, India",
+      "geoUrn": "urn:li:fs_geo:111795395",
+      "companyName": "PwC India",
+      "timePeriod": {
+        "endDate": {
+          "month": 7,
+          "year": 2024
+        },
+        "startDate": {
+          "month": 6,
+          "year": 2024
+        }
+      },
+      "company": {
+        "employeeCountRange": {
+          "start": 10001
+        },
+        "industries": [
+          "Management Consulting"
+        ]
+      },
+      "title": "Advisory Intern",
+      "region": "urn:li:fs_region:(in,0)",
+      "companyUrn": "urn:li:fs_miniCompany:1092713",
+      "companyLogoUrl": "https://media.licdn.com/dms/image/v2/D4D0BAQHftNJPUMdOaw/company-logo_"
+    }
+  ],
+  "education": [
+    {
+      "projects": [
+        "urn:li:fs_project:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541)",
+        "urn:li:fs_project:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049)"
+      ],
+      "degreeName": "Bachelor of Technology - BTech",
+      "honors": [
+        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2021682140)"
+      ],
+      "schoolUrn": "urn:li:fs_miniSchool:13513",
+      "entityUrn": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
+      "school": {
+        "objectUrn": "urn:li:school:13513",
+        "entityUrn": "urn:li:fs_miniSchool:13513",
+        "active": true,
+        "schoolName": "Jadavpur University",
+        "trackingId": "6BYQ5pT+TL+nrHKOKU2OAw==",
+        "logoUrl": "https://media.licdn.com/dms/image/v2/C510BAQFkGVsBobrK1A/company-logo_"
+      },
+      "grade": "8.48 ( uptil 8th semester )",
+      "timePeriod": {
+        "endDate": {
+          "month": 7,
+          "year": 2025
+        },
+        "startDate": {
+          "month": 12,
+          "year": 2021
+        }
+      },
+      "testScores": [
+        "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,798877300)",
+        "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,956688439)"
+      ],
+      "schoolName": "Jadavpur University",
+      "fieldOfStudy": "Computer Science and Engineering",
+      "degreeUrn": "urn:li:fs_degree:250"
+    },
+    {
+      "entityUrn": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,768721772)",
+      "school": {
+        "objectUrn": "urn:li:school:3230309",
+        "entityUrn": "urn:li:fs_miniSchool:3230309",
+        "active": true,
+        "schoolName": "Burdwan Municipal High School",
+        "trackingId": "2+jj5ImxR+KLU+JSZZiENA==",
+        "logoUrl": "https://media.licdn.com/dms/image/v2/C560BAQEWuTbLbvUAhg/company-logo_"
+      },
+      "grade": "O",
+      "timePeriod": {
+        "endDate": {
+          "month": 3,
+          "year": 2021
+        },
+        "startDate": {
+          "month": 7,
+          "year": 2019
+        }
+      },
+      "degreeName": "Higher Secondary ",
+      "schoolName": "Burdwan Municipal High School",
+      "fieldOfStudy": "Science",
+      "honors": [
+        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2021786770)"
+      ],
+      "schoolUrn": "urn:li:fs_miniSchool:3230309"
+    },
+    {
+      "entityUrn": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,768720800)",
+      "grade": "AA",
+      "timePeriod": {
+        "endDate": {
+          "month": 3,
+          "year": 2019
+        },
+        "startDate": {
+          "month": 1,
+          "year": 2011
+        }
+      },
+      "degreeName": "Secondary",
+      "schoolName": "Burdwan Town School"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Bengali",
+      "proficiency": "NATIVE_OR_BILINGUAL"
+    },
+    {
+      "name": "English",
+      "proficiency": "PROFESSIONAL_WORKING"
+    },
+    {
+      "name": "French",
+      "proficiency": "ELEMENTARY"
+    }
+  ],
+  "publications": [],
+  "certifications": [
+    {
+      "authority": "RKMVERI, Belur",
+      "name": "PERCEPTRON - The Turing Show, Coding Competition ",
+      "timePeriod": {
+        "startDate": {
+          "month": 1,
+          "year": 2023
+        }
+      },
+      "displaySource": "google.com",
+      "url": "https://drive.google.com/file/d/17nqnatBptOD0y1dSeYsjNiMZG-kg4A57/view?usp=drivesdk"
+    },
+    {
+      "authority": "NPTEL",
+      "name": "Programming in java",
+      "timePeriod": {
+        "startDate": {
+          "month": 11,
+          "year": 2023
+        }
+      },
+      "company": {
+        "objectUrn": "urn:li:company:13229455",
+        "entityUrn": "urn:li:fs_miniCompany:13229455",
+        "name": "NPTEL",
+        "showcase": false,
+        "active": true,
+        "logo": {
+          "com.linkedin.common.VectorImage": {
+            "artifacts": [
+              {
+                "width": 200,
+                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1756339200&v=beta&t=mLD-lj8KS-ew9Pmh7Q1PctMrw5NKY_pzq6NNCFpTPYU",
+                "expiresAt": 1756339200000,
+                "height": 200
+              },
+              {
+                "width": 100,
+                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1756339200&v=beta&t=O7MKItOx87LGo1TdSyI2Q3YrQS6cpH6d6zLoiLpGhWo",
+                "expiresAt": 1756339200000,
+                "height": 100
+              },
+              {
+                "width": 400,
+                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1756339200&v=beta&t=sXYhyYGSTIzAAs7DPw5s9qf2lys4v5d2GXtZV5t__n0",
+                "expiresAt": 1756339200000,
+                "height": 400
+              }
+            ],
+            "rootUrl": "https://media.licdn.com/dms/image/v2/C4D0BAQHJZGa_G2gwUg/company-logo_"
+          }
+        },
+        "universalName": "nptel",
+        "dashCompanyUrn": "urn:li:fsd_company:13229455",
+        "trackingId": "dZFggpCcTx+p+S2Mpftrug=="
+      },
+      "displaySource": "google.com",
+      "companyUrn": "urn:li:fs_miniCompany:13229455",
+      "url": "https://drive.google.com/file/d/1Rz42-BO7EmdyhEdpkgr642fpl1BktCdc/view?usp=drive_link"
+    }
+  ],
+  "volunteer": [],
+  "honors": [
+    {
+      "description": "It was a part of PERCEPTRON, the annual Tech fest of RKMVERI. It was an enlightening experience to interact with a pool of bright minds.",
+      "title": "1st Runner up in the Coding competition, 'The Turing Show', organised by RKMVERI, Belur",
+      "issueDate": {
+        "month": 1,
+        "year": 2023
+      },
+      "issuer": "RKMVERI, Belur"
+    },
+    {
+      "description": "98.98 percentile",
+      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
+      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
+      "issueDate": {
+        "month": 7,
+        "year": 2022
+      },
+      "issuer": "JBNSTS"
+    },
+    {
+      "description": "98.5 percentile",
+      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,768721772)",
+      "title": "Jagadish Bose National Science Talent Search, Junior Scholar",
+      "issueDate": {
+        "month": 3,
+        "year": 2020
+      },
+      "issuer": "JBNSTS"
+    }
+  ],
+  "projects": [
+    {
+      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
+      "members": [
+        {
+          "member": {
+            "firstName": "Aviroop",
+            "lastName": "Mitra",
+            "dashEntityUrn": "urn:li:fsd_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+            "occupation": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • CSE undergrad at Jadavpur University, 2025",
+            "objectUrn": "urn:li:member:946910996",
+            "entityUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+            "publicIdentifier": "aviroopmitra071003",
+            "picture": {
+              "com.linkedin.common.VectorImage": {
+                "artifacts": [
+                  {
+                    "width": 400,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751738400&v=beta&t=MrB4mC-M7wgKdPWRbTZytcW9dJRiZgRnN5ln-g-fu9U",
+                    "expiresAt": 1751738400000,
+                    "height": 400
+                  },
+                  {
+                    "width": 200,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751738400&v=beta&t=HW8wmSySj_DV99kdVyL5-G14NipNdNSCx_UnyGAGQuQ",
+                    "expiresAt": 1751738400000,
+                    "height": 200
+                  },
+                  {
+                    "width": 800,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751738400&v=beta&t=YW74u3cyHUhHw9l3pR-BglB6-sSGspatve3lAj2ivzY",
+                    "expiresAt": 1751738400000,
+                    "height": 800
+                  },
+                  {
+                    "width": 100,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751738400&v=beta&t=Kr0XPL6O7m24wDBZDqhxrp9hLWNgki4nmfh3_3zywFU",
+                    "expiresAt": 1751738400000,
+                    "height": 100
+                  }
+                ],
+                "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
+              }
+            },
+            "trackingId": "+dkygc6SQTyqzXwMDTXHbA=="
+          },
+          "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541,460000641)",
+          "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
+        }
+      ],
+      "timePeriod": {
+        "endDate": {
+          "month": 5,
+          "year": 2025
+        },
+        "startDate": {
+          "month": 2,
+          "year": 2025
+        }
+      },
+      "description": "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)",
+      "title": "Distributed P2P Network"
+    },
+    {
+      "members": [
+        {
+          "member": {
+            "firstName": "Aviroop",
+            "lastName": "Mitra",
+            "dashEntityUrn": "urn:li:fsd_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+            "occupation": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • CSE undergrad at Jadavpur University, 2025",
+            "objectUrn": "urn:li:member:946910996",
+            "entityUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+            "publicIdentifier": "aviroopmitra071003",
+            "picture": {
+              "com.linkedin.common.VectorImage": {
+                "artifacts": [
+                  {
+                    "width": 400,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751738400&v=beta&t=MrB4mC-M7wgKdPWRbTZytcW9dJRiZgRnN5ln-g-fu9U",
+                    "expiresAt": 1751738400000,
+                    "height": 400
+                  },
+                  {
+                    "width": 200,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751738400&v=beta&t=HW8wmSySj_DV99kdVyL5-G14NipNdNSCx_UnyGAGQuQ",
+                    "expiresAt": 1751738400000,
+                    "height": 200
+                  },
+                  {
+                    "width": 800,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751738400&v=beta&t=YW74u3cyHUhHw9l3pR-BglB6-sSGspatve3lAj2ivzY",
+                    "expiresAt": 1751738400000,
+                    "height": 800
+                  },
+                  {
+                    "width": 100,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751738400&v=beta&t=Kr0XPL6O7m24wDBZDqhxrp9hLWNgki4nmfh3_3zywFU",
+                    "expiresAt": 1751738400000,
+                    "height": 100
+                  }
+                ],
+                "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
+              }
+            },
+            "trackingId": "+dkygc6SQTyqzXwMDTXHbA=="
+          },
+          "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074567873,460000648)",
+          "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
+        }
+      ],
+      "timePeriod": {
+        "endDate": {
+          "month": 8,
+          "year": 2024
+        },
+        "startDate": {
+          "month": 8,
+          "year": 2024
+        }
+      },
+      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
+      "title": "LinkedIn Puzzle Solver"
+    },
+    {
+      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
+      "members": [
+        {
+          "member": {
+            "firstName": "Aviroop",
+            "lastName": "Mitra",
+            "dashEntityUrn": "urn:li:fsd_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+            "occupation": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • CSE undergrad at Jadavpur University, 2025",
+            "objectUrn": "urn:li:member:946910996",
+            "entityUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+            "publicIdentifier": "aviroopmitra071003",
+            "picture": {
+              "com.linkedin.common.VectorImage": {
+                "artifacts": [
+                  {
+                    "width": 400,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751738400&v=beta&t=MrB4mC-M7wgKdPWRbTZytcW9dJRiZgRnN5ln-g-fu9U",
+                    "expiresAt": 1751738400000,
+                    "height": 400
+                  },
+                  {
+                    "width": 200,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751738400&v=beta&t=HW8wmSySj_DV99kdVyL5-G14NipNdNSCx_UnyGAGQuQ",
+                    "expiresAt": 1751738400000,
+                    "height": 200
+                  },
+                  {
+                    "width": 800,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751738400&v=beta&t=YW74u3cyHUhHw9l3pR-BglB6-sSGspatve3lAj2ivzY",
+                    "expiresAt": 1751738400000,
+                    "height": 800
+                  },
+                  {
+                    "width": 100,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751738400&v=beta&t=Kr0XPL6O7m24wDBZDqhxrp9hLWNgki4nmfh3_3zywFU",
+                    "expiresAt": 1751738400000,
+                    "height": 100
+                  }
+                ],
+                "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
+              }
+            },
+            "trackingId": "+dkygc6SQTyqzXwMDTXHbA=="
+          },
+          "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003237)",
+          "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
+        },
+        {
+          "member": {
+            "firstName": "Spandan",
+            "lastName": "Das",
+            "dashEntityUrn": "urn:li:fsd_profile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo",
+            "occupation": "Student at Jadavpur University, CSE branch ||21-25|| (final year)",
+            "objectUrn": "urn:li:member:1028574295",
+            "entityUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo",
+            "publicIdentifier": "spandan-das-907573248",
+            "picture": {
+              "com.linkedin.common.VectorImage": {
+                "artifacts": [
+                  {
+                    "width": 100,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-displayphoto-shrink_100_100/0/1660896862968?e=1756339200&v=beta&t=L2EbJ6AzTWnXZ_Z-umVvaQtsKyulr2lHR51GpjAGO3Y",
+                    "expiresAt": 1756339200000,
+                    "height": 100
+                  },
+                  {
+                    "width": 200,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-displayphoto-shrink_200_200/0/1660896862968?e=1756339200&v=beta&t=yfuXSkewADNadluKXIpZtWBz1b3H5arGpUM1ZzRJgW4",
+                    "expiresAt": 1756339200000,
+                    "height": 200
+                  },
+                  {
+                    "width": 400,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-displayphoto-shrink_400_400/0/1660896862968?e=1756339200&v=beta&t=naGZgF4noueDd8k7ksLGx_VL7pAiOXAEtVVUY7xv03g",
+                    "expiresAt": 1756339200000,
+                    "height": 400
+                  },
+                  {
+                    "width": 500,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-displayphoto-shrink_800_800/0/1660896862968?e=1756339200&v=beta&t=rRdknrlHtLowFJP3huFFnyM6e10fXLn8RJwdEwVzI3w",
+                    "expiresAt": 1756339200000,
+                    "height": 500
+                  }
+                ],
+                "rootUrl": "https://media.licdn.com/dms/image/v2/C4E03AQHeaLanNN31WQ/profile-displayphoto-shrink_"
+              }
+            },
+            "trackingId": "GLLG34chTW2pycQ6hgwakA=="
+          },
+          "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003238)",
+          "profileUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo"
+        }
+      ],
+      "timePeriod": {
+        "endDate": {
+          "month": 4,
+          "year": 2024
+        },
+        "startDate": {
+          "month": 2,
+          "year": 2024
+        }
+      },
+      "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
+      "title": "Compiler Design Project"
+    }
+  ],
+  "skills": [
+    {
+      "name": "DSA"
+    },
+    {
+      "name": "Machine Learning"
+    },
+    {
+      "name": "Large Language Models (LLM)"
+    },
+    {
+      "name": "API Gateways"
+    }
+  ],
+  "urn_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
+  "contact_info": {
+    "email_address": "aviroopmitra5@gmail.com",
+    "websites": [],
+    "twitter": [],
+    "birthdate": {
+      "month": 10,
+      "day": 7
+    },
+    "ims": null,
+    "phone_numbers": [
+      {
+        "type": "MOBILE",
+        "number": "+91 79809 58951"
+      }
+    ]
+  }
+}

@@ -39,13 +39,12 @@
 <hr/>
 
 ### <span style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold; color:#0063c6;">Skills</span>
-- **Programming Languages:** C++, Java, JavaScript
+- **Programming Languages:** C++, Java, JavaScript, SQL
+- **Databases & Storage:** MySQL, MongoDB
 - **Machine Learning & Data Science:** Machine Learning, Deep Learning, Recommender Systems, Transformers, Scikit-Learn, NumPy
-- **Databases & Data Storage:** MySQL, MongoDB, SQL
-- **Backend & API Technologies:** REST APIs, API Gateways, FastAPI, Spring Boot, Node.js, SQLAlchemy
-- **Frontend & Web Frameworks:** Angular, Streamlit
-- **Developer Tools:** Git, pytest, Jupyter
-- **Cloud & Infrastructure:** Cloud Computing
+- **Web & API Development:** REST APIs, FastAPI, Spring Boot, Node.js, Angular, API Gateways
+- **Cloud & Distributed Systems:** Cloud Computing, Distributed Computing
+- **Tools & Libraries:** Streamlit, pytest, SQLAlchemy, Jupyter, Git
 
 <hr/>
 
@@ -73,8 +72,6 @@
 ### <span style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold; color:#0063c6;">Achievements</span>
 
 - **GATE CS, 2025** —  <em style="color:#555;">(Feb, 2025)</em>: AIR 65, 99.96 percentile
-
-- **1st Runner up in the Coding competition, 'The Turing Show', organised by RKMVERI, Belur** — RKMVERI, Belur <em style="color:#555;">(Jan, 2023)</em>: It was a part of PERCEPTRON, the annual Tech fest of RKMVERI. It was an enlightening experience to interact with a pool of bright minds.
 
 - **Jagadish Bose National Science Talent Search, Senior Scholar** — JBNSTS <em style="color:#555;">(Jul, 2022)</em>: 98.98 percentile
 

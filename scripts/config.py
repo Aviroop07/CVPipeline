@@ -21,6 +21,7 @@ PDF_HEADING_FONT_SIZE = 14
 PDF_TITLE_FONT_SIZE = 18
 PDF_MARGIN = 50
 PDF_LINE_SPACING = 1.2
+PDF_SECTION_SPACING = 8  # Space between sections in points
 
 # File names and paths
 RESUME_JSON_FILE = "resume.json"

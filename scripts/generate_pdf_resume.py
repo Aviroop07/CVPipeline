@@ -120,8 +120,12 @@ def create_header(layout: PageLayout, basics: Dict[str, Any]) -> None:
                 horizontal_alignment=Alignment.CENTERED
             ))
 
-def create_section_heading(layout: PageLayout, title: str) -> None:
-    """Create a section heading."""
+def create_section_heading(layout: PageLayout, title: str, is_first_section: bool = False) -> None:
+    """Create a section heading with controlled spacing."""
+    # Add spacing before section (except for the first section)
+    if not is_first_section:
+        layout.add(Paragraph(" ", font_size=config.PDF_SECTION_SPACING))
+    
     layout.add(Paragraph(
         title.upper(),
         font=StandardType1Font("Times-Bold"),
@@ -129,12 +133,12 @@ def create_section_heading(layout: PageLayout, title: str) -> None:
         horizontal_alignment=Alignment.LEFT
     ))
 
-def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> None:
+def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]], is_first_section: bool = False) -> None:
     """Create the work experience section."""
     if not work:
         return
     
-    create_section_heading(layout, "Professional Experience")
+    create_section_heading(layout, "Professional Experience", is_first_section=is_first_section)
     
     for job in work:
         # Job header: Position at Company
@@ -145,14 +149,20 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
         header_text = f"{position}"
         if company:
             header_text += f" at {company}"
-        if period:
-            header_text += f" • {period}"
         
         layout.add(Paragraph(
             header_text,
             font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
+        
+        # Period in italics, non-bold
+        if period:
+            layout.add(Paragraph(
+                period,
+                font=StandardType1Font("Times-Italic"),
+                font_size=config.PDF_FONT_SIZE - 1
+            ))
         
         # Company URL if available
         if job.get("url"):
@@ -173,12 +183,12 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
                     font_size=config.PDF_FONT_SIZE - 1
                 ))
 
-def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> None:
+def create_education(layout: PageLayout, education: List[Dict[str, Any]], is_first_section: bool = False) -> None:
     """Create the education section."""
     if not education:
         return
     
-    create_section_heading(layout, "Education")
+    create_section_heading(layout, "Education", is_first_section=is_first_section)
     
     for edu in education:
         # Education header: Degree at Institution
@@ -192,14 +202,20 @@ def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> Non
             header_text += f" in {field}"
         if institution:
             header_text += f" • {institution}"
-        if period:
-            header_text += f" • {period}"
         
         layout.add(Paragraph(
             header_text,
             font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
+        
+        # Period in italics, non-bold
+        if period:
+            layout.add(Paragraph(
+                period,
+                font=StandardType1Font("Times-Italic"),
+                font_size=config.PDF_FONT_SIZE - 1
+            ))
         
         # GPA if available
         if edu.get("score"):
@@ -209,27 +225,31 @@ def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> Non
                 font_size=config.PDF_FONT_SIZE - 1
             ))
 
-def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
+def create_projects(layout: PageLayout, projects: List[Dict[str, Any]], is_first_section: bool = False) -> None:
     """Create the projects section."""
     if not projects:
         return
     
-    create_section_heading(layout, "Projects")
+    create_section_heading(layout, "Projects", is_first_section=is_first_section)
     
     for project in projects:
         # Project header: Name
         name = clean_text(project.get("name", ""))
         period = clean_text(project.get("period", ""))
         
-        header_text = name
-        if period:
-            header_text += f" • {period}"
-        
         layout.add(Paragraph(
-            header_text,
+            name,
             font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
+        
+        # Period in italics, non-bold
+        if period:
+            layout.add(Paragraph(
+                period,
+                font=StandardType1Font("Times-Italic"),
+                font_size=config.PDF_FONT_SIZE - 1
+            ))
         
         # Project URL if available
         if project.get("url"):
@@ -259,12 +279,12 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
                     font_size=config.PDF_FONT_SIZE - 1
                 ))
 
-def create_skills(layout: PageLayout, skills_by_category: Dict[str, List[str]]) -> None:
+def create_skills(layout: PageLayout, skills_by_category: Dict[str, List[str]], is_first_section: bool = False) -> None:
     """Create the skills section."""
     if not skills_by_category:
         return
     
-    create_section_heading(layout, "Skills")
+    create_section_heading(layout, "Skills", is_first_section=is_first_section)
     
     for category, skills in skills_by_category.items():
         if skills:
@@ -281,12 +301,12 @@ def create_skills(layout: PageLayout, skills_by_category: Dict[str, List[str]]) 
                 font_size=config.PDF_FONT_SIZE - 1
             ))
 
-def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
+def create_awards(layout: PageLayout, awards: List[Dict[str, Any]], is_first_section: bool = False) -> None:
     """Create the awards section."""
     if not awards:
         return
     
-    create_section_heading(layout, "Awards & Achievements")
+    create_section_heading(layout, "Awards & Achievements", is_first_section=is_first_section)
     
     for award in awards:
         title = clean_text(award.get("title", ""))
@@ -296,14 +316,20 @@ def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
         header_text = title
         if issuer:
             header_text += f" • {issuer}"
-        if date:
-            header_text += f" • {date}"
         
         layout.add(Paragraph(
             header_text,
             font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
+        
+        # Date in italics, non-bold
+        if date:
+            layout.add(Paragraph(
+                date,
+                font=StandardType1Font("Times-Italic"),
+                font_size=config.PDF_FONT_SIZE - 1
+            ))
         
         # Description if available
         if award.get("summary"):
@@ -313,12 +339,12 @@ def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
                 font_size=config.PDF_FONT_SIZE - 1
             ))
 
-def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]]) -> None:
+def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]], is_first_section: bool = False) -> None:
     """Create the certificates section."""
     if not certificates:
         return
     
-    create_section_heading(layout, "Certifications")
+    create_section_heading(layout, "Certifications", is_first_section=is_first_section)
     
     for cert in certificates:
         name = clean_text(cert.get("name", ""))
@@ -328,14 +354,20 @@ def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]]) 
         header_text = name
         if issuer:
             header_text += f" • {issuer}"
-        if date:
-            header_text += f" • {date}"
         
         layout.add(Paragraph(
             header_text,
             font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
+        
+        # Date in italics, non-bold
+        if date:
+            layout.add(Paragraph(
+                date,
+                font=StandardType1Font("Times-Italic"),
+                font_size=config.PDF_FONT_SIZE - 1
+            ))
 
 def generate_pdf(data: Dict[str, Any]) -> Document:
     """Generate PDF document from resume data."""
@@ -355,23 +387,38 @@ def generate_pdf(data: Dict[str, Any]) -> Document:
     basics = data.get("basics", {})
     create_header(layout, basics)
     
+    # Track if this is the first content section
+    first_section = True
+    
     work = data.get("work", [])
-    create_work_experience(layout, work)
+    if work:
+        create_work_experience(layout, work, is_first_section=first_section)
+        first_section = False
     
     education = data.get("education", [])
-    create_education(layout, education)
+    if education:
+        create_education(layout, education, is_first_section=first_section)
+        first_section = False
     
     projects = data.get("projects", [])
-    create_projects(layout, projects)
+    if projects:
+        create_projects(layout, projects, is_first_section=first_section)
+        first_section = False
     
     skills_by_category = data.get("skills_by_category", {})
-    create_skills(layout, skills_by_category)
+    if skills_by_category:
+        create_skills(layout, skills_by_category, is_first_section=first_section)
+        first_section = False
     
     awards = data.get("awards", [])
-    create_awards(layout, awards)
+    if awards:
+        create_awards(layout, awards, is_first_section=first_section)
+        first_section = False
     
     certificates = data.get("certificates", [])
-    create_certificates(layout, certificates)
+    if certificates:
+        create_certificates(layout, certificates, is_first_section=first_section)
+        first_section = False
     
     return doc
 

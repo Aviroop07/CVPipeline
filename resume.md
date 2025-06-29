@@ -30,21 +30,31 @@
 
 **<span style="color:#0063c6;"><span style="color:#0063c6; text-decoration:underline;">Neurologic-ai</span></span> | Machine Learning Intern** <em style="color:#777;">(Kolkata, West Bengal, India)</em> | <em style="color:#555;">Nov, 2023 – Present</em>
 
-- LLM fine-tuning, RAG-pipeline design, Data Analysis, Backend Migration, Database Migration,  Imbuing AI into basic software
+- Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025
+
+- Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.
+
+- Document Intelligence Platform — Carelon Health | Mar–May 2025
+
+- Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.
 
 
 **<span style="color:#0063c6;"><span style="color:#0063c6; text-decoration:underline;">PwC India</span></span> | Advisory Intern** <em style="color:#777;">(Kolkata, West Bengal, India)</em> | <em style="color:#555;">Jun – Jul, 2024</em>
+
+- Full-Stack Ticket Platform | Jun–Jul 2024
+
+- Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.
 
 
 <hr/>
 
 ### <span style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold; color:#0063c6;">Skills</span>
-- **Programming Languages:** C++, Java, JavaScript, SQL
-- **Databases & Storage:** MySQL, MongoDB
-- **Machine Learning & Data Science:** Machine Learning, Deep Learning, Recommender Systems, Transformers, Scikit-Learn, NumPy
-- **Web & API Development:** REST APIs, FastAPI, Spring Boot, Node.js, Angular, API Gateways
-- **Cloud & Distributed Systems:** Cloud Computing, Distributed Computing
-- **Tools & Libraries:** Streamlit, pytest, SQLAlchemy, Jupyter, Git
+- **Programming Languages:** C++, JavaScript, Java
+- **Web & API Frameworks:** REST APIs, API Gateways, FastAPI, Spring Boot, Node.js, Angular
+- **Databases & Data Management:** MySQL, MongoDB, SQLAlchemy
+- **Machine Learning & AI:** Machine Learning, Deep Learning, Transformers, Recommender Systems, Scikit-Learn, OpenAI API, NumPy
+- **Data Science Tools:** Jupyter, Streamlit
+- **DevOps & Cloud:** Cloud Computing, Git, pytest
 
 <hr/>
 

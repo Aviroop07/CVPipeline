@@ -3,4 +3,4 @@ dotenv
 pyotp
 openai
 jinja2
-borb
+borb<3.0

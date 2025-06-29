@@ -23,14 +23,15 @@ from typing import List, Dict, Any
 import config
 import dotenv
 
-# borb imports
+# borb imports for version 2.x
 from borb.pdf import Document, Page, Paragraph
 from borb.pdf.canvas.layout.page_layout.multi_column_layout import SingleColumnLayout
 from borb.pdf.canvas.layout.page_layout.page_layout import PageLayout
 from borb.pdf.canvas.layout.text.paragraph import Paragraph
-from borb.pdf.canvas.layout.list.unordered_list import UnorderedList
+
+from borb.pdf.canvas.layout.layout_element import Alignment
 from borb.pdf.canvas.color.color import HexColor
-from borb.pdf.canvas.font.font import Font
+from borb.pdf.canvas.font.simple_font.font_type_1 import StandardType1Font
 from borb.pdf import PDF
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -44,36 +45,65 @@ dotenv.load_dotenv()
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
+# ───────────────────────────────────────────────────────── Helpers
+
+def clean_text(text: str) -> str:
+    """Remove or replace special Unicode characters that can't be rendered in basic fonts."""
+    if not text:
+        return text
+    
+    # Replace common special characters
+    replacements = {
+        '↔': '<->',  # left-right arrow
+        '↑': '^',    # up arrow
+        '→': '->',   # right arrow
+        '←': '<-',   # left arrow
+        '↓': 'v',    # down arrow
+        '•': '*',    # bullet point (though we add our own)
+        '–': '-',    # en dash
+        '—': '-',    # em dash
+        ''': "'",    # smart quote
+        ''': "'",    # smart quote
+        '"': '"',    # smart quote
+        '"': '"',    # smart quote
+    }
+    
+    result = text
+    for old, new in replacements.items():
+        result = result.replace(old, new)
+    
+    return result
+
 # ───────────────────────────────────────────────────────── PDF Generation
 
 def create_header(layout: PageLayout, basics: Dict[str, Any]) -> None:
     """Create the header section with name, contact info, and links."""
     # Name as title
-    name = basics.get("name", "")
+    name = clean_text(basics.get("name", ""))
     layout.add(Paragraph(
         name,
-        font=Font.helvetica_bold(),
+        font=StandardType1Font("Helvetica-Bold"),
         font_size=config.PDF_TITLE_FONT_SIZE,
-        text_alignment="CENTER"
+        horizontal_alignment=Alignment.CENTERED
     ))
     
     # Contact information
     contact_info = []
     if basics.get("email"):
-        contact_info.append(basics["email"])
+        contact_info.append(clean_text(basics["email"]))
     if basics.get("phone"):
-        contact_info.append(basics["phone"])
+        contact_info.append(clean_text(basics["phone"]))
     if basics.get("location", {}).get("city"):
         location = basics["location"]
         location_str = f"{location.get('city', '')}, {location.get('region', '')}"
-        contact_info.append(location_str)
+        contact_info.append(clean_text(location_str))
     
     if contact_info:
         layout.add(Paragraph(
             " | ".join(contact_info),
-            font=Font.helvetica(),
+            font=StandardType1Font("Helvetica"),
             font_size=config.PDF_FONT_SIZE,
-            text_alignment="CENTER"
+            horizontal_alignment=Alignment.CENTERED
         ))
     
     # Links
@@ -85,9 +115,9 @@ def create_header(layout: PageLayout, basics: Dict[str, Any]) -> None:
         if links:
             layout.add(Paragraph(
                 " | ".join(links),
-                font=Font.helvetica(),
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1,
-                text_alignment="CENTER"
+                horizontal_alignment=Alignment.CENTERED
             ))
     
     layout.add(Paragraph(" "))  # Spacing
@@ -96,9 +126,9 @@ def create_section_heading(layout: PageLayout, title: str) -> None:
     """Create a section heading."""
     layout.add(Paragraph(
         title.upper(),
-        font=Font.helvetica_bold(),
+        font=StandardType1Font("Helvetica-Bold"),
         font_size=config.PDF_HEADING_FONT_SIZE,
-        text_alignment="LEFT"
+        horizontal_alignment=Alignment.LEFT
     ))
     layout.add(Paragraph(" "))  # Spacing
 
@@ -111,9 +141,9 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
     
     for job in work:
         # Job header: Position at Company
-        position = job.get("position", "")
-        company = job.get("name", "")
-        period = job.get("period", "")
+        position = clean_text(job.get("position", ""))
+        company = clean_text(job.get("name", ""))
+        period = clean_text(job.get("period", ""))
         
         header_text = f"{position}"
         if company:
@@ -123,30 +153,28 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
         
         layout.add(Paragraph(
             header_text,
-            font=Font.helvetica_bold(),
+            font=StandardType1Font("Helvetica-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
         # Company URL if available
         if job.get("url"):
             layout.add(Paragraph(
-                job["url"],
-                font=Font.helvetica(),
+                clean_text(job["url"]),
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1,
-                text_color=HexColor("0066CC")
+                font_color=HexColor("0066CC")
             ))
         
         # Bullet points
         points = job.get("points", [])
         if points:
-            bullet_list = []
             for point in points:
-                bullet_list.append(Paragraph(
-                    point,
-                    font=Font.helvetica(),
+                layout.add(Paragraph(
+                    f"• {clean_text(point)}",
+                    font=StandardType1Font("Helvetica"),
                     font_size=config.PDF_FONT_SIZE - 1
                 ))
-            layout.add(UnorderedList(*bullet_list))
         
         layout.add(Paragraph(" "))  # Spacing between jobs
 
@@ -159,10 +187,10 @@ def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> Non
     
     for edu in education:
         # Education header: Degree at Institution
-        degree = edu.get("studyType", "")
-        field = edu.get("area", "")
-        institution = edu.get("institution", "")
-        period = edu.get("period", "")
+        degree = clean_text(edu.get("studyType", ""))
+        field = clean_text(edu.get("area", ""))
+        institution = clean_text(edu.get("institution", ""))
+        period = clean_text(edu.get("period", ""))
         
         header_text = f"{degree}"
         if field:
@@ -174,15 +202,15 @@ def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> Non
         
         layout.add(Paragraph(
             header_text,
-            font=Font.helvetica_bold(),
+            font=StandardType1Font("Helvetica-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
         # GPA if available
         if edu.get("score"):
             layout.add(Paragraph(
-                f"GPA: {edu['score']}",
-                font=Font.helvetica(),
+                f"GPA: {clean_text(edu['score'])}",
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
         
@@ -197,8 +225,8 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
     
     for project in projects:
         # Project header: Name
-        name = project.get("name", "")
-        period = project.get("period", "")
+        name = clean_text(project.get("name", ""))
+        period = clean_text(project.get("period", ""))
         
         header_text = name
         if period:
@@ -206,39 +234,37 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
         
         layout.add(Paragraph(
             header_text,
-            font=Font.helvetica_bold(),
+            font=StandardType1Font("Helvetica-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
         # Project URL if available
         if project.get("url"):
             layout.add(Paragraph(
-                project["url"],
-                font=Font.helvetica(),
+                clean_text(project["url"]),
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1,
-                text_color=HexColor("0066CC")
+                font_color=HexColor("0066CC")
             ))
         
         # Description
-        description = project.get("description", "")
+        description = clean_text(project.get("description", ""))
         if description:
             layout.add(Paragraph(
                 description,
-                font=Font.helvetica(),
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
         
         # Bullet points
         points = project.get("points", [])
         if points:
-            bullet_list = []
             for point in points:
-                bullet_list.append(Paragraph(
-                    point,
-                    font=Font.helvetica(),
+                layout.add(Paragraph(
+                    f"• {clean_text(point)}",
+                    font=StandardType1Font("Helvetica"),
                     font_size=config.PDF_FONT_SIZE - 1
                 ))
-            layout.add(UnorderedList(*bullet_list))
         
         layout.add(Paragraph(" "))  # Spacing
 
@@ -253,14 +279,14 @@ def create_skills(layout: PageLayout, skills_by_category: Dict[str, List[str]]) 
         if skills:
             layout.add(Paragraph(
                 f"{category}:",
-                font=Font.helvetica_bold(),
+                font=StandardType1Font("Helvetica-Bold"),
                 font_size=config.PDF_FONT_SIZE
             ))
             
-            skills_text = ", ".join(skills)
+            skills_text = ", ".join([clean_text(skill) for skill in skills])
             layout.add(Paragraph(
                 skills_text,
-                font=Font.helvetica(),
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
             layout.add(Paragraph(" "))  # Spacing
@@ -273,9 +299,9 @@ def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
     create_section_heading(layout, "Awards & Achievements")
     
     for award in awards:
-        title = award.get("title", "")
-        issuer = award.get("issuer", "")
-        date = award.get("date", "")
+        title = clean_text(award.get("title", ""))
+        issuer = clean_text(award.get("issuer", ""))
+        date = clean_text(award.get("date", ""))
         
         header_text = title
         if issuer:
@@ -285,15 +311,15 @@ def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
         
         layout.add(Paragraph(
             header_text,
-            font=Font.helvetica_bold(),
+            font=StandardType1Font("Helvetica-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
         # Description if available
         if award.get("summary"):
             layout.add(Paragraph(
-                award["summary"],
-                font=Font.helvetica(),
+                clean_text(award["summary"]),
+                font=StandardType1Font("Helvetica"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
         
@@ -307,9 +333,9 @@ def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]]) 
     create_section_heading(layout, "Certifications")
     
     for cert in certificates:
-        name = cert.get("name", "")
-        issuer = cert.get("issuer", "")
-        date = cert.get("date", "")
+        name = clean_text(cert.get("name", ""))
+        issuer = clean_text(cert.get("issuer", ""))
+        date = clean_text(cert.get("date", ""))
         
         header_text = name
         if issuer:
@@ -319,7 +345,7 @@ def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]]) 
         
         layout.add(Paragraph(
             header_text,
-            font=Font.helvetica_bold(),
+            font=StandardType1Font("Helvetica-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         

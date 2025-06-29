@@ -82,7 +82,7 @@ def create_header(layout: PageLayout, basics: Dict[str, Any]) -> None:
     name = clean_text(basics.get("name", ""))
     layout.add(Paragraph(
         name,
-        font=StandardType1Font("Helvetica-Bold"),
+        font=StandardType1Font("Times-Bold"),
         font_size=config.PDF_TITLE_FONT_SIZE,
         horizontal_alignment=Alignment.CENTERED
     ))
@@ -101,7 +101,7 @@ def create_header(layout: PageLayout, basics: Dict[str, Any]) -> None:
     if contact_info:
         layout.add(Paragraph(
             " | ".join(contact_info),
-            font=StandardType1Font("Helvetica"),
+            font=StandardType1Font("Times-Roman"),
             font_size=config.PDF_FONT_SIZE,
             horizontal_alignment=Alignment.CENTERED
         ))
@@ -115,22 +115,19 @@ def create_header(layout: PageLayout, basics: Dict[str, Any]) -> None:
         if links:
             layout.add(Paragraph(
                 " | ".join(links),
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1,
                 horizontal_alignment=Alignment.CENTERED
             ))
-    
-    layout.add(Paragraph(" "))  # Spacing
 
 def create_section_heading(layout: PageLayout, title: str) -> None:
     """Create a section heading."""
     layout.add(Paragraph(
         title.upper(),
-        font=StandardType1Font("Helvetica-Bold"),
+        font=StandardType1Font("Times-Bold"),
         font_size=config.PDF_HEADING_FONT_SIZE,
         horizontal_alignment=Alignment.LEFT
     ))
-    layout.add(Paragraph(" "))  # Spacing
 
 def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> None:
     """Create the work experience section."""
@@ -153,7 +150,7 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
         
         layout.add(Paragraph(
             header_text,
-            font=StandardType1Font("Helvetica-Bold"),
+            font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
@@ -161,7 +158,7 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
         if job.get("url"):
             layout.add(Paragraph(
                 clean_text(job["url"]),
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1,
                 font_color=HexColor("0066CC")
             ))
@@ -172,11 +169,9 @@ def create_work_experience(layout: PageLayout, work: List[Dict[str, Any]]) -> No
             for point in points:
                 layout.add(Paragraph(
                     f"• {clean_text(point)}",
-                    font=StandardType1Font("Helvetica"),
+                    font=StandardType1Font("Times-Roman"),
                     font_size=config.PDF_FONT_SIZE - 1
                 ))
-        
-        layout.add(Paragraph(" "))  # Spacing between jobs
 
 def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> None:
     """Create the education section."""
@@ -202,7 +197,7 @@ def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> Non
         
         layout.add(Paragraph(
             header_text,
-            font=StandardType1Font("Helvetica-Bold"),
+            font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
@@ -210,11 +205,9 @@ def create_education(layout: PageLayout, education: List[Dict[str, Any]]) -> Non
         if edu.get("score"):
             layout.add(Paragraph(
                 f"GPA: {clean_text(edu['score'])}",
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
-        
-        layout.add(Paragraph(" "))  # Spacing
 
 def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
     """Create the projects section."""
@@ -234,7 +227,7 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
         
         layout.add(Paragraph(
             header_text,
-            font=StandardType1Font("Helvetica-Bold"),
+            font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
@@ -242,7 +235,7 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
         if project.get("url"):
             layout.add(Paragraph(
                 clean_text(project["url"]),
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1,
                 font_color=HexColor("0066CC")
             ))
@@ -252,7 +245,7 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
         if description:
             layout.add(Paragraph(
                 description,
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
         
@@ -262,11 +255,9 @@ def create_projects(layout: PageLayout, projects: List[Dict[str, Any]]) -> None:
             for point in points:
                 layout.add(Paragraph(
                     f"• {clean_text(point)}",
-                    font=StandardType1Font("Helvetica"),
+                    font=StandardType1Font("Times-Roman"),
                     font_size=config.PDF_FONT_SIZE - 1
                 ))
-        
-        layout.add(Paragraph(" "))  # Spacing
 
 def create_skills(layout: PageLayout, skills_by_category: Dict[str, List[str]]) -> None:
     """Create the skills section."""
@@ -279,17 +270,16 @@ def create_skills(layout: PageLayout, skills_by_category: Dict[str, List[str]]) 
         if skills:
             layout.add(Paragraph(
                 f"{category}:",
-                font=StandardType1Font("Helvetica-Bold"),
+                font=StandardType1Font("Times-Bold"),
                 font_size=config.PDF_FONT_SIZE
             ))
             
             skills_text = ", ".join([clean_text(skill) for skill in skills])
             layout.add(Paragraph(
                 skills_text,
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
-            layout.add(Paragraph(" "))  # Spacing
 
 def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
     """Create the awards section."""
@@ -311,7 +301,7 @@ def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
         
         layout.add(Paragraph(
             header_text,
-            font=StandardType1Font("Helvetica-Bold"),
+            font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
         
@@ -319,11 +309,9 @@ def create_awards(layout: PageLayout, awards: List[Dict[str, Any]]) -> None:
         if award.get("summary"):
             layout.add(Paragraph(
                 clean_text(award["summary"]),
-                font=StandardType1Font("Helvetica"),
+                font=StandardType1Font("Times-Roman"),
                 font_size=config.PDF_FONT_SIZE - 1
             ))
-        
-        layout.add(Paragraph(" "))  # Spacing
 
 def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]]) -> None:
     """Create the certificates section."""
@@ -345,11 +333,9 @@ def create_certificates(layout: PageLayout, certificates: List[Dict[str, Any]]) 
         
         layout.add(Paragraph(
             header_text,
-            font=StandardType1Font("Helvetica-Bold"),
+            font=StandardType1Font("Times-Bold"),
             font_size=config.PDF_FONT_SIZE
         ))
-        
-        layout.add(Paragraph(" "))  # Spacing
 
 def generate_pdf(data: Dict[str, Any]) -> Document:
     """Generate PDF document from resume data."""

@@ -3,3 +3,4 @@ dotenv
 pyotp
 openai
 jinja2
+borb

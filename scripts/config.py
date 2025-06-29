@@ -14,3 +14,10 @@ MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec
 
 # Word count threshold above which we ask OpenAI to extract bullet points
 POINT_WORD_THRESHOLD = 50
+
+# PDF generation settings
+PDF_FONT_SIZE = 10
+PDF_HEADING_FONT_SIZE = 14
+PDF_TITLE_FONT_SIZE = 18
+PDF_MARGIN = 50
+PDF_LINE_SPACING = 1.2

@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Update the github workflow in  :[update-resume.yml](mdc:.github/workflows/update-resume.yml)

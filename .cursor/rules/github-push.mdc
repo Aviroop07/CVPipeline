@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+push the updates (run these commands in terminal) after each major changes with appropriate commit message:
+
+git add .
+git commit -m <commit-message>
+git push origin main

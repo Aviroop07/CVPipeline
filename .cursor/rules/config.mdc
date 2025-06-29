@@ -1,6 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: true
----
-While writing python scripts, define constants inside [config.py](mdc:scripts/config.py) and import them, try to define as less constants as possible.

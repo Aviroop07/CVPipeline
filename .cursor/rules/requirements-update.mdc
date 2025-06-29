@@ -1,6 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: true
----
-Update [requirements.txt](mdc:requirements.txt) if any new python library is used.

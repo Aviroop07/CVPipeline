@@ -91,17 +91,17 @@
   ],
   "awards": [
     {
-      "title": "GATE CS, 2025",
-      "date": "Feb, 2025",
-      "awarder": "",
-      "summary": "AIR 65, 99.96 percentile",
-      "url": ""
-    },
-    {
       "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
       "date": "Jul, 2022",
       "awarder": "JBNSTS",
       "summary": "98.98 percentile",
+      "url": ""
+    },
+    {
+      "title": "GATE CS, 2025",
+      "date": "Feb, 2025",
+      "awarder": "",
+      "summary": "AIR 65, 99.96 percentile",
       "url": ""
     },
     {
@@ -181,6 +181,9 @@
       "name": "FastAPI"
     },
     {
+      "name": "SQLAlchemy"
+    },
+    {
       "name": "Transformers"
     },
     {
@@ -240,36 +243,45 @@
   "skills_by_category": {
     "Programming Languages": [
       "C++",
+      "Java",
       "JavaScript",
-      "Java"
-    ],
-    "Databases": [
-      "MySQL",
-      "MongoDB",
       "SQL"
+    ],
+    "Computer Science Fundamentals": [
+      "Algorithms"
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
+      "Deep Learning",
       "Recommender Systems",
       "Transformers",
-      "Deep Learning",
       "Scikit-Learn",
       "NumPy",
-      "Algorithms"
+      "Jupyter"
     ],
-    "Web & API Development": [
-      "OpenAI API",
-      "REST APIs",
+    "Backend & Web Frameworks": [
       "FastAPI",
       "Spring Boot",
-      "Angular",
-      "Node.js"
+      "Node.js",
+      "SQLAlchemy"
     ],
-    "Tools & Platforms": [
-      "pytest",
+    "Frontend Frameworks": [
+      "Angular"
+    ],
+    "Databases & Storage": [
+      "MySQL",
+      "MongoDB"
+    ],
+    "APIs & Integrations": [
+      "OpenAI API",
+      "REST APIs"
+    ],
+    "DevOps & Cloud": [
       "Cloud Computing",
-      "Git",
-      "Jupyter"
+      "Git"
+    ],
+    "Testing & Tools": [
+      "pytest"
     ]
   }
 }

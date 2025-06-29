@@ -169,12 +169,6 @@
       "name": "MySQL"
     },
     {
-      "name": "Streamlit"
-    },
-    {
-      "name": "Distributed Computing"
-    },
-    {
       "name": "pytest"
     },
     {
@@ -185,9 +179,6 @@
     },
     {
       "name": "FastAPI"
-    },
-    {
-      "name": "SQLAlchemy"
     },
     {
       "name": "Transformers"
@@ -220,7 +211,13 @@
       "name": "Node.js"
     },
     {
+      "name": "NumPy"
+    },
+    {
       "name": "Java"
+    },
+    {
+      "name": "Algorithms"
     },
     {
       "name": "Jupyter"
@@ -243,38 +240,35 @@
   "skills_by_category": {
     "Programming Languages": [
       "C++",
-      "Java",
       "JavaScript",
+      "Java"
+    ],
+    "Databases": [
+      "MySQL",
+      "MongoDB",
       "SQL"
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
-      "Deep Learning",
       "Recommender Systems",
       "Transformers",
+      "Deep Learning",
       "Scikit-Learn",
-      "OpenAI API"
+      "NumPy",
+      "Algorithms"
     ],
     "Web & API Development": [
+      "OpenAI API",
       "REST APIs",
       "FastAPI",
       "Spring Boot",
-      "Node.js",
       "Angular",
-      "Streamlit"
+      "Node.js"
     ],
-    "Databases & Data Management": [
-      "MySQL",
-      "MongoDB",
-      "SQLAlchemy"
-    ],
-    "Cloud & Distributed Computing": [
-      "Cloud Computing",
-      "Distributed Computing"
-    ],
-    "Tools & Testing": [
-      "Git",
+    "Tools & Platforms": [
       "pytest",
+      "Cloud Computing",
+      "Git",
       "Jupyter"
     ]
   }

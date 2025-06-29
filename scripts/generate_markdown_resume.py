@@ -5,8 +5,8 @@ Generate markdown and PDF versions of the résumé.
 Steps:
 1. Load resume.json (JSON-Resume 1.0 structure).
 2. Refine list-based sections via the OpenAI API (if OPENAI_API_KEY is set).
-3. Render a Markdown file using a static Jinja2 template.
-4. Convert the Markdown to PDF using pandoc (must be available on PATH).
+3. Generate markdown using Jinja2 template.
+4. Convert to PDF using pandoc.
 
 Usage:
     python scripts/generate_markdown_resume.py
@@ -26,11 +26,11 @@ import config
 import dotenv
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-RESUME_JSON = ROOT / "resume.json"
-MD_OUT = ROOT / "resume.md"
-PDF_OUT = ROOT / "Aviroop_Mitra_Resume.pdf"
+RESUME_JSON = ROOT / config.RESUME_JSON_FILE
+MD_OUT = ROOT / config.RESUME_MD_FILE
+PDF_OUT = ROOT / config.RESUME_PDF_FILE
 
-PROMPTS_DIR = ROOT / "prompts"
+PROMPTS_DIR = ROOT / config.PROMPTS_DIR
 
 # Load environment variables from .env file if present
 dotenv.load_dotenv()
@@ -48,7 +48,7 @@ def _load_prompt(name: str, **kwargs) -> str:
     return StrTemplate(template_text).substitute(**kwargs)
 
 # Load Jinja2 markdown template from external file
-TEMPLATE = Template((ROOT / "templates" / "resume.md.j2").read_text(encoding="utf-8"))
+TEMPLATE = Template((ROOT / config.TEMPLATES_DIR / config.TEMPLATE_FILE).read_text(encoding="utf-8"))
 
 # ───────────────────────────────────────────────────────── Helpers
 
@@ -96,7 +96,7 @@ def _rank_list_openai(items: List[str], section: str) -> List[str]:
         return items
 
     prompt = _load_prompt(
-        "rank_items.txt",
+        config.RANK_ITEMS_PROMPT,
         section_name=section,
         items_list=", ".join(items)
     )
@@ -125,7 +125,7 @@ def _reorder_objects(obj_list: List[Dict[str, Any]], key: str, section: str) -> 
 def _categorize_skills_openai(skills: List[str]) -> Dict[str, List[str]]:
     if not skills:
         return {}
-    prompt = _load_prompt("categorize_skills.txt", skills_list=", ".join(skills))
+    prompt = _load_prompt(config.CATEGORIZE_SKILLS_PROMPT, skills_list=", ".join(skills))
     log.info("Categorizing %d skills via OpenAI", len(skills))
     response = _openai_chat(prompt)
     log.debug("Skill categorization raw response: %s", response)
@@ -148,7 +148,7 @@ def _filter_skills_openai(skills: List[str]) -> List[str]:
     if not skills:
         return skills
 
-    prompt = _load_prompt("filter_skills.txt", skills_list=", ".join(skills))
+    prompt = _load_prompt(config.FILTER_SKILLS_PROMPT, skills_list=", ".join(skills))
     log.info("Filtering %d skills via OpenAI", len(skills))
     response = _openai_chat(prompt)
     log.debug("Skill filtering raw response: %s", response)
@@ -184,7 +184,7 @@ def _extract_points(text: str) -> List[str]:
     if word_count < config.POINT_WORD_THRESHOLD:
         return [text.strip()]
 
-    prompt = _load_prompt("extract_points.txt", raw_text=text)
+    prompt = _load_prompt(config.EXTRACT_POINTS_PROMPT, raw_text=text)
     log.info("Requesting point extraction (%d words) via OpenAI", word_count)
     resp = _openai_chat(prompt)
     log.debug("Point extraction raw response: %s", resp)
@@ -302,10 +302,10 @@ def preprocess(data: Dict[str, Any]) -> Dict[str, Any]:
 
 def main() -> None:
     if not RESUME_JSON.exists():
-        log.error("resume.json not found – aborting")
+        log.error(f"{config.RESUME_JSON_FILE} not found – aborting")
         sys.exit(1)
 
-    log.info("Loading resume.json")
+    log.info(f"Loading {config.RESUME_JSON_FILE}")
     data = json.loads(RESUME_JSON.read_text(encoding="utf-8"))
     data = preprocess(data)
 

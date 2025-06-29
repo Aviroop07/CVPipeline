@@ -3,10 +3,11 @@ import json, os, pathlib, sys, dotenv
 dotenv.load_dotenv()
 from linkedin_api import Linkedin
 from requests.cookies import RequestsCookieJar
+import config
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT  = ROOT / "data";      OUT.mkdir(exist_ok=True)
-DST  = OUT  / "linkedin_raw.json"
+OUT  = ROOT / config.DATA_DIR;      OUT.mkdir(exist_ok=True)
+DST  = OUT  / config.LINKEDIN_RAW_FILE
         
 
 def main():

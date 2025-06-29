@@ -21,3 +21,21 @@ PDF_HEADING_FONT_SIZE = 14
 PDF_TITLE_FONT_SIZE = 18
 PDF_MARGIN = 50
 PDF_LINE_SPACING = 1.2
+
+# File names and paths
+RESUME_JSON_FILE = "resume.json"
+RESUME_MD_FILE = "resume.md"
+RESUME_PDF_FILE = "Aviroop_Mitra_Resume.pdf"
+LINKEDIN_RAW_FILE = "linkedin_raw.json"
+TEMPLATE_FILE = "resume.md.j2"
+
+# Prompt files
+RANK_ITEMS_PROMPT = "rank_items.txt"
+CATEGORIZE_SKILLS_PROMPT = "categorize_skills.txt"
+FILTER_SKILLS_PROMPT = "filter_skills.txt"
+EXTRACT_POINTS_PROMPT = "extract_points.txt"
+
+# Directory names
+DATA_DIR = "data"
+PROMPTS_DIR = "prompts"
+TEMPLATES_DIR = "templates"

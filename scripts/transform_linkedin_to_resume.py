@@ -8,10 +8,11 @@ import json, pathlib, sys, datetime as _dt, os, re, requests
 from functools import lru_cache
 from linkedin_api import Linkedin
 from requests.cookies import RequestsCookieJar
+import config
 
 ROOT     = pathlib.Path(__file__).resolve().parent.parent
-RAW_FILE = ROOT / "data"   / "linkedin_raw.json"
-CV_FILE  = ROOT / "resume.json"
+RAW_FILE = ROOT / config.DATA_DIR / config.LINKEDIN_RAW_FILE
+CV_FILE  = ROOT / config.RESUME_JSON_FILE
 
 # ────────────────────────────────────────────────────────────────────────────
 def _date(ldict):
@@ -248,7 +249,7 @@ def transform(raw):
 # ────────────────────────────────────────────────────────────────────────────
 def main():
     if not RAW_FILE.exists():
-        sys.exit("✖  Run the LinkedIn scraper first – data/linkedin_raw.json missing.")
+        sys.exit(f"✖  Run the LinkedIn scraper first – {config.DATA_DIR}/{config.LINKEDIN_RAW_FILE} missing.")
 
     raw_data   = json.loads(RAW_FILE.read_text(encoding="utf-8"))
     new_resume = transform(raw_data)
@@ -264,7 +265,7 @@ def main():
         sys.exit(1)                        # signals "skip commit" to the Action
 
     CV_FILE.write_text(json.dumps(new_resume, indent=2, ensure_ascii=False), encoding="utf-8")
-    print("✅  resume.json refreshed.")
+    print(f"✅  {config.RESUME_JSON_FILE} refreshed.")
 
 if __name__ == "__main__":
     main()

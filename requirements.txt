@@ -1,3 +1,5 @@
 linkedin-api
 dotenv
 pyotp
+openai
+jinja2

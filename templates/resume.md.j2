@@ -1,0 +1,48 @@
+<h1 style="margin-bottom:0; font-size:30px; font-family:Arial, Helvetica, sans-serif; color:#000;">{{ basics.name }}</h1>
+<p style="margin-top:2px; font-size:12px; font-style:italic; font-family:Arial, Helvetica, sans-serif; color:#555;">
+  {{ basics.email }} | {{ basics.phone }} | {{ basics.location.city }}, {{ basics.location.countryCode.upper() }}{% if basics.public_id %} | <a href="https://www.linkedin.com/in/{{ basics.public_id }}" style="color:#0063c6; text-decoration:underline;">LinkedIn</a>{% endif %}
+</p>
+
+<hr/>
+
+{% macro section(title) -%}
+### <span style="font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold; color:#0063c6;">{{ title }}</span>
+{%- endmacro %}
+
+{{ section('Education') }}
+{% for e in education %}
+**<span style="color:#0063c6;">{% if e.url %}<a href="{{ e.url }}" style="color:#0063c6; text-decoration:underline;">{{ e.institution }}</a>{% else %}<span style="color:#0063c6; text-decoration:underline;">{{ e.institution }}</span>{% endif %}</span>**  
+<em>{{ e.studyType }} in {{ e.area }}</em>  
+<em style="color:#555;">{{ e.period }}</em>{% if e.score %} | <em>CGPA: {{ e.score }}</em>{% endif %}
+
+{% if e.keywords %}*Key Subjects:* {{ e.keywords | join(', ') }}
+
+{% endif %}{% endfor %}
+<hr/>
+
+{{ section('Work Experience') }}
+{% for w in work %}
+**<span style="color:#0063c6;">{% if w.url %}<a href="{{ w.url }}" style="color:#0063c6; text-decoration:underline;">{{ w.name }}</a>{% else %}<span style="color:#0063c6; text-decoration:underline;">{{ w.name }}</span>{% endif %}</span> | {{ w.position }}** <em style="color:#777;">({{ w.location }})</em> | <em style="color:#555;">{{ w.period }}</em>
+{% for pt in w.points %}
+- {{ pt }}
+{% endfor %}
+{% endfor %}
+<hr/>
+
+{{ section('Skills') }}
+{% for cat, lst in skills_by_category.items() %}- **{{ cat }}:** {{ ", ".join(lst) }}
+{% endfor %}
+<hr/>
+
+{{ section('Personal Projects') }}
+{% for p in projects %}
+- **<span style="color:#0063c6;">{{ p.name }}</span>** <em style="color:#555;">({{ p.period }})</em>
+{% for pt in p.points %}  - {{ pt }}
+{% endfor %}
+{% endfor %}
+<hr/>
+
+{{ section('Achievements') }}
+{% for a in awards %}
+- **{{ a.title }}** — {{ a.awarder }} <em style="color:#555;">({{ a.date }})</em>{% if a.summary %}: {{ a.summary }}{% endif %}
+{% endfor %} 

@@ -53,11 +53,21 @@ def main():
         profile = api.get_profile(public_id=os.environ["LI_PID"])
         print("✅ Profile fetched successfully")
         
-        print("📞 Fetching contact info...")
+        print("📇 Fetching contact info...")
         profile["contact_info"] = api.get_profile_contact_info(
             public_id=profile["public_id"]
         )
         print("✅ Contact info fetched successfully")
+        print("🛠️ Fetching skills info...")
+        profile["skills"] = api.get_profile_skills(
+            public_id=profile["public_id"]
+        )
+        print("✅ Skills info fetched successfully")
+        print("💼 Fetching experiences info...")
+        profile["experiences"] = api.get_profile_experiences(
+            urn_id=profile["urn_id"]
+        )
+        print("✅ Experiences info fetched successfully")
 
         DST.write_text(
             json.dumps(profile, indent=2, ensure_ascii=False), encoding="utf-8"

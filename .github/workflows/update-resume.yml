@@ -22,7 +22,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.13'
+        python-version: '3.11'
 
     # 3 — install dependencies
     - name: Install requirements
@@ -46,11 +46,18 @@ jobs:
       run: python scripts/transform_linkedin_to_resume.py
       continue-on-error: true
 
-    # 6 — commit only if something changed
+    # 6 — generate markdown résumé
+    - name: Generate Markdown Résumé
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: python scripts/generate_markdown_resume.py
+      continue-on-error: true
+
+    # 7 — commit only if something changed
     - name: Commit & push if updated
       uses: EndBug/add-and-commit@v9
       with:
-        add:    'resume.json data/linkedin_raw.json'
+        add:    'resume.json resume.md data/linkedin_raw.json'
         message: 'chore(resume): auto-update ${{ github.run_id }}'
       env:
         # Default GITHUB_TOKEN is enough to push back to the same repo

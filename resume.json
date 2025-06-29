@@ -8,16 +8,18 @@
       "city": "Kolkata, West Bengal",
       "countryCode": "in"
     },
-    "summary": "👋 Hey there, I'm Aviroop Mitra, a Computer Science and Engineering student at Jadavpur University. My academic journey is driven by a fascination for ML, AI, and logic building.\n\n💻 Beyond my coursework, I actively delve into Full Stack Web Development, exploring web technologies.\n\n🚀 Passionate about hackathons, I enjoy collaborative problem-solving and code reviews. I also contribute by posting solutions on coding platforms.\n\n🧩 In my free time, you'll often find me engrossed in chess games, relishing their strategic depth, or solving Sudoku puzzles to sharpen my logical thinking.\n\n🌟 Currently, I'm working on multiple small-scale personal projects in Machine Learning, applying my knowledge to practical solutions.\n\n📬 Feel free to reach out at aviroopmitra5@gmail.com for engaging discussions and the opportunity to innovate in technology and artificial intelligence!"
+    "summary": "👋 Hey there, I'm Aviroop Mitra, a Computer Science and Engineering student at Jadavpur University. My academic journey is driven by a fascination for ML, AI, and logic building.\n\n💻 Beyond my coursework, I actively delve into Full Stack Web Development, exploring web technologies.\n\n🚀 Passionate about hackathons, I enjoy collaborative problem-solving and code reviews. I also contribute by posting solutions on coding platforms.\n\n🧩 In my free time, you'll often find me engrossed in chess games, relishing their strategic depth, or solving Sudoku puzzles to sharpen my logical thinking.\n\n🌟 Currently, I'm working on multiple small-scale personal projects in Machine Learning, applying my knowledge to practical solutions.\n\n📬 Feel free to reach out at aviroopmitra5@gmail.com for engaging discussions and the opportunity to innovate in technology and artificial intelligence!",
+    "public_id": "aviroopmitra071003"
   },
   "work": [
     {
       "name": "Neurologic-ai",
       "position": "Machine Learning Intern",
-      "location": "Hyderabad, Telangana, India",
+      "location": "Kolkata, West Bengal, India",
       "startDate": "2023-11",
       "endDate": null,
-      "summary": "LLM fine-tuning, RAG-pipeline design, Data Analysis, Backend Migration, Database Migration,  Imbuing AI into basic software"
+      "summary": "LLM fine-tuning, RAG-pipeline design, Data Analysis, Backend Migration, Database Migration,  Imbuing AI into basic software",
+      "url": ""
     },
     {
       "name": "PwC India",
@@ -25,17 +27,19 @@
       "location": "Kolkata, West Bengal, India",
       "startDate": "2024-06",
       "endDate": "2024-07",
-      "summary": ""
+      "summary": "",
+      "url": ""
     }
   ],
   "education": [
     {
       "institution": "Jadavpur University",
       "area": "Computer Science and Engineering",
-      "studyType": "Bachelor of Technology - BTech",
-      "score": "8.48 ( uptil 8th semester )",
+      "studyType": "Bachelor of Engineering - BE",
+      "score": "8.15 ( upto 7th semester )",
       "startDate": "2021-12",
-      "endDate": "2025-07"
+      "endDate": "2025-07",
+      "url": ""
     },
     {
       "institution": "Burdwan Municipal High School",
@@ -43,7 +47,8 @@
       "studyType": "Higher Secondary ",
       "score": "O",
       "startDate": "2019-07",
-      "endDate": "2021-03"
+      "endDate": "2021-03",
+      "url": ""
     },
     {
       "institution": "Burdwan Town School",
@@ -51,7 +56,8 @@
       "studyType": "Secondary",
       "score": "AA",
       "startDate": "2011-01",
-      "endDate": "2019-03"
+      "endDate": "2019-03",
+      "url": ""
     }
   ],
   "certificates": [
@@ -70,22 +76,32 @@
   ],
   "awards": [
     {
+      "title": "GATE CS, 2025",
+      "date": "2025-02",
+      "awarder": "",
+      "summary": "AIR 65, 99.96 percentile",
+      "url": ""
+    },
+    {
       "title": "1st Runner up in the Coding competition, 'The Turing Show', organised by RKMVERI, Belur",
       "date": "2023-01",
       "awarder": "RKMVERI, Belur",
-      "summary": "It was a part of PERCEPTRON, the annual Tech fest of RKMVERI. It was an enlightening experience to interact with a pool of bright minds."
+      "summary": "It was a part of PERCEPTRON, the annual Tech fest of RKMVERI. It was an enlightening experience to interact with a pool of bright minds.",
+      "url": ""
     },
     {
       "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
       "date": "2022-07",
       "awarder": "JBNSTS",
-      "summary": "98.98 percentile"
+      "summary": "98.98 percentile",
+      "url": ""
     },
     {
       "title": "Jagadish Bose National Science Talent Search, Junior Scholar",
       "date": "2020-03",
       "awarder": "JBNSTS",
-      "summary": "98.5 percentile"
+      "summary": "98.5 percentile",
+      "url": ""
     }
   ],
   "projects": [
@@ -93,19 +109,22 @@
       "name": "Distributed P2P Network",
       "description": "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)",
       "startDate": "2025-02",
-      "endDate": "2025-05"
+      "endDate": "2025-05",
+      "url": ""
     },
     {
       "name": "LinkedIn Puzzle Solver",
       "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
       "startDate": "2024-08",
-      "endDate": "2024-08"
+      "endDate": "2024-08",
+      "url": ""
     },
     {
       "name": "Compiler Design Project",
       "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
       "startDate": "2024-02",
-      "endDate": "2024-04"
+      "endDate": "2024-04",
+      "url": ""
     }
   ],
   "skills": [
@@ -120,6 +139,159 @@
     },
     {
       "name": "API Gateways"
+    },
+    {
+      "name": "Natural Language Processing (NLP)"
+    },
+    {
+      "name": "Python (Programming Language)"
+    },
+    {
+      "name": "Recommender Systems"
+    },
+    {
+      "name": "C++"
+    },
+    {
+      "name": "MySQL"
+    },
+    {
+      "name": "Compilers"
+    },
+    {
+      "name": "Parser"
+    },
+    {
+      "name": "Automaton"
+    },
+    {
+      "name": "Streamlit"
+    },
+    {
+      "name": "PIL"
+    },
+    {
+      "name": "Graph Theory"
+    },
+    {
+      "name": "Distributed Computing"
+    },
+    {
+      "name": "Peer-to-peer Computing"
+    },
+    {
+      "name": "pytest"
+    },
+    {
+      "name": "REST APIs"
+    },
+    {
+      "name": "Cloud Computing"
+    },
+    {
+      "name": "FastAPI"
+    },
+    {
+      "name": "SQLAlchemy"
+    },
+    {
+      "name": "Convolutional Neural Networks (CNN)"
+    },
+    {
+      "name": "Transformers"
+    },
+    {
+      "name": "Creative Problem Solving"
+    },
+    {
+      "name": "Debugging Code"
+    },
+    {
+      "name": "Debugging"
+    },
+    {
+      "name": "Presentation Skills"
+    },
+    {
+      "name": "Spring Boot"
+    },
+    {
+      "name": "Angular"
+    },
+    {
+      "name": "MongoDB"
+    },
+    {
+      "name": "Deep Learning"
+    },
+    {
+      "name": "JavaScript"
+    },
+    {
+      "name": "SQL"
+    },
+    {
+      "name": "Git"
+    },
+    {
+      "name": "Pandas (Software)"
+    },
+    {
+      "name": "Scikit-Learn"
+    },
+    {
+      "name": "Node.js"
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)"
+    },
+    {
+      "name": "NumPy"
+    },
+    {
+      "name": "English"
+    },
+    {
+      "name": "Java"
+    },
+    {
+      "name": "Data Structures"
+    },
+    {
+      "name": "C (Programming Language)"
+    },
+    {
+      "name": "Microsoft Excel"
+    },
+    {
+      "name": "Programming"
+    },
+    {
+      "name": "Software Development"
+    },
+    {
+      "name": "Algorithms"
+    },
+    {
+      "name": "Computer Science"
+    },
+    {
+      "name": "Jupyter"
+    },
+    {
+      "name": "Engineering"
+    },
+    {
+      "name": "Communication"
+    },
+    {
+      "name": "Analytical Skills"
+    },
+    {
+      "name": "Problem Solving"
+    },
+    {
+      "name": "Mathematics"
     }
   ],
   "languages": [

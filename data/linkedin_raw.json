@@ -16,14 +16,14 @@
       "artifacts": [
         {
           "width": 794,
-          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQLytraxTspIXQAAAZe3pJTtXuSnKmcE5nls4NSu3SG_YMiJJD4ZZD5PjA&e=1751219106&v=beta&t=e_Jjp_JDKG9-mkPP6UuX6ndDOnkXJ9ROhPoLHAPqWUw",
-          "expiresAt": 1751219106000,
+          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQI-ahfN-7BA9gAAAZe6TOuvIyCofQU7TJylctw_IqV8RJjK1n2090pDGw&e=1751263692&v=beta&t=Vvm-KOYDP0_hKtLn72RFT93vuJ_iV9p_WmDCC74uFmo",
+          "expiresAt": 1751263692000,
           "height": 804
         },
         {
           "width": 444,
-          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQJHZBgn4BYDwQAAAZe3pJTtwlEUB25wafUkmN4dXLcC0Mbd9dV4R-OROQ&e=1751219106&v=beta&t=8G7nTw-na7OgsLiKgEHvadsms_mDjFSUW5Kdhc_uZy0",
-          "expiresAt": 1751219106000,
+          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQIe-cIxsjR22AAAAZe6TOuvwGKj89AuxuA8f4-NZbzlJ-vvu9eLOfkDfg&e=1751263692&v=beta&t=D_xbhpEycoo1i7eWAwQWhg5DlwD4rNZLO5fQFIpBJzE",
+          "expiresAt": 1751263692000,
           "height": 450
         }
       ],
@@ -73,20 +73,20 @@
     }
   },
   "displayPictureUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_",
-  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751742000&v=beta&t=Re2F9R6df-ajtLNo3t9xEzRXmItWMD2TeblXx_m14mk",
-  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751742000&v=beta&t=hzpAY-k0CgNzBKa8yry4nVAFgXKNlgUW8X4MhrLn7gE",
-  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751742000&v=beta&t=qLd0-AdYn_QCdCYHlp9QH5XXNqVmJ_eMga8G0g9rZ6w",
-  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751742000&v=beta&t=_YAtyf3uCAubICk7J6SzYWXQ5kqJdI8Rza_4q0A5Z0g",
+  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751785200&v=beta&t=zYGMnEq87q0dgdI68oTKFOR_1bj_uNCWJKD-pfGo3lk",
+  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751785200&v=beta&t=Xi0AcvGw-T_ptug1qhBaq1sSxy5Mc7ng6iyGATc9l2U",
+  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751785200&v=beta&t=TJTzn1JVdQVdpzgeqgroUu2T332ypk_UXJJxQFvnF2U",
+  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751785200&v=beta&t=M9Xq7uQuPSBZsoDZaVrOUTz2hZkM5uh9zm7lzg90WmA",
   "profile_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "profile_urn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "member_urn": "urn:li:member:946910996",
   "public_id": "aviroopmitra071003",
   "experience": [
     {
-      "locationName": "Hyderabad, Telangana, India",
+      "locationName": "Kolkata, West Bengal, India",
       "entityUrn": "urn:li:fs_position:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2418598327)",
-      "geoLocationName": "Hyderabad, Telangana, India",
-      "geoUrn": "urn:li:fs_geo:105556991",
+      "geoLocationName": "Kolkata, West Bengal, India",
+      "geoUrn": "urn:li:fs_geo:111795395",
       "companyName": "Neurologic-ai",
       "timePeriod": {
         "startDate": {
@@ -145,9 +145,10 @@
         "urn:li:fs_project:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541)",
         "urn:li:fs_project:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049)"
       ],
-      "degreeName": "Bachelor of Technology - BTech",
+      "degreeName": "Bachelor of Engineering - BE",
       "honors": [
-        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2021682140)"
+        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2021682140)",
+        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,977908679)"
       ],
       "schoolUrn": "urn:li:fs_miniSchool:13513",
       "entityUrn": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
@@ -156,10 +157,10 @@
         "entityUrn": "urn:li:fs_miniSchool:13513",
         "active": true,
         "schoolName": "Jadavpur University",
-        "trackingId": "6BYQ5pT+TL+nrHKOKU2OAw==",
+        "trackingId": "hVsaS5PISdC7vEzAIQqSmg==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C510BAQFkGVsBobrK1A/company-logo_"
       },
-      "grade": "8.48 ( uptil 8th semester )",
+      "grade": "8.15 ( upto 7th semester )",
       "timePeriod": {
         "endDate": {
           "month": 7,
@@ -176,7 +177,7 @@
       ],
       "schoolName": "Jadavpur University",
       "fieldOfStudy": "Computer Science and Engineering",
-      "degreeUrn": "urn:li:fs_degree:250"
+      "degreeUrn": "urn:li:fs_degree:269"
     },
     {
       "entityUrn": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,768721772)",
@@ -185,7 +186,7 @@
         "entityUrn": "urn:li:fs_miniSchool:3230309",
         "active": true,
         "schoolName": "Burdwan Municipal High School",
-        "trackingId": "2+jj5ImxR+KLU+JSZZiENA==",
+        "trackingId": "gcLzNxapQ0Sa/nvCiZjl7Q==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C560BAQEWuTbLbvUAhg/company-logo_"
       },
       "grade": "O",
@@ -272,20 +273,20 @@
             "artifacts": [
               {
                 "width": 200,
-                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1756339200&v=beta&t=mLD-lj8KS-ew9Pmh7Q1PctMrw5NKY_pzq6NNCFpTPYU",
-                "expiresAt": 1756339200000,
+                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1756944000&v=beta&t=oZ2SezT_ikCoOAlXp0ehbMbEqkyU8DH5CVUf9DixFeo",
+                "expiresAt": 1756944000000,
                 "height": 200
               },
               {
                 "width": 100,
-                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1756339200&v=beta&t=O7MKItOx87LGo1TdSyI2Q3YrQS6cpH6d6zLoiLpGhWo",
-                "expiresAt": 1756339200000,
+                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1756944000&v=beta&t=KbKFz-rIH6CyfNJ4jERKrsg8b-OIjvVz6tgDnoVoAAs",
+                "expiresAt": 1756944000000,
                 "height": 100
               },
               {
                 "width": 400,
-                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1756339200&v=beta&t=sXYhyYGSTIzAAs7DPw5s9qf2lys4v5d2GXtZV5t__n0",
-                "expiresAt": 1756339200000,
+                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1756944000&v=beta&t=eJK_O4xLb0LPps0ZEiia_G3VidHonVfumpx51bJNtyg",
+                "expiresAt": 1756944000000,
                 "height": 400
               }
             ],
@@ -294,7 +295,7 @@
         },
         "universalName": "nptel",
         "dashCompanyUrn": "urn:li:fsd_company:13229455",
-        "trackingId": "dZFggpCcTx+p+S2Mpftrug=="
+        "trackingId": "JDUViLU9QPWJjWhcQX1TBw=="
       },
       "displaySource": "google.com",
       "companyUrn": "urn:li:fs_miniCompany:13229455",
@@ -303,6 +304,15 @@
   ],
   "volunteer": [],
   "honors": [
+    {
+      "description": "AIR 65, 99.96 percentile",
+      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
+      "title": "GATE CS, 2025",
+      "issueDate": {
+        "month": 2,
+        "year": 2025
+      }
+    },
     {
       "description": "It was a part of PERCEPTRON, the annual Tech fest of RKMVERI. It was an enlightening experience to interact with a pool of bright minds.",
       "title": "1st Runner up in the Coding competition, 'The Turing Show', organised by RKMVERI, Belur",
@@ -351,33 +361,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751742000&v=beta&t=Re2F9R6df-ajtLNo3t9xEzRXmItWMD2TeblXx_m14mk",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751785200&v=beta&t=zYGMnEq87q0dgdI68oTKFOR_1bj_uNCWJKD-pfGo3lk",
+                    "expiresAt": 1751785200000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751742000&v=beta&t=hzpAY-k0CgNzBKa8yry4nVAFgXKNlgUW8X4MhrLn7gE",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751785200&v=beta&t=Xi0AcvGw-T_ptug1qhBaq1sSxy5Mc7ng6iyGATc9l2U",
+                    "expiresAt": 1751785200000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751742000&v=beta&t=qLd0-AdYn_QCdCYHlp9QH5XXNqVmJ_eMga8G0g9rZ6w",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751785200&v=beta&t=TJTzn1JVdQVdpzgeqgroUu2T332ypk_UXJJxQFvnF2U",
+                    "expiresAt": 1751785200000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751742000&v=beta&t=_YAtyf3uCAubICk7J6SzYWXQ5kqJdI8Rza_4q0A5Z0g",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751785200&v=beta&t=M9Xq7uQuPSBZsoDZaVrOUTz2hZkM5uh9zm7lzg90WmA",
+                    "expiresAt": 1751785200000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "+dkygc6SQTyqzXwMDTXHbA=="
+            "trackingId": "/QEZsSI5Q/6gdHQQQ3YX/w=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541,460000641)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -412,33 +422,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751742000&v=beta&t=Re2F9R6df-ajtLNo3t9xEzRXmItWMD2TeblXx_m14mk",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751785200&v=beta&t=zYGMnEq87q0dgdI68oTKFOR_1bj_uNCWJKD-pfGo3lk",
+                    "expiresAt": 1751785200000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751742000&v=beta&t=hzpAY-k0CgNzBKa8yry4nVAFgXKNlgUW8X4MhrLn7gE",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751785200&v=beta&t=Xi0AcvGw-T_ptug1qhBaq1sSxy5Mc7ng6iyGATc9l2U",
+                    "expiresAt": 1751785200000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751742000&v=beta&t=qLd0-AdYn_QCdCYHlp9QH5XXNqVmJ_eMga8G0g9rZ6w",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751785200&v=beta&t=TJTzn1JVdQVdpzgeqgroUu2T332ypk_UXJJxQFvnF2U",
+                    "expiresAt": 1751785200000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751742000&v=beta&t=_YAtyf3uCAubICk7J6SzYWXQ5kqJdI8Rza_4q0A5Z0g",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751785200&v=beta&t=M9Xq7uQuPSBZsoDZaVrOUTz2hZkM5uh9zm7lzg90WmA",
+                    "expiresAt": 1751785200000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "+dkygc6SQTyqzXwMDTXHbA=="
+            "trackingId": "/QEZsSI5Q/6gdHQQQ3YX/w=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074567873,460000648)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -474,33 +484,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751742000&v=beta&t=Re2F9R6df-ajtLNo3t9xEzRXmItWMD2TeblXx_m14mk",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751785200&v=beta&t=zYGMnEq87q0dgdI68oTKFOR_1bj_uNCWJKD-pfGo3lk",
+                    "expiresAt": 1751785200000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751742000&v=beta&t=hzpAY-k0CgNzBKa8yry4nVAFgXKNlgUW8X4MhrLn7gE",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751785200&v=beta&t=Xi0AcvGw-T_ptug1qhBaq1sSxy5Mc7ng6iyGATc9l2U",
+                    "expiresAt": 1751785200000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751742000&v=beta&t=qLd0-AdYn_QCdCYHlp9QH5XXNqVmJ_eMga8G0g9rZ6w",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751785200&v=beta&t=TJTzn1JVdQVdpzgeqgroUu2T332ypk_UXJJxQFvnF2U",
+                    "expiresAt": 1751785200000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751742000&v=beta&t=_YAtyf3uCAubICk7J6SzYWXQ5kqJdI8Rza_4q0A5Z0g",
-                    "expiresAt": 1751742000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751785200&v=beta&t=M9Xq7uQuPSBZsoDZaVrOUTz2hZkM5uh9zm7lzg90WmA",
+                    "expiresAt": 1751785200000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "+dkygc6SQTyqzXwMDTXHbA=="
+            "trackingId": "/QEZsSI5Q/6gdHQQQ3YX/w=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003237)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -519,33 +529,33 @@
                 "artifacts": [
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-displayphoto-shrink_100_100/0/1660896862968?e=1756339200&v=beta&t=L2EbJ6AzTWnXZ_Z-umVvaQtsKyulr2lHR51GpjAGO3Y",
-                    "expiresAt": 1756339200000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-displayphoto-shrink_100_100/0/1660896862968?e=1756944000&v=beta&t=mARV8LlfvITZc48F9OC7JpBGEzeQI_joU1x5tYQaqXQ",
+                    "expiresAt": 1756944000000,
                     "height": 100
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-displayphoto-shrink_200_200/0/1660896862968?e=1756339200&v=beta&t=yfuXSkewADNadluKXIpZtWBz1b3H5arGpUM1ZzRJgW4",
-                    "expiresAt": 1756339200000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-displayphoto-shrink_200_200/0/1660896862968?e=1756944000&v=beta&t=X8c9EOGqt8qjac5dVJXnXxRqrjcM-MF04YJUTkV7C4E",
+                    "expiresAt": 1756944000000,
                     "height": 200
                   },
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-displayphoto-shrink_400_400/0/1660896862968?e=1756339200&v=beta&t=naGZgF4noueDd8k7ksLGx_VL7pAiOXAEtVVUY7xv03g",
-                    "expiresAt": 1756339200000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-displayphoto-shrink_400_400/0/1660896862968?e=1756944000&v=beta&t=tcXH4Ha9Q42HA0wxNPYNjuz9ba8IXrwplRLmkmqA-4Q",
+                    "expiresAt": 1756944000000,
                     "height": 400
                   },
                   {
                     "width": 500,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-displayphoto-shrink_800_800/0/1660896862968?e=1756339200&v=beta&t=rRdknrlHtLowFJP3huFFnyM6e10fXLn8RJwdEwVzI3w",
-                    "expiresAt": 1756339200000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-displayphoto-shrink_800_800/0/1660896862968?e=1756944000&v=beta&t=OhN7nrLqQC-KjfNRk702AVpCVZ3wFRZJrkKVElV9-rY",
+                    "expiresAt": 1756944000000,
                     "height": 500
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/C4E03AQHeaLanNN31WQ/profile-displayphoto-shrink_"
               }
             },
-            "trackingId": "GLLG34chTW2pycQ6hgwakA=="
+            "trackingId": "+8uzHTIGQKC3eungMpy4HQ=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003238)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo"
@@ -577,6 +587,159 @@
     },
     {
       "name": "API Gateways"
+    },
+    {
+      "name": "Natural Language Processing (NLP)"
+    },
+    {
+      "name": "Python (Programming Language)"
+    },
+    {
+      "name": "Recommender Systems"
+    },
+    {
+      "name": "C++"
+    },
+    {
+      "name": "MySQL"
+    },
+    {
+      "name": "Compilers"
+    },
+    {
+      "name": "Parser"
+    },
+    {
+      "name": "Automaton"
+    },
+    {
+      "name": "Streamlit"
+    },
+    {
+      "name": "PIL"
+    },
+    {
+      "name": "Graph Theory"
+    },
+    {
+      "name": "Distributed Computing"
+    },
+    {
+      "name": "Peer-to-peer Computing"
+    },
+    {
+      "name": "pytest"
+    },
+    {
+      "name": "REST APIs"
+    },
+    {
+      "name": "Cloud Computing"
+    },
+    {
+      "name": "FastAPI"
+    },
+    {
+      "name": "SQLAlchemy"
+    },
+    {
+      "name": "Convolutional Neural Networks (CNN)"
+    },
+    {
+      "name": "Transformers"
+    },
+    {
+      "name": "Creative Problem Solving"
+    },
+    {
+      "name": "Debugging Code"
+    },
+    {
+      "name": "Debugging"
+    },
+    {
+      "name": "Presentation Skills"
+    },
+    {
+      "name": "Spring Boot"
+    },
+    {
+      "name": "Angular"
+    },
+    {
+      "name": "MongoDB"
+    },
+    {
+      "name": "Deep Learning"
+    },
+    {
+      "name": "JavaScript"
+    },
+    {
+      "name": "SQL"
+    },
+    {
+      "name": "Git"
+    },
+    {
+      "name": "Pandas (Software)"
+    },
+    {
+      "name": "Scikit-Learn"
+    },
+    {
+      "name": "Node.js"
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)"
+    },
+    {
+      "name": "NumPy"
+    },
+    {
+      "name": "English"
+    },
+    {
+      "name": "Java"
+    },
+    {
+      "name": "Data Structures"
+    },
+    {
+      "name": "C (Programming Language)"
+    },
+    {
+      "name": "Microsoft Excel"
+    },
+    {
+      "name": "Programming"
+    },
+    {
+      "name": "Software Development"
+    },
+    {
+      "name": "Algorithms"
+    },
+    {
+      "name": "Computer Science"
+    },
+    {
+      "name": "Jupyter"
+    },
+    {
+      "name": "Engineering"
+    },
+    {
+      "name": "Communication"
+    },
+    {
+      "name": "Analytical Skills"
+    },
+    {
+      "name": "Problem Solving"
+    },
+    {
+      "name": "Mathematics"
     }
   ],
   "urn_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
@@ -595,5 +758,27 @@
         "number": "+91 79809 58951"
       }
     ]
-  }
+  },
+  "experiences": [
+    {
+      "title": "Machine Learning Intern",
+      "companyName": "Neurologic-ai",
+      "employmentType": "Internship",
+      "locationName": "Kolkata, West Bengal, India · Remote",
+      "duration": "1 yr 8 mos",
+      "startDate": "Nov 2023",
+      "endDate": "Present",
+      "description": "LLM fine-tuning, RAG-pipeline design, Data Analysis, Backend Migration, Database Migration,  Imbuing AI into basic software"
+    },
+    {
+      "title": "Advisory Intern",
+      "companyName": "PwC India",
+      "employmentType": "Internship",
+      "locationName": "Kolkata, West Bengal, India · On-site",
+      "duration": "2 mos",
+      "startDate": "Jun 2024",
+      "endDate": "Jul 2024",
+      "description": "Skills: Debugging Code · MongoDB · Spring Boot · DSA · Debugging · API Gateways · Presentation Skills · Angular · English"
+    }
+  ]
 }

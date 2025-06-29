@@ -23,18 +23,13 @@ import config
 import dotenv
 
 # borb imports
-from borb.pdf import Document, Page, Paragraph, LineArtFactory, Image
+from borb.pdf import Document, Page, Paragraph
 from borb.pdf.canvas.layout.page_layout.multi_column_layout import SingleColumnLayout
 from borb.pdf.canvas.layout.page_layout.page_layout import PageLayout
 from borb.pdf.canvas.layout.text.paragraph import Paragraph
-from borb.pdf.canvas.layout.table.flexible_table import FlexibleTable
-from borb.pdf.canvas.layout.table.table import Table, TableCell
 from borb.pdf.canvas.layout.list.unordered_list import UnorderedList
-from borb.pdf.canvas.layout.forms.text_field import TextField
-from borb.pdf.canvas.color.color import HexColor, RGBColor
+from borb.pdf.canvas.color.color import HexColor
 from borb.pdf.canvas.font.font import Font
-from borb.pdf.canvas.font.simple_font_factory import SimpleFontFactory
-from borb.pdf.canvas.geometry.rectangle import Rectangle
 from borb.pdf import PDF
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent

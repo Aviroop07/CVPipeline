@@ -18,11 +18,11 @@
       "location": "Kolkata, West Bengal, India",
       "startDate": "2023-11",
       "endDate": null,
-      "summary": "Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
+      "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
       "url": "",
       "points": [
-        "Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025",
-        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.",
+        "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
+        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
         "Document Intelligence Platform — Carelon Health | Mar–May 2025",
         "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy."
       ],
@@ -91,17 +91,17 @@
   ],
   "awards": [
     {
-      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
-      "date": "Jul, 2022",
-      "awarder": "JBNSTS",
-      "summary": "98.98 percentile",
-      "url": ""
-    },
-    {
       "title": "GATE CS, 2025",
       "date": "Feb, 2025",
       "awarder": "",
       "summary": "AIR 65, 99.96 percentile",
+      "url": ""
+    },
+    {
+      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
+      "date": "Jul, 2022",
+      "awarder": "JBNSTS",
+      "summary": "98.98 percentile",
       "url": ""
     },
     {
@@ -169,6 +169,9 @@
       "name": "MySQL"
     },
     {
+      "name": "Streamlit"
+    },
+    {
       "name": "pytest"
     },
     {
@@ -220,10 +223,10 @@
       "name": "Java"
     },
     {
-      "name": "Algorithms"
+      "name": "Data Structures"
     },
     {
-      "name": "Jupyter"
+      "name": "Algorithms"
     }
   ],
   "languages": [
@@ -241,47 +244,46 @@
     }
   ],
   "skills_by_category": {
-    "Programming Languages": [
-      "C++",
-      "Java",
-      "JavaScript",
-      "SQL"
-    ],
-    "Computer Science Fundamentals": [
-      "Algorithms"
-    ],
-    "Machine Learning & Data Science": [
-      "Machine Learning",
-      "Deep Learning",
-      "Recommender Systems",
-      "Transformers",
-      "Scikit-Learn",
-      "NumPy",
-      "Jupyter"
-    ],
-    "Backend & Web Frameworks": [
-      "FastAPI",
-      "Spring Boot",
-      "Node.js",
-      "SQLAlchemy"
-    ],
-    "Frontend Frameworks": [
-      "Angular"
-    ],
-    "Databases & Storage": [
-      "MySQL",
-      "MongoDB"
-    ],
-    "APIs & Integrations": [
+    "APIs & Integration": [
       "OpenAI API",
       "REST APIs"
     ],
-    "DevOps & Cloud": [
+    "Machine Learning & Data Science": [
+      "Machine Learning",
+      "Recommender Systems",
+      "Transformers",
+      "Deep Learning",
+      "Scikit-Learn",
+      "NumPy"
+    ],
+    "Programming Languages": [
+      "C++",
+      "JavaScript",
+      "Java"
+    ],
+    "Databases & Backend": [
+      "MySQL",
+      "SQLAlchemy",
+      "MongoDB",
+      "SQL"
+    ],
+    "Web Development & Frameworks": [
+      "Streamlit",
+      "FastAPI",
+      "Spring Boot",
+      "Angular",
+      "Node.js"
+    ],
+    "Cloud & DevOps": [
       "Cloud Computing",
       "Git"
     ],
-    "Testing & Tools": [
+    "Testing & Quality Assurance": [
       "pytest"
+    ],
+    "Computer Science Fundamentals": [
+      "Data Structures",
+      "Algorithms"
     ]
   }
 }

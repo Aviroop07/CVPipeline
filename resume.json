@@ -178,6 +178,9 @@
       "name": "REST APIs"
     },
     {
+      "name": "Cloud Computing"
+    },
+    {
       "name": "FastAPI"
     },
     {
@@ -194,6 +197,9 @@
     },
     {
       "name": "MongoDB"
+    },
+    {
+      "name": "Deep Learning"
     },
     {
       "name": "JavaScript"
@@ -217,12 +223,6 @@
       "name": "Java"
     },
     {
-      "name": "Data Structures"
-    },
-    {
-      "name": "Algorithms"
-    },
-    {
       "name": "Jupyter"
     }
   ],
@@ -243,41 +243,37 @@
   "skills_by_category": {
     "Programming Languages": [
       "C++",
-      "Java",
       "JavaScript",
-      "SQL"
-    ],
-    "Databases & Storage": [
-      "MySQL",
-      "MongoDB"
-    ],
-    "Web & Backend Frameworks": [
-      "Angular",
-      "Spring Boot",
-      "FastAPI",
-      "Node.js",
-      "Streamlit",
-      "SQLAlchemy"
-    ],
-    "APIs & Services": [
-      "REST APIs",
-      "OpenAI API"
+      "Java"
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
+      "Deep Learning",
       "Recommender Systems",
       "Transformers",
       "Scikit-Learn",
-      "NumPy"
-    ],
-    "Development Tools & Testing": [
-      "Git",
-      "pytest",
+      "NumPy",
       "Jupyter"
     ],
-    "Data Structures & Algorithms": [
-      "Data Structures",
-      "Algorithms"
+    "Web & API Frameworks": [
+      "REST APIs",
+      "FastAPI",
+      "Spring Boot",
+      "Node.js",
+      "Angular",
+      "Streamlit"
+    ],
+    "Databases & ORM": [
+      "MySQL",
+      "MongoDB",
+      "SQL",
+      "SQLAlchemy"
+    ],
+    "Tools & Services": [
+      "Git",
+      "Cloud Computing",
+      "pytest",
+      "OpenAI API"
     ]
   }
 }

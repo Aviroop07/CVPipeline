@@ -248,32 +248,34 @@
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
-      "Deep Learning",
       "Recommender Systems",
       "Transformers",
+      "Deep Learning",
       "Scikit-Learn",
       "NumPy",
-      "Jupyter"
+      "Jupyter",
+      "Streamlit"
     ],
-    "Web & API Frameworks": [
-      "REST APIs",
+    "Databases & Storage": [
+      "MySQL",
+      "MongoDB",
+      "SQL"
+    ],
+    "Web & Backend Frameworks": [
       "FastAPI",
       "Spring Boot",
       "Node.js",
       "Angular",
-      "Streamlit"
-    ],
-    "Databases & ORM": [
-      "MySQL",
-      "MongoDB",
-      "SQL",
       "SQLAlchemy"
     ],
-    "Tools & Services": [
-      "Git",
+    "Cloud & API Services": [
       "Cloud Computing",
-      "pytest",
+      "REST APIs",
       "OpenAI API"
+    ],
+    "Development Tools & Testing": [
+      "Git",
+      "pytest"
     ]
   }
 }

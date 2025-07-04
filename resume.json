@@ -160,6 +160,9 @@
       "name": "Machine Learning"
     },
     {
+      "name": "API Gateways"
+    },
+    {
       "name": "Recommender Systems"
     },
     {
@@ -172,6 +175,9 @@
       "name": "Streamlit"
     },
     {
+      "name": "Distributed Computing"
+    },
+    {
       "name": "pytest"
     },
     {
@@ -182,9 +188,6 @@
     },
     {
       "name": "FastAPI"
-    },
-    {
-      "name": "SQLAlchemy"
     },
     {
       "name": "Transformers"
@@ -221,9 +224,6 @@
     },
     {
       "name": "Java"
-    },
-    {
-      "name": "Jupyter"
     }
   ],
   "languages": [
@@ -248,32 +248,34 @@
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
+      "Deep Learning",
       "Recommender Systems",
       "Transformers",
-      "Deep Learning",
       "Scikit-Learn",
-      "NumPy",
-      "Jupyter",
-      "Streamlit"
+      "NumPy"
     ],
-    "Databases & Storage": [
+    "Databases & Data Storage": [
       "MySQL",
       "MongoDB",
       "SQL"
     ],
-    "Web & Backend Frameworks": [
+    "Frameworks & Libraries": [
+      "Streamlit",
       "FastAPI",
       "Spring Boot",
-      "Node.js",
       "Angular",
-      "SQLAlchemy"
+      "Node.js"
     ],
-    "Cloud & API Services": [
-      "Cloud Computing",
+    "APIs & Integration": [
+      "OpenAI API",
       "REST APIs",
-      "OpenAI API"
+      "API Gateways"
     ],
-    "Development Tools & Testing": [
+    "Cloud & Distributed Systems": [
+      "Cloud Computing",
+      "Distributed Computing"
+    ],
+    "Developer Tools & Testing": [
       "Git",
       "pytest"
     ]

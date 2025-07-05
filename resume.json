@@ -172,12 +172,6 @@
       "name": "MySQL"
     },
     {
-      "name": "Streamlit"
-    },
-    {
-      "name": "Distributed Computing"
-    },
-    {
       "name": "pytest"
     },
     {
@@ -208,9 +202,6 @@
       "name": "JavaScript"
     },
     {
-      "name": "SQL"
-    },
-    {
       "name": "Git"
     },
     {
@@ -224,6 +215,15 @@
     },
     {
       "name": "Java"
+    },
+    {
+      "name": "Data Structures"
+    },
+    {
+      "name": "Algorithms"
+    },
+    {
+      "name": "Jupyter"
     }
   ],
   "languages": [
@@ -243,8 +243,8 @@
   "skills_by_category": {
     "Programming Languages": [
       "C++",
-      "JavaScript",
-      "Java"
+      "Java",
+      "JavaScript"
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
@@ -252,32 +252,32 @@
       "Recommender Systems",
       "Transformers",
       "Scikit-Learn",
-      "NumPy"
+      "NumPy",
+      "Jupyter",
+      "OpenAI API"
     ],
-    "Databases & Data Storage": [
-      "MySQL",
-      "MongoDB",
-      "SQL"
-    ],
-    "Frameworks & Libraries": [
-      "Streamlit",
-      "FastAPI",
+    "Web & API Development": [
+      "Node.js",
       "Spring Boot",
+      "FastAPI",
       "Angular",
-      "Node.js"
-    ],
-    "APIs & Integration": [
-      "OpenAI API",
       "REST APIs",
       "API Gateways"
     ],
-    "Cloud & Distributed Systems": [
-      "Cloud Computing",
-      "Distributed Computing"
+    "Databases": [
+      "MySQL",
+      "MongoDB"
     ],
-    "Developer Tools & Testing": [
-      "Git",
+    "DevOps & Cloud": [
+      "Cloud Computing",
+      "Git"
+    ],
+    "Testing & QA": [
       "pytest"
+    ],
+    "Data Structures & Algorithms": [
+      "Data Structures",
+      "Algorithms"
     ]
   }
 }

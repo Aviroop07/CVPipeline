@@ -6,7 +6,8 @@ This script orchestrates the complete resume generation process:
 1. Fetch LinkedIn profile data
 2. Transform to JSON-Resume format
 3. Enhance with OpenAI processing
-4. Generate PDF resume
+4. Generate HTML resume
+5. Generate PDF resume
 
 Usage:
     python scripts/pipeline.py [--skip-linkedin] [--skip-openai] [--output-dir OUTPUT_DIR]
@@ -28,6 +29,7 @@ from typing import Optional
 from linkedin_fetcher import fetch_linkedin_data
 from linkedin_transformer import transform_linkedin_data
 from openai_processor import enhance_resume_with_openai
+from html_generator import generate_html_resume_file
 from pdf_generator import generate_pdf_resume
 import config
 
@@ -72,7 +74,8 @@ def print_pipeline_summary(start_time: float, steps_completed: int, total_steps:
     
     if steps_completed == total_steps:
         print(f"🎉 Resume generation pipeline completed successfully!")
-        print(f"📄 PDF saved to: {config.RESUME_PDF_FILE}")
+        print(f"📄 HTML saved to: {config.ASSETS_DIR}/{config.RESUME_HTML_FILE}")
+        print(f"📄 PDF saved to: {config.ASSETS_DIR}/{config.RESUME_PDF_FILE}")
     else:
         print(f"⚠️  Pipeline incomplete. Check logs above for errors.")
 
@@ -98,7 +101,7 @@ def step_2_transform_data() -> bool:
     """Step 2: Transform LinkedIn data to JSON-Resume format."""
     try:
         resume_data = transform_linkedin_data()
-        print_step_success("Data transformation", f"Resume data saved to {config.RESUME_JSON_FILE}")
+        print_step_success("Data transformation", f"Resume data saved to {config.DATA_DIR}/{config.RESUME_JSON_FILE}")
         return True
     except SystemExit as e:
         if e.code == 1:
@@ -119,7 +122,7 @@ def step_3_openai_enhancement(skip: bool = False) -> bool:
     
     try:
         enhanced_data = enhance_resume_with_openai()
-        print_step_success("OpenAI enhancement", f"Enhanced data saved to {config.RESUME_JSON_FILE}")
+        print_step_success("OpenAI enhancement", f"Enhanced data saved to {config.DATA_DIR}/{config.RESUME_JSON_FILE}")
         return True
     except SystemExit:
         print_step_error("OpenAI enhancement", "Processing failed")
@@ -128,8 +131,21 @@ def step_3_openai_enhancement(skip: bool = False) -> bool:
         print_step_error("OpenAI enhancement", str(e))
         return False
 
-def step_4_generate_pdf() -> bool:
-    """Step 4: Generate PDF resume."""
+def step_4_generate_html() -> bool:
+    """Step 4: Generate HTML resume."""
+    try:
+        html_path = generate_html_resume_file()
+        print_step_success("HTML generation", f"HTML saved to {html_path}")
+        return True
+    except SystemExit:
+        print_step_error("HTML generation", "Generation failed")
+        return False
+    except Exception as e:
+        print_step_error("HTML generation", str(e))
+        return False
+
+def step_5_generate_pdf() -> bool:
+    """Step 5: Generate PDF resume from HTML."""
     try:
         pdf_path = generate_pdf_resume()
         print_step_success("PDF generation", f"PDF saved to {pdf_path}")
@@ -154,7 +170,7 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, output_
         bool: True if pipeline completed successfully, False otherwise
     """
     start_time = time.time()
-    total_steps = 4
+    total_steps = 5
     steps_completed = 0
     
     print(f"\n🚀 Starting Resume Generation Pipeline")
@@ -190,10 +206,19 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, output_
         print_pipeline_summary(start_time, steps_completed, total_steps)
         return False
     
-    # Step 4: Generate PDF
-    print_step_header(4, total_steps, "GENERATE PDF", 
-                     "Create professional PDF resume using borb library")
-    if step_4_generate_pdf():
+    # Step 4: Generate HTML
+    print_step_header(4, total_steps, "GENERATE HTML", 
+                     "Create professional HTML resume with responsive design")
+    if step_4_generate_html():
+        steps_completed += 1
+    else:
+        print_pipeline_summary(start_time, steps_completed, total_steps)
+        return False
+    
+    # Step 5: Generate PDF
+    print_step_header(5, total_steps, "GENERATE PDF", 
+                     "Create PDF resume from HTML using WeasyPrint")
+    if step_5_generate_pdf():
         steps_completed += 1
     else:
         print_pipeline_summary(start_time, steps_completed, total_steps)
@@ -206,14 +231,14 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, output_
 def main():
     """Main function with command-line argument parsing."""
     parser = argparse.ArgumentParser(
-        description="Generate resume from LinkedIn profile data using OpenAI enhancement",
+        description="Generate HTML and PDF resume from LinkedIn profile data using OpenAI enhancement",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   python scripts/pipeline.py                    # Full pipeline
   python scripts/pipeline.py --skip-linkedin   # Skip LinkedIn fetch, use existing data
   python scripts/pipeline.py --skip-openai     # Skip OpenAI processing
-  python scripts/pipeline.py --skip-linkedin --skip-openai  # Only generate PDF from existing JSON
+  python scripts/pipeline.py --skip-linkedin --skip-openai  # Only generate HTML and PDF from existing JSON
         """
     )
     

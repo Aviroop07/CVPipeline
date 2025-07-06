@@ -4,7 +4,7 @@
   "geoCountryUrn": "urn:li:fs_geo:102713980",
   "geoLocationBackfilled": false,
   "entityUrn": "urn:li:fs_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
-  "headline": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • BE CSE, Jadavpur University, 2025",
+  "headline": "IISc CSA'27 • GATE CS AIR 65 (CS) • BE CSE, Jadavpur University, 2025",
   "summary": "👋 Hey there, I'm Aviroop Mitra, a Computer Science and Engineering student at Jadavpur University. My academic journey is driven by a fascination for ML, AI, and logic building.\n\n💻 Beyond my coursework, I actively delve into Full Stack Web Development, exploring web technologies.\n\n🚀 Passionate about hackathons, I enjoy collaborative problem-solving and code reviews. I also contribute by posting solutions on coding platforms.\n\n🧩 In my free time, you'll often find me engrossed in chess games, relishing their strategic depth, or solving Sudoku puzzles to sharpen my logical thinking.\n\n🌟 Currently, I'm working on multiple small-scale personal projects in Machine Learning, applying my knowledge to practical solutions.\n\n📬 Feel free to reach out at aviroopmitra5@gmail.com for engaging discussions and the opportunity to innovate in technology and artificial intelligence!",
   "industryName": "Software Development",
   "address": "13 Nivedita Sarani, Parnasreepally, Kolkata 70060",
@@ -16,24 +16,14 @@
       "artifacts": [
         {
           "width": 794,
-<<<<<<< HEAD
-          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQIjl-7yakGHlAAAAZfQmiST7kxLMtRMwh_U6zzi-EnSvDQq7z-P54dRvg&e=1751637852&v=beta&t=cQB6WUAnXHKWovOqqXECNTlyFirGYO22jGRb3Adr1c8",
-          "expiresAt": 1751637852000,
-=======
-          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQK8NFK1DrHm4QAAAZfd6nvS7HZ1W0EQOZ__yorYehDNj4Bi7RvWyksG0w&e=1751861221&v=beta&t=Yc6rPSKU6MAnyWeQe3Xj2g1t8g7OX_gPuM1Y6SObgxE",
-          "expiresAt": 1751861221000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQIJacSCMMdz8gAAAZfhndiKNGMbx82w714CDZUFam__lxJExACJ0eN_SQ&e=1751923307&v=beta&t=r556OXGSaoYOwHZejE6Rsl9VMCrlr7DLnpCdnkBIk0M",
+          "expiresAt": 1751923307000,
           "height": 804
         },
         {
           "width": 444,
-<<<<<<< HEAD
-          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQJsxHb8kqOG0AAAAZfQmiSUZNmmuMLocZQaFS96DX66cIYchFs3MHAkpw&e=1751637852&v=beta&t=-QJOQv30S2kSFDt81K_6J6HPHhDOCb4fugTfI9KLXBg",
-          "expiresAt": 1751637852000,
-=======
-          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQLCKED4AIKxowAAAZfd6nvSNDrPdr19LIytFhKHOqZ9M3aFzy0bUfJqsw&e=1751861221&v=beta&t=QMVKUwU5cpNgYg82kSA85mkCgHSuaqSckFDHyqElsCo",
-          "expiresAt": 1751861221000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQI6ZqGW8-2q7AAAAZfhndiKFke_p2LX5m14i4c4bhPnf2kgrR8kY_uDBQ&e=1751923307&v=beta&t=HoKViwUDHx_rDJ_qsLhTadBs0dKvJMdKRU5B0XETtQQ",
+          "expiresAt": 1751923307000,
           "height": 450
         }
       ],
@@ -83,17 +73,10 @@
     }
   },
   "displayPictureUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_",
-<<<<<<< HEAD
-  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
-  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
-  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
-  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
-=======
-  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
-  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
-  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
-  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752444000&v=beta&t=3qxEiWFlcJb1ZaTMsQTeHFaHMcKVd5CFgfYCXUxwVNk",
+  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752444000&v=beta&t=pM9M3ZNprQN-eLpAJQ_CaWvYNQorgvX7TIcdh5ehQoE",
+  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752444000&v=beta&t=yqDpLbf2uEL6jB-gQZaNRhESxKp9IQL34pEp44AvtDY",
+  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752444000&v=beta&t=7YvKESftJSxwg0r0gPu12P2sXRTp0naeZ8nuuOdINVM",
   "profile_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "profile_urn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "member_urn": "urn:li:member:946910996",
@@ -169,7 +152,6 @@
       ],
       "degreeName": "Bachelor of Engineering - BE",
       "honors": [
-        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2021682140)",
         "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,977908679)"
       ],
       "schoolUrn": "urn:li:fs_miniSchool:13513",
@@ -179,11 +161,7 @@
         "entityUrn": "urn:li:fs_miniSchool:13513",
         "active": true,
         "schoolName": "Jadavpur University",
-<<<<<<< HEAD
-        "trackingId": "Z8nGKcuBT0SY/XArfPRi5w==",
-=======
-        "trackingId": "eoC0hE2KTOC/z2cQ8lc7/w==",
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+        "trackingId": "YNhv4GDfTD6qfYX7qbBmbA==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C510BAQFkGVsBobrK1A/company-logo_"
       },
       "grade": "8.15 ( upto 7th semester )",
@@ -198,7 +176,6 @@
         }
       },
       "testScores": [
-        "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,798877300)",
         "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,956688439)"
       ],
       "schoolName": "Jadavpur University",
@@ -212,11 +189,7 @@
         "entityUrn": "urn:li:fs_miniSchool:3230309",
         "active": true,
         "schoolName": "Burdwan Municipal High School",
-<<<<<<< HEAD
-        "trackingId": "ma+2F8xGQICee3ul/Grcbw==",
-=======
-        "trackingId": "LvlvnpXZQm2jVxpyZ/BdQg==",
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+        "trackingId": "L813QoE8QyG+lh8JbGRrYw==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C560BAQEWuTbLbvUAhg/company-logo_"
       },
       "grade": "O",
@@ -230,12 +203,14 @@
           "year": 2019
         }
       },
+      "testScores": [
+        "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,798726489)",
+        "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,798877300)",
+        "urn:li:fs_testScore:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,800114799)"
+      ],
       "degreeName": "Higher Secondary ",
       "schoolName": "Burdwan Municipal High School",
       "fieldOfStudy": "Science",
-      "honors": [
-        "urn:li:fs_honor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,2021786770)"
-      ],
       "schoolUrn": "urn:li:fs_miniSchool:3230309"
     },
     {
@@ -325,11 +300,7 @@
         },
         "universalName": "nptel",
         "dashCompanyUrn": "urn:li:fsd_company:13229455",
-<<<<<<< HEAD
-        "trackingId": "jPD5BkB2S9ayeDcywE7Glw=="
-=======
-        "trackingId": "9YAuTIweSi6tGPHQYSfmBg=="
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+        "trackingId": "3jbfzR3kRRC7lJOhdDJn2Q=="
       },
       "displaySource": "google.com",
       "companyUrn": "urn:li:fs_miniCompany:13229455",
@@ -349,23 +320,21 @@
     },
     {
       "description": "98.98 percentile",
-      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,756491700)",
-      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
+      "title": "Senior Scholar",
       "issueDate": {
         "month": 7,
         "year": 2022
       },
-      "issuer": "JBNSTS"
+      "issuer": "Jagadish Bose National Science Talent Search"
     },
     {
       "description": "98.5 percentile",
-      "occupation": "urn:li:fs_education:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,768721772)",
-      "title": "Jagadish Bose National Science Talent Search, Junior Scholar",
+      "title": "Junior Scholar",
       "issueDate": {
         "month": 3,
         "year": 2020
       },
-      "issuer": "JBNSTS"
+      "issuer": "Jagadish Bose National Science Talent Search"
     }
   ],
   "projects": [
@@ -377,7 +346,7 @@
             "firstName": "Aviroop",
             "lastName": "Mitra",
             "dashEntityUrn": "urn:li:fsd_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
-            "occupation": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • BE CSE, Jadavpur University, 2025",
+            "occupation": "IISc CSA'27 • GATE CS AIR 65 (CS) • BE CSE, Jadavpur University, 2025",
             "objectUrn": "urn:li:member:946910996",
             "entityUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
             "publicIdentifier": "aviroopmitra071003",
@@ -386,57 +355,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752444000&v=beta&t=3qxEiWFlcJb1ZaTMsQTeHFaHMcKVd5CFgfYCXUxwVNk",
+                    "expiresAt": 1752444000000,
                     "height": 400
                   },
                   {
                     "width": 200,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752444000&v=beta&t=pM9M3ZNprQN-eLpAJQ_CaWvYNQorgvX7TIcdh5ehQoE",
+                    "expiresAt": 1752444000000,
                     "height": 200
                   },
                   {
                     "width": 800,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752444000&v=beta&t=yqDpLbf2uEL6jB-gQZaNRhESxKp9IQL34pEp44AvtDY",
+                    "expiresAt": 1752444000000,
                     "height": 800
                   },
                   {
                     "width": 100,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752444000&v=beta&t=7YvKESftJSxwg0r0gPu12P2sXRTp0naeZ8nuuOdINVM",
+                    "expiresAt": 1752444000000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-<<<<<<< HEAD
-            "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
-=======
-            "trackingId": "1ZPQiCuKRse+B/U6Ycd3pA=="
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+            "trackingId": "8nT/FeFhRqiR39GxS3f8Uw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541,460000641)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -462,7 +407,7 @@
             "firstName": "Aviroop",
             "lastName": "Mitra",
             "dashEntityUrn": "urn:li:fsd_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
-            "occupation": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • BE CSE, Jadavpur University, 2025",
+            "occupation": "IISc CSA'27 • GATE CS AIR 65 (CS) • BE CSE, Jadavpur University, 2025",
             "objectUrn": "urn:li:member:946910996",
             "entityUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
             "publicIdentifier": "aviroopmitra071003",
@@ -471,57 +416,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752444000&v=beta&t=3qxEiWFlcJb1ZaTMsQTeHFaHMcKVd5CFgfYCXUxwVNk",
+                    "expiresAt": 1752444000000,
                     "height": 400
                   },
                   {
                     "width": 200,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752444000&v=beta&t=pM9M3ZNprQN-eLpAJQ_CaWvYNQorgvX7TIcdh5ehQoE",
+                    "expiresAt": 1752444000000,
                     "height": 200
                   },
                   {
                     "width": 800,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752444000&v=beta&t=yqDpLbf2uEL6jB-gQZaNRhESxKp9IQL34pEp44AvtDY",
+                    "expiresAt": 1752444000000,
                     "height": 800
                   },
                   {
                     "width": 100,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752444000&v=beta&t=7YvKESftJSxwg0r0gPu12P2sXRTp0naeZ8nuuOdINVM",
+                    "expiresAt": 1752444000000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-<<<<<<< HEAD
-            "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
-=======
-            "trackingId": "1ZPQiCuKRse+B/U6Ycd3pA=="
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+            "trackingId": "8nT/FeFhRqiR39GxS3f8Uw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074567873,460000648)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -548,7 +469,7 @@
             "firstName": "Aviroop",
             "lastName": "Mitra",
             "dashEntityUrn": "urn:li:fsd_profile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
-            "occupation": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • BE CSE, Jadavpur University, 2025",
+            "occupation": "IISc CSA'27 • GATE CS AIR 65 (CS) • BE CSE, Jadavpur University, 2025",
             "objectUrn": "urn:li:member:946910996",
             "entityUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
             "publicIdentifier": "aviroopmitra071003",
@@ -557,57 +478,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752444000&v=beta&t=3qxEiWFlcJb1ZaTMsQTeHFaHMcKVd5CFgfYCXUxwVNk",
+                    "expiresAt": 1752444000000,
                     "height": 400
                   },
                   {
                     "width": 200,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752444000&v=beta&t=pM9M3ZNprQN-eLpAJQ_CaWvYNQorgvX7TIcdh5ehQoE",
+                    "expiresAt": 1752444000000,
                     "height": 200
                   },
                   {
                     "width": 800,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752444000&v=beta&t=yqDpLbf2uEL6jB-gQZaNRhESxKp9IQL34pEp44AvtDY",
+                    "expiresAt": 1752444000000,
                     "height": 800
                   },
                   {
                     "width": 100,
-<<<<<<< HEAD
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
-                    "expiresAt": 1752159600000,
-=======
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
-                    "expiresAt": 1752382800000,
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752444000&v=beta&t=7YvKESftJSxwg0r0gPu12P2sXRTp0naeZ8nuuOdINVM",
+                    "expiresAt": 1752444000000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-<<<<<<< HEAD
-            "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
-=======
-            "trackingId": "1ZPQiCuKRse+B/U6Ycd3pA=="
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+            "trackingId": "8nT/FeFhRqiR39GxS3f8Uw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003237)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -652,11 +549,7 @@
                 "rootUrl": "https://media.licdn.com/dms/image/v2/C4E03AQHeaLanNN31WQ/profile-displayphoto-shrink_"
               }
             },
-<<<<<<< HEAD
-            "trackingId": "o83EjlTpQIONrFs94aSwKg=="
-=======
-            "trackingId": "82i+vpXLRQ6/Kv0E/lshIA=="
->>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
+            "trackingId": "Txxue8z7SkiJQX8E7Bv2dg=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003238)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo"

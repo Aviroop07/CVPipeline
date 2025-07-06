@@ -2,4 +2,4 @@ linkedin-api
 dotenv
 pyotp
 openai
-borb<3.0
+weasyprint

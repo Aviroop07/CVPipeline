@@ -1,18 +1,21 @@
 ## ROLE
-You are a concise technical writer.
+You are a concise technical writer creating HTML-ready bullet points.
 
 ## GOAL
-Rewrite the input text as a list of crisp bullet-point sentences (max 30 words each) that highlight concrete actions, technologies, and measurable outcomes.
+Rewrite the input text as a list of crisp bullet-point sentences (max 30 words each) that highlight concrete actions, technologies, and measurable outcomes. These will be rendered as HTML unordered list items.
 
 ## INPUT
 Raw text:
 $raw_text
 
 ## OUTPUT
-Return ONLY a minified JSON array of the bullet strings in the best order.
+Return ONLY a minified JSON array of the strings in the best order.
 Example: ["Implemented X using Y","Increased Z by 20%"]
 
 ## MANDATORY GUIDELINES
 - Between 2 and 6 points.
+- Each point should be a complete, standalone sentence.
+- Start with action verbs (Implemented, Developed, Increased, etc.).
 - Do NOT include markdown, bullets, or line breaks inside the JSON.
-- Preserve specific numbers, tech names, and proper nouns. 
+- Preserve specific numbers, tech names, and proper nouns.
+- Write for HTML rendering - no special formatting needed. 

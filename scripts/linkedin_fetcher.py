@@ -29,7 +29,8 @@ def authenticate_linkedin():
     try:
         user = os.environ["LI_USER"]
         pwd = os.environ["LI_PASS"]
-        seed = os.environ["LI_TOTP_SECRET"]
+        # TOTP secret may be used internally by linkedin-api for 2FA
+        os.environ.get("LI_TOTP_SECRET", "")
         
         # Debug: print environment variables in use
         print("🔧 Environment variables:")

@@ -1,0 +1,245 @@
+/* Professional Resume Styles - Generated from config.py */
+
+/* Reset WeasyPrint's default page margins for PDF generation */
+@page {
+    size: A4;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.3;
+    color: #2c3e50;
+    background-color: #ffffff;
+    max-width: 800px;
+    margin: 0;
+    margin-left: 35px;
+    padding: 3px;
+    font-size: 13px;
+}
+
+.container {
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.contact-info {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.contact-info a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.section:first-child {
+    margin-top: 0;
+}
+
+.section-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Item Styles */
+.item {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}
+
+.item-title {
+    flex: 1;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.item-date {
+    font-style: italic;
+    color: #7f8c8d;
+    white-space: nowrap;
+    margin-left: 0;
+    padding-left: 10px;
+}
+
+.item-description {
+    margin-top: 0;
+    color: #444;
+    line-height: 1.5;
+}
+
+.item-points {
+    margin-top: 0;
+    padding-left: 15px;
+}
+
+.item-points li {
+    margin-bottom: 0;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* Link Styles */
+.company-link,
+.school-link,
+.project-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.company-link:hover,
+.school-link:hover,
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.company-name,
+.school-name,
+.project-name {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.position,
+.degree {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.gpa {
+    color: #666;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Skills Section */
+.skill-category {
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.skill-category-name {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.skill-list {
+    color: #444;
+}
+
+/* Awards Section */
+.award-title {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.award-issuer {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 2px;
+    }
+    
+    .container {
+        padding: 3px;
+    }
+    
+    .name {
+        font-size: 24px;
+    }
+    
+    .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .item-date {
+        margin-left: 0;
+        margin-top: 2px;
+    }
+    
+    .contact-info {
+        font-size: 13px;
+    }
+}
+
+@media print {
+    body {
+        max-width: none;
+        padding: 0;
+        background: white;
+    }
+    
+    .container {
+        box-shadow: none;
+        padding: 20px;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+    }
+    
+    .item {
+        page-break-inside: avoid;
+    }
+}

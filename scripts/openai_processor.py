@@ -12,7 +12,7 @@ import config
 import dotenv
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-RESUME_JSON = ROOT / config.RESUME_JSON_FILE
+RESUME_JSON = ROOT / config.DATA_DIR / config.RESUME_JSON_FILE
 PROMPTS_DIR = ROOT / config.PROMPTS_DIR
 
 # Load environment variables from .env file if present

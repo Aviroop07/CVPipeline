@@ -47,7 +47,7 @@ jobs:
       - name: Commit & push if updated
         uses: EndBug/add-and-commit@v9
         with:
-          add: "resume.json data/linkedin_raw.json Aviroop_Mitra_Resume.pdf"
+          add: "data/ assets/"
           message: "chore(resume): auto-update ${{ github.run_id }}"
         env:
           # Default GITHUB_TOKEN is enough to push back to the same repo

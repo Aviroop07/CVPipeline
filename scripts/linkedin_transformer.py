@@ -5,15 +5,16 @@ LinkedIn to JSON-Resume transformation module.
 This module provides functions to transform LinkedIn profile data into JSON-Resume format.
 """
 
-import json, pathlib, sys, os, re, requests
+import json, pathlib, sys, os
 from functools import lru_cache
+from typing import Tuple
 from linkedin_api import Linkedin
 from requests.cookies import RequestsCookieJar
 import config
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RAW_FILE = ROOT / config.DATA_DIR / config.LINKEDIN_RAW_FILE
-CV_FILE = ROOT / config.RESUME_JSON_FILE
+CV_FILE = ROOT / config.DATA_DIR / config.RESUME_JSON_FILE
 
 def _date(ldict):
     """Convert LinkedIn date dict to YYYY-MM format.
@@ -43,21 +44,21 @@ def _get_linkedin_api():
     # fallback uses credentials (may require 2FA)
     return Linkedin(os.getenv("LI_USER", ""), os.getenv("LI_PASS", ""))
 
-def _company_url(name: str, company_urn: str = None) -> str:
-    """Get LinkedIn company URL from company name.
+def _company_url_and_id(name: str, company_urn: str = None) -> Tuple[str, str]:
+    """Get LinkedIn company URL and public ID from company name.
     
     Args:
         name (str): Company name
         company_urn (str, optional): Company URN (unused currently)
         
     Returns:
-        str: LinkedIn company URL or empty string if not found
+        Tuple[str, str]: (LinkedIn company URL, public_id) or ("", "") if not found
     """
     print(f'🔍 Searching for company: {name}')
     if not name:
-        return ""
+        return "", ""
     
-    # Try multiple approaches to find the company URL
+    # Try multiple approaches to find the company URL and ID
     
     # Approach 1: Try get_company with the name
     try:
@@ -68,7 +69,7 @@ def _company_url(name: str, company_urn: str = None) -> str:
             universal_name = company_data["universalName"]
             url = f"https://www.linkedin.com/company/{universal_name}/"
             print(f'✅ Found LinkedIn URL for {name}: {url}')
-            return url
+            return url, universal_name
     except Exception as e:
         print(f'❌ Error with get_company for {name}: {e}')
     
@@ -87,7 +88,7 @@ def _company_url(name: str, company_urn: str = None) -> str:
                         universal_name = company_data["universalName"]
                         url = f"https://www.linkedin.com/company/{universal_name}/"
                         print(f'✅ Found LinkedIn URL for {name} via search: {url}')
-                        return url
+                        return url, universal_name
                 except Exception as e:
                     print(f'❌ Error getting company data for search result {first_result["name"]}: {e}')
     except Exception as e:
@@ -101,33 +102,47 @@ def _company_url(name: str, company_urn: str = None) -> str:
     
     if name in common_variations:
         try:
-            company_data = _get_linkedin_api().get_company(common_variations[name])
+            universal_name = common_variations[name]
+            company_data = _get_linkedin_api().get_company(universal_name)
             if company_data and company_data.get("universalName"):
-                universal_name = company_data["universalName"]
-                url = f"https://www.linkedin.com/company/{universal_name}/"
+                verified_name = company_data["universalName"]
+                url = f"https://www.linkedin.com/company/{verified_name}/"
                 print(f'✅ Found LinkedIn URL for {name} via common variation: {url}')
-                return url
+                return url, verified_name
         except Exception as e:
             print(f'❌ Error with common variation for {name}: {e}')
     
     print(f'❌ No LinkedIn URL found for company: {name}')
-    return ""
+    return "", ""
 
-def _school_url(name: str, school_urn: str = None) -> str:
-    """Get LinkedIn school URL from school name.
+def _company_url(name: str, company_urn: str = None) -> str:
+    """Get LinkedIn company URL from company name (legacy function).
+    
+    Args:
+        name (str): Company name
+        company_urn (str, optional): Company URN (unused currently)
+        
+    Returns:
+        str: LinkedIn company URL or empty string if not found
+    """
+    url, _ = _company_url_and_id(name, company_urn)
+    return url
+
+def _school_url_and_id(name: str, school_urn: str = None) -> Tuple[str, str]:
+    """Get LinkedIn school URL and public ID from school name.
     
     Args:
         name (str): School name
         school_urn (str, optional): School URN (unused currently)
         
     Returns:
-        str: LinkedIn school URL or empty string if not found
+        Tuple[str, str]: (LinkedIn school URL, public_id) or ("", "") if not found
     """
     print(f'🎓 Searching for school: {name}')
     if not name:
-        return ""
+        return "", ""
     
-    # Try multiple approaches to find the school URL
+    # Try multiple approaches to find the school URL and ID
     
     # Approach 1: Try get_school with the name
     try:
@@ -138,7 +153,7 @@ def _school_url(name: str, school_urn: str = None) -> str:
             universal_name = school_data["universalName"]
             url = f"https://www.linkedin.com/school/{universal_name}/"
             print(f'✅ Found LinkedIn URL for {name}: {url}')
-            return url
+            return url, universal_name
     except Exception as e:
         print(f'❌ Error with get_school for {name}: {e}')
     
@@ -157,7 +172,7 @@ def _school_url(name: str, school_urn: str = None) -> str:
                         universal_name = school_data["universalName"]
                         url = f"https://www.linkedin.com/school/{universal_name}/"
                         print(f'✅ Found LinkedIn URL for {name} via search: {url}')
-                        return url
+                        return url, universal_name
                 except Exception as e:
                     print(f'❌ Error getting school data for search result {first_result["name"]}: {e}')
     except Exception as e:
@@ -171,17 +186,31 @@ def _school_url(name: str, school_urn: str = None) -> str:
     
     if name in common_variations:
         try:
-            school_data = _get_linkedin_api().get_school(common_variations[name])
+            universal_name = common_variations[name]
+            school_data = _get_linkedin_api().get_school(universal_name)
             if school_data and school_data.get("universalName"):
-                universal_name = school_data["universalName"]
-                url = f"https://www.linkedin.com/school/{universal_name}/"
+                verified_name = school_data["universalName"]
+                url = f"https://www.linkedin.com/school/{verified_name}/"
                 print(f'✅ Found LinkedIn URL for {name} via common variation: {url}')
-                return url
+                return url, verified_name
         except Exception as e:
             print(f'❌ Error with common variation for school {name}: {e}')
     
     print(f'❌ No LinkedIn URL found for school: {name}')
-    return ""
+    return "", ""
+
+def _school_url(name: str, school_urn: str = None) -> str:
+    """Get LinkedIn school URL from school name (legacy function).
+    
+    Args:
+        name (str): School name
+        school_urn (str, optional): School URN (unused currently)
+        
+    Returns:
+        str: LinkedIn school URL or empty string if not found
+    """
+    url, _ = _school_url_and_id(name, school_urn)
+    return url
 
 def transform_linkedin_to_resume(raw_data):
     """Transform LinkedIn profile data to JSON-Resume format.
@@ -202,31 +231,9 @@ def transform_linkedin_to_resume(raw_data):
             "public_id": raw_data.get("public_id", "")
         },
 
-        "work": [
-            {
-                "name": w.get("companyName",""),
-                "position": w.get("title",""),
-                "location": w.get("locationName",""),
-                "startDate": _date(w.get("timePeriod",{}).get("startDate")),
-                "endDate": _date(w.get("timePeriod",{}).get("endDate")),
-                "summary": w.get("description",""),
-                "url": _company_url(w.get("companyName", ""))
-            }
-            for w in raw_data.get("experience",[])
-        ],
+        "work": [],
 
-        "education": [
-            {
-                "institution": e.get("schoolName",""),
-                "area": e.get("fieldOfStudy",""),
-                "studyType": e.get("degreeName",""),
-                "score": e.get("grade",""),
-                "startDate": _date(e.get("timePeriod",{}).get("startDate")),
-                "endDate": _date(e.get("timePeriod",{}).get("endDate")),
-                "url": _school_url(e.get("schoolName", ""))
-            }
-            for e in raw_data.get("education",[])
-        ],
+        "education": [],
 
         "awards": [
             {
@@ -260,6 +267,40 @@ def transform_linkedin_to_resume(raw_data):
             for l in raw_data.get("languages",[])
         ]
     }
+
+    # Populate work experience with URL and public_id
+    for w in raw_data.get("experience", []):
+        company_name = w.get("companyName", "")
+        company_url, company_public_id = _company_url_and_id(company_name)
+        
+        work_entry = {
+            "name": company_name,
+            "position": w.get("title", ""),
+            "location": w.get("locationName", ""),
+            "startDate": _date(w.get("timePeriod", {}).get("startDate")),
+            "endDate": _date(w.get("timePeriod", {}).get("endDate")),
+            "summary": w.get("description", ""),
+            "url": company_url,
+            "public_id": company_public_id
+        }
+        resume_data["work"].append(work_entry)
+
+    # Populate education with URL and public_id
+    for e in raw_data.get("education", []):
+        school_name = e.get("schoolName", "")
+        school_url, school_public_id = _school_url_and_id(school_name)
+        
+        education_entry = {
+            "institution": school_name,
+            "area": e.get("fieldOfStudy", ""),
+            "studyType": e.get("degreeName", ""),
+            "score": e.get("grade", ""),
+            "startDate": _date(e.get("timePeriod", {}).get("startDate")),
+            "endDate": _date(e.get("timePeriod", {}).get("endDate")),
+            "url": school_url,
+            "public_id": school_public_id
+        }
+        resume_data["education"].append(education_entry)
 
     return resume_data
 
@@ -297,7 +338,7 @@ def save_resume_data(resume_data, output_path=None):
         output_path = CV_FILE
         
     output_path.write_text(json.dumps(resume_data, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"✅  {config.RESUME_JSON_FILE} refreshed.")
+    print(f"✅  {config.DATA_DIR}/{config.RESUME_JSON_FILE} refreshed.")
     return output_path
 
 def transform_linkedin_data():

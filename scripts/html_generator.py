@@ -1,0 +1,571 @@
+#!/usr/bin/env python3
+"""
+HTML resume generation module.
+
+This module provides functions to generate HTML resumes from JSON resume data.
+"""
+
+import json
+import pathlib
+import sys
+import logging
+from typing import List, Dict, Any
+import config
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+RESUME_JSON = ROOT / config.DATA_DIR / config.RESUME_JSON_FILE
+HTML_OUT = ROOT / config.ASSETS_DIR / "index.html"
+
+# Initialize logger
+logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
+log = logging.getLogger(__name__)
+
+def clean_text(text: str) -> str:
+    """Clean text for HTML output.
+    
+    Args:
+        text (str): Input text to clean
+        
+    Returns:
+        str: Cleaned text with HTML entities escaped
+    """
+    if not text:
+        return text
+    
+    # Escape HTML entities
+    text = text.replace("&", "&amp;")
+    text = text.replace("<", "&lt;")
+    text = text.replace(">", "&gt;")
+    text = text.replace('"', "&quot;")
+    text = text.replace("'", "&#39;")
+    
+    return text
+
+def generate_css_file() -> str:
+    """Generate CSS file content using config values.
+    
+    Returns:
+        str: CSS content for styles.css file
+    """
+    css = f"""/* Professional Resume Styles - Generated from config.py */
+
+/* Reset WeasyPrint's default page margins for PDF generation */
+@page {{
+    size: A4;
+    margin: 0;
+}}
+
+* {{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}}
+
+html, body {{
+    margin: 0;
+    padding: 0;
+}}
+
+body {{
+    font-family: {config.HTML_FONT_FAMILY};
+    line-height: {config.HTML_LINE_HEIGHT};
+    color: {config.HTML_COLOR_PRIMARY};
+    background-color: #ffffff;
+    max-width: 800px;
+    margin: 0;
+    margin-left: {config.HTML_BODY_MARGIN_LEFT};
+    padding: {config.HTML_BODY_PADDING};
+    font-size: {config.HTML_FONT_SIZE_BASE};
+}}
+
+.container {{
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: {config.HTML_CONTAINER_PADDING};
+    border-radius: 8px;
+}}
+
+/* Header Styles */
+.header {{
+    text-align: center;
+    margin-bottom: {config.HTML_HEADER_MARGIN_BOTTOM};
+    padding-bottom: {config.HTML_HEADER_PADDING_BOTTOM};
+}}
+
+.name {{
+    font-size: {config.HTML_FONT_SIZE_NAME};
+    font-weight: bold;
+    color: {config.HTML_COLOR_PRIMARY};
+    margin-bottom: 10px;
+}}
+
+.contact-info {{
+    font-size: {config.HTML_FONT_SIZE_CONTACT};
+    color: {config.HTML_COLOR_SECONDARY};
+    line-height: 1.4;
+}}
+
+.contact-info a {{
+    color: {config.HTML_COLOR_LINK};
+    text-decoration: none;
+}}
+
+.contact-info a:hover {{
+    text-decoration: underline;
+}}
+
+/* Section Styles */
+.section {{
+    margin-top: {config.HTML_SECTION_MARGIN_TOP};
+    margin-bottom: 0;
+}}
+
+.section:first-child {{
+    margin-top: 0;
+}}
+
+.section-title {{
+    font-size: {config.HTML_FONT_SIZE_SECTION};
+    font-weight: bold;
+    color: {config.HTML_COLOR_PRIMARY};
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}}
+
+/* Item Styles */
+.item {{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}}
+
+.item:last-child {{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}}
+
+.item-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}}
+
+.item-title {{
+    flex: 1;
+    font-weight: bold;
+    color: {config.HTML_COLOR_PRIMARY};
+}}
+
+.item-date {{
+    font-style: italic;
+    color: {config.HTML_COLOR_ACCENT};
+    white-space: nowrap;
+    margin-left: 0;
+    padding-left: {config.HTML_DATE_PADDING_LEFT};
+}}
+
+.item-description {{
+    margin-top: 0;
+    color: #444;
+    line-height: 1.5;
+}}
+
+.item-points {{
+    margin-top: 0;
+    padding-left: 15px;
+}}
+
+.item-points li {{
+    margin-bottom: 0;
+    color: #444;
+    line-height: 1.4;
+}}
+
+/* Link Styles */
+.company-link,
+.school-link,
+.project-link {{
+    color: {config.HTML_COLOR_LINK};
+    text-decoration: none;
+    font-weight: bold;
+}}
+
+.company-link:hover,
+.school-link:hover,
+.project-link:hover {{
+    text-decoration: underline;
+}}
+
+.company-name,
+.school-name,
+.project-name {{
+    font-weight: bold;
+    color: {config.HTML_COLOR_LINK};
+}}
+
+.position,
+.degree {{
+    color: {config.HTML_COLOR_PRIMARY};
+    font-weight: bold;
+}}
+
+.gpa {{
+    color: {config.HTML_COLOR_SECONDARY};
+    font-weight: normal;
+    font-style: italic;
+}}
+
+/* Skills Section */
+.skill-category {{
+    margin-bottom: 0;
+    line-height: 1.4;
+}}
+
+.skill-category-name {{
+    font-weight: bold;
+    color: {config.HTML_COLOR_LINK};
+}}
+
+.skill-list {{
+    color: #444;
+}}
+
+/* Awards Section */
+.award-title {{
+    font-weight: bold;
+    color: {config.HTML_COLOR_LINK};
+}}
+
+.award-issuer {{
+    font-weight: bold;
+    color: {config.HTML_COLOR_PRIMARY};
+}}
+
+/* Responsive Design */
+@media (max-width: {config.HTML_MOBILE_BREAKPOINT}) {{
+    body {{
+        padding: {config.HTML_BODY_PADDING_MOBILE};
+    }}
+    
+    .container {{
+        padding: {config.HTML_CONTAINER_PADDING_MOBILE};
+    }}
+    
+    .name {{
+        font-size: 24px;
+    }}
+    
+    .item-header {{
+        flex-direction: column;
+        align-items: flex-start;
+    }}
+    
+    .item-date {{
+        margin-left: 0;
+        margin-top: 2px;
+    }}
+    
+    .contact-info {{
+        font-size: 13px;
+    }}
+}}
+
+@media print {{
+    body {{
+        max-width: none;
+        padding: 0;
+        background: white;
+    }}
+    
+    .container {{
+        box-shadow: none;
+        padding: 20px;
+    }}
+    
+    .section {{
+        page-break-inside: avoid;
+    }}
+    
+    .item {{
+        page-break-inside: avoid;
+    }}
+}}
+"""
+    return css
+
+def generate_html_resume(data: Dict[str, Any]) -> str:
+    """Generate HTML resume from resume data.
+    
+    Args:
+        data (Dict): Resume data in JSON-Resume format
+        
+    Returns:
+        str: Complete HTML document
+    """
+    basics = data.get("basics", {})
+    work = data.get("work", [])
+    education = data.get("education", [])
+    projects = data.get("projects", [])
+    skills_by_category = data.get("skills_by_category", {})
+    awards = data.get("awards", [])
+    
+    # Start building HTML (no linebreaks)
+    html = f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{clean_text(basics.get("name", "Resume"))}</title><link rel="stylesheet" href="styles.css"></head><body><div class="container"><header class="header"><h1 class="name">{clean_text(basics.get("name", ""))}</h1><div class="contact-info">'
+    
+    # Contact information
+    contact_parts = []
+    if basics.get("email"):
+        contact_parts.append(f'<a href="mailto:{clean_text(basics["email"])}">{clean_text(basics["email"])}</a>')
+    if basics.get("phone"):
+        contact_parts.append(f'<span>{clean_text(basics["phone"])}</span>')
+    if basics.get("location"):
+        contact_parts.append(f'<span>{clean_text(basics["location"])}</span>')
+    if basics.get("public_id"):
+        contact_parts.append(f'<a href="https://www.linkedin.com/in/{basics["public_id"]}" target="_blank">LinkedIn</a>')
+    
+    html += " | ".join(contact_parts)
+    html += '</div></header><main class="content">'
+    
+    # Work Experience Section
+    if work:
+        html += '<section class="section"><h2 class="section-title">Professional Experience</h2>'
+        for job in work:
+            html += '<div class="item"><div class="item-header"><div class="item-title">'
+            if job.get("url"):
+                html += f'<a href="{clean_text(job["url"])}" target="_blank" class="company-link">{clean_text(job.get("name", ""))}</a>'
+            else:
+                html += f'<span class="company-name">{clean_text(job.get("name", ""))}</span>'
+            
+            if job.get("position"):
+                html += f' | <span class="position">{clean_text(job["position"])}</span>'
+            
+            html += '</div>'
+            
+            if job.get("period"):
+                html += f'<div class="item-date">{clean_text(job["period"])}</div>'
+            
+            html += '</div>'
+            
+            if job.get("points"):
+                html += '<ul class="item-points">'
+                for point in job["points"]:
+                    html += f'<li>{clean_text(point)}</li>'
+                html += '</ul>'
+            elif job.get("summary"):
+                html += f'<div class="item-description">{clean_text(job["summary"])}</div>'
+            
+            html += '</div>'
+        
+        html += '</section>'
+    
+    # Education Section
+    if education:
+        html += '<section class="section"><h2 class="section-title">Education</h2>'
+        for edu in education:
+            html += '<div class="item"><div class="item-header"><div class="item-title">'
+            if edu.get("url"):
+                html += f'<a href="{clean_text(edu["url"])}" target="_blank" class="school-link">{clean_text(edu.get("institution", ""))}</a>'
+            else:
+                html += f'<span class="school-name">{clean_text(edu.get("institution", ""))}</span>'
+            
+            degree_parts = []
+            if edu.get("studyType"):
+                degree_parts.append(edu["studyType"])
+            if edu.get("area"):
+                degree_parts.append(f"in {edu['area']}")
+            
+            if degree_parts:
+                html += f' | <span class="degree">{clean_text(" ".join(degree_parts))}</span>'
+            
+            # Add GPA to the same line if available
+            if edu.get("score"):
+                html += f' | <span class="gpa">GPA: {clean_text(edu["score"])}</span>'
+            
+            html += '</div>'
+            
+            if edu.get("period"):
+                html += f'<div class="item-date">{clean_text(edu["period"])}</div>'
+            
+            html += '</div>'
+            
+            html += '</div>'
+        
+        html += '</section>'
+    
+    # Projects Section
+    if projects:
+        html += '<section class="section"><h2 class="section-title">Projects</h2>'
+        for project in projects:
+            html += '<div class="item"><div class="item-header"><div class="item-title">'
+            if project.get("url"):
+                html += f'<a href="{clean_text(project["url"])}" target="_blank" class="project-link">{clean_text(project.get("name", ""))}</a>'
+            else:
+                html += f'<span class="project-name">{clean_text(project.get("name", ""))}</span>'
+            
+            html += '</div>'
+            
+            if project.get("period"):
+                html += f'<div class="item-date">{clean_text(project["period"])}</div>'
+            
+            html += '</div>'
+            
+            if project.get("points"):
+                html += '<ul class="item-points">'
+                for point in project["points"]:
+                    html += f'<li>{clean_text(point)}</li>'
+                html += '</ul>'
+            elif project.get("description"):
+                html += f'<div class="item-description">{clean_text(project["description"])}</div>'
+            
+            html += '</div>'
+        
+        html += '</section>'
+    
+    # Skills Section
+    if skills_by_category:
+        html += '<section class="section"><h2 class="section-title">Skills</h2>'
+        for category, skills in skills_by_category.items():
+            if skills:
+                html += f'<div class="skill-category"><span class="skill-category-name">{clean_text(category)}:</span> <span class="skill-list">{clean_text(", ".join(skills))}</span></div>'
+        html += '</section>'
+    
+    # Awards Section
+    if awards:
+        html += '<section class="section"><h2 class="section-title">Awards & Achievements</h2>'
+        for award in awards:
+            html += '<div class="item"><div class="item-header"><div class="item-title"><span class="award-title">'
+            html += clean_text(award.get("title", ""))
+            html += '</span>'
+            
+            # Add issuer/awarder with | delimiter
+            if award.get("issuer") or award.get("awarder"):
+                issuer = award.get("issuer") or award.get("awarder")
+                html += f' | <span class="award-issuer">{clean_text(issuer)}</span>'
+            
+            # Add any score/ranking/details with | delimiter
+            if award.get("score"):
+                html += f' | <span class="gpa">Score: {clean_text(award["score"])}</span>'
+            elif award.get("ranking"):
+                html += f' | <span class="gpa">Rank: {clean_text(award["ranking"])}</span>'
+            elif award.get("details"):
+                html += f' | <span class="gpa">{clean_text(award["details"])}</span>'
+            
+            # Add summary to the same line if available
+            if award.get("summary"):
+                html += f' | <span class="gpa">{clean_text(award["summary"])}</span>'
+            
+            html += '</div>'
+            
+            if award.get("date"):
+                html += f'<div class="item-date">{clean_text(award["date"])}</div>'
+            
+            html += '</div>'
+            
+            html += '</div>'
+        
+        html += '</section>'
+    
+    # Close HTML
+    html += '</main></div></body></html>'
+    
+    return html
+
+def load_resume_data(input_path=None):
+    """Load resume data from JSON file.
+    
+    Args:
+        input_path (pathlib.Path, optional): Custom input path. Defaults to configured path.
+        
+    Returns:
+        dict: Resume data
+        
+    Raises:
+        SystemExit: If file doesn't exist
+    """
+    if input_path is None:
+        input_path = RESUME_JSON
+        
+    if not input_path.exists():
+        log.error(f"{config.RESUME_JSON_FILE} not found – aborting")
+        sys.exit(1)
+
+    log.info(f"Loading {config.RESUME_JSON_FILE}")
+    return json.loads(input_path.read_text(encoding="utf-8"))
+
+def save_html_resume(html_content: str, output_path=None):
+    """Save HTML resume to file.
+    
+    Args:
+        html_content (str): HTML content to save
+        output_path (pathlib.Path, optional): Custom output path. Defaults to configured path.
+        
+    Returns:
+        pathlib.Path: Path where HTML was saved
+    """
+    if output_path is None:
+        output_path = HTML_OUT
+    
+    # Ensure assets directory exists
+    output_path.parent.mkdir(exist_ok=True)
+    
+    output_path.write_text(html_content, encoding="utf-8")
+    log.info("HTML resume generated → %s", output_path.relative_to(ROOT))
+    return output_path
+
+def save_css_file(css_content: str, output_path=None):
+    """Save CSS file with config-based styles.
+    
+    Args:
+        css_content (str): CSS content to save
+        output_path (pathlib.Path, optional): Custom output path. Defaults to assets/styles.css
+        
+    Returns:
+        pathlib.Path: Path where CSS was saved
+    """
+    if output_path is None:
+        output_path = ROOT / config.ASSETS_DIR / "styles.css"
+    
+    # Ensure assets directory exists
+    output_path.parent.mkdir(exist_ok=True)
+    
+    output_path.write_text(css_content, encoding="utf-8")
+    log.info("CSS file generated → %s", output_path.relative_to(ROOT))
+    return output_path
+
+
+
+def generate_html_resume_file():
+    """Complete HTML generation pipeline.
+    
+    Returns:
+        pathlib.Path: Path to generated HTML file
+        
+    Raises:
+        SystemExit: If generation fails
+    """
+    # Load resume data
+    data = load_resume_data()
+    
+    log.info("Generating HTML resume and CSS...")
+    
+    # Generate CSS file with config values
+    css_content = generate_css_file()
+    save_css_file(css_content)
+    
+    # Generate HTML content
+    html_content = generate_html_resume(data)
+    
+    # Save HTML
+    output_path = save_html_resume(html_content)
+    
+    return output_path
+
+# Legacy main function for backward compatibility
+def main():
+    """Main function for standalone script execution."""
+    generate_html_resume_file()
+
+if __name__ == "__main__":
+    main() 

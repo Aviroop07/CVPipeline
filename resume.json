@@ -17,7 +17,7 @@
       "position": "Machine Learning Intern",
       "location": "Kolkata, West Bengal, India",
       "startDate": "2023-11",
-      "endDate": null,
+      "endDate": "2025-07",
       "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
       "url": "",
       "points": [
@@ -26,7 +26,7 @@
         "Document Intelligence Platform — Carelon Health | Mar–May 2025",
         "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy."
       ],
-      "period": "Nov, 2023 – Present"
+      "period": "Nov, 2023 – Jul, 2025"
     },
     {
       "name": "PwC India",
@@ -160,9 +160,6 @@
       "name": "Machine Learning"
     },
     {
-      "name": "API Gateways"
-    },
-    {
       "name": "Recommender Systems"
     },
     {
@@ -170,6 +167,9 @@
     },
     {
       "name": "MySQL"
+    },
+    {
+      "name": "Streamlit"
     },
     {
       "name": "pytest"
@@ -182,6 +182,9 @@
     },
     {
       "name": "FastAPI"
+    },
+    {
+      "name": "SQLAlchemy"
     },
     {
       "name": "Transformers"
@@ -202,6 +205,9 @@
       "name": "JavaScript"
     },
     {
+      "name": "SQL"
+    },
+    {
       "name": "Git"
     },
     {
@@ -215,12 +221,6 @@
     },
     {
       "name": "Java"
-    },
-    {
-      "name": "Data Structures"
-    },
-    {
-      "name": "Algorithms"
     },
     {
       "name": "Jupyter"
@@ -244,29 +244,33 @@
     "Programming Languages": [
       "C++",
       "Java",
-      "JavaScript"
+      "JavaScript",
+      "SQL"
     ],
-    "Machine Learning & Data Science": [
+    "Machine Learning & AI": [
+      "OpenAI API",
       "Machine Learning",
-      "Deep Learning",
       "Recommender Systems",
       "Transformers",
-      "Scikit-Learn",
+      "Deep Learning"
+    ],
+    "Data Science & Analytics": [
       "NumPy",
-      "Jupyter",
-      "OpenAI API"
+      "Scikit-Learn",
+      "Jupyter"
     ],
     "Web & API Development": [
-      "Node.js",
-      "Spring Boot",
-      "FastAPI",
-      "Angular",
       "REST APIs",
-      "API Gateways"
+      "FastAPI",
+      "Spring Boot",
+      "Angular",
+      "Node.js",
+      "Streamlit"
     ],
-    "Databases": [
+    "Databases & ORM": [
       "MySQL",
-      "MongoDB"
+      "MongoDB",
+      "SQLAlchemy"
     ],
     "DevOps & Cloud": [
       "Cloud Computing",
@@ -274,10 +278,6 @@
     ],
     "Testing & QA": [
       "pytest"
-    ],
-    "Data Structures & Algorithms": [
-      "Data Structures",
-      "Algorithms"
     ]
   }
 }

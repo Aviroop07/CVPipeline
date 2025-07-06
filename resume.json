@@ -4,11 +4,7 @@
     "label": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • BE CSE, Jadavpur University, 2025",
     "email": "aviroopmitra5@gmail.com",
     "phone": "+91 79809 58951",
-    "location": {
-      "city": "Kolkata, West Bengal",
-      "countryCode": "in"
-    },
-    "summary": "👋 Hey there, I'm Aviroop Mitra, a Computer Science and Engineering student at Jadavpur University. My academic journey is driven by a fascination for ML, AI, and logic building.\n\n💻 Beyond my coursework, I actively delve into Full Stack Web Development, exploring web technologies.\n\n🚀 Passionate about hackathons, I enjoy collaborative problem-solving and code reviews. I also contribute by posting solutions on coding platforms.\n\n🧩 In my free time, you'll often find me engrossed in chess games, relishing their strategic depth, or solving Sudoku puzzles to sharpen my logical thinking.\n\n🌟 Currently, I'm working on multiple small-scale personal projects in Machine Learning, applying my knowledge to practical solutions.\n\n📬 Feel free to reach out at aviroopmitra5@gmail.com for engaging discussions and the opportunity to innovate in technology and artificial intelligence!",
+    "location": "India",
     "public_id": "aviroopmitra071003"
   },
   "work": [
@@ -18,8 +14,17 @@
       "location": "Kolkata, West Bengal, India",
       "startDate": "2023-11",
       "endDate": null,
-      "summary": "Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
-      "url": "https://www.linkedin.com/company/getleadster/"
+      "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
+      "url": "https://www.linkedin.com/company/getleadster/",
+      "points": [
+        "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
+        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
+        "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
+        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
+        "Document Intelligence Platform — Carelon Health | Mar–May 2025",
+        "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy."
+      ],
+      "period": "Nov, 2023 – Jul, 2025"
     },
     {
       "name": "PwC India",
@@ -28,7 +33,12 @@
       "startDate": "2024-06",
       "endDate": "2024-07",
       "summary": "Full-Stack Ticket Platform | Jun–Jul 2024\nAngular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
-      "url": "https://www.linkedin.com/company/pwc/"
+      "url": "https://www.linkedin.com/company/pwc/",
+      "points": [
+        "Full-Stack Ticket Platform | Jun–Jul 2024",
+        "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out."
+      ],
+      "period": "Jun – Jul, 2024"
     }
   ],
   "education": [
@@ -39,7 +49,8 @@
       "score": "8.15 ( upto 7th semester )",
       "startDate": "2021-12",
       "endDate": "2025-07",
-      "url": "https://www.linkedin.com/school/jadavpur-university/"
+      "url": "https://www.linkedin.com/school/jadavpur-university/",
+      "period": "Dec, 2021 – Jul, 2025"
     },
     {
       "institution": "Burdwan Municipal High School",
@@ -48,7 +59,8 @@
       "score": "O",
       "startDate": "2019-07",
       "endDate": "2021-03",
-      "url": "https://www.linkedin.com/school/burdwan-municipal-high-school/"
+      "url": "https://www.linkedin.com/school/burdwan-municipal-high-school/",
+      "period": "Jul, 2019 – Mar, 2021"
     },
     {
       "institution": "Burdwan Town School",
@@ -57,41 +69,28 @@
       "score": "AA",
       "startDate": "2011-01",
       "endDate": "2019-03",
-      "url": ""
-    }
-  ],
-  "certificates": [
-    {
-      "name": "PERCEPTRON - The Turing Show, Coding Competition ",
-      "issuer": "RKMVERI, Belur",
-      "date": "2023-01",
-      "url": "https://drive.google.com/file/d/17nqnatBptOD0y1dSeYsjNiMZG-kg4A57/view?usp=drivesdk"
-    },
-    {
-      "name": "Programming in java",
-      "issuer": "NPTEL",
-      "date": "2023-11",
-      "url": "https://drive.google.com/file/d/1Rz42-BO7EmdyhEdpkgr642fpl1BktCdc/view?usp=drive_link"
+      "url": "",
+      "period": "Jan, 2011 – Mar, 2019"
     }
   ],
   "awards": [
     {
       "title": "GATE CS, 2025",
-      "date": "2025-02",
+      "date": "Feb, 2025",
       "awarder": "",
       "summary": "AIR 65, 99.96 percentile",
       "url": ""
     },
     {
       "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
-      "date": "2022-07",
+      "date": "Jul, 2022",
       "awarder": "JBNSTS",
       "summary": "98.98 percentile",
       "url": ""
     },
     {
       "title": "Jagadish Bose National Science Talent Search, Junior Scholar",
-      "date": "2020-03",
+      "date": "Mar, 2020",
       "awarder": "JBNSTS",
       "summary": "98.5 percentile",
       "url": ""
@@ -103,21 +102,38 @@
       "description": "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)",
       "startDate": "2025-02",
       "endDate": "2025-05",
-      "url": ""
-    },
-    {
-      "name": "LinkedIn Puzzle Solver",
-      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
-      "startDate": "2024-08",
-      "endDate": "2024-08",
-      "url": ""
+      "url": "",
+      "points": [
+        "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)"
+      ],
+      "period": "Feb – May, 2025"
     },
     {
       "name": "Compiler Design Project",
       "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
       "startDate": "2024-02",
       "endDate": "2024-04",
-      "url": ""
+      "url": "",
+      "points": [
+        "Implemented a bottom up parser in C language for a simple C like language with for loops, variable",
+        "declarations and functions",
+        "Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.",
+        "Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing."
+      ],
+      "period": "Feb – Apr, 2024"
+    },
+    {
+      "name": "LinkedIn Puzzle Solver",
+      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
+      "startDate": "2024-08",
+      "endDate": "2024-08",
+      "url": "",
+      "points": [
+        "Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.",
+        "Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.",
+        "Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads."
+      ],
+      "period": "Aug – Aug, 2024"
     }
   ],
   "skills": [
@@ -125,22 +141,7 @@
       "name": "OpenAI API"
     },
     {
-      "name": "DSA"
-    },
-    {
       "name": "Machine Learning"
-    },
-    {
-      "name": "Large Language Models (LLM)"
-    },
-    {
-      "name": "API Gateways"
-    },
-    {
-      "name": "Natural Language Processing (NLP)"
-    },
-    {
-      "name": "Python (Programming Language)"
     },
     {
       "name": "Recommender Systems"
@@ -155,30 +156,6 @@
       "name": "Compilers"
     },
     {
-      "name": "Parser"
-    },
-    {
-      "name": "Automaton"
-    },
-    {
-      "name": "Streamlit"
-    },
-    {
-      "name": "PIL"
-    },
-    {
-      "name": "Graph Theory"
-    },
-    {
-      "name": "Distributed Computing"
-    },
-    {
-      "name": "Peer-to-peer Computing"
-    },
-    {
-      "name": "pytest"
-    },
-    {
       "name": "REST APIs"
     },
     {
@@ -188,25 +165,7 @@
       "name": "FastAPI"
     },
     {
-      "name": "SQLAlchemy"
-    },
-    {
-      "name": "Convolutional Neural Networks (CNN)"
-    },
-    {
       "name": "Transformers"
-    },
-    {
-      "name": "Creative Problem Solving"
-    },
-    {
-      "name": "Debugging Code"
-    },
-    {
-      "name": "Debugging"
-    },
-    {
-      "name": "Presentation Skills"
     },
     {
       "name": "Spring Boot"
@@ -230,22 +189,13 @@
       "name": "Git"
     },
     {
-      "name": "Pandas (Software)"
-    },
-    {
       "name": "Scikit-Learn"
     },
     {
       "name": "Node.js"
     },
     {
-      "name": "Object-Oriented Programming (OOP)"
-    },
-    {
       "name": "NumPy"
-    },
-    {
-      "name": "English"
     },
     {
       "name": "Java"
@@ -254,40 +204,7 @@
       "name": "Data Structures"
     },
     {
-      "name": "C (Programming Language)"
-    },
-    {
-      "name": "Microsoft Excel"
-    },
-    {
-      "name": "Programming"
-    },
-    {
-      "name": "Software Development"
-    },
-    {
       "name": "Algorithms"
-    },
-    {
-      "name": "Computer Science"
-    },
-    {
-      "name": "Jupyter"
-    },
-    {
-      "name": "Engineering"
-    },
-    {
-      "name": "Communication"
-    },
-    {
-      "name": "Analytical Skills"
-    },
-    {
-      "name": "Problem Solving"
-    },
-    {
-      "name": "Mathematics"
     }
   ],
   "languages": [
@@ -303,5 +220,45 @@
       "language": "French",
       "fluency": "ELEMENTARY"
     }
-  ]
+  ],
+  "skills_by_category": {
+    "Programming Languages": [
+      "C++",
+      "JavaScript",
+      "Java"
+    ],
+    "Machine Learning & Data Science": [
+      "Machine Learning",
+      "Recommender Systems",
+      "Transformers",
+      "Deep Learning"
+    ],
+    "Data Science & Analytics": [
+      "NumPy",
+      "Scikit-Learn",
+      "NumPy"
+    ],
+    "Databases & Storage": [
+      "MySQL",
+      "MongoDB",
+      "SQL"
+    ],
+    "Web Frameworks & APIs": [
+      "OpenAI API",
+      "REST APIs",
+      "FastAPI",
+      "Spring Boot",
+      "Angular",
+      "Node.js"
+    ],
+    "Cloud & DevOps": [
+      "Cloud Computing",
+      "Git"
+    ],
+    "Computer Science Fundamentals": [
+      "Compilers",
+      "Data Structures",
+      "Algorithms"
+    ]
+  }
 }

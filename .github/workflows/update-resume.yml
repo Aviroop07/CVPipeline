@@ -3,62 +3,52 @@ name: Refresh résumé from LinkedIn
 on:
   # Runs every day at 09:00 IST  (03:30 UTC)
   schedule:
-    - cron:  '30 3 * * *'
+    - cron: "30 3 * * *"
   # Manual trigger button in the Actions tab
   workflow_dispatch:
 
 permissions:
-  contents: write  # allow pushing commits via GITHUB_TOKEN
+  contents: write # allow pushing commits via GITHUB_TOKEN
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # 1 — checkout repo
-    - uses: actions/checkout@v4
+      # 1 — checkout repo
+      - uses: actions/checkout@v4
 
-    # 2 — set up Python
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      # 2 — set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    # 3 — install dependencies
-    - name: Install requirements
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      # 3 — install dependencies
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    # 4 — scrape LinkedIn
-    - name: Fetch profile from LinkedIn
-      env:
-        LI_USER:         ${{ secrets.LI_USER }}
-        LI_PASS:         ${{ secrets.LI_PASS }}
-        LI_TOTP_SECRET:  ${{ secrets.LI_TOTP_SECRET }}
-        LI_AT:           ${{ secrets.LI_AT }}
-        LI_JSESSIONID:   ${{ secrets.LI_JSESSIONID }}
-        LI_PID:          ${{ secrets.LI_PID }}
-      run: python scripts/fetch_linekdin_scrape.py
+      # 4 — run unified resume generation pipeline
+      - name: Generate Resume via Unified Pipeline
+        env:
+          LI_USER: ${{ secrets.LI_USER }}
+          LI_PASS: ${{ secrets.LI_PASS }}
+          LI_TOTP_SECRET: ${{ secrets.LI_TOTP_SECRET }}
+          LI_AT: ${{ secrets.LI_AT }}
+          LI_JSESSIONID: ${{ secrets.LI_JSESSIONID }}
+          LI_PID: ${{ secrets.LI_PID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/pipeline.py
+        continue-on-error: true
 
-    # 5 — transform → resume.json
-    - name: Transform to JSON-Resume
-      run: python scripts/transform_linkedin_to_resume.py
-      continue-on-error: true
-
-    # 6 — generate markdown résumé
-    - name: Generate Markdown Résumé
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      run: python scripts/generate_markdown_resume.py
-      continue-on-error: true
-
-    # 7 — commit only if something changed
-    - name: Commit & push if updated
-      uses: EndBug/add-and-commit@v9
-      with:
-        add:    'resume.json resume.md data/linkedin_raw.json'
-        message: 'chore(resume): auto-update ${{ github.run_id }}'
-      env:
-        # Default GITHUB_TOKEN is enough to push back to the same repo
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 5 — commit only if something changed
+      - name: Commit & push if updated
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "resume.json data/linkedin_raw.json Aviroop_Mitra_Resume.pdf"
+          message: "chore(resume): auto-update ${{ github.run_id }}"
+        env:
+          # Default GITHUB_TOKEN is enough to push back to the same repo
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

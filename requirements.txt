@@ -2,4 +2,4 @@ linkedin-api
 dotenv
 pyotp
 openai
-jinja2
+borb<3.0

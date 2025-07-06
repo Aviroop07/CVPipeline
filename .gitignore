@@ -1,6 +1,11 @@
 .env
 *.json
 *env/
+.cursor/
+__pycache__/
+*.pyc
+*.md
 # Allow tracked resume files despite the above rule
 !resume.json
 !data/linkedin_raw.json
+!README.md

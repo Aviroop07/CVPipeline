@@ -16,14 +16,24 @@
       "artifacts": [
         {
           "width": 794,
+<<<<<<< HEAD
           "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQIjl-7yakGHlAAAAZfQmiST7kxLMtRMwh_U6zzi-EnSvDQq7z-P54dRvg&e=1751637852&v=beta&t=cQB6WUAnXHKWovOqqXECNTlyFirGYO22jGRb3Adr1c8",
           "expiresAt": 1751637852000,
+=======
+          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQK8NFK1DrHm4QAAAZfd6nvS7HZ1W0EQOZ__yorYehDNj4Bi7RvWyksG0w&e=1751861221&v=beta&t=Yc6rPSKU6MAnyWeQe3Xj2g1t8g7OX_gPuM1Y6SObgxE",
+          "expiresAt": 1751861221000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
           "height": 804
         },
         {
           "width": 444,
+<<<<<<< HEAD
           "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQJsxHb8kqOG0AAAAZfQmiSUZNmmuMLocZQaFS96DX66cIYchFs3MHAkpw&e=1751637852&v=beta&t=-QJOQv30S2kSFDt81K_6J6HPHhDOCb4fugTfI9KLXBg",
           "expiresAt": 1751637852000,
+=======
+          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQLCKED4AIKxowAAAZfd6nvSNDrPdr19LIytFhKHOqZ9M3aFzy0bUfJqsw&e=1751861221&v=beta&t=QMVKUwU5cpNgYg82kSA85mkCgHSuaqSckFDHyqElsCo",
+          "expiresAt": 1751861221000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
           "height": 450
         }
       ],
@@ -73,10 +83,17 @@
     }
   },
   "displayPictureUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_",
+<<<<<<< HEAD
   "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
   "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
   "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
   "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
+=======
+  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
+  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
+  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
+  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
   "profile_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "profile_urn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "member_urn": "urn:li:member:946910996",
@@ -89,6 +106,10 @@
       "geoUrn": "urn:li:fs_geo:111795395",
       "companyName": "Neurologic-ai",
       "timePeriod": {
+        "endDate": {
+          "month": 7,
+          "year": 2025
+        },
         "startDate": {
           "month": 11,
           "year": 2023
@@ -158,7 +179,11 @@
         "entityUrn": "urn:li:fs_miniSchool:13513",
         "active": true,
         "schoolName": "Jadavpur University",
+<<<<<<< HEAD
         "trackingId": "Z8nGKcuBT0SY/XArfPRi5w==",
+=======
+        "trackingId": "eoC0hE2KTOC/z2cQ8lc7/w==",
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
         "logoUrl": "https://media.licdn.com/dms/image/v2/C510BAQFkGVsBobrK1A/company-logo_"
       },
       "grade": "8.15 ( upto 7th semester )",
@@ -187,7 +212,11 @@
         "entityUrn": "urn:li:fs_miniSchool:3230309",
         "active": true,
         "schoolName": "Burdwan Municipal High School",
+<<<<<<< HEAD
         "trackingId": "ma+2F8xGQICee3ul/Grcbw==",
+=======
+        "trackingId": "LvlvnpXZQm2jVxpyZ/BdQg==",
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
         "logoUrl": "https://media.licdn.com/dms/image/v2/C560BAQEWuTbLbvUAhg/company-logo_"
       },
       "grade": "O",
@@ -274,20 +303,20 @@
             "artifacts": [
               {
                 "width": 200,
-                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1756944000&v=beta&t=oZ2SezT_ikCoOAlXp0ehbMbEqkyU8DH5CVUf9DixFeo",
-                "expiresAt": 1756944000000,
+                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1757548800&v=beta&t=drrHJl8fm5pZrYR0IoSgK4KTA2JdKZhGqe8Wct6KcVg",
+                "expiresAt": 1757548800000,
                 "height": 200
               },
               {
                 "width": 100,
-                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1756944000&v=beta&t=KbKFz-rIH6CyfNJ4jERKrsg8b-OIjvVz6tgDnoVoAAs",
-                "expiresAt": 1756944000000,
+                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1757548800&v=beta&t=ycSW2JXO4lvbXfMbmn1x4xO2b7HtJRNFiUFc1vx2rQE",
+                "expiresAt": 1757548800000,
                 "height": 100
               },
               {
                 "width": 400,
-                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1756944000&v=beta&t=eJK_O4xLb0LPps0ZEiia_G3VidHonVfumpx51bJNtyg",
-                "expiresAt": 1756944000000,
+                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1757548800&v=beta&t=uy77l8A3vNYJsSghoiA0j5bUVpwY2hpmvpXYQ5YB-2k",
+                "expiresAt": 1757548800000,
                 "height": 400
               }
             ],
@@ -296,7 +325,11 @@
         },
         "universalName": "nptel",
         "dashCompanyUrn": "urn:li:fsd_company:13229455",
+<<<<<<< HEAD
         "trackingId": "jPD5BkB2S9ayeDcywE7Glw=="
+=======
+        "trackingId": "9YAuTIweSi6tGPHQYSfmBg=="
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
       },
       "displaySource": "google.com",
       "companyUrn": "urn:li:fs_miniCompany:13229455",
@@ -353,33 +386,57 @@
                 "artifacts": [
                   {
                     "width": 400,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 400
                   },
                   {
                     "width": 200,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 200
                   },
                   {
                     "width": 800,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 800
                   },
                   {
                     "width": 100,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
+<<<<<<< HEAD
             "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
+=======
+            "trackingId": "1ZPQiCuKRse+B/U6Ycd3pA=="
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541,460000641)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -414,33 +471,57 @@
                 "artifacts": [
                   {
                     "width": 400,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 400
                   },
                   {
                     "width": 200,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 200
                   },
                   {
                     "width": 800,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 800
                   },
                   {
                     "width": 100,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
+<<<<<<< HEAD
             "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
+=======
+            "trackingId": "1ZPQiCuKRse+B/U6Ycd3pA=="
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074567873,460000648)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -476,33 +557,57 @@
                 "artifacts": [
                   {
                     "width": 400,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752382800&v=beta&t=hK2N9Bmc7_JMhUhfXoO7vojxy9_VU5aLORmzmPRDo6s",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 400
                   },
                   {
                     "width": 200,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752382800&v=beta&t=qsDEtGOsbiiPFWPH5Zoj4db0SoPEFgvS50CzDH405OE",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 200
                   },
                   {
                     "width": 800,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752382800&v=beta&t=CU705vtnj9yYzecqeM2w5hWwRgT9kEWdsOi-OKi_9_M",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 800
                   },
                   {
                     "width": 100,
+<<<<<<< HEAD
                     "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
                     "expiresAt": 1752159600000,
+=======
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752382800&v=beta&t=ELgxfrt-azT2XnpSmgzmTxdmF44Gz4RKsCxLH4dF8K8",
+                    "expiresAt": 1752382800000,
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
+<<<<<<< HEAD
             "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
+=======
+            "trackingId": "1ZPQiCuKRse+B/U6Ycd3pA=="
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003237)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -521,33 +626,37 @@
                 "artifacts": [
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-displayphoto-shrink_100_100/0/1660896862968?e=1756944000&v=beta&t=mARV8LlfvITZc48F9OC7JpBGEzeQI_joU1x5tYQaqXQ",
-                    "expiresAt": 1756944000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-displayphoto-shrink_100_100/0/1660896862968?e=1757548800&v=beta&t=UHTIE6YSqoXlTFf2ipEYAlWY9XstEomPUEgTPbSMCYU",
+                    "expiresAt": 1757548800000,
                     "height": 100
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-displayphoto-shrink_200_200/0/1660896862968?e=1756944000&v=beta&t=X8c9EOGqt8qjac5dVJXnXxRqrjcM-MF04YJUTkV7C4E",
-                    "expiresAt": 1756944000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-displayphoto-shrink_200_200/0/1660896862968?e=1757548800&v=beta&t=_s3L_IE0ExzNo2jNWwuql6mXrbykqboI98vTQcHrQUc",
+                    "expiresAt": 1757548800000,
                     "height": 200
                   },
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-displayphoto-shrink_400_400/0/1660896862968?e=1756944000&v=beta&t=tcXH4Ha9Q42HA0wxNPYNjuz9ba8IXrwplRLmkmqA-4Q",
-                    "expiresAt": 1756944000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-displayphoto-shrink_400_400/0/1660896862968?e=1757548800&v=beta&t=84DAvDK4H6FMmXfauj3D_ocEFJblmjo4iPzFxcOIcbo",
+                    "expiresAt": 1757548800000,
                     "height": 400
                   },
                   {
                     "width": 500,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-displayphoto-shrink_800_800/0/1660896862968?e=1756944000&v=beta&t=OhN7nrLqQC-KjfNRk702AVpCVZ3wFRZJrkKVElV9-rY",
-                    "expiresAt": 1756944000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-displayphoto-shrink_800_800/0/1660896862968?e=1757548800&v=beta&t=XLfzFDoEe00QI9kaFaI--kVmeRZcuh0m74l1mMlzJ6o",
+                    "expiresAt": 1757548800000,
                     "height": 500
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/C4E03AQHeaLanNN31WQ/profile-displayphoto-shrink_"
               }
             },
+<<<<<<< HEAD
             "trackingId": "o83EjlTpQIONrFs94aSwKg=="
+=======
+            "trackingId": "82i+vpXLRQ6/Kv0E/lshIA=="
+>>>>>>> 2159c37bcc44385479472ac1d30d0205c0e40c7f
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003238)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo"
@@ -762,7 +871,7 @@
       "locationName": "Kolkata, West Bengal, India · Remote",
       "duration": "1 yr 9 mos",
       "startDate": "Nov 2023",
-      "endDate": "Present",
+      "endDate": "Jul 2025",
       "description": null
     },
     {

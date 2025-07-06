@@ -19,10 +19,12 @@
       "points": [
         "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
         "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
+        "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
+        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
         "Document Intelligence Platform — Carelon Health | Mar–May 2025",
         "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy."
       ],
-      "period": "Nov, 2023 – Present"
+      "period": "Nov, 2023 – Jul, 2025"
     },
     {
       "name": "PwC India",
@@ -227,9 +229,12 @@
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
-      "Deep Learning",
       "Recommender Systems",
       "Transformers",
+      "Deep Learning"
+    ],
+    "Data Science & Analytics": [
+      "NumPy",
       "Scikit-Learn",
       "NumPy"
     ],

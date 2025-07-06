@@ -30,8 +30,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4 — fetch information from LinkedIn
-      - name: Fetch profile from LinkedIn
+      # 4 — run unified resume generation pipeline
+      - name: Generate Resume via Unified Pipeline
         env:
           LI_USER: ${{ secrets.LI_USER }}
           LI_PASS: ${{ secrets.LI_PASS }}
@@ -39,26 +39,11 @@ jobs:
           LI_AT: ${{ secrets.LI_AT }}
           LI_JSESSIONID: ${{ secrets.LI_JSESSIONID }}
           LI_PID: ${{ secrets.LI_PID }}
-        run: python scripts/fetch_linekdin_scrape.py
-
-      # 5 — transform raw data to JSON-Resume format
-      - name: Transform to JSON-Resume
-        run: python scripts/transform_linkedin_to_resume.py
-        continue-on-error: true
-
-      # 6 — process data with OpenAI API and save enhanced JSON
-      - name: Process with OpenAI API
-        env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python scripts/process_with_openai.py
+        run: python scripts/pipeline.py
         continue-on-error: true
 
-      # 7 — create PDF from processed JSON
-      - name: Generate PDF Résumé
-        run: python scripts/generate_pdf_resume.py
-        continue-on-error: true
-
-      # 8 — commit only if something changed
+      # 5 — commit only if something changed
       - name: Commit & push if updated
         uses: EndBug/add-and-commit@v9
         with:

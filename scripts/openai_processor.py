@@ -1,23 +1,9 @@
 #!/usr/bin/env python3
 """
-Process resume data with OpenAI API to enhance and refine content.
+OpenAI resume processing module.
 
-Steps:
-1. Load resume.json (JSON-Resume 1.0 structure).
-2. Apply OpenAI enhancements (skill filtering, categorization, ranking).
-3. Save enhanced data back to resume.json.
-
-Usage:
-    python scripts/process_with_openai.py
-
-Inputs:
-    resume.json (from transform_linkedin_to_resume.py)
-
-Outputs:
-    resume.json (enhanced with OpenAI processing)
+This module provides functions to enhance resume data using OpenAI API.
 """
-
-from __future__ import annotations
 
 import json, os, pathlib, sys, re, logging
 from typing import List, Dict, Any
@@ -36,25 +22,34 @@ dotenv.load_dotenv()
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
-# Utility to load a prompt template and fill placeholders
-def _load_prompt(name: str, **kwargs) -> str:
+def load_prompt_template(name: str, **kwargs) -> str:
+    """Load a prompt template and fill placeholders.
+    
+    Args:
+        name (str): Prompt template filename
+        **kwargs: Template variables to substitute
+        
+    Returns:
+        str: Filled prompt template
+        
+    Raises:
+        FileNotFoundError: If template file doesn't exist
+    """
     tpl_path = PROMPTS_DIR / name
     if not tpl_path.exists():
         raise FileNotFoundError(f"Prompt template {tpl_path} not found")
     template_text = tpl_path.read_text(encoding="utf-8")
     return StrTemplate(template_text).substitute(**kwargs)
 
-# ───────────────────────────────────────────────────────── Helpers
-
-def _chronological(items: List[Dict[str, Any]], date_key: str) -> List[Dict[str, Any]]:
-    """Return *items* sorted descending by *date_key* (YYYY-MM or YYYY)."""
-    def _key(it):
-        date = it.get(date_key)
-        return date or ""
-    return sorted(items, key=_key, reverse=True)
-
-def _openai_chat(prompt: str) -> str:
-    """Send *prompt* to OpenAI chat if API key available, else return empty string."""
+def call_openai_api(prompt: str) -> str:
+    """Send prompt to OpenAI chat API.
+    
+    Args:
+        prompt (str): Prompt to send to OpenAI
+        
+    Returns:
+        str: OpenAI response or empty string if API key not available or call fails
+    """
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         log.debug("OPENAI_API_KEY not set – skipping call")
@@ -81,20 +76,40 @@ def _openai_chat(prompt: str) -> str:
         log.warning("OpenAI call failed: %s", exc)
         return ""
 
-def _rank_list_openai(items: List[str], section: str) -> List[str]:
+def sort_chronologically(items: List[Dict[str, Any]], date_key: str) -> List[Dict[str, Any]]:
+    """Sort items chronologically by date key (descending - latest first).
+    
+    Args:
+        items (List[Dict]): Items to sort
+        date_key (str): Key containing date in YYYY-MM format
+        
+    Returns:
+        List[Dict]: Sorted items
     """
-    Ask GPT-4 to rank & cull items for the given section.
-    Returns the reordered list; falls back to original on error.
+    def _key(it):
+        date = it.get(date_key)
+        return date or ""
+    return sorted(items, key=_key, reverse=True)
+
+def rank_items_with_openai(items: List[str], section: str) -> List[str]:
+    """Rank and potentially cull items using OpenAI.
+    
+    Args:
+        items (List[str]): Items to rank
+        section (str): Section name for context
+        
+    Returns:
+        List[str]: Reordered items (falls back to original on error)
     """
     if not items:
         return items
 
-    prompt = _load_prompt(
+    prompt = load_prompt_template(
         config.RANK_ITEMS_PROMPT,
         section_name=section,
         items_list=", ".join(items)
     )
-    ranked_json = _openai_chat(prompt)
+    ranked_json = call_openai_api(prompt)
     if not ranked_json:
         return items
 
@@ -110,18 +125,35 @@ def _rank_list_openai(items: List[str], section: str) -> List[str]:
         print(f"⚠️  Failed to parse ranked {section}: {exc}", file=sys.stderr)
         return items
 
-def _reorder_objects(obj_list: List[Dict[str, Any]], key: str, section: str) -> List[Dict[str, Any]]:
-    """Reorder objects based on OpenAI-ranked keys."""
-    order = _rank_list_openai([o[key] for o in obj_list], section)
+def reorder_objects_by_key(obj_list: List[Dict[str, Any]], key: str, section: str) -> List[Dict[str, Any]]:
+    """Reorder objects based on OpenAI-ranked keys.
+    
+    Args:
+        obj_list (List[Dict]): Objects to reorder
+        key (str): Key to extract for ranking
+        section (str): Section name for context
+        
+    Returns:
+        List[Dict]: Reordered objects
+    """
+    order = rank_items_with_openai([o[key] for o in obj_list], section)
     ordered = [next(o for o in obj_list if o[key] == name) for name in order]
     return ordered
 
-def _categorize_skills_openai(skills: List[str]) -> Dict[str, List[str]]:
+def categorize_skills_with_openai(skills: List[str]) -> Dict[str, List[str]]:
+    """Categorize skills into groups using OpenAI.
+    
+    Args:
+        skills (List[str]): List of skill names
+        
+    Returns:
+        Dict[str, List[str]]: Skills grouped by category
+    """
     if not skills:
         return {}
-    prompt = _load_prompt(config.CATEGORIZE_SKILLS_PROMPT, skills_list=", ".join(skills))
+    prompt = load_prompt_template(config.CATEGORIZE_SKILLS_PROMPT, skills_list=", ".join(skills))
     log.info("Categorizing %d skills via OpenAI", len(skills))
-    response = _openai_chat(prompt)
+    response = call_openai_api(prompt)
     log.debug("Skill categorization raw response: %s", response)
     if not response:
         return {}
@@ -136,14 +168,21 @@ def _categorize_skills_openai(skills: List[str]) -> Dict[str, List[str]]:
         log.warning("Failed to parse skill categorization JSON: %s", exc)
         return {}
 
-def _filter_skills_openai(skills: List[str]) -> List[str]:
-    """Return a subset of *skills* deemed résumé-worthy via OpenAI prompt."""
+def filter_skills_with_openai(skills: List[str]) -> List[str]:
+    """Filter skills for resume relevance using OpenAI.
+    
+    Args:
+        skills (List[str]): List of skill names
+        
+    Returns:
+        List[str]: Filtered list of relevant skills
+    """
     if not skills:
         return skills
 
-    prompt = _load_prompt(config.FILTER_SKILLS_PROMPT, skills_list=", ".join(skills))
+    prompt = load_prompt_template(config.FILTER_SKILLS_PROMPT, skills_list=", ".join(skills))
     log.info("Filtering %d skills via OpenAI", len(skills))
-    response = _openai_chat(prompt)
+    response = call_openai_api(prompt)
     log.debug("Skill filtering raw response: %s", response)
     if not response:
         return skills
@@ -159,8 +198,15 @@ def _filter_skills_openai(skills: List[str]) -> List[str]:
         log.warning("Failed to parse filtered skills JSON: %s", exc)
         return skills
 
-def _extract_points(text: str) -> List[str]:
-    """Return list of bullet-point strings extracted from *text* (may call OpenAI)."""
+def extract_bullet_points(text: str) -> List[str]:
+    """Extract bullet points from text using heuristics or OpenAI.
+    
+    Args:
+        text (str): Text to extract points from
+        
+    Returns:
+        List[str]: List of bullet points
+    """
     if not text:
         return []
 
@@ -175,9 +221,9 @@ def _extract_points(text: str) -> List[str]:
     if word_count < config.POINT_WORD_THRESHOLD:
         return [text.strip()]
 
-    prompt = _load_prompt(config.EXTRACT_POINTS_PROMPT, raw_text=text)
+    prompt = load_prompt_template(config.EXTRACT_POINTS_PROMPT, raw_text=text)
     log.info("Requesting point extraction (%d words) via OpenAI", word_count)
-    resp = _openai_chat(prompt)
+    resp = call_openai_api(prompt)
     log.debug("Point extraction raw response: %s", resp)
     try:
         points = json.loads(resp)
@@ -186,8 +232,16 @@ def _extract_points(text: str) -> List[str]:
         log.warning("Failed to parse points JSON: %s", exc)
         return [text]
 
-def _fmt_range(start: str|None, end: str|None) -> str:
-    """Convert 'YYYY-MM' strings to nice range."""
+def format_date_range(start: str|None, end: str|None) -> str:
+    """Format date range from YYYY-MM strings.
+    
+    Args:
+        start (str|None): Start date in YYYY-MM format
+        end (str|None): End date in YYYY-MM format (None means present)
+        
+    Returns:
+        str: Formatted date range (e.g., "Jan, 2020 – Present")
+    """
     if not start:
         return ""
     try:
@@ -213,8 +267,15 @@ def _fmt_range(start: str|None, end: str|None) -> str:
     else:
         return f"{sm}, {ys} – Present"
 
-def _fmt_single(date: str|None) -> str:
-    """Convert 'YYYY-MM' (or 'YYYY') to 'Mon, YYYY'. Returns empty string on failure."""
+def format_single_date(date: str|None) -> str:
+    """Format single date from YYYY-MM string.
+    
+    Args:
+        date (str|None): Date in YYYY-MM or YYYY format
+        
+    Returns:
+        str: Formatted date (e.g., "Jan, 2020") or empty string on failure
+    """
     if not date:
         return ""
     try:
@@ -228,47 +289,47 @@ def _fmt_single(date: str|None) -> str:
     except Exception:
         return date
 
-def process_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
-    """Apply OpenAI enhancements to resume data."""
+def process_resume_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Apply OpenAI enhancements to resume data.
+    
+    Args:
+        data (Dict): Resume data in JSON-Resume format
+        
+    Returns:
+        Dict: Enhanced resume data
+    """
     log.info("Processing resume data with OpenAI API...")
     
     # Chronological ordering (latest first)
-    data["work"] = _chronological(data.get("work", []), "startDate")
-    data["education"] = _chronological(data.get("education", []), "startDate")
-    data["projects"] = _chronological(data.get("projects", []), "startDate")
-    data["awards"] = _chronological(data.get("awards", []), "date")
-    data["certificates"] = _chronological(data.get("certificates", []), "date")
-
-    # Ensure summary is empty (ignored)
-    data["basics"]["summary"] = ""
+    data["work"] = sort_chronologically(data.get("work", []), "startDate")
+    data["education"] = sort_chronologically(data.get("education", []), "startDate")
+    data["projects"] = sort_chronologically(data.get("projects", []), "startDate")
+    data["awards"] = sort_chronologically(data.get("awards", []), "date")
 
     # Convert work summaries/descriptions to point lists
     for w in data.get("work", []):
-        w["points"] = _extract_points(w.get("summary", ""))
-        w["period"] = _fmt_range(w.get("startDate"), w.get("endDate"))
+        w["points"] = extract_bullet_points(w.get("summary", ""))
+        w["period"] = format_date_range(w.get("startDate"), w.get("endDate"))
 
     for p in data.get("projects", []):
-        p["points"] = _extract_points(p.get("description", ""))
-        p["period"] = _fmt_range(p.get("startDate"), p.get("endDate"))
+        p["points"] = extract_bullet_points(p.get("description", ""))
+        p["period"] = format_date_range(p.get("startDate"), p.get("endDate"))
 
     for e in data.get("education", []):
-        e["period"] = _fmt_range(e.get("startDate"), e.get("endDate"))
+        e["period"] = format_date_range(e.get("startDate"), e.get("endDate"))
 
-    # Format single-date fields (awards, certificates)
+    # Format single-date fields (awards)
     for a in data.get("awards", []):
-        a["date"] = _fmt_single(a.get("date"))
-
-    for c in data.get("certificates", []):
-        c["date"] = _fmt_single(c.get("date"))
+        a["date"] = format_single_date(a.get("date"))
 
     # Categorise skills into buckets based on keywords
     skill_names = [s["name"] for s in data.get("skills", [])]
 
     # Step 1: filter skills for relevance via OpenAI
-    filtered_skills = _filter_skills_openai(skill_names)
+    filtered_skills = filter_skills_with_openai(skill_names)
 
     # Step 2: categorise the filtered skills
-    categorized = _categorize_skills_openai(filtered_skills)
+    categorized = categorize_skills_with_openai(filtered_skills)
     if not categorized:
         # Fallback: put all skills under "General"
         categorized = {"General": filtered_skills}
@@ -279,31 +340,77 @@ def process_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
     data["skills"] = [{"name": s} for s in filtered_skills]
 
     # Reorder sections based on relevance
-    data["projects"] = _reorder_objects(data["projects"], "name", "Projects")
-    data["awards"] = _reorder_objects(data["awards"], "title", "Achievements")
-    data["work"] = _reorder_objects(data["work"], "position", "Work Experience")
+    data["projects"] = reorder_objects_by_key(data["projects"], "name", "Projects")
+    data["awards"] = reorder_objects_by_key(data["awards"], "title", "Achievements")
+    data["work"] = reorder_objects_by_key(data["work"], "position", "Work Experience")
 
     log.debug("Data after OpenAI processing keys: %s", list(data.keys()))
     log.info("OpenAI processing completed successfully")
 
     return data
 
-# ───────────────────────────────────────────────────────── Main
-
-def main() -> None:
-    if not RESUME_JSON.exists():
+def load_resume_data(input_path=None):
+    """Load resume data from JSON file.
+    
+    Args:
+        input_path (pathlib.Path, optional): Custom input path. Defaults to configured path.
+        
+    Returns:
+        dict: Resume data
+        
+    Raises:
+        SystemExit: If file doesn't exist
+    """
+    if input_path is None:
+        input_path = RESUME_JSON
+        
+    if not input_path.exists():
         log.error(f"{config.RESUME_JSON_FILE} not found – aborting")
         sys.exit(1)
 
     log.info(f"Loading {config.RESUME_JSON_FILE}")
-    data = json.loads(RESUME_JSON.read_text(encoding="utf-8"))
+    return json.loads(input_path.read_text(encoding="utf-8"))
+
+def save_enhanced_resume_data(data: Dict[str, Any], output_path=None):
+    """Save enhanced resume data to JSON file.
+    
+    Args:
+        data (Dict): Enhanced resume data
+        output_path (pathlib.Path, optional): Custom output path. Defaults to configured path.
+        
+    Returns:
+        pathlib.Path: Path where data was saved
+    """
+    if output_path is None:
+        output_path = RESUME_JSON
+        
+    output_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    log.info(f"Enhanced {config.RESUME_JSON_FILE} saved successfully")
+    return output_path
+
+def enhance_resume_with_openai():
+    """Complete OpenAI resume enhancement pipeline.
+    
+    Returns:
+        dict: Enhanced resume data
+        
+    Raises:
+        SystemExit: If processing fails
+    """
+    # Load resume data
+    data = load_resume_data()
     
     # Process with OpenAI
-    enhanced_data = process_with_openai(data)
+    enhanced_data = process_resume_with_openai(data)
     
     # Save enhanced data back to resume.json
-    RESUME_JSON.write_text(json.dumps(enhanced_data, indent=2, ensure_ascii=False), encoding="utf-8")
-    log.info(f"Enhanced {config.RESUME_JSON_FILE} saved successfully")
+    save_enhanced_resume_data(enhanced_data)
+    return enhanced_data
+
+# Legacy main function for backward compatibility
+def main():
+    """Main function for standalone script execution."""
+    enhance_resume_with_openai()
 
 if __name__ == "__main__":
     main() 

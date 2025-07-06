@@ -4,11 +4,7 @@
     "label": "GATE CS AIR 65 (CS) • ML Intern @NeurologicAI • BE CSE, Jadavpur University, 2025",
     "email": "aviroopmitra5@gmail.com",
     "phone": "+91 79809 58951",
-    "location": {
-      "city": "Kolkata, West Bengal",
-      "countryCode": "in"
-    },
-    "summary": "",
+    "location": "India",
     "public_id": "aviroopmitra071003"
   },
   "work": [
@@ -18,11 +14,11 @@
       "location": "Kolkata, West Bengal, India",
       "startDate": "2023-11",
       "endDate": null,
-      "summary": "Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
-      "url": "",
+      "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
+      "url": "https://www.linkedin.com/company/getleadster/",
       "points": [
-        "Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025",
-        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.",
+        "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
+        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
         "Document Intelligence Platform — Carelon Health | Mar–May 2025",
         "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy."
       ],
@@ -35,7 +31,7 @@
       "startDate": "2024-06",
       "endDate": "2024-07",
       "summary": "Full-Stack Ticket Platform | Jun–Jul 2024\nAngular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
-      "url": "",
+      "url": "https://www.linkedin.com/company/pwc/",
       "points": [
         "Full-Stack Ticket Platform | Jun–Jul 2024",
         "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out."
@@ -51,7 +47,7 @@
       "score": "8.15 ( upto 7th semester )",
       "startDate": "2021-12",
       "endDate": "2025-07",
-      "url": "",
+      "url": "https://www.linkedin.com/school/jadavpur-university/",
       "period": "Dec, 2021 – Jul, 2025"
     },
     {
@@ -61,7 +57,7 @@
       "score": "O",
       "startDate": "2019-07",
       "endDate": "2021-03",
-      "url": "",
+      "url": "https://www.linkedin.com/school/burdwan-municipal-high-school/",
       "period": "Jul, 2019 – Mar, 2021"
     },
     {
@@ -75,33 +71,19 @@
       "period": "Jan, 2011 – Mar, 2019"
     }
   ],
-  "certificates": [
-    {
-      "name": "Programming in java",
-      "issuer": "NPTEL",
-      "date": "Nov, 2023",
-      "url": "https://drive.google.com/file/d/1Rz42-BO7EmdyhEdpkgr642fpl1BktCdc/view?usp=drive_link"
-    },
-    {
-      "name": "PERCEPTRON - The Turing Show, Coding Competition ",
-      "issuer": "RKMVERI, Belur",
-      "date": "Jan, 2023",
-      "url": "https://drive.google.com/file/d/17nqnatBptOD0y1dSeYsjNiMZG-kg4A57/view?usp=drivesdk"
-    }
-  ],
   "awards": [
-    {
-      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
-      "date": "Jul, 2022",
-      "awarder": "JBNSTS",
-      "summary": "98.98 percentile",
-      "url": ""
-    },
     {
       "title": "GATE CS, 2025",
       "date": "Feb, 2025",
       "awarder": "",
       "summary": "AIR 65, 99.96 percentile",
+      "url": ""
+    },
+    {
+      "title": "Jagadish Bose National Science Talent Search, Senior Scholar",
+      "date": "Jul, 2022",
+      "awarder": "JBNSTS",
+      "summary": "98.98 percentile",
       "url": ""
     },
     {
@@ -169,7 +151,7 @@
       "name": "MySQL"
     },
     {
-      "name": "pytest"
+      "name": "Compilers"
     },
     {
       "name": "REST APIs"
@@ -179,9 +161,6 @@
     },
     {
       "name": "FastAPI"
-    },
-    {
-      "name": "SQLAlchemy"
     },
     {
       "name": "Transformers"
@@ -220,10 +199,10 @@
       "name": "Java"
     },
     {
-      "name": "Algorithms"
+      "name": "Data Structures"
     },
     {
-      "name": "Jupyter"
+      "name": "Algorithms"
     }
   ],
   "languages": [
@@ -243,12 +222,8 @@
   "skills_by_category": {
     "Programming Languages": [
       "C++",
-      "Java",
       "JavaScript",
-      "SQL"
-    ],
-    "Computer Science Fundamentals": [
-      "Algorithms"
+      "Java"
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
@@ -256,32 +231,29 @@
       "Recommender Systems",
       "Transformers",
       "Scikit-Learn",
-      "NumPy",
-      "Jupyter"
-    ],
-    "Backend & Web Frameworks": [
-      "FastAPI",
-      "Spring Boot",
-      "Node.js",
-      "SQLAlchemy"
-    ],
-    "Frontend Frameworks": [
-      "Angular"
+      "NumPy"
     ],
     "Databases & Storage": [
       "MySQL",
-      "MongoDB"
+      "MongoDB",
+      "SQL"
     ],
-    "APIs & Integrations": [
+    "Web Frameworks & APIs": [
       "OpenAI API",
-      "REST APIs"
+      "REST APIs",
+      "FastAPI",
+      "Spring Boot",
+      "Angular",
+      "Node.js"
     ],
-    "DevOps & Cloud": [
+    "Cloud & DevOps": [
       "Cloud Computing",
       "Git"
     ],
-    "Testing & Tools": [
-      "pytest"
+    "Computer Science Fundamentals": [
+      "Compilers",
+      "Data Structures",
+      "Algorithms"
     ]
   }
 }

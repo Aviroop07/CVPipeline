@@ -16,14 +16,14 @@
       "artifacts": [
         {
           "width": 794,
-          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQJIDtexsFXmqQAAAZe9YUULUf6Cm9XXxFj3g7N4edPj3pHGL6a5VAEIOw&e=1751315357&v=beta&t=EnG_dGGH95nU6_ChuDhZ9OEdvYJRczqsPpZSHQwv7tE",
-          "expiresAt": 1751315357000,
+          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQIjl-7yakGHlAAAAZfQmiST7kxLMtRMwh_U6zzi-EnSvDQq7z-P54dRvg&e=1751637852&v=beta&t=cQB6WUAnXHKWovOqqXECNTlyFirGYO22jGRb3Adr1c8",
+          "expiresAt": 1751637852000,
           "height": 804
         },
         {
           "width": 444,
-          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQKCpVKkKBB8IgAAAZe9YUULCjysSyjcTdIelrEW08Zs6CNl8f-Wu2C7UQ&e=1751315357&v=beta&t=H4qRzC_sjaaUeAABnQltog0jqWylIF-pOkaKji9HTFQ",
-          "expiresAt": 1751315357000,
+          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQJsxHb8kqOG0AAAAZfQmiSUZNmmuMLocZQaFS96DX66cIYchFs3MHAkpw&e=1751637852&v=beta&t=-QJOQv30S2kSFDt81K_6J6HPHhDOCb4fugTfI9KLXBg",
+          "expiresAt": 1751637852000,
           "height": 450
         }
       ],
@@ -73,10 +73,10 @@
     }
   },
   "displayPictureUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_",
-  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751835600&v=beta&t=fjsgr1JaB1xurMF66Z8xixZGaq10XAfByxqGgydQFPA",
-  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751835600&v=beta&t=Yc1aOKiufitVnNLa3WYsvmt21RZ2rOseJXcbexClydw",
-  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751835600&v=beta&t=0UtilSrLxd1m3A9kUW4W-ZSbsjF89j2C6vMkLYp_Wzc",
-  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751835600&v=beta&t=SPd3v3967SenUvpixkddHtTlW1R24PYEiQ9q8BW_HcQ",
+  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
+  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
+  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
+  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
   "profile_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "profile_urn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "member_urn": "urn:li:member:946910996",
@@ -94,7 +94,7 @@
           "year": 2023
         }
       },
-      "description": "Intelligent Claim Orchestration — Skan AI ↔ Guidewire | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (↑ 23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
+      "description": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
       "company": {
         "employeeCountRange": {
           "start": 11,
@@ -158,7 +158,7 @@
         "entityUrn": "urn:li:fs_miniSchool:13513",
         "active": true,
         "schoolName": "Jadavpur University",
-        "trackingId": "5Zxm5hILR0CYB/AzpOb7uw==",
+        "trackingId": "Z8nGKcuBT0SY/XArfPRi5w==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C510BAQFkGVsBobrK1A/company-logo_"
       },
       "grade": "8.15 ( upto 7th semester )",
@@ -187,7 +187,7 @@
         "entityUrn": "urn:li:fs_miniSchool:3230309",
         "active": true,
         "schoolName": "Burdwan Municipal High School",
-        "trackingId": "tDb/YmO1Tn++3blf3iR//w==",
+        "trackingId": "ma+2F8xGQICee3ul/Grcbw==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C560BAQEWuTbLbvUAhg/company-logo_"
       },
       "grade": "O",
@@ -296,7 +296,7 @@
         },
         "universalName": "nptel",
         "dashCompanyUrn": "urn:li:fsd_company:13229455",
-        "trackingId": "mplJTrPJQ9Wt1YVfFpNJ0g=="
+        "trackingId": "jPD5BkB2S9ayeDcywE7Glw=="
       },
       "displaySource": "google.com",
       "companyUrn": "urn:li:fs_miniCompany:13229455",
@@ -353,33 +353,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751835600&v=beta&t=fjsgr1JaB1xurMF66Z8xixZGaq10XAfByxqGgydQFPA",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
+                    "expiresAt": 1752159600000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751835600&v=beta&t=Yc1aOKiufitVnNLa3WYsvmt21RZ2rOseJXcbexClydw",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
+                    "expiresAt": 1752159600000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751835600&v=beta&t=0UtilSrLxd1m3A9kUW4W-ZSbsjF89j2C6vMkLYp_Wzc",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
+                    "expiresAt": 1752159600000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751835600&v=beta&t=SPd3v3967SenUvpixkddHtTlW1R24PYEiQ9q8BW_HcQ",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
+                    "expiresAt": 1752159600000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "wcCgVr0ISxOvOGhxqf3iwA=="
+            "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541,460000641)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -414,33 +414,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751835600&v=beta&t=fjsgr1JaB1xurMF66Z8xixZGaq10XAfByxqGgydQFPA",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
+                    "expiresAt": 1752159600000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751835600&v=beta&t=Yc1aOKiufitVnNLa3WYsvmt21RZ2rOseJXcbexClydw",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
+                    "expiresAt": 1752159600000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751835600&v=beta&t=0UtilSrLxd1m3A9kUW4W-ZSbsjF89j2C6vMkLYp_Wzc",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
+                    "expiresAt": 1752159600000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751835600&v=beta&t=SPd3v3967SenUvpixkddHtTlW1R24PYEiQ9q8BW_HcQ",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
+                    "expiresAt": 1752159600000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "wcCgVr0ISxOvOGhxqf3iwA=="
+            "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074567873,460000648)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -476,33 +476,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1751835600&v=beta&t=fjsgr1JaB1xurMF66Z8xixZGaq10XAfByxqGgydQFPA",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752159600&v=beta&t=Jb5cZyJwA6pMRvL-3XLzgJLmp16dLhlH3EtyTO6QMtk",
+                    "expiresAt": 1752159600000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1751835600&v=beta&t=Yc1aOKiufitVnNLa3WYsvmt21RZ2rOseJXcbexClydw",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752159600&v=beta&t=OQn1UcX4GVkC52FUjVciOR872RWq6XrZ1hxz08DxdhQ",
+                    "expiresAt": 1752159600000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1751835600&v=beta&t=0UtilSrLxd1m3A9kUW4W-ZSbsjF89j2C6vMkLYp_Wzc",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752159600&v=beta&t=SPlZQUbwsIDjiVM1wRbp7S6NfgLsbAsY62occB9mjzU",
+                    "expiresAt": 1752159600000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1751835600&v=beta&t=SPd3v3967SenUvpixkddHtTlW1R24PYEiQ9q8BW_HcQ",
-                    "expiresAt": 1751835600000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752159600&v=beta&t=jIUCiBuGD1Lj8ZpiMWSl6qKJuf17vCwytC9zZaza3r4",
+                    "expiresAt": 1752159600000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "wcCgVr0ISxOvOGhxqf3iwA=="
+            "trackingId": "7r0qW0D2RzqN4cb4dRGlrg=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003237)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -547,7 +547,7 @@
                 "rootUrl": "https://media.licdn.com/dms/image/v2/C4E03AQHeaLanNN31WQ/profile-displayphoto-shrink_"
               }
             },
-            "trackingId": "/r/jq9fhSbeoOqc4wSc2KA=="
+            "trackingId": "o83EjlTpQIONrFs94aSwKg=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003238)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo"
@@ -760,7 +760,7 @@
       "companyName": "Neurologic-ai",
       "employmentType": "Internship",
       "locationName": "Kolkata, West Bengal, India · Remote",
-      "duration": "1 yr 8 mos",
+      "duration": "1 yr 9 mos",
       "startDate": "Nov 2023",
       "endDate": "Present",
       "description": null

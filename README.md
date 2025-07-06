@@ -214,14 +214,14 @@ All AI behavior is controlled through editable prompt files:
 Automated daily resume updates via GitHub Actions:
 
 ```yaml
-# Runs daily at 09:00 IST (03:30 UTC)
+# Runs weekly on Sundays at 09:00 IST (03:30 UTC)
 # Manual trigger available via workflow_dispatch
 # Uses cookie-based authentication for reliability
 # Commits changes only if content is updated
 ```
 
 **Workflow Features:**
-- **Daily Schedule**: Automatic updates to keep resume current
+- **Weekly Schedule**: Automatic updates every Sunday to keep resume current
 - **Manual Trigger**: On-demand generation via GitHub Actions UI
 - **Smart Commits**: Only commits when actual changes are detected
 - **Environment Security**: Uses GitHub Secrets for credentials

@@ -74,6 +74,7 @@ body {{
     max-width: 800px;
     margin: 0;
     margin-left: {config.HTML_BODY_MARGIN_LEFT};
+    margin-right: {config.HTML_BODY_MARGIN_RIGHT};
     padding: {config.HTML_BODY_PADDING};
     font-size: {config.HTML_FONT_SIZE_BASE};
 }}
@@ -243,6 +244,45 @@ body {{
     color: {config.HTML_COLOR_PRIMARY};
 }}
 
+/* Extracted Projects (Sub-projects) */
+.extracted-projects {{
+    margin-top: 8px;
+}}
+
+.sub-project {{
+    margin-bottom: {config.HTML_ITEM_MARGIN_BOTTOM};
+    padding-left: 15px;
+    border-left: 2px solid {config.HTML_COLOR_BORDER};
+}}
+
+.sub-project:last-child {{
+    margin-bottom: 0;
+}}
+
+.sub-project-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}}
+
+.sub-project-title {{
+    font-weight: bold;
+    color: {config.HTML_COLOR_LINK};
+}}
+
+.sub-project-company {{
+    font-weight: bold;
+    color: {config.HTML_COLOR_PRIMARY};
+}}
+
+.sub-project-description {{
+    margin-top: 0;
+    color: #444;
+    line-height: 1.5;
+}}
+
 /* Responsive Design */
 @media (max-width: {config.HTML_MOBILE_BREAKPOINT}) {{
     body {{
@@ -269,6 +309,10 @@ body {{
     
     .contact-info {{
         font-size: 13px;
+    }}
+    
+    .sub-project {{
+        padding-left: 10px;
     }}
 }}
 
@@ -348,13 +392,85 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
             
             html += '</div>'
             
-            if job.get("points"):
-                html += '<ul class="item-points">'
-                for point in job["points"]:
-                    html += f'<li>{clean_text(point)}</li>'
-                html += '</ul>'
-            elif job.get("summary"):
-                html += f'<div class="item-description">{clean_text(job["summary"])}</div>'
+            # Render extracted projects only (no original points or summary)
+            if job.get("extracted_projects"):
+                html += '<div class="extracted-projects">'
+                for i, project in enumerate(job["extracted_projects"]):
+                    if project.get("title"):
+                        html += f'<div class="sub-project">'
+                        html += f'<div class="sub-project-header">'
+                        html += f'<div class="item-title">'
+                        html += f'<span class="sub-project-title">{clean_text(project["title"])}</span>'
+                        
+                        # Add company if different from parent company
+                        if project.get("company") and project["company"] != job.get("name"):
+                            html += f' | <span class="sub-project-company">{clean_text(project["company"])}</span>'
+                        
+                        html += '</div>'
+                        
+                        # Add duration using the same format as main experience
+                        if project.get("duration"):
+                            duration = project["duration"]
+                            start_month = None
+                            start_year = None
+                            end_month = None
+                            end_year = None
+                            
+                            if duration.get("start"):
+                                start = duration["start"]
+                                if start.get("month") and start.get("year"):
+                                    start_month = start["month"]
+                                    start_year = start["year"]
+                                elif start.get("year"):
+                                    start_year = start["year"]
+                            
+                            if duration.get("end"):
+                                end = duration["end"]
+                                if end.get("month") and end.get("year"):
+                                    end_month = end["month"]
+                                    end_year = end["year"]
+                                elif end.get("year"):
+                                    end_year = end["year"]
+                            
+                            if start_month and start_year:
+                                start_month_name = config.MONTHS[start_month - 1] if 1 <= start_month <= 12 else str(start_month)
+                                
+                                if end_month and end_year:
+                                    end_month_name = config.MONTHS[end_month - 1] if 1 <= end_month <= 12 else str(end_month)
+                                    
+                                    # Same month and year
+                                    if start_month == end_month and start_year == end_year:
+                                        date_range = f"{start_month_name}, {start_year}"
+                                    # Same year, different months
+                                    elif start_year == end_year:
+                                        date_range = f"{start_month_name} – {end_month_name}, {start_year}"
+                                    # Different years
+                                    else:
+                                        date_range = f"{start_month_name}, {start_year} – {end_month_name}, {end_year}"
+                                elif end_year and not end_month:
+                                    # End year only, no month
+                                    date_range = f"{start_month_name}, {start_year} – {end_year}"
+                                else:
+                                    # No end date
+                                    date_range = f"{start_month_name}, {start_year} – Present"
+                                
+                                html += f'<div class="item-date">{clean_text(date_range)}</div>'
+                            elif start_year:
+                                # Start year only, no month
+                                if end_year:
+                                    date_range = f"{start_year} – {end_year}"
+                                else:
+                                    date_range = f"{start_year} – Present"
+                                html += f'<div class="item-date">{clean_text(date_range)}</div>'
+                        
+                        html += '</div>'
+                        
+                        # Add description if available
+                        if project.get("description"):
+                            html += f'<div class="sub-project-description">{clean_text(project["description"])}</div>'
+                        
+                        html += '</div>'
+                html += '</div>'
             
             html += '</div>'
         

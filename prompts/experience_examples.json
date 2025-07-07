@@ -1,0 +1,211 @@
+[
+    {
+        "content": "Vision-Driven Claim Orchestration — Skan AI | May 2025 – Jun 2025\nAutomated claim initiation and intelligent routing within Guidewire ClaimCenter, leveraging an advanced GPT-4 Vision and Text-based pipeline with adaptive token-cost guardrails. Engineered a hierarchical scoring mechanism to evaluate a 30-event contextual window, resulting in confidence metrics reaching 80% (+23 pts above previous benchmarks). This approach successfully reduced the average inference latency by half, significantly optimizing operational throughput and decision accuracy.",
+        "response": [
+            {
+                "title": "Vision-Driven Claim Orchestration",
+                "company": "Skan AI",
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 5,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": 6,
+                        "year": 2025
+                    }
+                },
+                "description": "Automated claim initiation and intelligent routing within Guidewire ClaimCenter, leveraging an advanced GPT-4 Vision and Text-based pipeline with adaptive token-cost guardrails. Engineered a hierarchical scoring mechanism to evaluate a 30-event contextual window, resulting in confidence metrics reaching 80% (+23 pts above previous benchmarks). This approach successfully reduced the average inference latency by half, significantly optimizing operational throughput and decision accuracy."
+            }
+        ]
+    },
+    {
+        "content": "Customer Journey Analytics — Delta Air Lines | Apr 2025 – Jul 2025\nImplemented a sophisticated segmentation model using GPT-4 integrated with Apache Flink, processing customer interaction streams to identify actionable upsell opportunities, resulting in a 17-point increase in conversion rates. Developed an ultra-low-latency Snowflake dashboard, enabling real-time data visualization and informed decision-making at sub-second refresh intervals, significantly enhancing campaign responsiveness.\n\nDigital Concierge Chatbot | Aug 2025 – Oct 2025\nDesigned and deployed a Retrieval-Augmented Generation (RAG) chatbot solution built with LangChain and Weaviate, integrated with internal Delta knowledge bases. This AI-driven conversational platform reduced average customer service handle time by 35%, streamlined customer engagement workflows, and achieved a measurable boost in customer satisfaction scores.",
+        "response": [
+            {
+                "title": "Customer Journey Analytics",
+                "company": "Delta Air Lines",
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 4,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": 7,
+                        "year": 2025
+                    }
+                },
+                "description": "Implemented a sophisticated segmentation model using GPT-4 integrated with Apache Flink, processing customer interaction streams to identify actionable upsell opportunities, resulting in a 17-point increase in conversion rates. Developed an ultra-low-latency Snowflake dashboard, enabling real-time data visualization and informed decision-making at sub-second refresh intervals, significantly enhancing campaign responsiveness."
+            },
+            {
+                "title": "Digital Concierge Chatbot",
+                "company": null,
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 8,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": 10,
+                        "year": 2025
+                    }
+                },
+                "description": "Designed and deployed a Retrieval-Augmented Generation (RAG) chatbot solution built with LangChain and Weaviate, integrated with internal Delta knowledge bases. This AI-driven conversational platform reduced average customer service handle time by 35%, streamlined customer engagement workflows, and achieved a measurable boost in customer satisfaction scores."
+            }
+        ]
+    },
+    {
+        "content": "In March 2025, initiated and managed the deployment of a real-time fraud detection solution for a rapidly growing Southeast-Asian fintech provider. Spearheaded the design of a high-performance streaming architecture using Kafka, Triton Inference Server, and GPT-4 reasoning capabilities. Within the first quarter, successfully lowered false-positive rates to below 1%, considerably outperforming previous industry standards. Concurrently maintained latency below 800 milliseconds per transaction, enabling near-instantaneous anomaly detection and real-time fraud mitigation at scale.",
+        "response": [
+            {
+                "title": "Real-Time Fraud Detection",
+                "company": null,
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 3,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": null,
+                        "year": null
+                    }
+                },
+                "description": "Spearheaded the design of a high-performance streaming architecture using Kafka, Triton Inference Server, and GPT-4 reasoning capabilities. Within the first quarter, successfully lowered false-positive rates to below 1%, considerably outperforming previous industry standards. Concurrently maintained latency below 800 milliseconds per transaction, enabling near-instantaneous anomaly detection and real-time fraud mitigation at scale."
+            }
+        ]
+    },
+    {
+        "content": "Semantic-Embedding Recommender — Shopify\nOver a comprehensive six-month project duration, transitioned the existing search infrastructure from legacy keyword matching to an advanced semantic embedding-based retrieval system powered by GPT-4. Conducted an intermediate validation phase demonstrating improved relevancy metrics, then augmented the solution by integrating a LightGBM re-ranking layer, achieving a substantial click-through-rate (CTR) improvement of 22 percentage points. Concluded the engagement with rigorous regression testing and system hardening measures, ensuring system stability and maintaining latency consistently below 600 ms under peak e-commerce traffic.",
+        "response": [
+            {
+                "title": "Semantic-Embedding Recommender",
+                "company": "Shopify",
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": null,
+                        "year": null
+                    },
+                    "end": {
+                        "day": null,
+                        "month": null,
+                        "year": null
+                    }
+                },
+                "description": "Over a comprehensive six-month project duration, transitioned the existing search infrastructure from legacy keyword matching to an advanced semantic embedding-based retrieval system powered by GPT-4. Conducted an intermediate validation phase demonstrating improved relevancy metrics, then augmented the solution by integrating a LightGBM re-ranking layer, achieving a substantial click-through-rate (CTR) improvement of 22 percentage points. Concluded the engagement with rigorous regression testing and system hardening measures, ensuring system stability and maintaining latency consistently below 600 ms under peak e-commerce traffic."
+            }
+        ]
+    },
+    {
+        "content": "Clinical Data Extraction System — Pfizer | Jun 2025 – Aug 2025\nDeveloped an end-to-end document intelligence platform designed for extracting structured clinical data from electronic health records (EHRs) and PDF documents. Integrated GPT-4 Vision with Hugging Face LayoutLMv3 models, significantly reducing document processing times to under three seconds per document. Further enhanced system throughput by incorporating asynchronous Python workflows, which increased processing efficiency by 50%. Validated the extraction fidelity across a broad dataset containing over 40,000 clinical records, achieving sustained accuracy above 92%, dramatically improving the efficiency of clinical trials and research operations.",
+        "response": [
+            {
+                "title": "Clinical Data Extraction System",
+                "company": "Pfizer",
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 6,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": 8,
+                        "year": 2025
+                    }
+                },
+                "description": "Developed an end-to-end document intelligence platform designed for extracting structured clinical data from electronic health records (EHRs) and PDF documents. Integrated GPT-4 Vision with Hugging Face LayoutLMv3 models, significantly reducing document processing times to under three seconds per document. Further enhanced system throughput by incorporating asynchronous Python workflows, which increased processing efficiency by 50%. Validated the extraction fidelity across a broad dataset containing over 40,000 clinical records, achieving sustained accuracy above 92%, dramatically improving the efficiency of clinical trials and research operations."
+            }
+        ]
+    },
+    {
+        "content": "Automated Legal Contract Analyzer | Dec 2024\n1. Architected and deployed a scalable Kubernetes-based platform integrating GPT-4 Vision and Llama-3 language models tailored specifically for automated contract clause extraction.\n2. Implemented highly responsive and scalable asynchronous endpoints using FastAPI, enabling robust real-time contract processing capabilities.\n3. Resulted in a substantial 65% reduction in manual attorney contract-review workloads while maintaining precision levels consistently at 88%, drastically optimizing operational workflows and legal-team productivity.",
+        "response": [
+            {
+                "title": "Automated Legal Contract Analyzer",
+                "company": null,
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 12,
+                        "year": 2024
+                    },
+                    "end": {
+                        "day": null,
+                        "month": null,
+                        "year": null
+                    }
+                },
+                "description": "Architected and deployed a scalable Kubernetes-based platform integrating GPT-4 Vision and Llama-3 language models tailored specifically for automated contract clause extraction. Implemented highly responsive and scalable asynchronous endpoints using FastAPI, enabling robust real-time contract processing capabilities. Resulted in a substantial 65% reduction in manual attorney contract-review workloads while maintaining precision levels consistently at 88%, drastically optimizing operational workflows and legal-team productivity."
+            }
+        ]
+    },
+    {
+        "content": "Real-Time Anomaly Detection — Rivian | Apr 2025 – Jul 2025\nDeveloped a real-time anomaly detection system that ingested vehicle telemetry data into a high-performance GPT-4-driven micro-service, which significantly elevated detection precision to 90% (+15 pts over legacy systems). Reduced end-to-end latency from six seconds to two seconds using optimized Rust-based GRPC fan-out architecture.\n\nMarket-Signal Dashboard\nDelivered an advanced financial market-signal dashboard leveraging Dash, Alpaca embeddings, and GPT-4 reasoning. Launched successfully within Q1 2025, this dashboard provided predictive insights with sub-second latency and achieved an 18-point predictive accuracy uplift over baseline models.\n\nTrial-Site Matcher\nConducted a nine-week intensive engineering project to build a phenotype-to-clinical trial protocol matching platform, achieving exceptional trial-site matching recall rates of 93%. Followed by a detailed integration phase, the solution was embedded into Pfizer's clinical workflow, consistently maintaining a sub-three-second service-level agreement even during high-volume usage periods.",
+        "response": [
+            {
+                "title": "Real-Time Anomaly Detection",
+                "company": "Rivian",
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 4,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": 7,
+                        "year": 2025
+                    }
+                },
+                "description": "Developed a real-time anomaly detection system that ingested vehicle telemetry data into a high-performance GPT-4-driven micro-service, which significantly elevated detection precision to 90% (+15 pts over legacy systems). Reduced end-to-end latency from six seconds to two seconds using optimized Rust-based GRPC fan-out architecture."
+            },
+            {
+                "title": "Market-Signal Dashboard",
+                "company": null,
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 1,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": null,
+                        "year": null
+                    }
+                },
+                "description": "Delivered an advanced financial market-signal dashboard leveraging Dash, Alpaca embeddings, and GPT-4 reasoning. Dashboard provided predictive insights with sub-second latency and achieved an 18-point predictive accuracy uplift over baseline models."
+            },
+            {
+                "title": "Trial-Site Matcher",
+                "company": "Pfizer",
+                "duration": {
+                    "start": {
+                        "day": null,
+                        "month": 9,
+                        "year": 2025
+                    },
+                    "end": {
+                        "day": null,
+                        "month": null,
+                        "year": null
+                    }
+                },
+                "description": "Conducted a nine-week intensive engineering project to build a phenotype-to-clinical trial protocol matching platform, achieving exceptional trial-site matching recall rates of 93%. Followed by a detailed integration phase, the solution was embedded into Pfizer's clinical workflow, consistently maintaining a sub-three-second service-level agreement even during high-volume usage periods."
+            }
+        ]
+    },
+    {
+        "content": "",
+        "response": []
+    }
+]

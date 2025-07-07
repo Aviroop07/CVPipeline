@@ -14,14 +14,50 @@
       "location": "Kolkata, West Bengal, India",
       "startDate": "2023-11",
       "endDate": "2025-07",
-      "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy.",
+      "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
       "url": "https://www.linkedin.com/company/getleadster/",
       "public_id": "getleadster",
+      "extracted_projects": [
+        {
+          "title": "Intelligent Claim Orchestration in Guideware",
+          "company": "Skan AI",
+          "duration": {
+            "start": {
+              "day": null,
+              "month": 5,
+              "year": 2025
+            },
+            "end": {
+              "day": null,
+              "month": 6,
+              "year": 2025
+            }
+          },
+          "description": "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency."
+        },
+        {
+          "title": "Document Intelligence Platform",
+          "company": "Carelon Health",
+          "duration": {
+            "start": {
+              "day": null,
+              "month": 3,
+              "year": 2025
+            },
+            "end": {
+              "day": null,
+              "month": 5,
+              "year": 2025
+            }
+          },
+          "description": "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy."
+        }
+      ],
       "points": [
         "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
-        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80 % confidence (+23 pts over benchmark) and halved inference latency.",
+        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.",
         "Document Intelligence Platform — Carelon Health | Mar–May 2025",
-        "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3 s without sacrificing accuracy."
+        "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy."
       ],
       "period": "Nov, 2023 – Jul, 2025"
     },
@@ -34,6 +70,25 @@
       "summary": "Full-Stack Ticket Platform | Jun–Jul 2024\nAngular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
       "url": "https://www.linkedin.com/company/pwc/",
       "public_id": "pwc",
+      "extracted_projects": [
+        {
+          "title": "Full-Stack Ticket Platform",
+          "company": null,
+          "duration": {
+            "start": {
+              "day": null,
+              "month": 6,
+              "year": 2024
+            },
+            "end": {
+              "day": null,
+              "month": 7,
+              "year": 2024
+            }
+          },
+          "description": "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out."
+        }
+      ],
       "points": [
         "Full-Stack Ticket Platform | Jun–Jul 2024",
         "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out."
@@ -144,9 +199,6 @@
       "name": "OpenAI API"
     },
     {
-      "name": "DSA"
-    },
-    {
       "name": "Machine Learning"
     },
     {
@@ -162,9 +214,6 @@
       "name": "Streamlit"
     },
     {
-      "name": "Distributed Computing"
-    },
-    {
       "name": "pytest"
     },
     {
@@ -175,6 +224,9 @@
     },
     {
       "name": "FastAPI"
+    },
+    {
+      "name": "SQLAlchemy"
     },
     {
       "name": "Transformers"
@@ -211,6 +263,9 @@
     },
     {
       "name": "Java"
+    },
+    {
+      "name": "Jupyter"
     }
   ],
   "languages": [
@@ -230,41 +285,41 @@
   "skills_by_category": {
     "Programming Languages": [
       "C++",
-      "JavaScript",
-      "Java"
-    ],
-    "Algorithms & Data Structures": [
-      "DSA"
-    ],
-    "Databases": [
-      "MySQL",
-      "MongoDB",
-      "SQL"
-    ],
-    "Web & API Development": [
-      "OpenAI API",
-      "Streamlit",
-      "REST APIs",
-      "FastAPI",
-      "Spring Boot",
-      "Angular",
-      "Node.js"
+      "Java",
+      "JavaScript"
     ],
     "Machine Learning & Data Science": [
       "Machine Learning",
-      "Recommender Systems",
-      "Transformers",
       "Deep Learning",
+      "Recommender Systems",
       "Scikit-Learn",
-      "NumPy"
+      "Transformers",
+      "NumPy",
+      "Jupyter"
     ],
-    "DevOps & Infrastructure": [
-      "Distributed Computing",
+    "Web & API Frameworks": [
+      "FastAPI",
+      "Spring Boot",
+      "Node.js",
+      "Angular",
+      "Streamlit"
+    ],
+    "Databases & ORM": [
+      "MySQL",
+      "MongoDB",
+      "SQL",
+      "SQLAlchemy"
+    ],
+    "Testing & Automation": [
+      "pytest"
+    ],
+    "DevOps & Cloud": [
+      "Git",
       "Cloud Computing"
     ],
-    "Testing & Version Control": [
-      "pytest",
-      "Git"
+    "APIs & Integrations": [
+      "OpenAI API",
+      "REST APIs"
     ]
   }
 }

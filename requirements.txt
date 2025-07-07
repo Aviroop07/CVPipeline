@@ -1,5 +1,5 @@
 linkedin-api
-dotenv
+python-dotenv
 pyotp
 openai
 weasyprint

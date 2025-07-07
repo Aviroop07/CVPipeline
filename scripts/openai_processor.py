@@ -41,11 +41,12 @@ def load_prompt_template(name: str, **kwargs) -> str:
     template_text = tpl_path.read_text(encoding="utf-8")
     return StrTemplate(template_text).substitute(**kwargs)
 
-def call_openai_api(prompt: str) -> str:
-    """Send prompt to OpenAI chat API.
+def call_openai_api(prompt: str = None, messages: list = None) -> str:
+    """Send prompt or messages to OpenAI chat API.
     
     Args:
-        prompt (str): Prompt to send to OpenAI
+        prompt (str, optional): Simple prompt to send (will be converted to messages format)
+        messages (list, optional): List of message dictionaries for chat API
         
     Returns:
         str: OpenAI response or empty string if API key not available or call fails
@@ -54,21 +55,40 @@ def call_openai_api(prompt: str) -> str:
     if not api_key:
         log.debug("OPENAI_API_KEY not set – skipping call")
         return ""
+    
+    # Convert prompt to messages format if needed
+    if prompt and not messages:
+        messages = [{"role": "user", "content": prompt}]
+    elif not messages:
+        log.warning("No prompt or messages provided to OpenAI API")
+        return ""
+    
     try:
         from openai import OpenAI  # requires openai >= 1.x
-        log.debug("Calling OpenAI with %d chars prompt", len(prompt))
-        log.debug("OpenAI prompt (%d chars): %s", len(prompt), prompt[:500])
+        
+        # Print messages before making the call
+        print("🤖 OpenAI API Call - Messages:")
+        print(json.dumps(messages, indent=2, ensure_ascii=False))
+        print("=" * 60)
+        
+        log.debug("Calling OpenAI with %d messages", len(messages))
 
         client = OpenAI(api_key=api_key)
 
         response = client.chat.completions.create(
             model=config.OPENAI_MODEL,
-            messages=[{"role": "developer", "content": prompt}],
+            messages=messages,
             temperature=config.OPENAI_TEMPERATURE,
             reasoning_effort=config.OPENAI_REASONING_EFFORT
         )
 
         result = response.choices[0].message.content.strip()
+        
+        # Print the response from OpenAI
+        print("🤖 OpenAI API Response:")
+        print(result)
+        print("=" * 60)
+        
         log.debug("OpenAI response received (%d chars)", len(result))
         log.debug("OpenAI response: %s", result)
         return result
@@ -306,9 +326,17 @@ def process_resume_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
     data["projects"] = sort_chronologically(data.get("projects", []), "startDate")
     data["awards"] = sort_chronologically(data.get("awards", []), "date")
 
-    # Convert work summaries/descriptions to point lists
+    # Convert work summaries/descriptions to point lists and extract projects
     for w in data.get("work", []):
-        w["points"] = extract_bullet_points(w.get("summary", ""))
+        # Extract projects from the work experience description/summary
+        experience_text = w.get("summary", "")
+        extracted_projects = extract_experience_projects(experience_text)
+        
+        # Store extracted projects in the work entry
+        w["extracted_projects"] = extracted_projects
+        
+        # Still create bullet points from the original summary for backward compatibility
+        w["points"] = extract_bullet_points(experience_text)
         w["period"] = format_date_range(w.get("startDate"), w.get("endDate"))
 
     for p in data.get("projects", []):
@@ -406,6 +434,65 @@ def enhance_resume_with_openai():
     # Save enhanced data back to resume.json
     save_enhanced_resume_data(enhanced_data)
     return enhanced_data
+
+def extract_experience_projects(experience_text: str) -> List[Dict[str, Any]]:
+    """Extract project data from experience text using OpenAI with examples.
+    
+    Args:
+        experience_text (str): Raw experience text to extract projects from
+        
+    Returns:
+        List[Dict]: List of extracted project dictionaries
+    """
+    if not experience_text.strip():
+        return []
+
+    try:
+        # Load the experience extraction prompt
+        system_prompt = load_prompt_template(config.EXPERIENCE_EXTRACTION_PROMPT)
+        
+        # Load the examples
+        examples_path = PROMPTS_DIR / "experience_examples.json"
+        if not examples_path.exists():
+            log.warning("Experience examples file not found, using fallback extraction")
+            return []
+        
+        examples_data = json.loads(examples_path.read_text(encoding="utf-8"))
+        
+        # Construct messages for OpenAI API
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": json.dumps(examples_data, ensure_ascii=False, indent=2)},
+            {"role": "user", "content": f"Extract data from this experience section - \n\n{experience_text}"}
+        ]
+        
+        log.info("Extracting experience projects via OpenAI (%d chars)", len(experience_text))
+        response = call_openai_api(messages=messages)
+        
+        if not response:
+            return []
+        
+        # Parse the JSON response
+        try:
+            # Extract JSON from response (in case there's extra text)
+            json_match = re.search(r'\[.*\]', response, re.S)
+            if json_match:
+                json_text = json_match.group(0)
+            else:
+                json_text = response
+            
+            projects = json.loads(json_text)
+            log.info("Extracted %d projects from experience", len(projects))
+            return projects if isinstance(projects, list) else []
+            
+        except json.JSONDecodeError as e:
+            log.warning("Failed to parse experience extraction JSON: %s", e)
+            log.debug("Raw response: %s", response)
+            return []
+            
+    except Exception as e:
+        log.warning("Experience extraction failed: %s", e)
+        return []
 
 # Legacy main function for backward compatibility
 def main():

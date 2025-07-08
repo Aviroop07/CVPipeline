@@ -38,6 +38,7 @@
             "Guidewire ClaimCenter",
             "GPT-4 Vision/Text",
             "Python",
+            "30-event window",
             "80%",
             "23 pts",
             "halved inference latency"
@@ -110,6 +111,7 @@
             "MongoDB",
             "JWT",
             "API Gateway",
+            "client-side service discovery",
             "50 ms"
           ]
         }
@@ -236,64 +238,13 @@
       "name": "C"
     },
     {
-      "name": "Prompt Engineering"
-    },
-    {
-      "name": "Large Language Models (LLM)"
-    },
-    {
-      "name": "Natural Language Processing (NLP)"
-    },
-    {
-      "name": "Convolutional Neural Networks (CNN)"
-    },
-    {
-      "name": "Transformers"
-    },
-    {
-      "name": "Deep Learning"
-    },
-    {
       "name": "OpenAI API"
-    },
-    {
-      "name": "API Gateways"
-    },
-    {
-      "name": "REST APIs"
-    },
-    {
-      "name": "FastAPI"
-    },
-    {
-      "name": "Streamlit"
-    },
-    {
-      "name": "Spring Boot"
-    },
-    {
-      "name": "Angular"
-    },
-    {
-      "name": "Node.js"
-    },
-    {
-      "name": "MySQL"
-    },
-    {
-      "name": "SQLAlchemy"
-    },
-    {
-      "name": "MongoDB"
-    },
-    {
-      "name": "SQL"
     },
     {
       "name": "pytest"
     },
     {
-      "name": "Git"
+      "name": "SQLAlchemy"
     },
     {
       "name": "Pandas (Software)"
@@ -305,7 +256,64 @@
       "name": "NumPy"
     },
     {
+      "name": "FastAPI"
+    },
+    {
+      "name": "Spring Boot"
+    },
+    {
+      "name": "Angular"
+    },
+    {
+      "name": "Git"
+    },
+    {
+      "name": "Node.js"
+    },
+    {
       "name": "Jupyter"
+    },
+    {
+      "name": "MySQL"
+    },
+    {
+      "name": "MongoDB"
+    },
+    {
+      "name": "SQL"
+    },
+    {
+      "name": "Machine Learning"
+    },
+    {
+      "name": "Large Language Models (LLM)"
+    },
+    {
+      "name": "Natural Language Processing (NLP)"
+    },
+    {
+      "name": "Recommender Systems"
+    },
+    {
+      "name": "Convolutional Neural Networks (CNN)"
+    },
+    {
+      "name": "Deep Learning"
+    },
+    {
+      "name": "Graph Theory"
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)"
+    },
+    {
+      "name": "Data Structures"
+    },
+    {
+      "name": "Algorithms"
+    },
+    {
+      "name": "Mathematics"
     }
   ],
   "languages": [
@@ -330,39 +338,41 @@
       "Java",
       "C"
     ],
-    "Machine Learning & AI": [
-      "Prompt Engineering",
-      "Large Language Models (LLM)",
-      "Natural Language Processing (NLP)",
-      "Convolutional Neural Networks (CNN)",
-      "Transformers",
-      "Deep Learning"
-    ],
-    "APIs & Integration": [
+    "APIs & Libraries": [
       "OpenAI API",
-      "API Gateways",
-      "REST APIs",
-      "FastAPI"
+      "pytest",
+      "SQLAlchemy",
+      "Pandas (Software)",
+      "Scikit-Learn",
+      "NumPy"
     ],
-    "Frameworks & Web Development": [
-      "Streamlit",
+    "Frameworks & Tools": [
+      "FastAPI",
       "Spring Boot",
       "Angular",
-      "Node.js"
+      "Git",
+      "Node.js",
+      "Jupyter"
     ],
     "Databases & Data Storage": [
       "MySQL",
-      "SQLAlchemy",
       "MongoDB",
       "SQL"
     ],
-    "Developer Tools & Libraries": [
-      "pytest",
-      "Git",
-      "Pandas (Software)",
-      "Scikit-Learn",
-      "NumPy",
-      "Jupyter"
+    "Machine Learning & NLP": [
+      "Machine Learning",
+      "Large Language Models (LLM)",
+      "Natural Language Processing (NLP)",
+      "Recommender Systems",
+      "Convolutional Neural Networks (CNN)",
+      "Deep Learning"
+    ],
+    "Concepts & Fundamentals": [
+      "Graph Theory",
+      "Object-Oriented Programming (OOP)",
+      "Data Structures",
+      "Algorithms",
+      "Mathematics"
     ]
   }
 }

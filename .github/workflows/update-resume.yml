@@ -29,6 +29,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          playwright install chromium
 
       # 4 — run unified resume generation pipeline
       - name: Generate Resume via Unified Pipeline
@@ -40,6 +41,7 @@ jobs:
           LI_JSESSIONID: ${{ secrets.LI_JSESSIONID }}
           LI_PID: ${{ secrets.LI_PID }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_KG_API: ${{ secrets.GOOGLE_KG_API }}
         run: python scripts/pipeline.py
         continue-on-error: true
 

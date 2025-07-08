@@ -1,6 +1,63 @@
 /* Professional Resume Styles - Generated from config.py */
 
-/* Reset WeasyPrint's default page margins for PDF generation */
+/* Font Face Declarations */
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-Roman.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-It.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-Md.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-MdIt.otf") format("opentype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-Lt.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-Md.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-Bd.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Reset default page margins for PDF generation */
 @page {
     size: A4;
     margin: 0;
@@ -18,7 +75,7 @@ html, body {
 }
 
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "'HelveticaNeue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
     line-height: 1.3;
     color: #2c3e50;
     background-color: #ffffff;
@@ -219,19 +276,35 @@ body {
 }
 
 .sub-project-title {
-    font-weight: bold;
     color: #0066cc;
+    font-weight: normal;
 }
 
 .sub-project-company {
-    font-weight: bold;
     color: #2c3e50;
+    font-weight: normal;
 }
 
 .sub-project-description {
     margin-top: 0;
     color: #444;
     line-height: 1.5;
+}
+
+/* Ensure all dates are italic with higher specificity */
+.item-date,
+.sub-project .item-date,
+.sub-project-header .item-date {
+    font-style: italic !important;
+}
+
+/* Tech Highlighting */
+em.highlight,
+.sub-project-description em.highlight,
+.item-description em.highlight,
+.extracted-projects em.highlight {
+    font-style: italic !important;
+    font-weight: bold !important;
 }
 
 /* Responsive Design */
@@ -256,6 +329,7 @@ body {
     .item-date {
         margin-left: 0;
         margin-top: 2px;
+        font-style: italic;
     }
     
     .contact-info {

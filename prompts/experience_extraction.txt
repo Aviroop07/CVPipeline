@@ -35,4 +35,3 @@ You will be provided a string having all the project details of experience at a 
 4. Follow the strict json structure mentioned above and return a list of such json(s).
 5. Each json should correspond to a different project.
 6. It maybe possible that no data can be extracted, return an empty list then.
-8. Make sure if there is only

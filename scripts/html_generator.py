@@ -49,7 +49,94 @@ def generate_css_file() -> str:
     """
     css = f"""/* Professional Resume Styles - Generated from config.py */
 
-/* Reset WeasyPrint's default page margins for PDF generation */
+/* Font Face Declarations */"""
+
+    # Add regular font face if URL is provided
+    if config.FONT_REGULAR_URL:
+        css += f"""
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_REGULAR_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}}"""
+
+    # Add italic font face if URL is provided
+    if config.FONT_ITALIC_URL:
+        css += f"""
+
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_ITALIC_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}}"""
+
+    # Add bold font face if URL is provided
+    if config.FONT_BOLD_URL:
+        css += f"""
+
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_BOLD_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}}"""
+
+    # Add bold italic font face if URL is provided
+    if hasattr(config, 'FONT_BOLD_ITALIC_URL') and config.FONT_BOLD_ITALIC_URL:
+        css += f"""
+
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_BOLD_ITALIC_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}}"""
+
+    # Add light font face if URL is provided
+    if hasattr(config, 'FONT_LIGHT_URL') and config.FONT_LIGHT_URL:
+        css += f"""
+
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_LIGHT_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}}"""
+
+    # Add medium font face if URL is provided
+    if hasattr(config, 'FONT_MEDIUM_URL') and config.FONT_MEDIUM_URL:
+        css += f"""
+
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_MEDIUM_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}}"""
+
+    # Add extra bold font face if URL is provided
+    if hasattr(config, 'FONT_EXTRA_BOLD_URL') and config.FONT_EXTRA_BOLD_URL:
+        css += f"""
+
+@font-face {{
+    font-family: "{config.FONT_FAMILY_NAME}";
+    src: url("{config.FONT_EXTRA_BOLD_URL}") format("{config.FONT_FORMAT}");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}}"""
+
+    css += f"""
+
+/* Reset default page margins for PDF generation */
 @page {{
     size: A4;
     margin: 0;
@@ -67,7 +154,7 @@ html, body {{
 }}
 
 body {{
-    font-family: {config.HTML_FONT_FAMILY};
+    font-family: "{config.HTML_FONT_FAMILY}";
     line-height: {config.HTML_LINE_HEIGHT};
     color: {config.HTML_COLOR_PRIMARY};
     background-color: #ffffff;
@@ -268,19 +355,35 @@ body {{
 }}
 
 .sub-project-title {{
-    font-weight: bold;
     color: {config.HTML_COLOR_LINK};
+    font-weight: normal;
 }}
 
 .sub-project-company {{
-    font-weight: bold;
     color: {config.HTML_COLOR_PRIMARY};
+    font-weight: normal;
 }}
 
 .sub-project-description {{
     margin-top: 0;
     color: #444;
     line-height: 1.5;
+}}
+
+/* Ensure all dates are italic with higher specificity */
+.item-date,
+.sub-project .item-date,
+.sub-project-header .item-date {{
+    font-style: italic !important;
+}}
+
+/* Tech Highlighting */
+em.highlight,
+.sub-project-description em.highlight,
+.item-description em.highlight,
+.extracted-projects em.highlight {{
+    font-style: italic !important;
+    font-weight: bold !important;
 }}
 
 /* Responsive Design */
@@ -305,6 +408,7 @@ body {{
     .item-date {{
         margin-left: 0;
         margin-top: 2px;
+        font-style: italic;
     }}
     
     .contact-info {{
@@ -467,7 +571,21 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
                         
                         # Add description if available
                         if project.get("description"):
-                            html += f'<div class="sub-project-description">{clean_text(project["description"])}</div>'
+                            description = clean_text(project["description"])
+                            
+                            # Apply tech highlighting if available
+                            if project.get("tech_highlights"):
+                                # Sort highlights by length (longest first) to avoid partial replacements
+                                highlights = sorted(project["tech_highlights"], key=len, reverse=True)
+                                for highlight in highlights:
+                                    # Clean the highlight text for comparison
+                                    clean_highlight = clean_text(highlight)
+                                    if clean_highlight in description:
+                                        # Wrap the highlight in italic tags
+                                        highlighted = f'<em class="highlight">{clean_highlight}</em>'
+                                        description = description.replace(clean_highlight, highlighted)
+                            
+                            html += f'<div class="sub-project-description">{description}</div>'
                         
                         html += '</div>'
                 html += '</div>'
@@ -528,10 +646,15 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
             html += '</div>'
             
             if project.get("points"):
-                html += '<ul class="item-points">'
-                for point in project["points"]:
-                    html += f'<li>{clean_text(point)}</li>'
-                html += '</ul>'
+                if len(project["points"]) == 1:
+                    # Single point - render as paragraph, not list
+                    html += f'<div class="item-description">{clean_text(project["points"][0])}</div>'
+                else:
+                    # Multiple points - render as bulleted list
+                    html += '<ul class="item-points">'
+                    for point in project["points"]:
+                        html += f'<li>{clean_text(point)}</li>'
+                    html += '</ul>'
             elif project.get("description"):
                 html += f'<div class="item-description">{clean_text(project["description"])}</div>'
             

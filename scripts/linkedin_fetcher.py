@@ -5,12 +5,15 @@ LinkedIn data fetching module.
 This module provides functions to authenticate with LinkedIn and fetch profile data.
 """
 
-import json, os, pathlib, sys, dotenv
+import json, os, pathlib, sys, dotenv, logging
 from linkedin_api import Linkedin
 from requests.cookies import RequestsCookieJar
 import config
 
-dotenv.load_dotenv()
+# Initialize logger
+logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
+log = logging.getLogger(__name__)
+
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / config.DATA_DIR
@@ -27,13 +30,14 @@ def authenticate_linkedin():
         SystemExit: If authentication fails or required environment variables are missing
     """
     try:
+        dotenv.load_dotenv()
         user = os.environ["LI_USER"]
         pwd = os.environ["LI_PASS"]
         # TOTP secret may be used internally by linkedin-api for 2FA
         os.environ.get("LI_TOTP_SECRET", "")
         
-        # Debug: print environment variables in use
-        print("🔧 Environment variables:")
+        # Debug: log environment variables in use
+        log.debug("🔧 Environment variables:")
         for var in (
             "LI_USER",
             "LI_PASS", 
@@ -42,12 +46,12 @@ def authenticate_linkedin():
             "LI_JSESSIONID",
             "LI_PID",
         ):
-            print(f"  {var} = {os.getenv(var)}")
+            log.debug(f"  {var} = {os.getenv(var)}")
     except KeyError as miss:
         sys.exit(f"✖ missing env var {miss}")
 
     try:
-        print("🔐 Authenticating with LinkedIn via cookies...")
+        log.info("🔐 Authenticating with LinkedIn via cookies...")
 
         li_at = os.getenv("LI_AT", "").strip()
         jsessionid = os.getenv("LI_JSESSIONID", "").strip()
@@ -60,18 +64,18 @@ def authenticate_linkedin():
 
             # Initialize LinkedIn API with cookie jar (username/password are unused in this case)
             api = Linkedin("", "", cookies=jar)
-            print("✅ Authenticated via cookies")
+            log.info("✅ Authenticated via cookies")
         else:
             # Fallback to username/password auth (may trigger 2FA challenge)
-            print("🔐 Cookies not provided – falling back to username/password auth. This may be less reliable on GitHub Actions.")
+            log.info("🔐 Cookies not provided – falling back to username/password auth. This may be less reliable on GitHub Actions.")
             api = Linkedin(user, pwd)
-            print("✅ Authenticated via credentials")
+            log.info("✅ Authenticated via credentials")
             
         return api
         
     except Exception as e:
-        print(f"❌ Authentication Error: {e}")
-        print(f"Error type: {type(e).__name__}")
+        log.error(f"❌ Authentication Error: {e}")
+        log.error(f"Error type: {type(e).__name__}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
@@ -91,33 +95,33 @@ def fetch_profile_data(api, public_id):
         Exception: If any API call fails
     """
     try:
-        print("📄 Fetching profile...")
+        log.info("📄 Fetching profile...")
         profile = api.get_profile(public_id=public_id)
-        print("✅ Profile fetched successfully")
+        log.info("✅ Profile fetched successfully")
         
-        print("📇 Fetching contact info...")
+        log.info("📇 Fetching contact info...")
         profile["contact_info"] = api.get_profile_contact_info(
             public_id=profile["public_id"]
         )
-        print("✅ Contact info fetched successfully")
+        log.info("✅ Contact info fetched successfully")
         
-        print("🛠️ Fetching skills info...")
+        log.info("🛠️ Fetching skills info...")
         profile["skills"] = api.get_profile_skills(
             public_id=profile["public_id"]
         )
-        print("✅ Skills info fetched successfully")
+        log.info("✅ Skills info fetched successfully")
         
-        print("💼 Fetching experiences info...")
+        log.info("💼 Fetching experiences info...")
         profile["experiences"] = api.get_profile_experiences(
             urn_id=profile["urn_id"]
         )
-        print("✅ Experiences info fetched successfully")
+        log.info("✅ Experiences info fetched successfully")
         
         return profile
         
     except Exception as e:
-        print(f"❌ Error fetching profile data: {e}")
-        print(f"Error type: {type(e).__name__}")
+        log.error(f"❌ Error fetching profile data: {e}")
+        log.error(f"Error type: {type(e).__name__}")
         import traceback
         traceback.print_exc()
         raise
@@ -140,7 +144,7 @@ def save_linkedin_data(profile_data, output_path=None):
     output_path.write_text(
         json.dumps(profile_data, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    print(f"✅ wrote {output_path.relative_to(ROOT)}")
+    log.info(f"✅ wrote {output_path.relative_to(ROOT)}")
     return output_path
 
 def fetch_linkedin_data():
@@ -167,7 +171,7 @@ def fetch_linkedin_data():
         return profile_data
         
     except Exception as e:
-        print(f"❌ LinkedIn fetching failed: {e}")
+        log.error(f"❌ LinkedIn fetching failed: {e}")
         sys.exit(1)
 
 # Legacy main function for backward compatibility

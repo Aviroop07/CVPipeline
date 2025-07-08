@@ -2,10 +2,10 @@
 """
 OpenAI resume processing module.
 
-This module provides functions to enhance resume data using OpenAI API.
+This module provides functions to enhance resume data using OpenAI API with async support for improved performance.
 """
 
-import json, os, pathlib, sys, re, logging
+import json, os, pathlib, sys, re, logging, asyncio
 from typing import List, Dict, Any
 from string import Template as StrTemplate
 import config
@@ -42,7 +42,20 @@ def load_prompt_template(name: str, **kwargs) -> str:
     return StrTemplate(template_text).substitute(**kwargs)
 
 def call_openai_api(prompt: str = None, messages: list = None) -> str:
-    """Send prompt or messages to OpenAI chat API.
+    """Send prompt or messages to OpenAI chat API (synchronous version).
+    
+    Args:
+        prompt (str, optional): Simple prompt to send (will be converted to messages format)
+        messages (list, optional): List of message dictionaries for chat API
+        
+    Returns:
+        str: OpenAI response or empty string if API key not available or call fails
+    """
+    # Run the async version in a new event loop for backward compatibility
+    return asyncio.run(call_openai_api_async(prompt, messages))
+
+async def call_openai_api_async(prompt: str = None, messages: list = None) -> str:
+    """Send prompt or messages to OpenAI chat API (asynchronous version).
     
     Args:
         prompt (str, optional): Simple prompt to send (will be converted to messages format)
@@ -64,18 +77,18 @@ def call_openai_api(prompt: str = None, messages: list = None) -> str:
         return ""
     
     try:
-        from openai import OpenAI  # requires openai >= 1.x
+        from openai import AsyncOpenAI  # requires openai >= 1.x
         
-        # Print messages before making the call
-        print("🤖 OpenAI API Call - Messages:")
-        print(json.dumps(messages, indent=2, ensure_ascii=False))
-        print("=" * 60)
+        # Log messages before making the call
+        log.debug("🤖 OpenAI API Call - Messages:")
+        log.debug(json.dumps(messages, indent=2, ensure_ascii=False))
+        log.debug("=" * 60)
         
         log.debug("Calling OpenAI with %d messages", len(messages))
 
-        client = OpenAI(api_key=api_key)
+        client = AsyncOpenAI(api_key=api_key)
 
-        response = client.chat.completions.create(
+        response = await client.chat.completions.create(
             model=config.OPENAI_MODEL,
             messages=messages,
             temperature=config.OPENAI_TEMPERATURE,
@@ -84,10 +97,10 @@ def call_openai_api(prompt: str = None, messages: list = None) -> str:
 
         result = response.choices[0].message.content.strip()
         
-        # Print the response from OpenAI
-        print("🤖 OpenAI API Response:")
-        print(result)
-        print("=" * 60)
+        # Log the response from OpenAI
+        log.debug("🤖 OpenAI API Response:")
+        log.debug(result)
+        log.debug("=" * 60)
         
         log.debug("OpenAI response received (%d chars)", len(result))
         log.debug("OpenAI response: %s", result)
@@ -96,72 +109,69 @@ def call_openai_api(prompt: str = None, messages: list = None) -> str:
         log.warning("OpenAI call failed: %s", exc)
         return ""
 
-def sort_chronologically(items: List[Dict[str, Any]], date_key: str) -> List[Dict[str, Any]]:
-    """Sort items chronologically by date key (descending - latest first).
+def sort_chronologically(items: List[Dict[str, Any]], date_key: str = None, end_date_key: str = None) -> List[Dict[str, Any]]:
+    """Sort items chronologically (descending - latest first), prioritizing end dates.
     
     Args:
         items (List[Dict]): Items to sort
-        date_key (str): Key containing date in YYYY-MM format
+        date_key (str, optional): Key containing start date in YYYY-MM format
+        end_date_key (str, optional): Key containing end date in YYYY-MM format
         
     Returns:
         List[Dict]: Sorted items
     """
     def _key(it):
-        date = it.get(date_key)
-        return date or ""
+        # Prioritize end date if available, otherwise use start date
+        if end_date_key:
+            end_date = it.get(end_date_key)
+            if end_date:
+                return end_date
+        
+        if date_key:
+            start_date = it.get(date_key)
+            if start_date:
+                return start_date
+        
+        # Fallback for awards or other single-date items
+        if it.get("date"):
+            return it.get("date")
+            
+        return ""
+    
     return sorted(items, key=_key, reverse=True)
 
-def rank_items_with_openai(items: List[str], section: str) -> List[str]:
-    """Rank and potentially cull items using OpenAI.
+def sort_extracted_projects(projects: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Sort extracted projects chronologically by duration end date, then start date.
     
     Args:
-        items (List[str]): Items to rank
-        section (str): Section name for context
+        projects (List[Dict]): List of extracted project dictionaries
         
     Returns:
-        List[str]: Reordered items (falls back to original on error)
+        List[Dict]: Sorted projects
     """
-    if not items:
-        return items
-
-    prompt = load_prompt_template(
-        config.RANK_ITEMS_PROMPT,
-        section_name=section,
-        items_list=", ".join(items)
-    )
-    ranked_json = call_openai_api(prompt)
-    if not ranked_json:
-        return items
-
-    try:
-        ranked = json.loads(ranked_json)
-        # Preserve all original items: ranked order first, then any missing ones
-        ordered = [it for it in ranked if it in items]
-        for it in items:
-            if it not in ordered:
-                ordered.append(it)
-        return ordered
-    except Exception as exc:
-        print(f"⚠️  Failed to parse ranked {section}: {exc}", file=sys.stderr)
-        return items
-
-def reorder_objects_by_key(obj_list: List[Dict[str, Any]], key: str, section: str) -> List[Dict[str, Any]]:
-    """Reorder objects based on OpenAI-ranked keys.
+    def _project_key(project):
+        duration = project.get("duration", {})
+        
+        # Prioritize end date
+        end_info = duration.get("end", {})
+        if end_info.get("year"):
+            end_year = end_info["year"]
+            end_month = end_info.get("month", 1)
+            return f"{end_year:04d}-{end_month:02d}"
+        
+        # Fallback to start date
+        start_info = duration.get("start", {})
+        if start_info.get("year"):
+            start_year = start_info["year"]
+            start_month = start_info.get("month", 1)
+            return f"{start_year:04d}-{start_month:02d}"
+        
+        return ""
     
-    Args:
-        obj_list (List[Dict]): Objects to reorder
-        key (str): Key to extract for ranking
-        section (str): Section name for context
-        
-    Returns:
-        List[Dict]: Reordered objects
-    """
-    order = rank_items_with_openai([o[key] for o in obj_list], section)
-    ordered = [next(o for o in obj_list if o[key] == name) for name in order]
-    return ordered
+    return sorted(projects, key=_project_key, reverse=True)
 
-def categorize_skills_with_openai(skills: List[str]) -> Dict[str, List[str]]:
-    """Categorize skills into groups using OpenAI.
+async def filter_and_categorize_skills_with_openai_async(skills: List[str]) -> Dict[str, List[str]]:
+    """Filter and categorize skills using OpenAI (async version).
     
     Args:
         skills (List[str]): List of skill names
@@ -171,55 +181,59 @@ def categorize_skills_with_openai(skills: List[str]) -> Dict[str, List[str]]:
     """
     if not skills:
         return {}
-    prompt = load_prompt_template(config.CATEGORIZE_SKILLS_PROMPT, skills_list=", ".join(skills))
-    log.info("Categorizing %d skills via OpenAI", len(skills))
-    response = call_openai_api(prompt)
-    log.debug("Skill categorization raw response: %s", response)
-    if not response:
-        return {}
-    # Ensure we only take JSON object from response
-    try:
-        json_text = re.search(r"\{.*\}", response, re.S).group(0)
-        categories = json.loads(json_text)
-        log.info("Received %d skill categories", len(categories))
-        log.debug("Categories: %s", categories)
-        return categories
-    except Exception as exc:
-        log.warning("Failed to parse skill categorization JSON: %s", exc)
-        return {}
 
-def filter_skills_with_openai(skills: List[str]) -> List[str]:
-    """Filter skills for resume relevance using OpenAI.
+    # Load the system prompt
+    system_prompt = load_prompt_template(config.FILTER_SKILLS_PROMPT)
+    
+    # Create messages with system prompt and user skills list
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": [
+            {"type": "text", "text": "Input Skills as a list of strings: "},
+            {"type": "text", "text" : f'{skills}'}
+        ]}
+    ]
+    
+    log.info("Filtering %d skills via OpenAI (async)", len(skills))
+    response = await call_openai_api_async(messages=messages)
+    log.debug("Skill filtering raw response: %s", response)
+    if not response:
+        return {"General": skills}
+
+    try:
+        # Look for JSON object in response (not array)
+        json_match = re.search(r"\{.*\}", response, re.S)
+        if json_match:
+            json_text = json_match.group(0)
+            result = json.loads(json_text)
+            
+            # Count total filtered skills
+            total_filtered = sum(len(skill_list) if isinstance(skill_list, list) else 0 
+                               for skill_list in result.values())
+            
+            log.info("Filtered and categorized: kept %d/%d skills in %d categories", 
+                    total_filtered, len(skills), len(result))
+            return result if total_filtered > 0 else {"General": skills}
+        else:
+            log.warning("No JSON object found in response")
+            return {"General": skills}
+    except Exception as exc:
+        log.warning("Failed to parse filtered skills JSON: %s", exc)
+        return {"General": skills}
+
+def filter_and_categorize_skills_with_openai(skills: List[str]) -> Dict[str, List[str]]:
+    """Filter and categorize skills using OpenAI (synchronous wrapper).
     
     Args:
         skills (List[str]): List of skill names
         
     Returns:
-        List[str]: Filtered list of relevant skills
+        Dict[str, List[str]]: Skills grouped by category
     """
-    if not skills:
-        return skills
+    return asyncio.run(filter_and_categorize_skills_with_openai_async(skills))
 
-    prompt = load_prompt_template(config.FILTER_SKILLS_PROMPT, skills_list=", ".join(skills))
-    log.info("Filtering %d skills via OpenAI", len(skills))
-    response = call_openai_api(prompt)
-    log.debug("Skill filtering raw response: %s", response)
-    if not response:
-        return skills
-
-    try:
-        json_text = re.search(r"\[.*\]", response, re.S).group(0)
-        kept = json.loads(json_text)
-        # Ensure only skills present in the original list are kept (order preserved as in original)
-        filtered = [s for s in skills if s in kept]
-        log.info("Kept %d/%d skills after filtering", len(filtered), len(skills))
-        return filtered if filtered else skills
-    except Exception as exc:
-        log.warning("Failed to parse filtered skills JSON: %s", exc)
-        return skills
-
-def extract_bullet_points(text: str) -> List[str]:
-    """Extract bullet points from text using heuristics or OpenAI.
+async def extract_bullet_points_async(text: str) -> List[str]:
+    """Extract bullet points from text using heuristics or OpenAI (async version).
     
     Args:
         text (str): Text to extract points from
@@ -242,8 +256,8 @@ def extract_bullet_points(text: str) -> List[str]:
         return [text.strip()]
 
     prompt = load_prompt_template(config.EXTRACT_POINTS_PROMPT, raw_text=text)
-    log.info("Requesting point extraction (%d words) via OpenAI", word_count)
-    resp = call_openai_api(prompt)
+    log.info("Requesting point extraction (%d words) via OpenAI (async)", word_count)
+    resp = await call_openai_api_async(prompt)
     log.debug("Point extraction raw response: %s", resp)
     try:
         points = json.loads(resp)
@@ -251,6 +265,17 @@ def extract_bullet_points(text: str) -> List[str]:
     except Exception as exc:
         log.warning("Failed to parse points JSON: %s", exc)
         return [text]
+
+def extract_bullet_points(text: str) -> List[str]:
+    """Extract bullet points from text using heuristics or OpenAI (synchronous wrapper).
+    
+    Args:
+        text (str): Text to extract points from
+        
+    Returns:
+        List[str]: List of bullet points
+    """
+    return asyncio.run(extract_bullet_points_async(text))
 
 def format_date_range(start: str|None, end: str|None) -> str:
     """Format date range from YYYY-MM strings.
@@ -309,8 +334,8 @@ def format_single_date(date: str|None) -> str:
     except Exception:
         return date
 
-def process_resume_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
-    """Apply OpenAI enhancements to resume data.
+async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Apply OpenAI enhancements to resume data with async processing for improved performance.
     
     Args:
         data (Dict): Resume data in JSON-Resume format
@@ -318,64 +343,116 @@ def process_resume_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict: Enhanced resume data
     """
-    log.info("Processing resume data with OpenAI API...")
+    log.info("Processing resume data with OpenAI API (async)...")
     
-    # Chronological ordering (latest first)
-    data["work"] = sort_chronologically(data.get("work", []), "startDate")
-    data["education"] = sort_chronologically(data.get("education", []), "startDate")
-    data["projects"] = sort_chronologically(data.get("projects", []), "startDate")
-    data["awards"] = sort_chronologically(data.get("awards", []), "date")
+    # Chronological ordering (latest first) - prioritize end dates
+    data["work"] = sort_chronologically(data.get("work", []), "startDate", "endDate")
+    data["education"] = sort_chronologically(data.get("education", []), "startDate", "endDate")
+    data["projects"] = sort_chronologically(data.get("projects", []), "startDate", "endDate")
+    data["awards"] = sort_chronologically(data.get("awards", []))
 
-    # Convert work summaries/descriptions to point lists and extract projects
-    for w in data.get("work", []):
-        # Extract projects from the work experience description/summary
+    # Phase 1: Start independent async operations
+    log.info("Phase 1: Starting independent OpenAI operations...")
+    
+    # Skills filtering - completely independent
+    skill_names = [s["name"] for s in data.get("skills", [])]
+    skills_task = asyncio.create_task(
+        filter_and_categorize_skills_with_openai_async(skill_names)
+    )
+    
+    # Experience extraction - independent per work experience
+    work_experiences = data.get("work", [])
+    experience_tasks = []
+    for i, w in enumerate(work_experiences):
         experience_text = w.get("summary", "")
-        extracted_projects = extract_experience_projects(experience_text)
-        
-        # Store extracted projects in the work entry
-        w["extracted_projects"] = extracted_projects
-        
-        # Still create bullet points from the original summary for backward compatibility
-        w["points"] = extract_bullet_points(experience_text)
-        w["period"] = format_date_range(w.get("startDate"), w.get("endDate"))
-
-    for p in data.get("projects", []):
-        p["points"] = extract_bullet_points(p.get("description", ""))
-        p["period"] = format_date_range(p.get("startDate"), p.get("endDate"))
-
+        if experience_text:
+            task = asyncio.create_task(
+                extract_experience_projects_async(experience_text)
+            )
+            experience_tasks.append((i, task))
+    
+    # Project bullet point extraction - independent per project
+    projects = data.get("projects", [])
+    project_tasks = []
+    for i, p in enumerate(projects):
+        description = p.get("description", "")
+        if description:
+            task = asyncio.create_task(
+                extract_bullet_points_async(description)
+            )
+            project_tasks.append((i, task))
+    
+    # Phase 2: Wait for experience extraction to complete
+    log.info("Phase 2: Processing experience extraction results...")
+    
+    # Wait for all experience extractions to complete
+    for i, task in experience_tasks:
+        extracted_projects = await task
+        work_experiences[i]["extracted_projects"] = sort_extracted_projects(extracted_projects)
+        work_experiences[i]["points"] = await extract_bullet_points_async(work_experiences[i].get("summary", ""))
+        work_experiences[i]["period"] = format_date_range(work_experiences[i].get("startDate"), work_experiences[i].get("endDate"))
+    
+    # Phase 3: Now run tech highlighting for all extracted projects in parallel
+    log.info("Phase 3: Running tech highlighting for extracted projects...")
+    
+    tech_highlight_tasks = []
+    for w in work_experiences:
+        for project in w.get("extracted_projects", []):
+            if project.get("description"):
+                task = asyncio.create_task(
+                    highlight_tech_skills_async(project["description"])
+                )
+                tech_highlight_tasks.append((project, task))
+    
+    # Wait for all tech highlighting to complete
+    for project, task in tech_highlight_tasks:
+        highlights = await task
+        project["tech_highlights"] = highlights
+    
+    # Phase 4: Wait for remaining independent tasks
+    log.info("Phase 4: Finalizing remaining tasks...")
+    
+    # Wait for skills filtering to complete
+    categorized = await skills_task
+    if not categorized:
+        categorized = {"General": skill_names}
+    data["skills_by_category"] = categorized
+    
+    # Extract all filtered skills from categories for backward compatibility
+    filtered_skills = []
+    for category, skill_list in categorized.items():
+        if isinstance(skill_list, list):
+            filtered_skills.extend(skill_list)
+    data["skills"] = [{"name": s} for s in filtered_skills]
+    
+    # Wait for all project bullet point extractions to complete
+    for i, task in project_tasks:
+        points = await task
+        projects[i]["points"] = points
+        projects[i]["period"] = format_date_range(projects[i].get("startDate"), projects[i].get("endDate"))
+    
+    # Format dates for education and awards
     for e in data.get("education", []):
         e["period"] = format_date_range(e.get("startDate"), e.get("endDate"))
 
-    # Format single-date fields (awards)
     for a in data.get("awards", []):
         a["date"] = format_single_date(a.get("date"))
 
-    # Categorise skills into buckets based on keywords
-    skill_names = [s["name"] for s in data.get("skills", [])]
-
-    # Step 1: filter skills for relevance via OpenAI
-    filtered_skills = filter_skills_with_openai(skill_names)
-
-    # Step 2: categorise the filtered skills
-    categorized = categorize_skills_with_openai(filtered_skills)
-    if not categorized:
-        # Fallback: put all skills under "General"
-        categorized = {"General": filtered_skills}
-
-    data["skills_by_category"] = categorized
-
-    # Replace original skills list with filtered list so downstream templates (if any) stay in sync
-    data["skills"] = [{"name": s} for s in filtered_skills]
-
-    # Reorder sections based on relevance
-    data["projects"] = reorder_objects_by_key(data["projects"], "name", "Projects")
-    data["awards"] = reorder_objects_by_key(data["awards"], "title", "Achievements")
-    data["work"] = reorder_objects_by_key(data["work"], "position", "Work Experience")
-
     log.debug("Data after OpenAI processing keys: %s", list(data.keys()))
-    log.info("OpenAI processing completed successfully")
+    log.info("OpenAI processing completed successfully (async)")
 
     return data
+
+def process_resume_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Apply OpenAI enhancements to resume data (synchronous wrapper).
+    
+    Args:
+        data (Dict): Resume data in JSON-Resume format
+        
+    Returns:
+        Dict: Enhanced resume data
+    """
+    return asyncio.run(process_resume_with_openai_async(data))
 
 def load_resume_data(input_path=None):
     """Load resume data from JSON file.
@@ -417,7 +494,7 @@ def save_enhanced_resume_data(data: Dict[str, Any], output_path=None):
     return output_path
 
 def enhance_resume_with_openai():
-    """Complete OpenAI resume enhancement pipeline.
+    """Complete OpenAI resume enhancement pipeline (synchronous wrapper).
     
     Returns:
         dict: Enhanced resume data
@@ -428,15 +505,15 @@ def enhance_resume_with_openai():
     # Load resume data
     data = load_resume_data()
     
-    # Process with OpenAI
+    # Process with OpenAI (async)
     enhanced_data = process_resume_with_openai(data)
     
     # Save enhanced data back to resume.json
     save_enhanced_resume_data(enhanced_data)
     return enhanced_data
 
-def extract_experience_projects(experience_text: str) -> List[Dict[str, Any]]:
-    """Extract project data from experience text using OpenAI with examples.
+async def extract_experience_projects_async(experience_text: str) -> List[Dict[str, Any]]:
+    """Extract project data from experience text using OpenAI with examples (async version).
     
     Args:
         experience_text (str): Raw experience text to extract projects from
@@ -463,11 +540,14 @@ def extract_experience_projects(experience_text: str) -> List[Dict[str, Any]]:
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": json.dumps(examples_data, ensure_ascii=False, indent=2)},
-            {"role": "user", "content": f"Extract data from this experience section - \n\n{experience_text}"}
+            {"role": "user", "content": [
+                {"type": "text", "text": "Input Text: "},
+                {"type": "text", "text": experience_text}
+            ]}
         ]
         
-        log.info("Extracting experience projects via OpenAI (%d chars)", len(experience_text))
-        response = call_openai_api(messages=messages)
+        log.info("Extracting experience projects via OpenAI (async) (%d chars)", len(experience_text))
+        response = await call_openai_api_async(messages=messages)
         
         if not response:
             return []
@@ -493,6 +573,113 @@ def extract_experience_projects(experience_text: str) -> List[Dict[str, Any]]:
     except Exception as e:
         log.warning("Experience extraction failed: %s", e)
         return []
+
+def extract_experience_projects(experience_text: str) -> List[Dict[str, Any]]:
+    """Extract project data from experience text using OpenAI with examples (synchronous wrapper).
+    
+    Args:
+        experience_text (str): Raw experience text to extract projects from
+        
+    Returns:
+        List[Dict]: List of extracted project dictionaries
+    """
+    return asyncio.run(extract_experience_projects_async(experience_text))
+
+async def highlight_tech_skills_async(description: str) -> List[str]:
+    """Extract technical skills and quantitative impacts from project description (async version).
+    
+    Args:
+        description (str): Project description text
+        
+    Returns:
+        List[str]: List of highlighted technical terms and metrics
+    """
+    if not description.strip():
+        return []
+
+    try:
+        # Load the tech highlighting prompt
+        system_prompt = load_prompt_template(config.HIGHLIGHT_TECH_PROMPT)
+        
+        # Load the examples
+        examples_path = PROMPTS_DIR / "highlight_examples.json"
+        if not examples_path.exists():
+            log.warning("Tech highlighting examples file not found")
+            return []
+        
+        examples_data = json.loads(examples_path.read_text(encoding="utf-8"))
+        
+        # Construct messages for OpenAI API with the specific format requested
+        messages = [
+            {"role": "system", "content": system_prompt}
+        ]
+        
+        # Add examples in the specified format
+        for i, example in enumerate(examples_data, 1):
+            example_message = {
+                "role": "user", 
+                "content": [
+                    {"type": "text", "text": f"Example {i}"},
+                    {"type": "text", "text": example["content"]},
+                    {"type": "text", "text": str(example["highlights"])}
+                ]
+            }
+            messages.append(example_message)
+        
+        # Add the actual project description to highlight
+        messages.append({
+            "role": "user", 
+            "content": [
+                {"type": "text", "text": "Input Text: "},
+                {"type": "text", "text": description}
+            ]
+        })
+        
+        log.info("Highlighting tech skills via OpenAI (async) (%d chars)", len(description))
+        response = await call_openai_api_async(messages=messages)
+        
+        if not response:
+            return []
+        
+        # Parse the response (can be JSON or Python list format)
+        try:
+            # Extract list from response (in case there's extra text)
+            list_match = re.search(r'\[.*\]', response, re.S)
+            if list_match:
+                list_text = list_match.group(0)
+            else:
+                list_text = response
+            
+            # Try JSON parsing first
+            try:
+                highlights = json.loads(list_text)
+            except json.JSONDecodeError:
+                # Fallback: try parsing as Python literal (handles single quotes)
+                import ast
+                highlights = ast.literal_eval(list_text)
+            
+            log.info("Extracted %d tech highlights", len(highlights))
+            return highlights if isinstance(highlights, list) else []
+            
+        except (json.JSONDecodeError, ValueError, SyntaxError) as e:
+            log.warning("Failed to parse tech highlights: %s", e)
+            log.debug("Raw response: %s", response)
+            return []
+            
+    except Exception as e:
+        log.warning("Tech highlighting failed: %s", e)
+        return []
+
+def highlight_tech_skills(description: str) -> List[str]:
+    """Extract technical skills and quantitative impacts from project description (synchronous wrapper).
+    
+    Args:
+        description (str): Project description text
+        
+    Returns:
+        List[str]: List of highlighted technical terms and metrics
+    """
+    return asyncio.run(highlight_tech_skills_async(description))
 
 # Legacy main function for backward compatibility
 def main():

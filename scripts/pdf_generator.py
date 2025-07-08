@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-PDF resume generation module using WeasyPrint.
+PDF resume generation module using Playwright.
 
-This module provides functions to generate PDF resumes from HTML files using WeasyPrint.
+This module provides functions to generate PDF resumes from HTML files using Playwright's browser engine.
 """
 
 import pathlib
@@ -10,12 +10,12 @@ import sys
 import logging
 import config
 
-# Try to import WeasyPrint for HTML-to-PDF generation
+# Try to import Playwright for HTML-to-PDF generation
 try:
-    from weasyprint import HTML, CSS
-    WEASYPRINT_AVAILABLE = True
-except (ImportError, OSError) as e:
-    WEASYPRINT_AVAILABLE = False
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError as e:
+    PLAYWRIGHT_AVAILABLE = False
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -23,28 +23,56 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
-def generate_pdf_from_html(html_path=None, css_path=None, output_path=None):
-    """Generate PDF from HTML file using WeasyPrint.
+def html_to_pdf(html_path: pathlib.Path, out_path: pathlib.Path):
+    """Convert HTML file to PDF using Playwright's browser engine.
+    
+    Args:
+        html_path (pathlib.Path): Path to HTML file
+        out_path (pathlib.Path): Path where PDF should be saved
+        
+    Raises:
+        SystemExit: If Playwright is not available or PDF generation fails
+    """
+    if not PLAYWRIGHT_AVAILABLE:
+        log.error("Playwright not available - please install with: playwright install chromium")
+        sys.exit(1)
+    
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(args=["--no-sandbox"])           # headless by default
+            page = browser.new_page()
+            page.goto(html_path.resolve().as_uri(), wait_until="networkidle")
+            page.emulate_media(media="print")                            # apply @media print styles
+            page.pdf(                                                   # pixel-perfect output
+                path=str(out_path),
+                format="A4",
+                print_background=True
+            )
+            browser.close()
+        log.info("PDF generated using Playwright → %s", out_path.relative_to(ROOT))
+    except Exception as e:
+        log.error(f"PDF generation failed: {e}")
+        sys.exit(1)
+
+def generate_pdf_from_html(html_path=None, output_path=None):
+    """Generate PDF from HTML file using Playwright.
     
     Args:
         html_path (pathlib.Path, optional): Path to HTML file. Defaults to assets/index.html
-        css_path (pathlib.Path, optional): Path to CSS file. Defaults to assets/styles.css
         output_path (pathlib.Path, optional): Path for PDF output. Defaults to assets/RESUME_PDF_FILE
         
     Returns:
-        pathlib.Path: Path where PDF was saved, or None if WeasyPrint is not available
+        pathlib.Path: Path where PDF was saved, or None if Playwright is not available
         
     Raises:
         SystemExit: If HTML file doesn't exist or PDF generation fails
     """
-    if not WEASYPRINT_AVAILABLE:
-        log.warning("WeasyPrint not available - skipping PDF generation")
+    if not PLAYWRIGHT_AVAILABLE:
+        log.warning("Playwright not available - skipping PDF generation")
         return None
     
     if html_path is None:
         html_path = ROOT / config.ASSETS_DIR / "index.html"
-    if css_path is None:
-        css_path = ROOT / config.ASSETS_DIR / "styles.css"
     if output_path is None:
         output_path = ROOT / config.ASSETS_DIR / config.RESUME_PDF_FILE
     
@@ -53,37 +81,12 @@ def generate_pdf_from_html(html_path=None, css_path=None, output_path=None):
         log.error(f"HTML file not found: {html_path}")
         sys.exit(1)
     
-    try:
-        # Generate PDF using WeasyPrint
-        log.info("Generating PDF from HTML with WeasyPrint...")
-        html = HTML(filename=str(html_path), encoding="utf-8")
-        
-        # Create CSS to override WeasyPrint's default margins completely
-        pdf_reset_css = CSS(string='''
-            @page { size: A4; margin: 0; }
-            html { margin: 0 !important; padding: 0 !important; }
-        ''')
-        
-        # Combine PDF reset CSS with existing styles
-        stylesheets = [pdf_reset_css]
-        if css_path.exists():
-            stylesheets.append(str(css_path))
-        
-        html.write_pdf(
-            target=str(output_path),
-            stylesheets=stylesheets,
-            pdf_forms=False
-        )
-        
-        log.info("PDF generated → %s", output_path.relative_to(ROOT))
-        return output_path
-        
-    except Exception as e:
-        log.error(f"PDF generation failed: {e}")
-        sys.exit(1)
+    log.info("Generating PDF from HTML with Playwright...")
+    html_to_pdf(html_path, output_path)
+    return output_path
 
 def generate_pdf_resume():
-    """Complete PDF generation pipeline using WeasyPrint (HTML to PDF).
+    """Complete PDF generation pipeline using Playwright (HTML to PDF).
     
     Returns:
         pathlib.Path: Path to generated PDF file
@@ -91,11 +94,11 @@ def generate_pdf_resume():
     Raises:
         SystemExit: If generation fails
     """
-    # Generate PDF from HTML using WeasyPrint
+    # Generate PDF from HTML using Playwright
     pdf_path = generate_pdf_from_html()
     
     if pdf_path is None:
-        log.error("PDF generation failed - WeasyPrint not available")
+        log.error("PDF generation failed - Playwright not available")
         sys.exit(1)
     
     return pdf_path

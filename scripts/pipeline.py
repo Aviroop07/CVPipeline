@@ -31,6 +31,7 @@ from linkedin_transformer import transform_linkedin_data
 from openai_processor import enhance_resume_with_openai
 from html_generator import generate_html_resume_file
 from pdf_generator import generate_pdf_resume
+from url_validator import validate_resume_urls
 import config
 
 # Set up logging
@@ -47,42 +48,42 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 def print_step_header(step_num: int, total_steps: int, title: str, description: str):
     """Print a formatted step header."""
-    print(f"\n{'='*60}")
-    print(f"STEP {step_num}/{total_steps}: {title}")
-    print(f"{'='*60}")
-    print(f"📝 {description}")
-    print()
+    log.info(f"\n{'='*60}")
+    log.info(f"STEP {step_num}/{total_steps}: {title}")
+    log.info(f"{'='*60}")
+    log.info(f"📝 {description}")
+    log.info("")
 
 def print_step_success(title: str, details: str = ""):
     """Print step success message."""
-    print(f"✅ {title} completed successfully")
+    log.info(f"✅ {title} completed successfully")
     if details:
-        print(f"   {details}")
+        log.info(f"   {details}")
 
 def print_step_error(title: str, error: str):
     """Print step error message."""
-    print(f"❌ {title} failed: {error}")
+    log.error(f"❌ {title} failed: {error}")
 
 def print_pipeline_summary(start_time: float, steps_completed: int, total_steps: int):
     """Print pipeline completion summary."""
     duration = time.time() - start_time
-    print(f"\n{'='*60}")
-    print(f"PIPELINE SUMMARY")
-    print(f"{'='*60}")
-    print(f"⏱️  Total time: {duration:.2f} seconds")
-    print(f"✅ Steps completed: {steps_completed}/{total_steps}")
+    log.info(f"\n{'='*60}")
+    log.info(f"PIPELINE SUMMARY")
+    log.info(f"{'='*60}")
+    log.info(f"⏱️  Total time: {duration:.2f} seconds")
+    log.info(f"✅ Steps completed: {steps_completed}/{total_steps}")
     
     if steps_completed == total_steps:
-        print(f"🎉 Resume generation pipeline completed successfully!")
-        print(f"📄 HTML saved to: {config.ASSETS_DIR}/{config.RESUME_HTML_FILE}")
-        print(f"📄 PDF saved to: {config.ASSETS_DIR}/{config.RESUME_PDF_FILE}")
+        log.info(f"🎉 Resume generation pipeline completed successfully!")
+        log.info(f"📄 HTML saved to: {config.ASSETS_DIR}/{config.RESUME_HTML_FILE}")
+        log.info(f"📄 PDF saved to: {config.ASSETS_DIR}/{config.RESUME_PDF_FILE}")
     else:
-        print(f"⚠️  Pipeline incomplete. Check logs above for errors.")
+        log.warning(f"⚠️  Pipeline incomplete. Check logs above for errors.")
 
 def step_1_fetch_linkedin(skip: bool = False) -> bool:
     """Step 1: Fetch LinkedIn profile data."""
     if skip:
-        print("⏭️  Skipping LinkedIn fetch (--skip-linkedin flag provided)")
+        log.info("⏭️  Skipping LinkedIn fetch (--skip-linkedin flag provided)")
         return True
     
     try:
@@ -105,7 +106,7 @@ def step_2_transform_data() -> bool:
         return True
     except SystemExit as e:
         if e.code == 1:
-            print("ℹ️  No changes detected - resume already up-to-date")
+            log.info("ℹ️  No changes detected - resume already up-to-date")
             return True  # This is actually success for our pipeline
         else:
             print_step_error("Data transformation", "Transformation failed")
@@ -117,7 +118,7 @@ def step_2_transform_data() -> bool:
 def step_3_openai_enhancement(skip: bool = False) -> bool:
     """Step 3: Enhance resume data with OpenAI processing."""
     if skip:
-        print("⏭️  Skipping OpenAI processing (--skip-openai flag provided)")
+        log.info("⏭️  Skipping OpenAI processing (--skip-openai flag provided)")
         return True
     
     try:
@@ -131,8 +132,28 @@ def step_3_openai_enhancement(skip: bool = False) -> bool:
         print_step_error("OpenAI enhancement", str(e))
         return False
 
-def step_4_generate_html() -> bool:
-    """Step 4: Generate HTML resume."""
+def step_4_validate_urls() -> bool:
+    """Step 4: Validate all URLs in resume data."""
+    try:
+        from openai_processor import load_resume_data, save_enhanced_resume_data
+        
+        # Load current resume data
+        resume_data = load_resume_data()
+        
+        # Validate URLs
+        validated_data = validate_resume_urls(resume_data)
+        
+        # Save back the validated data
+        save_enhanced_resume_data(validated_data)
+        
+        print_step_success("URL validation", "All URLs checked and invalid ones removed")
+        return True
+    except Exception as e:
+        print_step_error("URL validation", str(e))
+        return False
+
+def step_5_generate_html() -> bool:
+    """Step 5: Generate HTML resume."""
     try:
         html_path = generate_html_resume_file()
         print_step_success("HTML generation", f"HTML saved to {html_path}")
@@ -144,8 +165,8 @@ def step_4_generate_html() -> bool:
         print_step_error("HTML generation", str(e))
         return False
 
-def step_5_generate_pdf() -> bool:
-    """Step 5: Generate PDF resume from HTML."""
+def step_6_generate_pdf() -> bool:
+    """Step 6: Generate PDF resume from HTML."""
     try:
         pdf_path = generate_pdf_resume()
         print_step_success("PDF generation", f"PDF saved to {pdf_path}")
@@ -170,14 +191,14 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, output_
         bool: True if pipeline completed successfully, False otherwise
     """
     start_time = time.time()
-    total_steps = 5
+    total_steps = 6
     steps_completed = 0
     
-    print(f"\n🚀 Starting Resume Generation Pipeline")
-    print(f"📁 Working directory: {ROOT}")
+    log.info(f"\n🚀 Starting Resume Generation Pipeline")
+    log.info(f"📁 Working directory: {ROOT}")
     if output_dir:
-        print(f"📂 Output directory: {output_dir}")
-    print(f"⚙️  Configuration: LinkedIn={'Skip' if skip_linkedin else 'Fetch'}, OpenAI={'Skip' if skip_openai else 'Process'}")
+        log.info(f"📂 Output directory: {output_dir}")
+    log.info(f"⚙️  Configuration: LinkedIn={'Skip' if skip_linkedin else 'Fetch'}, OpenAI={'Skip' if skip_openai else 'Process'}")
     
     # Step 1: Fetch LinkedIn Data
     print_step_header(1, total_steps, "FETCH LINKEDIN DATA", 
@@ -199,26 +220,35 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, output_
     
     # Step 3: OpenAI Enhancement
     print_step_header(3, total_steps, "OPENAI ENHANCEMENT", 
-                     "Filter skills, categorize, rank sections, and extract bullet points")
+                     "Filter skills, categorize, and extract bullet points")
     if step_3_openai_enhancement(skip=skip_openai):
         steps_completed += 1
     else:
         print_pipeline_summary(start_time, steps_completed, total_steps)
         return False
     
-    # Step 4: Generate HTML
-    print_step_header(4, total_steps, "GENERATE HTML", 
-                     "Create professional HTML resume with responsive design")
-    if step_4_generate_html():
+    # Step 4: Validate URLs
+    print_step_header(4, total_steps, "VALIDATE URLS", 
+                     "Check all URLs are accessible and remove broken ones")
+    if step_4_validate_urls():
         steps_completed += 1
     else:
         print_pipeline_summary(start_time, steps_completed, total_steps)
         return False
     
-    # Step 5: Generate PDF
-    print_step_header(5, total_steps, "GENERATE PDF", 
-                     "Create PDF resume from HTML using WeasyPrint")
-    if step_5_generate_pdf():
+    # Step 5: Generate HTML
+    print_step_header(5, total_steps, "GENERATE HTML", 
+                     "Create professional HTML resume with responsive design")
+    if step_5_generate_html():
+        steps_completed += 1
+    else:
+        print_pipeline_summary(start_time, steps_completed, total_steps)
+        return False
+    
+    # Step 6: Generate PDF
+    print_step_header(6, total_steps, "GENERATE PDF", 
+                     "Create PDF resume from HTML using Playwright")
+    if step_6_generate_pdf():
         steps_completed += 1
     else:
         print_pipeline_summary(start_time, steps_completed, total_steps)

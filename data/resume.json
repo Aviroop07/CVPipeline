@@ -15,8 +15,8 @@
       "startDate": "2023-11",
       "endDate": "2025-07",
       "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
-      "url": "https://www.linkedin.com/company/getleadster/",
-      "public_id": "getleadster",
+      "url": "https://www.linkedin.com/company/neurologicai/",
+      "public_id": "neurologicai",
       "extracted_projects": [
         {
           "title": "Intelligent Claim Orchestration in Guideware",
@@ -33,7 +33,15 @@
               "year": 2025
             }
           },
-          "description": "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency."
+          "description": "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.",
+          "tech_highlights": [
+            "Guidewire ClaimCenter",
+            "GPT-4 Vision/Text",
+            "Python",
+            "80%",
+            "23 pts",
+            "halved inference latency"
+          ]
         },
         {
           "title": "Document Intelligence Platform",
@@ -50,7 +58,16 @@
               "year": 2025
             }
           },
-          "description": "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy."
+          "description": "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
+          "tech_highlights": [
+            "Streamlit",
+            "layout-transformer",
+            "GPT-4 Vision",
+            "Mistral OCR",
+            "Python",
+            "Pandas",
+            "3s"
+          ]
         }
       ],
       "points": [
@@ -68,8 +85,8 @@
       "startDate": "2024-06",
       "endDate": "2024-07",
       "summary": "Full-Stack Ticket Platform | Jun–Jul 2024\nAngular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
-      "url": "https://www.linkedin.com/company/pwc/",
-      "public_id": "pwc",
+      "url": "http://www.pwc.com",
+      "public_id": "m/012_78",
       "extracted_projects": [
         {
           "title": "Full-Stack Ticket Platform",
@@ -86,7 +103,15 @@
               "year": 2024
             }
           },
-          "description": "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out."
+          "description": "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
+          "tech_highlights": [
+            "Angular",
+            "Spring Boot",
+            "MongoDB",
+            "JWT",
+            "API Gateway",
+            "50 ms"
+          ]
         }
       ],
       "points": [
@@ -100,12 +125,12 @@
     {
       "institution": "Jadavpur University",
       "area": "Computer Science and Engineering",
-      "studyType": "Bachelor of Engineering - BE",
-      "score": "8.15 ( upto 7th semester )",
+      "studyType": "Bachelor of Engineering - BE (Hons.)",
+      "score": "8.25",
       "startDate": "2021-12",
       "endDate": "2025-07",
-      "url": "https://www.linkedin.com/school/jadavpur-university/",
-      "public_id": "jadavpur-university",
+      "url": "",
+      "public_id": "",
       "period": "Dec, 2021 – Jul, 2025"
     },
     {
@@ -115,8 +140,8 @@
       "score": "O",
       "startDate": "2019-07",
       "endDate": "2021-03",
-      "url": "https://www.linkedin.com/school/burdwan-municipal-high-school/",
-      "public_id": "burdwan-municipal-high-school",
+      "url": "http://www.bmhschool.com/",
+      "public_id": "m/0b3xpm",
       "period": "Jul, 2019 – Mar, 2021"
     },
     {
@@ -167,6 +192,19 @@
       "period": "Feb – May, 2025"
     },
     {
+      "name": "LinkedIn Puzzle Solver",
+      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
+      "startDate": "2024-08",
+      "endDate": "2024-08",
+      "url": "",
+      "points": [
+        "Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.",
+        "Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.",
+        "Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads."
+      ],
+      "period": "Aug – Aug, 2024"
+    },
+    {
       "name": "Compiler Design Project",
       "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
       "startDate": "2024-02",
@@ -179,57 +217,56 @@
         "Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing."
       ],
       "period": "Feb – Apr, 2024"
-    },
-    {
-      "name": "LinkedIn Puzzle Solver",
-      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
-      "startDate": "2024-08",
-      "endDate": "2024-08",
-      "url": "",
-      "points": [
-        "Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.",
-        "Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.",
-        "Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads."
-      ],
-      "period": "Aug – Aug, 2024"
     }
   ],
   "skills": [
     {
-      "name": "OpenAI API"
-    },
-    {
-      "name": "Machine Learning"
-    },
-    {
-      "name": "Recommender Systems"
+      "name": "Python"
     },
     {
       "name": "C++"
     },
     {
-      "name": "MySQL"
+      "name": "JavaScript"
     },
     {
-      "name": "Streamlit"
+      "name": "Java"
     },
     {
-      "name": "pytest"
+      "name": "C"
+    },
+    {
+      "name": "Prompt Engineering"
+    },
+    {
+      "name": "Large Language Models (LLM)"
+    },
+    {
+      "name": "Natural Language Processing (NLP)"
+    },
+    {
+      "name": "Convolutional Neural Networks (CNN)"
+    },
+    {
+      "name": "Transformers"
+    },
+    {
+      "name": "Deep Learning"
+    },
+    {
+      "name": "OpenAI API"
+    },
+    {
+      "name": "API Gateways"
     },
     {
       "name": "REST APIs"
     },
     {
-      "name": "Cloud Computing"
-    },
-    {
       "name": "FastAPI"
     },
     {
-      "name": "SQLAlchemy"
-    },
-    {
-      "name": "Transformers"
+      "name": "Streamlit"
     },
     {
       "name": "Spring Boot"
@@ -238,31 +275,34 @@
       "name": "Angular"
     },
     {
+      "name": "Node.js"
+    },
+    {
+      "name": "MySQL"
+    },
+    {
+      "name": "SQLAlchemy"
+    },
+    {
       "name": "MongoDB"
-    },
-    {
-      "name": "Deep Learning"
-    },
-    {
-      "name": "JavaScript"
     },
     {
       "name": "SQL"
     },
     {
+      "name": "pytest"
+    },
+    {
       "name": "Git"
+    },
+    {
+      "name": "Pandas (Software)"
     },
     {
       "name": "Scikit-Learn"
     },
     {
-      "name": "Node.js"
-    },
-    {
       "name": "NumPy"
-    },
-    {
-      "name": "Java"
     },
     {
       "name": "Jupyter"
@@ -284,42 +324,45 @@
   ],
   "skills_by_category": {
     "Programming Languages": [
+      "Python",
       "C++",
+      "JavaScript",
       "Java",
-      "JavaScript"
+      "C"
     ],
-    "Machine Learning & Data Science": [
-      "Machine Learning",
-      "Deep Learning",
-      "Recommender Systems",
-      "Scikit-Learn",
+    "Machine Learning & AI": [
+      "Prompt Engineering",
+      "Large Language Models (LLM)",
+      "Natural Language Processing (NLP)",
+      "Convolutional Neural Networks (CNN)",
       "Transformers",
+      "Deep Learning"
+    ],
+    "APIs & Integration": [
+      "OpenAI API",
+      "API Gateways",
+      "REST APIs",
+      "FastAPI"
+    ],
+    "Frameworks & Web Development": [
+      "Streamlit",
+      "Spring Boot",
+      "Angular",
+      "Node.js"
+    ],
+    "Databases & Data Storage": [
+      "MySQL",
+      "SQLAlchemy",
+      "MongoDB",
+      "SQL"
+    ],
+    "Developer Tools & Libraries": [
+      "pytest",
+      "Git",
+      "Pandas (Software)",
+      "Scikit-Learn",
       "NumPy",
       "Jupyter"
-    ],
-    "Web & API Frameworks": [
-      "FastAPI",
-      "Spring Boot",
-      "Node.js",
-      "Angular",
-      "Streamlit"
-    ],
-    "Databases & ORM": [
-      "MySQL",
-      "MongoDB",
-      "SQL",
-      "SQLAlchemy"
-    ],
-    "Testing & Automation": [
-      "pytest"
-    ],
-    "DevOps & Cloud": [
-      "Git",
-      "Cloud Computing"
-    ],
-    "APIs & Integrations": [
-      "OpenAI API",
-      "REST APIs"
     ]
   }
 }

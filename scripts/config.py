@@ -25,11 +25,10 @@ RESUME_HTML_FILE = "index.html"
 LINKEDIN_RAW_FILE = "linkedin_raw.json"
 
 # Prompt files
-RANK_ITEMS_PROMPT = "rank_items.txt"
-CATEGORIZE_SKILLS_PROMPT = "categorize_skills.txt"
 FILTER_SKILLS_PROMPT = "filter_skills.txt"
 EXTRACT_POINTS_PROMPT = "extract_points.txt"
 EXPERIENCE_EXTRACTION_PROMPT = "experience_extraction.txt"
+HIGHLIGHT_TECH_PROMPT = "highlight_tech.txt"
 
 # Directory names
 DATA_DIR = "data"
@@ -38,8 +37,22 @@ ASSETS_DIR = "assets"
 
 
 
-# HTML generation settings
-HTML_FONT_FAMILY = "'Times New Roman', Times, serif"
+# Font configuration for @font-face declarations
+FONT_FAMILY_NAME = "HelveticaNeue"
+FONT_REGULAR_URL = "fonts/HelveticaNeueLTStd-Roman.otf"
+FONT_ITALIC_URL = "fonts/HelveticaNeueLTStd-It.otf"
+FONT_BOLD_URL = "fonts/HelveticaNeueLTStd-Md.otf"  # Using Medium for better readability
+FONT_BOLD_ITALIC_URL = "fonts/HelveticaNeueLTStd-MdIt.otf"  # Medium Italic for bold italic
+
+# Additional font weights for enhanced typography (optional)
+FONT_LIGHT_URL = "fonts/HelveticaNeueLTStd-Lt.otf"  # For subtle elements
+FONT_MEDIUM_URL = "fonts/HelveticaNeueLTStd-Md.otf"  # For section headers
+FONT_EXTRA_BOLD_URL = "fonts/HelveticaNeueLTStd-Bd.otf"  # For name header
+
+FONT_FORMAT = "opentype"  # "opentype" for .otf, "truetype" for .ttf, "woff2" for web fonts
+
+# HTML generation settings - using configurable font family
+HTML_FONT_FAMILY = f"'{FONT_FAMILY_NAME}', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
 HTML_FONT_SIZE_BASE = "13px"
 HTML_FONT_SIZE_NAME = "20px"
 HTML_FONT_SIZE_SECTION = "15px"
@@ -70,3 +83,6 @@ HTML_COLOR_SECTION_BORDER = "#bdc3c7"
 
 # HTML responsive breakpoint
 HTML_MOBILE_BREAKPOINT = "768px"
+
+# Google knowledge graph API details
+KG_URL = "https://kgsearch.googleapis.com/v1/entities:search"

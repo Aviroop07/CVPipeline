@@ -1,0 +1,81 @@
+[
+    {
+        "content": "Developed a high-performance real-time trading platform leveraging C++ and Python for core analytics and algorithmic processing. The system integrated Apache Kafka for real-time data ingestion and Apache Ignite for distributed in-memory computations. Optimized low-level memory management and multithreading in C++, reducing trade execution latency below 2ms. Additionally, Python-based analytics enabled rapid prototyping of predictive models, improving decision accuracy by 25%. This solution increased daily transaction throughput by 60% and significantly enhanced trading efficiency.",
+        "highlights": [
+            "C++",
+            "Python",
+            "Apache Kafka",
+            "Apache Ignite",
+            "2ms",
+            "25%",
+            "60%"
+        ]
+    },
+    {
+        "content": "Engineered a microservices-based e-commerce backend using Java Spring Boot integrated with React for a responsive front-end user interface. Employed Redis and PostgreSQL for caching and persistent storage, respectively, achieving query response times below 10ms. Optimized React rendering performance, enhancing page load speeds by 40% and increasing conversion rates by 18%. The solution handled over 500,000 concurrent users seamlessly during peak traffic periods, significantly improving user satisfaction and platform reliability.",
+        "highlights": [
+            "Java",
+            "Spring Boot",
+            "React",
+            "Redis",
+            "PostgreSQL",
+            "10ms",
+            "40%",
+            "18%",
+            "500,000"
+        ]
+    },
+    {
+        "content": "Built a scalable social media analytics dashboard using Angular and Node.js, integrated with Elasticsearch for real-time text search and sentiment analysis. Implemented data ingestion pipelines in Python with Apache Airflow, achieving real-time analytics latency under 5 seconds. Angular optimizations led to 55% faster UI interactions and reduced overall server load by 30%. The platform processed up to 100 million posts per day, improving insight generation accuracy by approximately 20%.",
+        "highlights": [
+            "Angular",
+            "Node.js",
+            "Elasticsearch",
+            "Python",
+            "Apache Airflow",
+            "5 seconds",
+            "55%",
+            "30%",
+            "100 million",
+            "20%"
+        ]
+    },
+    {
+        "content": "Designed an embedded automotive software system in C with real-time operating system (RTOS) integration for safety-critical functions. Employed advanced memory management and interrupt-driven programming techniques to achieve deterministic latency below 1ms. Conducted comprehensive static and dynamic analysis to reduce code defects by 85%, substantially enhancing system reliability. The software exceeded automotive industry standards, successfully operating across millions of deployed units globally.",
+        "highlights": [
+            "C",
+            "RTOS",
+            "1ms",
+            "85%",
+            "millions"
+        ]
+    },
+    {
+        "content": "Implemented a dynamic web application using Vue.js on the frontend and Python Django REST Framework on the backend, delivering intuitive data visualization tools for healthcare analytics. Integrated PostgreSQL and Redis for efficient data retrieval and caching, achieving database query times consistently below 8ms. The Vue.js frontend optimizations improved user interaction responsiveness by 35%, enhancing user adoption rates by 22%. The solution supported analysis of over 10 million patient records securely and effectively.",
+        "highlights": [
+            "Vue.js",
+            "Python",
+            "Django REST Framework",
+            "PostgreSQL",
+            "Redis",
+            "8ms",
+            "35%",
+            "22%",
+            "10 million"
+        ]
+    },
+    {
+        "content": "Architected a large-scale video streaming platform leveraging Java microservices combined with React for a performant frontend interface. Integrated Apache Cassandra for scalable storage and Apache Pulsar for event streaming, enabling seamless delivery to millions of concurrent users. Java optimizations reduced stream buffering latency to under 200ms, while React performance enhancements improved front-end rendering speeds by 50%. Overall, the platform delivered 99.99% uptime and significantly increased viewer retention rates by 30%.",
+        "highlights": [
+            "Java",
+            "React",
+            "Apache Cassandra",
+            "Apache Pulsar",
+            "millions",
+            "200ms",
+            "50%",
+            "99.99%",
+            "30%"
+        ]
+    }
+]

@@ -2,4 +2,5 @@ linkedin-api
 python-dotenv
 pyotp
 openai
-weasyprint
+playwright
+httpx

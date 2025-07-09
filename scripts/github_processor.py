@@ -126,7 +126,7 @@ def github_details(username: str, token: str):
         dict: Repository information with README content
     """
     gh = Github(auth=Auth.Token(token))
-    user = gh.get_user()
+    user = gh.get_user(login=username)
     
     result = {"username": username, "repos": []}
 
@@ -143,7 +143,7 @@ def github_details(username: str, token: str):
 
         # Get README content using PyGithub's built-in method
         try:
-            readme_content = repo.get_contents("README.md")
+            readme_content = repo.get_contents(config.README_FILE)
             readme_text = readme_content.decoded_content.decode('utf-8')
             readme_error = None
         except Exception as e:
@@ -280,9 +280,9 @@ async def process_github_repos_async(username: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict]: List of processed project dictionaries
     """
-    github_token = os.getenv("GITHUB_TOKEN")
+    github_token = os.getenv("PAT_GITHUB")
     if not github_token:
-        log.warning("GITHUB_TOKEN not set - skipping GitHub processing")
+        log.warning("PAT_GITHUB not set - skipping GitHub processing")
         return []
     
     log.info("🔍 Fetching GitHub repositories for user: %s", username)
@@ -311,6 +311,16 @@ async def process_github_repos_async(username: str) -> List[Dict[str, Any]]:
             points = await extract_project_points_async(readme_content)
             
             if points:
+                # Apply tech highlighting to each point
+                from openai_processor import highlight_tech_skills_async
+                highlighted_points = []
+                for point in points:
+                    highlights = await highlight_tech_skills_async(point)
+                    highlighted_points.append({
+                        "text": point,
+                        "highlights": highlights
+                    })
+                
                 # Create project entry
                 project = {
                     "name": repo_name,
@@ -318,7 +328,7 @@ async def process_github_repos_async(username: str) -> List[Dict[str, Any]]:
                     "startDate": repo["first_commit"][:7],  # YYYY-MM format
                     "endDate": repo["last_commit"][:7],     # YYYY-MM format
                     "url": f"https://github.com/{username}/{repo_name}",
-                    "points": points,
+                    "points": highlighted_points,
                     "period": format_date_range(repo["first_commit"], repo["last_commit"]),
                     "commit_count": repo["commit_count"]
                 }
@@ -393,8 +403,8 @@ def enhance_resume_with_github_projects(resume_data: Dict[str, Any], username: s
 # Legacy main function for backward compatibility
 def main():
     """Main function for standalone script execution."""
-    # Test with a sample username
-    test_username = "Aviroop07"
+    # Use GitHub username from config
+    test_username = config.GITHUB_USERNAME
     projects = process_github_repos(test_username)
     
     log.info("Test results:")

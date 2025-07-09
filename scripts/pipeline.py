@@ -151,8 +151,8 @@ def step_4_github_processing(skip: bool = False) -> bool:
         # Load current resume data
         resume_data = load_resume_data()
         
-        # Get GitHub username from environment or use default
-        github_username = os.getenv("GITHUB_USERNAME", "Aviroop07")
+        # Get GitHub username from config
+        github_username = config.GITHUB_USERNAME
         
         # Enhance with GitHub projects using async function
         # Use asyncio.run() to ensure we have a clean event loop

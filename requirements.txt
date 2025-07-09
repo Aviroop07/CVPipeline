@@ -4,3 +4,4 @@ pyotp
 openai
 playwright
 httpx
+PyGithub

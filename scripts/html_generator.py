@@ -11,6 +11,7 @@ import sys
 import logging
 from typing import List, Dict, Any
 import config
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RESUME_JSON = ROOT / config.DATA_DIR / config.RESUME_JSON_FILE
@@ -40,6 +41,33 @@ def clean_text(text: str) -> str:
     text = text.replace("'", "&#39;")
     
     return text
+
+def render_highlighted_text(text: str, highlights: List[str] = None) -> str:
+    """Render text with highlighted technical terms.
+    
+    Args:
+        text (str): Text to render
+        highlights (List[str], optional): List of terms to highlight
+        
+    Returns:
+        str: HTML with highlighted terms
+    """
+    if not highlights:
+        return clean_text(text)
+    
+    # Clean the text first
+    cleaned_text = clean_text(text)
+    
+    # Apply highlights (case-insensitive)
+    for highlight in highlights:
+        if highlight:
+            # Escape the highlight term for regex
+            escaped_highlight = re.escape(highlight)
+            # Replace with highlighted version
+            pattern = re.compile(escaped_highlight, re.IGNORECASE)
+            cleaned_text = pattern.sub(f'<em class="highlight">{highlight}</em>', cleaned_text)
+    
+    return cleaned_text
 
 def generate_css_file() -> str:
     """Generate CSS file content using config values.
@@ -659,12 +687,23 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
             if project.get("points"):
                 if len(project["points"]) == 1:
                     # Single point - render as paragraph, not list
-                    html += f'<div class="item-description">{clean_text(project["points"][0])}</div>'
+                    point = project["points"][0]
+                    if isinstance(point, dict) and "text" in point:
+                        # New highlighted format
+                        html += f'<div class="item-description">{render_highlighted_text(point["text"], point.get("highlights"))}</div>'
+                    else:
+                        # Old string format
+                        html += f'<div class="item-description">{clean_text(point)}</div>'
                 else:
                     # Multiple points - render as bulleted list
                     html += '<ul class="item-points">'
                     for point in project["points"]:
-                        html += f'<li>{clean_text(point)}</li>'
+                        if isinstance(point, dict) and "text" in point:
+                            # New highlighted format
+                            html += f'<li>{render_highlighted_text(point["text"], point.get("highlights"))}</li>'
+                        else:
+                            # Old string format
+                            html += f'<li>{clean_text(point)}</li>'
                     html += '</ul>'
             elif project.get("description"):
                 html += f'<div class="item-description">{clean_text(project["description"])}</div>'

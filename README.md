@@ -103,6 +103,9 @@ LI_TOTP_SECRET=your_2fa_secret  # Optional for 2FA
 # OpenAI API
 OPENAI_API_KEY=your_openai_api_key
 
+# GitHub API (for repository processing)
+PAT_GITHUB=your_github_personal_access_token
+
 # Google Knowledge Graph API (for company/school lookups)
 GOOGLE_KG_API=your_google_kg_api_key
 ```
@@ -110,6 +113,18 @@ GOOGLE_KG_API=your_google_kg_api_key
 **Authentication Methods:**
 - **Preferred**: Cookie-based (`LI_AT` + `LI_JSESSIONID`) - More reliable for automation
 - **Fallback**: Username/password - May require 2FA verification
+
+### GitHub Token Setup
+
+For GitHub repository processing, you need a Personal Access Token:
+
+1. **Create Token**: Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. **Required Permissions**: 
+   - `repo` (Full control of private repositories)
+   - `read:user` (Read user profile data)
+3. **Add to .env**: `PAT_GITHUB=your_token_here`
+
+**Note**: The token needs access to read repository data, languages, and commit history.
 
 ## 🎨 Configuration & Styling
 

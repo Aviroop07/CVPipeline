@@ -41,18 +41,7 @@ def load_prompt_template(name: str, **kwargs) -> str:
     template_text = tpl_path.read_text(encoding="utf-8")
     return StrTemplate(template_text).substitute(**kwargs)
 
-def call_openai_api(prompt: str = None, messages: list = None) -> str:
-    """Send prompt or messages to OpenAI chat API (synchronous version).
-    
-    Args:
-        prompt (str, optional): Simple prompt to send (will be converted to messages format)
-        messages (list, optional): List of message dictionaries for chat API
-        
-    Returns:
-        str: OpenAI response or empty string if API key not available or call fails
-    """
-    # Run the async version in a new event loop for backward compatibility
-    return asyncio.run(call_openai_api_async(prompt, messages))
+
 
 async def call_openai_api_async(prompt: str = None, messages: list = None) -> str:
     """Send prompt or messages to OpenAI chat API (asynchronous version).
@@ -221,16 +210,7 @@ async def filter_and_categorize_skills_with_openai_async(skills: List[str]) -> D
         log.warning("Failed to parse filtered skills JSON: %s", exc)
         return {"General": skills}
 
-def filter_and_categorize_skills_with_openai(skills: List[str]) -> Dict[str, List[str]]:
-    """Filter and categorize skills using OpenAI (synchronous wrapper).
-    
-    Args:
-        skills (List[str]): List of skill names
-        
-    Returns:
-        Dict[str, List[str]]: Skills grouped by category
-    """
-    return asyncio.run(filter_and_categorize_skills_with_openai_async(skills))
+
 
 async def extract_bullet_points_async(text: str) -> List[str]:
     """Extract bullet points from text using heuristics or OpenAI (async version).
@@ -266,16 +246,7 @@ async def extract_bullet_points_async(text: str) -> List[str]:
         log.warning("Failed to parse points JSON: %s", exc)
         return [text]
 
-def extract_bullet_points(text: str) -> List[str]:
-    """Extract bullet points from text using heuristics or OpenAI (synchronous wrapper).
-    
-    Args:
-        text (str): Text to extract points from
-        
-    Returns:
-        List[str]: List of bullet points
-    """
-    return asyncio.run(extract_bullet_points_async(text))
+
 
 def format_date_range(start: str|None, end: str|None) -> str:
     """Format date range from YYYY-MM strings.
@@ -443,16 +414,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
 
     return data
 
-def process_resume_with_openai(data: Dict[str, Any]) -> Dict[str, Any]:
-    """Apply OpenAI enhancements to resume data (synchronous wrapper).
-    
-    Args:
-        data (Dict): Resume data in JSON-Resume format
-        
-    Returns:
-        Dict: Enhanced resume data
-    """
-    return asyncio.run(process_resume_with_openai_async(data))
+
 
 def load_resume_data(input_path=None):
     """Load resume data from JSON file.
@@ -506,7 +468,7 @@ def enhance_resume_with_openai():
     data = load_resume_data()
     
     # Process with OpenAI (async)
-    enhanced_data = process_resume_with_openai(data)
+    enhanced_data = asyncio.run(process_resume_with_openai_async(data))
     
     # Save enhanced data back to resume.json
     save_enhanced_resume_data(enhanced_data)
@@ -574,16 +536,7 @@ async def extract_experience_projects_async(experience_text: str) -> List[Dict[s
         log.warning("Experience extraction failed: %s", e)
         return []
 
-def extract_experience_projects(experience_text: str) -> List[Dict[str, Any]]:
-    """Extract project data from experience text using OpenAI with examples (synchronous wrapper).
-    
-    Args:
-        experience_text (str): Raw experience text to extract projects from
-        
-    Returns:
-        List[Dict]: List of extracted project dictionaries
-    """
-    return asyncio.run(extract_experience_projects_async(experience_text))
+
 
 async def highlight_tech_skills_async(description: str) -> List[str]:
     """Extract technical skills and quantitative impacts from project description (async version).
@@ -670,16 +623,7 @@ async def highlight_tech_skills_async(description: str) -> List[str]:
         log.warning("Tech highlighting failed: %s", e)
         return []
 
-def highlight_tech_skills(description: str) -> List[str]:
-    """Extract technical skills and quantitative impacts from project description (synchronous wrapper).
-    
-    Args:
-        description (str): Project description text
-        
-    Returns:
-        List[str]: List of highlighted technical terms and metrics
-    """
-    return asyncio.run(highlight_tech_skills_async(description))
+
 
 # Legacy main function for backward compatibility
 def main():

@@ -53,10 +53,10 @@ FONT_FORMAT = "opentype"  # "opentype" for .otf, "truetype" for .ttf, "woff2" fo
 
 # HTML generation settings - using configurable font family
 HTML_FONT_FAMILY = f"'{FONT_FAMILY_NAME}', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-HTML_FONT_SIZE_BASE = "13px"
-HTML_FONT_SIZE_NAME = "20px"
-HTML_FONT_SIZE_SECTION = "15px"
-HTML_FONT_SIZE_CONTACT = "13px"
+HTML_FONT_SIZE_BASE = "12px"
+HTML_FONT_SIZE_NAME = "18px"
+HTML_FONT_SIZE_SECTION = "14px"
+HTML_FONT_SIZE_CONTACT = "12px"
 HTML_LINE_HEIGHT = "1.3"
 
 # HTML margin/padding settings (in pixels)

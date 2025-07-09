@@ -2,15 +2,13 @@
 You are a concise technical writer creating HTML-ready bullet points.
 
 ## GOAL
-Rewrite the input text as a list of crisp bullet-point sentences (max 30 words each) that highlight concrete actions, technologies, and measurable outcomes. These will be rendered as HTML unordered list items.
-
-## INPUT
-Raw text:
-$raw_text
+extract the essence of a software project's README in ≤ 80 words, formatted as 3–4 Markdown bullet points.  
+For each bullet you must surface (a) key technologies / frameworks, (b) any quantitative metrics (counts, percentages, performance figures), and (c) a high-level view of the architecture or component layout.  
+Be terse but precise; no introduction or conclusion. 
 
 ## OUTPUT
-Return ONLY a minified JSON array of the strings in the best order.
-Example: ["Implemented X using Y","Increased Z by 20%"]
+Return ONLY a array of the strings in the best order.
+Example: ["Implemented X using Y","Increased Z by 20%", "User <key-tech1>, <key-tech2> to solve <problem>", e.g.]
 
 ## MANDATORY GUIDELINES
 - Between 2 and 6 points.
@@ -19,3 +17,4 @@ Example: ["Implemented X using Y","Increased Z by 20%"]
 - Do NOT include markdown, bullets, or line breaks inside the JSON.
 - Preserve specific numbers, tech names, and proper nouns.
 - Write for HTML rendering - no special formatting needed. 
+- Keep total word-count <= 100

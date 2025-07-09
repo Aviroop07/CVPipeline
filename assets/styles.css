@@ -194,15 +194,23 @@ body {
 
 /* Link Styles */
 .company-link,
-.school-link,
-.project-link {
+.school-link {
     color: #0066cc;
     text-decoration: none;
     font-weight: bold;
 }
 
 .company-link:hover,
-.school-link:hover,
+.school-link:hover {
+    text-decoration: underline;
+}
+
+.project-link {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
 .project-link:hover {
     text-decoration: underline;
 }

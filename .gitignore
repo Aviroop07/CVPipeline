@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+.python-version
 .Python
 build/
 develop-eggs/
@@ -40,6 +41,7 @@ venv.bak/
 *.swp
 *.swo
 *~
+.cursorignore
 
 # Operating System
 .DS_Store

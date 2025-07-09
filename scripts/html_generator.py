@@ -273,15 +273,23 @@ body {{
 
 /* Link Styles */
 .company-link,
-.school-link,
-.project-link {{
+.school-link {{
     color: {config.HTML_COLOR_LINK};
     text-decoration: none;
     font-weight: bold;
 }}
 
 .company-link:hover,
-.school-link:hover,
+.school-link:hover {{
+    text-decoration: underline;
+}}
+
+.project-link {{
+    color: #000000;
+    text-decoration: underline;
+    font-weight: normal;
+}}
+
 .project-link:hover {{
     text-decoration: underline;
 }}
@@ -633,10 +641,13 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
         html += '<section class="section"><h2 class="section-title">Projects</h2>'
         for project in projects:
             html += '<div class="item"><div class="item-header"><div class="item-title">'
+            
+            # Project name as plain text
+            html += f'<span class="project-name">{clean_text(project.get("name", ""))}</span>'
+            
+            # Add GitHub link with pipe delimiter if URL exists
             if project.get("url"):
-                html += f'<a href="{clean_text(project["url"])}" target="_blank" class="project-link">{clean_text(project.get("name", ""))}</a>'
-            else:
-                html += f'<span class="project-name">{clean_text(project.get("name", ""))}</span>'
+                html += f' | <a href="{clean_text(project["url"])}" target="_blank" class="project-link">GitHub</a>'
             
             html += '</div>'
             

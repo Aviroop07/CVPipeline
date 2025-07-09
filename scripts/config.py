@@ -86,3 +86,9 @@ HTML_MOBILE_BREAKPOINT = "768px"
 
 # Google knowledge graph API details
 KG_URL = "https://kgsearch.googleapis.com/v1/entities:search"
+
+
+# Github details
+GITHUB_URL = "https://github.com"
+README_FILE = "README.md"
+GITHUB_USERNAME = "Aviroop07"  # Default GitHub username

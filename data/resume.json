@@ -64,7 +64,7 @@
             "layout-transformer",
             "GPT-4 Vision",
             "Mistral OCR",
-            "Python",
+            "Python imaging",
             "Pandas",
             "3s"
           ]
@@ -109,8 +109,9 @@
             "Spring Boot",
             "MongoDB",
             "JWT",
+            "50 ms",
             "API Gateway",
-            "50 ms"
+            "client-side service discovery"
           ]
         }
       ],
@@ -181,42 +182,49 @@
   ],
   "projects": [
     {
-      "name": "Distributed P2P Network",
-      "description": "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)",
-      "startDate": "2025-02",
-      "endDate": "2025-05",
-      "url": "",
+      "name": "my-resume",
+      "description": "# Resume Generation Pipeline\n\nAn intelligent, automated resume generation system that fetches LinkedIn profile data, enriches it with AI enhancement and entity search, validates all URLs, and generate...",
+      "startDate": "2024-07",
+      "endDate": "2025-07",
+      "url": "https://github.com/Aviroop07/my-resume",
       "points": [
-        "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)"
+        "Implemented a 6-step modular Python pipeline from LinkedIn data fetching to PDF generation with asyncio-based modules featuring logging and error handling.",
+        "Developed an AI enhancement module using OpenAI o4-mini to filter 47 skills, extract 2 projects, and highlight 5 technical skills asynchronously.",
+        "Integrated a URL validation system with httpx supporting 10 concurrent requests to validate 5 URLs with 100% success rate.",
+        "Generated responsive HTML and PDF using Playwright with dynamic CSS, completing 6 pipeline steps in 62.3 seconds."
       ],
-      "period": "Feb – May, 2025"
+      "period": "Jul, 2024 – Jul, 2025",
+      "commit_count": 47
     },
     {
-      "name": "LinkedIn Puzzle Solver",
-      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
-      "startDate": "2024-08",
-      "endDate": "2024-08",
-      "url": "",
+      "name": "VARC_APP",
+      "description": "# Daily Article Selector\n\nA Streamlit application that selects a random article daily from The Hindu or The Telegraph based on specified topic probabilities:\n\n- Business and economics (20%)\n- Science,...",
+      "startDate": "2025-04",
+      "endDate": "2025-04",
+      "url": "https://github.com/Aviroop07/VARC_APP",
       "points": [
-        "Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.",
-        "Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.",
-        "Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads."
+        "Developed a Streamlit app that scrapes articles from The Hindu and The Telegraph using Python modules under app/scrapers.",
+        "Implemented daily article selection with fixed output per day employing topic-based probabilities (Business 20%, Science 50%, Art 20%, Philosophy 10%).",
+        "Structured the codebase into UI components in app/components, scraping logic in app/scrapers, utilities in app/utils, and main entry in app/main.py.",
+        "Integrated caching of articles in data/ and managed dependencies via requirements.txt."
       ],
-      "period": "Aug – Aug, 2024"
+      "period": "Apr, 2025",
+      "commit_count": 20
     },
     {
-      "name": "Compiler Design Project",
-      "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
-      "startDate": "2024-02",
-      "endDate": "2024-04",
-      "url": "",
+      "name": "distributed-p2p-network",
+      "description": "# Distributed Text Processing System\n\nA distributed system for processing and analyzing text data using multiple nodes for computation and storage.\n\n## System Architecture\n\nThe system consists of thre...",
+      "startDate": "2025-03",
+      "endDate": "2025-03",
+      "url": "https://github.com/Aviroop07/distributed-p2p-network",
       "points": [
-        "Implemented a bottom up parser in C language for a simple C like language with for loops, variable",
-        "declarations and functions",
-        "Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.",
-        "Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing."
+        "Deployed Python 3.8+ distributed text processing system across three node tiers: 5 Main, 10 Data, and 10 Compute nodes coordinating via ports 8000-10999.",
+        "Implemented chunk-based storage and replication on 10 Data Nodes using Python services to manage persistence and distribution.",
+        "Designed semantic search capabilities and embedding generation on 10 Compute Nodes leveraging Python for similarity analysis and real-time text chunk processing.",
+        "Established load balancing and health monitoring across 5 Main Nodes to coordinate task distribution and oversee API operations."
       ],
-      "period": "Feb – Apr, 2024"
+      "period": "Mar, 2025",
+      "commit_count": 1
     }
   ],
   "skills": [
@@ -227,61 +235,52 @@
       "name": "C++"
     },
     {
-      "name": "JavaScript"
-    },
-    {
       "name": "Java"
     },
     {
       "name": "C"
     },
     {
-      "name": "Prompt Engineering"
+      "name": "JavaScript"
     },
     {
-      "name": "Large Language Models (LLM)"
-    },
-    {
-      "name": "Natural Language Processing (NLP)"
-    },
-    {
-      "name": "Convolutional Neural Networks (CNN)"
-    },
-    {
-      "name": "Transformers"
+      "name": "Machine Learning"
     },
     {
       "name": "Deep Learning"
     },
     {
-      "name": "OpenAI API"
+      "name": "Natural Language Processing (NLP)"
     },
     {
-      "name": "API Gateways"
+      "name": "Transformers"
+    },
+    {
+      "name": "Convolutional Neural Networks (CNN)"
+    },
+    {
+      "name": "Recommender Systems"
     },
     {
       "name": "REST APIs"
     },
     {
-      "name": "FastAPI"
-    },
-    {
-      "name": "Streamlit"
-    },
-    {
-      "name": "Spring Boot"
+      "name": "Node.js"
     },
     {
       "name": "Angular"
     },
     {
-      "name": "Node.js"
+      "name": "Spring Boot"
+    },
+    {
+      "name": "Pandas (Software)"
+    },
+    {
+      "name": "NumPy"
     },
     {
       "name": "MySQL"
-    },
-    {
-      "name": "SQLAlchemy"
     },
     {
       "name": "MongoDB"
@@ -294,18 +293,6 @@
     },
     {
       "name": "Git"
-    },
-    {
-      "name": "Pandas (Software)"
-    },
-    {
-      "name": "Scikit-Learn"
-    },
-    {
-      "name": "NumPy"
-    },
-    {
-      "name": "Jupyter"
     }
   ],
   "languages": [
@@ -326,43 +313,36 @@
     "Programming Languages": [
       "Python",
       "C++",
-      "JavaScript",
       "Java",
-      "C"
+      "C",
+      "JavaScript"
     ],
-    "Machine Learning & AI": [
-      "Prompt Engineering",
-      "Large Language Models (LLM)",
+    "AI & Machine Learning": [
+      "Machine Learning",
+      "Deep Learning",
       "Natural Language Processing (NLP)",
-      "Convolutional Neural Networks (CNN)",
       "Transformers",
-      "Deep Learning"
+      "Convolutional Neural Networks (CNN)",
+      "Recommender Systems"
     ],
-    "APIs & Integration": [
-      "OpenAI API",
-      "API Gateways",
+    "APIs & Libraries": [
       "REST APIs",
-      "FastAPI"
-    ],
-    "Frameworks & Web Development": [
-      "Streamlit",
-      "Spring Boot",
+      "Node.js",
       "Angular",
-      "Node.js"
+      "Spring Boot",
+      "Pandas (Software)",
+      "NumPy"
     ],
     "Databases & Data Storage": [
       "MySQL",
-      "SQLAlchemy",
       "MongoDB",
       "SQL"
     ],
-    "Developer Tools & Libraries": [
-      "pytest",
-      "Git",
-      "Pandas (Software)",
-      "Scikit-Learn",
-      "NumPy",
-      "Jupyter"
+    "Testing & QA": [
+      "pytest"
+    ],
+    "DevOps & Cloud": [
+      "Git"
     ]
   }
 }

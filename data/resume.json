@@ -38,6 +38,7 @@
             "Guidewire ClaimCenter",
             "GPT-4 Vision/Text",
             "Python",
+            "30-event window",
             "80%",
             "23 pts",
             "halved inference latency"
@@ -250,7 +251,7 @@
       "name": "Deep Learning"
     },
     {
-      "name": "Natural Language Processing (NLP)"
+      "name": "SQLAlchemy"
     },
     {
       "name": "Transformers"
@@ -280,7 +281,7 @@
       "name": "NumPy"
     },
     {
-      "name": "MySQL"
+      "name": "Jupyter"
     },
     {
       "name": "MongoDB"
@@ -289,7 +290,7 @@
       "name": "SQL"
     },
     {
-      "name": "pytest"
+      "name": "Machine Learning"
     },
     {
       "name": "Git"

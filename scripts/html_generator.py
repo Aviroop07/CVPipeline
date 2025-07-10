@@ -182,17 +182,18 @@ html, body {{
 }}
 
 body {{
-    font-family: "{config.HTML_FONT_FAMILY}";
-    line-height: {config.HTML_LINE_HEIGHT};
-    color: {config.HTML_COLOR_PRIMARY};
-    background-color: #ffffff;
-    max-width: 800px;
-    margin: 0;
-    margin-left: {config.HTML_BODY_MARGIN_LEFT};
-    margin-right: {config.HTML_BODY_MARGIN_RIGHT};
-    padding: {config.HTML_BODY_PADDING};
-    font-size: {config.HTML_FONT_SIZE_BASE};
-}}
+        font-family: "{config.HTML_FONT_FAMILY}";
+        line-height: {config.HTML_LINE_HEIGHT};
+        color: {config.HTML_COLOR_PRIMARY};
+        background-color: #ffffff;
+        max-width: 800px;
+        margin: 0;
+        margin-left: {config.HTML_BODY_MARGIN_LEFT};
+        margin-right: {config.HTML_BODY_MARGIN_RIGHT};
+        padding: {config.HTML_BODY_PADDING};
+        font-size: {config.HTML_FONT_SIZE_BASE_FALLBACK}; /* Fallback for older browsers */
+        font-size: {config.HTML_FONT_SIZE_BASE};
+    }}
 
 .container {{
     background: white;
@@ -208,18 +209,20 @@ body {{
     padding-bottom: {config.HTML_HEADER_PADDING_BOTTOM};
 }}
 
-.name {{
-    font-size: {config.HTML_FONT_SIZE_NAME};
-    font-weight: bold;
-    color: {config.HTML_COLOR_PRIMARY};
-    margin-bottom: 10px;
-}}
+    .name {{
+        font-size: {config.HTML_FONT_SIZE_NAME_FALLBACK}; /* Fallback for older browsers */
+        font-size: {config.HTML_FONT_SIZE_NAME};
+        font-weight: bold;
+        color: {config.HTML_COLOR_PRIMARY};
+        margin-bottom: 10px;
+    }}
 
-.contact-info {{
-    font-size: {config.HTML_FONT_SIZE_CONTACT};
-    color: {config.HTML_COLOR_SECONDARY};
-    line-height: 1.4;
-}}
+    .contact-info {{
+        font-size: {config.HTML_FONT_SIZE_CONTACT_FALLBACK}; /* Fallback for older browsers */
+        font-size: {config.HTML_FONT_SIZE_CONTACT};
+        color: {config.HTML_COLOR_SECONDARY};
+        line-height: 1.4;
+    }}
 
 .contact-info a {{
     color: {config.HTML_COLOR_LINK};
@@ -240,14 +243,15 @@ body {{
     margin-top: 0;
 }}
 
-.section-title {{
-    font-size: {config.HTML_FONT_SIZE_SECTION};
-    font-weight: bold;
-    color: {config.HTML_COLOR_PRIMARY};
-    text-transform: uppercase;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}}
+    .section-title {{
+        font-size: {config.HTML_FONT_SIZE_SECTION_FALLBACK}; /* Fallback for older browsers */
+        font-size: {config.HTML_FONT_SIZE_SECTION};
+        font-weight: bold;
+        color: {config.HTML_COLOR_PRIMARY};
+        text-transform: uppercase;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }}
 
 /* Item Styles */
 .item {{
@@ -433,7 +437,8 @@ em.highlight,
     }}
     
     .name {{
-        font-size: 24px;
+        font-size: {config.HTML_FONT_SIZE_NAME_MOBILE_FALLBACK}; /* Fallback for older browsers */
+        font-size: {config.HTML_FONT_SIZE_NAME_MOBILE};
     }}
     
     .item-header {{
@@ -448,7 +453,8 @@ em.highlight,
     }}
     
     .contact-info {{
-        font-size: 13px;
+        font-size: {config.HTML_FONT_SIZE_CONTACT_MOBILE_FALLBACK}; /* Fallback for older browsers */
+        font-size: {config.HTML_FONT_SIZE_CONTACT_MOBILE};
     }}
     
     .sub-project {{

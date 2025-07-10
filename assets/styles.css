@@ -75,17 +75,18 @@ html, body {
 }
 
 body {
-    font-family: "'HelveticaNeue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
-    line-height: 1.3;
-    color: #2c3e50;
-    background-color: #ffffff;
-    max-width: 800px;
-    margin: 0;
-    margin-left: 35px;
-    margin-right: 20px;
-    padding: 3px;
-    font-size: 13px;
-}
+        font-family: "'HelveticaNeue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+        line-height: 1.3;
+        color: #2c3e50;
+        background-color: #ffffff;
+        max-width: 800px;
+        margin: 0;
+        margin-left: 35px;
+        margin-right: 20px;
+        padding: 3px;
+        font-size: 12px; /* Fallback for older browsers */
+        font-size: 1.5vh;
+    }
 
 .container {
     background: white;
@@ -101,18 +102,20 @@ body {
     padding-bottom: 3px;
 }
 
-.name {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
+    .name {
+        font-size: 18px; /* Fallback for older browsers */
+        font-size: 2.2vh;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
 
-.contact-info {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.4;
-}
+    .contact-info {
+        font-size: 12px; /* Fallback for older browsers */
+        font-size: 1.5vh;
+        color: #666;
+        line-height: 1.4;
+    }
 
 .contact-info a {
     color: #0066cc;
@@ -133,14 +136,15 @@ body {
     margin-top: 0;
 }
 
-.section-title {
-    font-size: 15px;
-    font-weight: bold;
-    color: #2c3e50;
-    text-transform: uppercase;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
+    .section-title {
+        font-size: 14px; /* Fallback for older browsers */
+        font-size: 1.8vh;
+        font-weight: bold;
+        color: #2c3e50;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 
 /* Item Styles */
 .item {
@@ -326,7 +330,8 @@ em.highlight,
     }
     
     .name {
-        font-size: 24px;
+        font-size: 24px; /* Fallback for older browsers */
+        font-size: 3vh;
     }
     
     .item-header {
@@ -341,7 +346,8 @@ em.highlight,
     }
     
     .contact-info {
-        font-size: 13px;
+        font-size: 13px; /* Fallback for older browsers */
+        font-size: 1.6vh;
     }
     
     .sub-project {

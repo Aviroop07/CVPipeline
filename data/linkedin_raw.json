@@ -16,14 +16,14 @@
       "artifacts": [
         {
           "width": 794,
-          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQKm2NimzY4mXgAAAZfvkqrJpM4FDs6uq12SSIzMun_WR05CUe0fdYsM3g&e=1752157456&v=beta&t=jqdjEnFvpwapD9kgnpraEkqw8E4Y7FfeJ6sUif3Gk9c",
-          "expiresAt": 1752157456000,
+          "fileIdentifyingUrlPathSegment": "900_1200/profile-originalphoto-shrink_900_1200/0/1698469168932?m=AQIird5AQv9dngAAAZgAbFKKTjj4TLhaWedICTVDYN_3-FGMNjqaTcgrqA&e=1752440155&v=beta&t=0XWdRAfx87fHWRH7bVnTuWe_tYDM7ejwHYJCu8lcBI8",
+          "expiresAt": 1752440155000,
           "height": 804
         },
         {
           "width": 444,
-          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQKiS1Q-2HSzVgAAAZfvkqrJv_o9OUgh3LKOoFOjoGqkXb9hNawFn4PAEw&e=1752157456&v=beta&t=WAbl0k2QDtfNZvf_RVKuSJoKMhaX0LzGw3-5SfUWbok",
-          "expiresAt": 1752157456000,
+          "fileIdentifyingUrlPathSegment": "450_600/profile-originalphoto-shrink_450_600/0/1698469168932?m=AQI4Te1JUd6SPgAAAZgAbFKKrQ3elwE_5JrqQFSj7VMc84QLY5RhmWJefQ&e=1752440155&v=beta&t=38txWdfbMt3OARBpGbgJRW0Q4jzhkTvZKo8Qk1YfK30",
+          "expiresAt": 1752440155000,
           "height": 450
         }
       ],
@@ -73,10 +73,10 @@
     }
   },
   "displayPictureUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_",
-  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752678000&v=beta&t=bi3XvCapW1iB0m6Pen7sDKcS35B8-TtOIH6wqOo4X_g",
-  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752678000&v=beta&t=QQrs6ClLRpdoBCmJqcGWqlJHQuL43dMeYoLWaX7mHQU",
-  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752678000&v=beta&t=3Zg_3TjD7V-AxlvyTataNYl0RT_HkXt7oQd9dYWbwKU",
-  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752678000&v=beta&t=3FXuYj0iwusCPLj-gU_Mt7p1jx4sacQrefycSNkON30",
+  "img_400_400": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752958800&v=beta&t=2G0CqB5m0yddESUiv1fKbZrbYMeTLMqcG03KuTPCrn8",
+  "img_200_200": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752958800&v=beta&t=aUd1ScfgP7vVnOyZ58DyqsSG3Nly4FfQH3uIguLAoto",
+  "img_800_800": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752958800&v=beta&t=HsOlJ1ZZOVPeyLuL3vv_Xc5GXLJrY_xm6I1DdC9aBi0",
+  "img_100_100": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752958800&v=beta&t=AStqcjbHdXCsz0UJdrIDK0rEnVRwewm0NUi9aln1o10",
   "profile_id": "ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "profile_urn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA",
   "member_urn": "urn:li:member:946910996",
@@ -162,10 +162,10 @@
         "entityUrn": "urn:li:fs_miniSchool:5101216",
         "active": true,
         "schoolName": "Jadavpur University",
-        "trackingId": "O9B3GFFdSneR/CFfmCUeyA==",
+        "trackingId": "A4nQV/AERNOeCS2jNDjtJw==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C510BAQET3otWuPTosQ/company-logo_"
       },
-      "grade": "8.25",
+      "grade": "8.25 (76.3%)",
       "timePeriod": {
         "endDate": {
           "month": 7,
@@ -189,7 +189,7 @@
         "entityUrn": "urn:li:fs_miniSchool:3230309",
         "active": true,
         "schoolName": "Burdwan Municipal High School",
-        "trackingId": "NdqqfdfST2GoNuU5d/izKg==",
+        "trackingId": "CzTRunhHRHKlDbLUn+O/dw==",
         "logoUrl": "https://media.licdn.com/dms/image/v2/C560BAQEWuTbLbvUAhg/company-logo_"
       },
       "grade": "O",
@@ -278,20 +278,20 @@
             "artifacts": [
               {
                 "width": 200,
-                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1757548800&v=beta&t=drrHJl8fm5pZrYR0IoSgK4KTA2JdKZhGqe8Wct6KcVg",
-                "expiresAt": 1757548800000,
+                "fileIdentifyingUrlPathSegment": "200_200/company-logo_200_200/0/1631333024279?e=1755129600&v=beta&t=Vx_9GgJZLE9lVeW6zY2eJxszXr-xAneYTr9ZUK5_0ZM",
+                "expiresAt": 1755129600000,
                 "height": 200
               },
               {
                 "width": 100,
-                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1757548800&v=beta&t=ycSW2JXO4lvbXfMbmn1x4xO2b7HtJRNFiUFc1vx2rQE",
-                "expiresAt": 1757548800000,
+                "fileIdentifyingUrlPathSegment": "100_100/company-logo_100_100/0/1631333024279?e=1755129600&v=beta&t=7xkRAQNxVvw61WP8IGpZk_zs9qlTqTxlUBadOL6GBsU",
+                "expiresAt": 1755129600000,
                 "height": 100
               },
               {
                 "width": 400,
-                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1757548800&v=beta&t=uy77l8A3vNYJsSghoiA0j5bUVpwY2hpmvpXYQ5YB-2k",
-                "expiresAt": 1757548800000,
+                "fileIdentifyingUrlPathSegment": "400_400/company-logo_400_400/0/1631333024279?e=1755129600&v=beta&t=BhOCvWNT6ekCVC_e33lBcYoR2I2v_LnPQwUQC78Zf4w",
+                "expiresAt": 1755129600000,
                 "height": 400
               }
             ],
@@ -300,7 +300,7 @@
         },
         "universalName": "nptel",
         "dashCompanyUrn": "urn:li:fsd_company:13229455",
-        "trackingId": "k68cPobnQrWSOWaBGxU1lQ=="
+        "trackingId": "EBIUiyW7TvW02hvhjjETkw=="
       },
       "displaySource": "google.com",
       "companyUrn": "urn:li:fs_miniCompany:13229455",
@@ -355,33 +355,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752678000&v=beta&t=bi3XvCapW1iB0m6Pen7sDKcS35B8-TtOIH6wqOo4X_g",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752958800&v=beta&t=2G0CqB5m0yddESUiv1fKbZrbYMeTLMqcG03KuTPCrn8",
+                    "expiresAt": 1752958800000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752678000&v=beta&t=QQrs6ClLRpdoBCmJqcGWqlJHQuL43dMeYoLWaX7mHQU",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752958800&v=beta&t=aUd1ScfgP7vVnOyZ58DyqsSG3Nly4FfQH3uIguLAoto",
+                    "expiresAt": 1752958800000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752678000&v=beta&t=3Zg_3TjD7V-AxlvyTataNYl0RT_HkXt7oQd9dYWbwKU",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752958800&v=beta&t=HsOlJ1ZZOVPeyLuL3vv_Xc5GXLJrY_xm6I1DdC9aBi0",
+                    "expiresAt": 1752958800000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752678000&v=beta&t=3FXuYj0iwusCPLj-gU_Mt7p1jx4sacQrefycSNkON30",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752958800&v=beta&t=AStqcjbHdXCsz0UJdrIDK0rEnVRwewm0NUi9aln1o10",
+                    "expiresAt": 1752958800000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "tJAaFTkZSCKpYUokICjzPg=="
+            "trackingId": "XNcxsVpRSZulfwJVKMmoSw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074288541,460000641)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -416,33 +416,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752678000&v=beta&t=bi3XvCapW1iB0m6Pen7sDKcS35B8-TtOIH6wqOo4X_g",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752958800&v=beta&t=2G0CqB5m0yddESUiv1fKbZrbYMeTLMqcG03KuTPCrn8",
+                    "expiresAt": 1752958800000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752678000&v=beta&t=QQrs6ClLRpdoBCmJqcGWqlJHQuL43dMeYoLWaX7mHQU",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752958800&v=beta&t=aUd1ScfgP7vVnOyZ58DyqsSG3Nly4FfQH3uIguLAoto",
+                    "expiresAt": 1752958800000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752678000&v=beta&t=3Zg_3TjD7V-AxlvyTataNYl0RT_HkXt7oQd9dYWbwKU",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752958800&v=beta&t=HsOlJ1ZZOVPeyLuL3vv_Xc5GXLJrY_xm6I1DdC9aBi0",
+                    "expiresAt": 1752958800000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752678000&v=beta&t=3FXuYj0iwusCPLj-gU_Mt7p1jx4sacQrefycSNkON30",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752958800&v=beta&t=AStqcjbHdXCsz0UJdrIDK0rEnVRwewm0NUi9aln1o10",
+                    "expiresAt": 1752958800000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "tJAaFTkZSCKpYUokICjzPg=="
+            "trackingId": "XNcxsVpRSZulfwJVKMmoSw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074567873,460000648)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -478,33 +478,33 @@
                 "artifacts": [
                   {
                     "width": 400,
-                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752678000&v=beta&t=bi3XvCapW1iB0m6Pen7sDKcS35B8-TtOIH6wqOo4X_g",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "400_400/profile-framedphoto-shrink_400_400/0/1698469170079?e=1752958800&v=beta&t=2G0CqB5m0yddESUiv1fKbZrbYMeTLMqcG03KuTPCrn8",
+                    "expiresAt": 1752958800000,
                     "height": 400
                   },
                   {
                     "width": 200,
-                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752678000&v=beta&t=QQrs6ClLRpdoBCmJqcGWqlJHQuL43dMeYoLWaX7mHQU",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "200_200/profile-framedphoto-shrink_200_200/0/1698469170079?e=1752958800&v=beta&t=aUd1ScfgP7vVnOyZ58DyqsSG3Nly4FfQH3uIguLAoto",
+                    "expiresAt": 1752958800000,
                     "height": 200
                   },
                   {
                     "width": 800,
-                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752678000&v=beta&t=3Zg_3TjD7V-AxlvyTataNYl0RT_HkXt7oQd9dYWbwKU",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "800_800/profile-framedphoto-shrink_800_800/0/1698469170079?e=1752958800&v=beta&t=HsOlJ1ZZOVPeyLuL3vv_Xc5GXLJrY_xm6I1DdC9aBi0",
+                    "expiresAt": 1752958800000,
                     "height": 800
                   },
                   {
                     "width": 100,
-                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752678000&v=beta&t=3FXuYj0iwusCPLj-gU_Mt7p1jx4sacQrefycSNkON30",
-                    "expiresAt": 1752678000000,
+                    "fileIdentifyingUrlPathSegment": "100_100/profile-framedphoto-shrink_100_100/0/1698469170079?e=1752958800&v=beta&t=AStqcjbHdXCsz0UJdrIDK0rEnVRwewm0NUi9aln1o10",
+                    "expiresAt": 1752958800000,
                     "height": 100
                   }
                 ],
                 "rootUrl": "https://media.licdn.com/dms/image/v2/D5635AQEnxd2b9x3E9g/profile-framedphoto-shrink_"
               }
             },
-            "trackingId": "tJAaFTkZSCKpYUokICjzPg=="
+            "trackingId": "XNcxsVpRSZulfwJVKMmoSw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003237)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA"
@@ -549,7 +549,7 @@
                 "rootUrl": "https://media.licdn.com/dms/image/v2/C4E03AQHeaLanNN31WQ/profile-displayphoto-shrink_"
               }
             },
-            "trackingId": "iyQcYBFlTWioOvZMirah4A=="
+            "trackingId": "Kl/XnCdTQcyAsNSP7Oy8Fw=="
           },
           "entityUrn": "urn:li:fs_contributor:(ACoAADhwtxQBsXApQoktnF30iLk5zpuxpsuLAvA,1074787049,460003238)",
           "profileUrn": "urn:li:fs_miniProfile:ACoAAD1OzFcBrJg_TElBQE1ARG6yj-Y6ntPGxzo"

@@ -109,9 +109,8 @@
             "Spring Boot",
             "MongoDB",
             "JWT",
-            "50 ms",
             "API Gateway",
-            "service discovery"
+            "50 ms"
           ]
         }
       ],
@@ -127,7 +126,7 @@
       "institution": "Jadavpur University",
       "area": "Computer Science and Engineering",
       "studyType": "Bachelor of Engineering - BE (Hons.)",
-      "score": "8.25",
+      "score": "8.25 (76.3%)",
       "startDate": "2021-12",
       "endDate": "2025-07",
       "url": "",
@@ -183,54 +182,50 @@
   "projects": [
     {
       "name": "CVPipeline",
-      "description": "# Resume Generation Pipeline\n\nAn intelligent, automated resume generation system that fetches LinkedIn profile data, enriches it with AI enhancement and entity search, validates all URLs, and generate...",
+      "description": "# Resume Generation Pipeline\n\nAn intelligent, automated resume generation system that transforms LinkedIn profile data into professional, AI-enhanced resumes with validated URLs and multiple output fo...",
       "startDate": "2024-07",
       "endDate": "2025-07",
       "url": "https://github.com/Aviroop07/CVPipeline",
       "points": [
         {
-          "text": "Implemented a 6-step modular pipeline in Python with linkedin-api, OpenAI, httpx, and Playwright for LinkedIn data fetching, AI enhancement, URL validation, HTML generation, and PDF conversion.",
+          "text": "Implemented a 6-step modular pipeline integrating LinkedIn API, OpenAI API, Google Knowledge Graph API, PyGithub, httpx and Playwright.",
           "highlights": [
-            "Python",
-            "linkedin-api",
-            "OpenAI",
+            "6-step",
+            "LinkedIn API",
+            "OpenAI API",
+            "Google Knowledge Graph API",
+            "PyGithub",
             "httpx",
             "Playwright"
           ]
         },
         {
-          "text": "Enhanced resume with OpenAI processing filtering 47 skills, extracting 2 projects, and highlighting 5 tech metrics via async openai_processor.py.",
+          "text": "Developed an async URL Validator module using httpx to validate 100% of URLs and remove broken links in the pipeline.",
           "highlights": [
-            "OpenAI",
-            "47",
-            "2",
-            "5"
-          ]
-        },
-        {
-          "text": "Validated and bulk-processed 5 URLs concurrently with url_validator.py using httpx limiting to 10 concurrent requests, integrated with entity_search Google KG lookups.",
-          "highlights": [
-            "5 URLs",
-            "url_validator.py",
+            "async",
             "httpx",
-            "10 concurrent requests",
-            "entity_search",
-            "Google KG"
+            "100%"
           ]
         },
         {
-          "text": "Generated responsive HTML with configurable styling via html_generator.py and PDF via pdf_generator.py using Playwright in a 62-second end-to-end runtime.",
+          "text": "Enhanced content in the third AI Processor step using the OpenAI API for skill filtering, experience extraction and technical highlighting in JSON-Resume format.",
+          "highlights": [
+            "OpenAI API",
+            "JSON-Resume"
+          ]
+        },
+        {
+          "text": "Generated responsive HTML and high-quality PDF resumes in two formats via html_generator and pdf_generator modules with styling from config.py.",
           "highlights": [
             "HTML",
-            "html_generator.py",
-            "pdf_generator.py",
-            "Playwright",
-            "62-second"
+            "html_generator",
+            "pdf_generator",
+            "two formats"
           ]
         }
       ],
       "period": "Jul, 2024 – Jul, 2025",
-      "commit_count": 51
+      "commit_count": 54
     },
     {
       "name": "VARC_APP",
@@ -240,33 +235,33 @@
       "url": "https://github.com/Aviroop07/VARC_APP",
       "points": [
         {
-          "text": "Developed a Streamlit application in Python with web scraping modules in app/components that selects one article per day using topic probabilities (Business 20%, Science/Tech 50%, Art critique 20%, Philosophy 10%).",
+          "text": "Implemented a Streamlit application with Python web scraping modules targeting The Hindu and The Telegraph to fetch daily articles.",
           "highlights": [
             "Streamlit",
             "Python",
-            "web scraping",
+            "web scraping"
+          ]
+        },
+        {
+          "text": "Configured topic-based probability distribution of 20% business and economics, 50% science and technology, 20% art and literary criticism, and 10% philosophy and sociology for article selection.",
+          "highlights": [
             "20%",
             "50%",
             "10%"
           ]
         },
         {
-          "text": "Implemented modular scrapers in app/scrapers to fetch from two sources (The Hindu, The Telegraph) and cache daily articles in data for offline presentation.",
+          "text": "Developed a clean UI using app/components and centralized logic in main.py within a modular VARC_APP/app/{components,scrapers,utils} layout.",
           "highlights": [
-            "two sources"
+            "UI",
+            "app/components",
+            "main.py"
           ]
         },
         {
-          "text": "Organized four modules (app/components, app/scrapers, app/utils, data) with dependency management via requirements.txt and a single pip install command to support the main Streamlit script.",
+          "text": "Structured data caching in data/ and managed dependencies via requirements.txt for reproducible daily article retrieval.",
           "highlights": [
-            "four modules",
-            "app/components",
-            "app/scrapers",
-            "app/utils",
-            "data",
-            "requirements.txt",
-            "pip install",
-            "Streamlit"
+            "requirements.txt"
           ]
         }
       ],
@@ -281,40 +276,38 @@
       "url": "https://github.com/Aviroop07/distributed-p2p-network",
       "points": [
         {
-          "text": "Architected a Python 3.8+ distributed system with 5 coordination nodes (ports 8000–8999), 10 data nodes (9000–9999), and 10 compute nodes (10000–10999).",
+          "text": "Developed a Python 3.8+ distributed text processing system with 5 Main nodes (ports 8000–8999), 10 Data nodes (9000–9999), and 10 Compute nodes (10000–10999) for task coordination and load balancing.",
           "highlights": [
             "Python 3.8+",
-            "5 coordination nodes",
-            "10 data nodes",
-            "10 compute nodes"
+            "5 Main nodes",
+            "8000–8999",
+            "10 Data nodes",
+            "9000–9999",
+            "10 Compute nodes",
+            "10000–10999"
           ]
         },
         {
-          "text": "Developed virtualenv-based deployment scripts for node initialization, database setup, and frontend startup (port 8501), managing over 25 nodes in real time.",
-          "highlights": [
-            "virtualenv",
-            "25 nodes"
-          ]
-        },
-        {
-          "text": "Implemented chunk-based storage with data replication across 10 data nodes and semantic search via compute nodes for embeddings.",
+          "text": "Implemented chunk-based storage and replication across 10 Data nodes to ensure high availability and persistence.",
           "highlights": [
             "chunk-based storage",
-            "data replication",
-            "semantic search",
-            "embeddings",
-            "10 data nodes"
+            "replication",
+            "10 Data nodes"
           ]
         },
         {
-          "text": "Leveraged health monitoring, load balancing, and modular app/api, app/services, and scripts with full unit, integration, and frontend test coverage.",
+          "text": "Engineered semantic search and embedding generation on 10 Compute nodes delivering real-time text analysis.",
           "highlights": [
-            "health monitoring",
-            "load balancing",
-            "modular app/api",
-            "app/services",
-            "scripts",
-            "test coverage"
+            "semantic search",
+            "embedding generation",
+            "10"
+          ]
+        },
+        {
+          "text": "Integrated health monitoring on 5 Main nodes and a Streamlit frontend at localhost:8501 with API docs at /docs for node management.",
+          "highlights": [
+            "5 Main nodes",
+            "Streamlit"
           ]
         }
       ],
@@ -330,10 +323,10 @@
       "name": "C++"
     },
     {
-      "name": "Java"
+      "name": "JavaScript"
     },
     {
-      "name": "JavaScript"
+      "name": "Java"
     },
     {
       "name": "C"
@@ -348,13 +341,16 @@
       "name": "Natural Language Processing (NLP)"
     },
     {
-      "name": "Large Language Models (LLM)"
-    },
-    {
       "name": "Transformers"
     },
     {
+      "name": "Large Language Models (LLM)"
+    },
+    {
       "name": "Convolutional Neural Networks (CNN)"
+    },
+    {
+      "name": "REST APIs"
     },
     {
       "name": "OpenAI API"
@@ -372,7 +368,7 @@
       "name": "Scikit-Learn"
     },
     {
-      "name": "pytest"
+      "name": "Streamlit"
     },
     {
       "name": "FastAPI"
@@ -387,12 +383,6 @@
       "name": "Node.js"
     },
     {
-      "name": "Jupyter"
-    },
-    {
-      "name": "Git"
-    },
-    {
       "name": "MySQL"
     },
     {
@@ -402,10 +392,10 @@
       "name": "SQL"
     },
     {
-      "name": "Graph Theory"
+      "name": "Git"
     },
     {
-      "name": "Object-Oriented Programming (OOP)"
+      "name": "Jupyter"
     }
   ],
   "languages": [
@@ -426,42 +416,41 @@
     "Programming Languages": [
       "Python",
       "C++",
-      "Java",
       "JavaScript",
+      "Java",
       "C"
     ],
     "Machine Learning & AI": [
       "Machine Learning",
       "Deep Learning",
       "Natural Language Processing (NLP)",
-      "Large Language Models (LLM)",
       "Transformers",
+      "Large Language Models (LLM)",
       "Convolutional Neural Networks (CNN)"
     ],
     "APIs & Libraries": [
+      "REST APIs",
       "OpenAI API",
       "SQLAlchemy",
       "Pandas (Software)",
       "NumPy",
-      "Scikit-Learn",
-      "pytest"
+      "Scikit-Learn"
     ],
-    "Frameworks & Tools": [
+    "Development Frameworks": [
+      "Streamlit",
       "FastAPI",
       "Spring Boot",
       "Angular",
-      "Node.js",
-      "Jupyter",
-      "Git"
+      "Node.js"
     ],
     "Databases & Data Storage": [
       "MySQL",
       "MongoDB",
       "SQL"
     ],
-    "Computer Science Fundamentals": [
-      "Graph Theory",
-      "Object-Oriented Programming (OOP)"
+    "Tools & IDEs": [
+      "Git",
+      "Jupyter"
     ]
   }
 }

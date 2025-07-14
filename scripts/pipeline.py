@@ -84,6 +84,8 @@ def print_pipeline_summary(start_time: float, steps_completed: int, total_steps:
         log.info(f"📄 HTML saved to: {config.ASSETS_DIR}/{config.RESUME_HTML_FILE}")
         log.info(f"📄 PDF saved to: {config.ASSETS_DIR}/{config.RESUME_PDF_FILE}")
         log.info(f"💼 Job search results saved to: {config.ASSETS_DIR}/{config.JOB_SEARCH_RESULTS_FILE}")
+        if config.API_CACHE_ENABLED:
+            log.info(f"💾 API responses cached for 24 hours to avoid redundant calls")
     else:
         log.warning(f"⚠️  Pipeline incomplete. Check logs above for errors.")
 
@@ -342,6 +344,12 @@ Examples:
   python scripts/pipeline.py --skip-github     # Skip GitHub repository processing
   python scripts/pipeline.py --skip-job-search # Skip job search step
   python scripts/pipeline.py --skip-linkedin --skip-openai --skip-github --skip-job-search  # Only generate HTML and PDF from existing JSON
+  python scripts/pipeline.py --cache-stats     # Show cache statistics and exit
+  python scripts/pipeline.py --list-cache      # List all cache entries and exit
+  python scripts/pipeline.py --search-cache "Machine Learning"  # Search cache entries by term
+  python scripts/pipeline.py --search-cache "job_id:123" --cache-api-type job_details  # Search specific API type
+  python scripts/pipeline.py --clean-dirty-cache # Clean dirty (expired) cache entries and exit
+  python scripts/pipeline.py --clear-cache     # Clear API cache before running pipeline
         """
     )
     
@@ -370,6 +378,44 @@ Examples:
     )
     
     parser.add_argument(
+        "--clear-cache",
+        action="store_true",
+        help="Clear API cache before running pipeline"
+    )
+    
+    parser.add_argument(
+        "--clean-dirty-cache",
+        action="store_true",
+        help="Clean dirty (expired) cache entries and exit"
+    )
+    
+    parser.add_argument(
+        "--cache-stats",
+        action="store_true",
+        help="Show cache statistics and exit"
+    )
+    
+    parser.add_argument(
+        "--list-cache",
+        action="store_true",
+        help="List cache entries and exit"
+    )
+    
+    parser.add_argument(
+        "--search-cache",
+        type=str,
+        metavar="TERM",
+        help="Search cache entries by term and exit"
+    )
+    
+    parser.add_argument(
+        "--cache-api-type",
+        type=str,
+        metavar="TYPE",
+        help="Filter cache operations by API type (e.g., 'job_search', 'linkedin_profile')"
+    )
+    
+    parser.add_argument(
         "--output-dir",
         type=str,
         help="Custom output directory for generated files"
@@ -386,6 +432,113 @@ Examples:
     # Set logging level
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
+    
+    # Handle cache statistics request
+    if args.cache_stats:
+        try:
+            import api_cache
+            stats = api_cache.get_cache_stats()
+            if stats:
+                log.info("📊 API Cache Statistics:")
+                log.info(f"  Total entries: {stats.get('total_entries', 0)}")
+                log.info(f"  Valid entries: {stats.get('valid_entries', 0)}")
+                log.info(f"  Expired entries: {stats.get('expired_entries', 0)}")
+                log.info(f"  Database size: {stats.get('db_size_mb', 0)} MB")
+                log.info(f"  Cache TTL: {stats.get('cache_ttl_hours', 0)} hours (1 day)")
+                
+                # Add cache freshness information
+                if stats.get('total_entries', 0) > 0:
+                    valid_percentage = (stats.get('valid_entries', 0) / stats.get('total_entries', 1)) * 100
+                    log.info(f"  Cache freshness: {valid_percentage:.1f}% valid")
+                    
+                    if stats.get('expired_entries', 0) > 0:
+                        log.info(f"  ⚠️ {stats.get('expired_entries', 0)} entries are dirty (expired)")
+                
+                entries_by_type = stats.get('entries_by_type', {})
+                if entries_by_type:
+                    log.info("  Entries by API type:")
+                    for api_type, count in entries_by_type.items():
+                        log.info(f"    {api_type}: {count}")
+            else:
+                log.info("ℹ️ API caching is disabled")
+        except Exception as e:
+            log.error(f"❌ Error getting cache statistics: {e}")
+        sys.exit(0)
+    
+    # Handle cache listing request
+    if args.list_cache:
+        try:
+            import api_cache
+            entries = api_cache.list_cache_entries(
+                api_type=args.cache_api_type,
+                status="all",
+                limit=50
+            )
+            if entries:
+                log.info(f"📋 Cache Entries ({len(entries)} total):")
+                for i, entry in enumerate(entries, 1):
+                    status_icon = "✅" if entry["status"] == "valid" else "🕐"
+                    size_kb = entry["response_size"] / 1024
+                    log.info(f"  {i:2d}. {status_icon} {entry['api_type']}")
+                    log.info(f"      Summary: {entry['request_summary']}")
+                    log.info(f"      Size: {size_kb:.1f} KB | Created: {entry['created_at']}")
+                    if entry["status"] == "expired":
+                        log.info(f"      Expired: {entry['expires_at']}")
+                    log.info("")
+            else:
+                log.info("ℹ️ No cache entries found")
+        except Exception as e:
+            log.error(f"❌ Error listing cache entries: {e}")
+        sys.exit(0)
+    
+    # Handle cache search request
+    if args.search_cache:
+        try:
+            import api_cache
+            entries = api_cache.search_cache_entries(
+                search_term=args.search_cache,
+                api_type=args.cache_api_type,
+                limit=50
+            )
+            if entries:
+                log.info(f"🔍 Cache Search Results for '{args.search_cache}' ({len(entries)} found):")
+                for i, entry in enumerate(entries, 1):
+                    status_icon = "✅" if entry["status"] == "valid" else "🕐"
+                    size_kb = entry["response_size"] / 1024
+                    log.info(f"  {i:2d}. {status_icon} {entry['api_type']}")
+                    log.info(f"      Summary: {entry['request_summary']}")
+                    log.info(f"      Size: {size_kb:.1f} KB | Created: {entry['created_at']}")
+                    if entry["status"] == "expired":
+                        log.info(f"      Expired: {entry['expires_at']}")
+                    log.info("")
+            else:
+                log.info(f"ℹ️ No cache entries found matching '{args.search_cache}'")
+        except Exception as e:
+            log.error(f"❌ Error searching cache: {e}")
+        sys.exit(0)
+    
+    # Handle dirty cache cleaning request
+    if args.clean_dirty_cache:
+        try:
+            import api_cache
+            cleared = api_cache.clean_dirty_cache()
+            log.info(f"🧹 Cleaned {cleared} dirty (expired) cache entries")
+            
+            # Show updated statistics
+            freshness = api_cache.get_cache_freshness()
+            log.info(f"📊 Cache status: {freshness.get('status', 'unknown')} ({freshness.get('freshness_percentage', 0)}% valid)")
+        except Exception as e:
+            log.error(f"❌ Error cleaning dirty cache: {e}")
+        sys.exit(0)
+    
+    # Handle cache clearing request
+    if args.clear_cache:
+        try:
+            import api_cache
+            cleared = api_cache.clear_cache(expired_only=False)
+            log.info(f"🧹 Cleared {cleared} cache entries")
+        except Exception as e:
+            log.error(f"❌ Error clearing cache: {e}")
     
     # Run pipeline
     success = run_pipeline(

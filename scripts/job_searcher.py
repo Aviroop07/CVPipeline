@@ -14,6 +14,7 @@ import logging
 from typing import List, Dict, Any
 from linkedin_fetcher import authenticate_linkedin
 import config
+import api_cache
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
@@ -136,15 +137,36 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
     try:
         log.info(f"🔍 Searching for '{role}' positions (FULL-TIME ONLY)...")
         
-        # Search for full-time jobs with the specific role
-        # LinkedIn job type codes: F=Full-time, C=Contract, P=Part-time, T=Temporary, I=Internship, V=Volunteer, O=Other
-        jobs = api.search_jobs(
-            keywords=role,
-            job_type=["F"],  # Full-time only - this ensures we only get full-time positions
-            location_name=location,
-            limit=limit,
-            listed_at=config.JOB_SEARCH_SECONDS_BACK  # Jobs posted in last N seconds
-        )
+        # Prepare request data for caching
+        request_data = {
+            "keywords": role,
+            "job_type": ["F"],  # Full-time only
+            "location_name": location,
+            "limit": limit,
+            "listed_at": config.JOB_SEARCH_SECONDS_BACK
+        }
+        
+        # Use cached API call if enabled
+        if config.API_CACHE_ENABLED:
+            jobs = api_cache.cached_api_call(
+                "job_search",
+                request_data,
+                api.search_jobs,
+                keywords=role,
+                job_type=["F"],  # Full-time only - this ensures we only get full-time positions
+                location_name=location,
+                limit=limit,
+                listed_at=config.JOB_SEARCH_SECONDS_BACK  # Jobs posted in last N seconds
+            )
+        else:
+            # Direct API call without caching
+            jobs = api.search_jobs(
+                keywords=role,
+                job_type=["F"],  # Full-time only - this ensures we only get full-time positions
+                location_name=location,
+                limit=limit,
+                listed_at=config.JOB_SEARCH_SECONDS_BACK  # Jobs posted in last N seconds
+            )
         
         log.info(f"✅ Found {len(jobs)} jobs for '{role}'")
         
@@ -232,8 +254,22 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
             try:
                 log.info(f"🔍 Fetching detailed job information for job ID: {job_id}")
                 
-                # Get detailed job information
-                detailed_job = api.get_job(job_id)
+                # Get detailed job information with caching
+                if config.API_CACHE_ENABLED:
+                    detailed_job = api_cache.cached_api_call(
+                        "job_details",
+                        {"job_id": job_id},
+                        api.get_job,
+                        job_id
+                    )
+                else:
+                    detailed_job = api.get_job(job_id)
+                
+                # Log the raw response from LinkedIn API
+                log.info(f"🔍 Raw LinkedIn get_job response for job ID {job_id}:")
+                log.info(json.dumps(detailed_job, indent=2, ensure_ascii=False))
+                log.info("=" * 80)
+                
                 if detailed_job:
                     log.info(f"✅ Detailed job data retrieved for job ID: {job_id}")
                     
@@ -289,9 +325,23 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                 else:
                     log.warning(f"    ⚠️ No detailed job data returned for job ID: {job_id}")
                 
-                # Get job skills information
+                # Get job skills information with caching
                 log.info(f"🔍 Fetching job skills for job ID: {job_id}")
-                job_skills = api.get_job_skills(job_id)
+                if config.API_CACHE_ENABLED:
+                    job_skills = api_cache.cached_api_call(
+                        "job_skills",
+                        {"job_id": job_id},
+                        api.get_job_skills,
+                        job_id
+                    )
+                else:
+                    job_skills = api.get_job_skills(job_id)
+                
+                # Log the raw response from LinkedIn API
+                log.info(f"🔍 Raw LinkedIn get_job_skills response for job ID {job_id}:")
+                log.info(json.dumps(job_skills, indent=2, ensure_ascii=False))
+                log.info("=" * 80)
+                
                 if job_skills:
                     log.info(f"✅ Job skills data retrieved for job ID: {job_id}")
                     
@@ -358,6 +408,12 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
     try:
         # Authenticate with LinkedIn
         api = authenticate_linkedin()
+        
+        # Clean dirty (expired) cache entries at the start
+        if config.API_CACHE_ENABLED:
+            dirty_cleared = api_cache.clean_dirty_cache()
+            if dirty_cleared > 0:
+                log.info(f"🧹 Cleaned {dirty_cleared} dirty (expired) cache entries at start")
         
         # Phase 1: Collect all jobs from all roles (basic info only)
         all_raw_jobs = []
@@ -502,6 +558,35 @@ def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pat
     
     log.info(f"🎯 Job search pipeline complete! Found {len(jobs)} positions")
     log.info(f"📊 Enhanced data: {jobs_with_details} jobs with detailed descriptions, {jobs_with_skills} jobs with skills analysis")
+    
+    # Print cache statistics if caching is enabled
+    if config.API_CACHE_ENABLED:
+        log.info("📊 Final API Cache Statistics:")
+        stats = api_cache.get_cache_stats()
+        if stats:
+            log.info(f"  Total entries: {stats.get('total_entries', 0)}")
+            log.info(f"  Valid entries: {stats.get('valid_entries', 0)}")
+            log.info(f"  Expired entries: {stats.get('expired_entries', 0)}")
+            log.info(f"  Database size: {stats.get('db_size_mb', 0)} MB")
+            
+            # Show cache freshness information
+            freshness = api_cache.get_cache_freshness()
+            if freshness.get("status") == "dirty":
+                log.warning(f"⚠️ Cache is dirty: {freshness.get('expired_entries', 0)} expired entries")
+            elif freshness.get("status") == "mostly_fresh":
+                log.info(f"ℹ️ Cache is mostly fresh: {freshness.get('freshness_percentage', 0)}% valid")
+            else:
+                log.info(f"✅ Cache is fresh: {freshness.get('freshness_percentage', 0)}% valid")
+            
+            # Show entries by API type
+            entries_by_type = stats.get('entries_by_type', {})
+            if entries_by_type:
+                log.info("  Entries by API type:")
+                for api_type, count in entries_by_type.items():
+                    log.info(f"    {api_type}: {count}")
+        else:
+            log.info("ℹ️ No cache statistics available")
+    
     return output_path
 
 def add_job_role(new_role: str, category: str = "Additional Roles") -> bool:
@@ -570,6 +655,34 @@ def list_job_roles() -> List[str]:
         List[str]: List of all job roles
     """
     return ML_AI_ROLES.copy()
+
+def clear_job_search_cache(expired_only: bool = True) -> int:
+    """Clear job search API cache.
+    
+    Args:
+        expired_only (bool): If True, only clear expired entries. If False, clear all.
+        
+    Returns:
+        int: Number of entries removed
+    """
+    if not config.API_CACHE_ENABLED:
+        log.info("ℹ️ API caching is disabled")
+        return 0
+    
+    return api_cache.clear_cache(expired_only=expired_only)
+
+def get_job_search_cache_stats() -> Dict[str, Any]:
+    """Get job search cache statistics.
+    
+    Returns:
+        Dict[str, Any]: Cache statistics
+    """
+    if not config.API_CACHE_ENABLED:
+        return {"cache_enabled": False}
+    
+    stats = api_cache.get_cache_stats()
+    stats["cache_enabled"] = True
+    return stats
 
 # Legacy main function for backward compatibility
 def main():

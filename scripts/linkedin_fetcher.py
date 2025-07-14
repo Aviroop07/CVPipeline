@@ -9,6 +9,7 @@ import json, os, pathlib, sys, dotenv, logging
 from linkedin_api import Linkedin
 from requests.cookies import RequestsCookieJar
 import config
+import api_cache
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
@@ -96,25 +97,60 @@ def fetch_profile_data(api, public_id):
     """
     try:
         log.info("📄 Fetching profile...")
-        profile = api.get_profile(public_id=public_id)
+        
+        # Use cached API call if enabled
+        if config.API_CACHE_ENABLED:
+            profile = api_cache.cached_api_call(
+                "linkedin_profile",
+                {"public_id": public_id},
+                api.get_profile,
+                public_id=public_id
+            )
+        else:
+            profile = api.get_profile(public_id=public_id)
+        
         log.info("✅ Profile fetched successfully")
         
         log.info("📇 Fetching contact info...")
-        profile["contact_info"] = api.get_profile_contact_info(
-            public_id=profile["public_id"]
-        )
+        if config.API_CACHE_ENABLED:
+            profile["contact_info"] = api_cache.cached_api_call(
+                "linkedin_contact_info",
+                {"public_id": profile["public_id"]},
+                api.get_profile_contact_info,
+                public_id=profile["public_id"]
+            )
+        else:
+            profile["contact_info"] = api.get_profile_contact_info(
+                public_id=profile["public_id"]
+            )
         log.info("✅ Contact info fetched successfully")
         
         log.info("🛠️ Fetching skills info...")
-        profile["skills"] = api.get_profile_skills(
-            public_id=profile["public_id"]
-        )
+        if config.API_CACHE_ENABLED:
+            profile["skills"] = api_cache.cached_api_call(
+                "linkedin_skills",
+                {"public_id": profile["public_id"]},
+                api.get_profile_skills,
+                public_id=profile["public_id"]
+            )
+        else:
+            profile["skills"] = api.get_profile_skills(
+                public_id=profile["public_id"]
+            )
         log.info("✅ Skills info fetched successfully")
         
         log.info("💼 Fetching experiences info...")
-        profile["experiences"] = api.get_profile_experiences(
-            urn_id=profile["urn_id"]
-        )
+        if config.API_CACHE_ENABLED:
+            profile["experiences"] = api_cache.cached_api_call(
+                "linkedin_experiences",
+                {"urn_id": profile["urn_id"]},
+                api.get_profile_experiences,
+                urn_id=profile["urn_id"]
+            )
+        else:
+            profile["experiences"] = api.get_profile_experiences(
+                urn_id=profile["urn_id"]
+            )
         log.info("✅ Experiences info fetched successfully")
         
         return profile

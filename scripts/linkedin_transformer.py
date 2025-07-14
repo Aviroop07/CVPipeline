@@ -13,6 +13,7 @@ from requests.cookies import RequestsCookieJar
 import config
 import entity_search
 import url_validator
+import api_cache
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
@@ -88,8 +89,17 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
         return "", ""
     
     try:
-        # Try get_company with the name
-        company_data = _get_linkedin_api().get_company(name)
+        # Try get_company with the name (with caching)
+        if config.API_CACHE_ENABLED:
+            company_data = api_cache.cached_api_call(
+                "linkedin_get_company",
+                {"company_name": name},
+                _get_linkedin_api().get_company,
+                name
+            )
+        else:
+            company_data = _get_linkedin_api().get_company(name)
+        
         if company_data and company_data.get("universalName"):
             # Validate that the LinkedIn result name matches our query
             linkedin_name = company_data.get("name", "")
@@ -104,8 +114,17 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
         log.error(f'❌ Error with get_company for {name}: {e}')
     
     try:
-        # Try search_companies with higher limit to check multiple results
-        search_results = _get_linkedin_api().search_companies(keywords=[name], limit=10)
+        # Try search_companies with higher limit to check multiple results (with caching)
+        if config.API_CACHE_ENABLED:
+            search_results = api_cache.cached_api_call(
+                "linkedin_search_companies",
+                {"keywords": [name], "limit": 10},
+                _get_linkedin_api().search_companies,
+                keywords=[name], limit=10
+            )
+        else:
+            search_results = _get_linkedin_api().search_companies(keywords=[name], limit=10)
+        
         log.info(f'🔍 Found {len(search_results)} company search results for {name}')
         if search_results:
             for i, result in enumerate(search_results):
@@ -115,7 +134,16 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
                     
                 log.debug(f'🔍 Checking result {i+1}: "{result_name}"')
                 try:
-                    company_data = _get_linkedin_api().get_company(result_name)
+                    if config.API_CACHE_ENABLED:
+                        company_data = api_cache.cached_api_call(
+                            "linkedin_get_company",
+                            {"company_name": result_name},
+                            _get_linkedin_api().get_company,
+                            result_name
+                        )
+                    else:
+                        company_data = _get_linkedin_api().get_company(result_name)
+                    
                     if company_data and company_data.get("universalName"):
                         # Validate that the LinkedIn result name matches our query
                         linkedin_name = company_data.get("name", "")
@@ -137,7 +165,16 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
         if urn_id:
             log.info(f'🔍 Trying profile fallback for {name} using URN ID: {urn_id}')
             try:
-                profile_data = _get_linkedin_api().get_profile(urn_id=urn_id)
+                if config.API_CACHE_ENABLED:
+                    profile_data = api_cache.cached_api_call(
+                        "linkedin_get_profile",
+                        {"urn_id": urn_id},
+                        _get_linkedin_api().get_profile,
+                        urn_id=urn_id
+                    )
+                else:
+                    profile_data = _get_linkedin_api().get_profile(urn_id=urn_id)
+                
                 if profile_data:
                     # Look for work experience matching the company name
                     experiences = profile_data.get("experience", [])
@@ -152,7 +189,16 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
                                 try:
                                     # Extract company ID from URN
                                     company_id = company_urn.split(":")[-1] if ":" in company_urn else company_urn
-                                    company_data = _get_linkedin_api().get_company(company_id)
+                                    if config.API_CACHE_ENABLED:
+                                        company_data = api_cache.cached_api_call(
+                                            "linkedin_get_company",
+                                            {"company_id": company_id},
+                                            _get_linkedin_api().get_company,
+                                            company_id
+                                        )
+                                    else:
+                                        company_data = _get_linkedin_api().get_company(company_id)
+                                    
                                     if company_data and company_data.get("universalName"):
                                         universal_name = company_data["universalName"]
                                         url = f"https://www.linkedin.com/company/{universal_name}/"
@@ -181,8 +227,17 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
         return "", ""
     
     try:
-        # Try get_school with the name
-        school_data = _get_linkedin_api().get_school(name)
+        # Try get_school with the name (with caching)
+        if config.API_CACHE_ENABLED:
+            school_data = api_cache.cached_api_call(
+                "linkedin_get_school",
+                {"school_name": name},
+                _get_linkedin_api().get_school,
+                name
+            )
+        else:
+            school_data = _get_linkedin_api().get_school(name)
+        
         if school_data and school_data.get("universalName"):
             # Validate that the LinkedIn result name matches our query
             linkedin_name = school_data.get("name", "")
@@ -197,8 +252,17 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
         log.error(f'❌ Error with get_school for {name}: {e}')
     
     try:
-        # Try search_companies (schools often appear in company search) with higher limit
-        search_results = _get_linkedin_api().search_companies(keywords=[name], limit=10)
+        # Try search_companies (schools often appear in company search) with higher limit (with caching)
+        if config.API_CACHE_ENABLED:
+            search_results = api_cache.cached_api_call(
+                "linkedin_search_companies",
+                {"keywords": [name], "limit": 10},
+                _get_linkedin_api().search_companies,
+                keywords=[name], limit=10
+            )
+        else:
+            search_results = _get_linkedin_api().search_companies(keywords=[name], limit=10)
+        
         log.info(f'🔍 Found {len(search_results)} company search results for school {name}')
         if search_results:
             for i, result in enumerate(search_results):
@@ -208,7 +272,16 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
                     
                 log.debug(f'🔍 Checking school result {i+1}: "{result_name}"')
                 try:
-                    school_data = _get_linkedin_api().get_school(result_name)
+                    if config.API_CACHE_ENABLED:
+                        school_data = api_cache.cached_api_call(
+                            "linkedin_get_school",
+                            {"school_name": result_name},
+                            _get_linkedin_api().get_school,
+                            result_name
+                        )
+                    else:
+                        school_data = _get_linkedin_api().get_school(result_name)
+                    
                     if school_data and school_data.get("universalName"):
                         # Validate that the LinkedIn result name matches our query
                         linkedin_name = school_data.get("name", "")
@@ -230,7 +303,16 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
         if urn_id:
             log.info(f'🎓 Trying profile fallback for school {name} using URN ID: {urn_id}')
             try:
-                profile_data = _get_linkedin_api().get_profile(urn_id=urn_id)
+                if config.API_CACHE_ENABLED:
+                    profile_data = api_cache.cached_api_call(
+                        "linkedin_get_profile",
+                        {"urn_id": urn_id},
+                        _get_linkedin_api().get_profile,
+                        urn_id=urn_id
+                    )
+                else:
+                    profile_data = _get_linkedin_api().get_profile(urn_id=urn_id)
+                
                 if profile_data:
                     # Look for education experience matching the school name
                     education_entries = profile_data.get("education", [])
@@ -245,7 +327,16 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
                                 try:
                                     # Extract school ID from URN
                                     school_id = school_urn.split(":")[-1] if ":" in school_urn else school_urn
-                                    school_data = _get_linkedin_api().get_school(school_id)
+                                    if config.API_CACHE_ENABLED:
+                                        school_data = api_cache.cached_api_call(
+                                            "linkedin_get_school",
+                                            {"school_id": school_id},
+                                            _get_linkedin_api().get_school,
+                                            school_id
+                                        )
+                                    else:
+                                        school_data = _get_linkedin_api().get_school(school_id)
+                                    
                                     if school_data and school_data.get("universalName"):
                                         universal_name = school_data["universalName"]
                                         url = f"https://www.linkedin.com/school/{universal_name}/"

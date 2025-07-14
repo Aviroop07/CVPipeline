@@ -14,6 +14,7 @@ from typing import Tuple, Optional
 from requests import Session
 import dotenv
 import config
+import api_cache
 
 # Load environment variables
 dotenv.load_dotenv()
@@ -180,11 +181,25 @@ def search_entity_kg(query: str, entity_type: str = "") -> Tuple[str, str]:
             log.warning("Cannot prepare KG search URL - API key missing")
             return "", ""
         
-        session = get_session()
-        response = session.get(search_url, timeout=10)
-        response.raise_for_status()
+        # Use cached API call if enabled
+        if config.API_CACHE_ENABLED:
+            def make_kg_request():
+                session = get_session()
+                response = session.get(search_url, timeout=10)
+                response.raise_for_status()
+                return response.json()
+            
+            kg_data = api_cache.cached_api_call(
+                "google_kg_search",
+                {"query": query, "entity_type": entity_type, "url": search_url},
+                make_kg_request
+            )
+        else:
+            session = get_session()
+            response = session.get(search_url, timeout=10)
+            response.raise_for_status()
+            kg_data = response.json()
         
-        kg_data = response.json()
         log.debug(f"KG API response: {json.dumps(kg_data, indent=2)}")
         
         # Check if we have results

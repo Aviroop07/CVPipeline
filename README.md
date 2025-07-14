@@ -47,6 +47,7 @@ linkedin_fetcher  linkedin_   openai_     url_validator  html_generator pdf_gene
 - **AI-Powered Enhancement** - Smart content optimization with customizable prompts
 - **Configurable Styling** - Centralized configuration for fonts, colors, and layout
 - **Error Resilience** - Graceful fallbacks and comprehensive error handling
+- **API Response Caching** - SQLite-based cache with 24-hour TTL to avoid redundant API calls
 
 ## 🚀 How to Use
 
@@ -85,8 +86,16 @@ python scripts/pipeline.py --skip-linkedin
 # Skip AI processing
 python scripts/pipeline.py --skip-openai
 
+# Skip job search step
+python scripts/pipeline.py --skip-job-search
+
 # Generate only HTML and PDF from existing JSON
-python scripts/pipeline.py --skip-linkedin --skip-openai --skip-github
+python scripts/pipeline.py --skip-linkedin --skip-openai --skip-github --skip-job-search
+
+# Cache management
+python scripts/pipeline.py --cache-stats          # Show cache statistics
+python scripts/pipeline.py --clean-dirty-cache    # Clean expired cache entries
+python scripts/pipeline.py --clear-cache          # Clear all cache before running
 ```
 
 ### Individual Steps
@@ -114,7 +123,9 @@ python scripts/pdf_generator.py
 - `assets/index.html` - Professional HTML resume
 - `assets/styles.css` - Generated CSS with config values
 - `assets/Aviroop Mitra Resume.pdf` - Print-ready PDF resume
+- `assets/job_search_results.json` - ML/AI job search results
 - `data/resume.json` - JSON-Resume formatted data
+- `data/api_cache.db` - SQLite database for API response caching
 
 ### Configuration
 All styling and behavior is controlled through `scripts/config.py`:
@@ -122,6 +133,44 @@ All styling and behavior is controlled through `scripts/config.py`:
 - Color scheme and spacing
 - AI model settings
 - Layout preferences
+- API caching settings (TTL, database location)
+
+### API Response Caching
+The pipeline includes a comprehensive caching system to avoid redundant API calls:
+
+**Cached API Calls:**
+- LinkedIn profile data (profile, contact info, skills, experiences)
+- LinkedIn company and school searches
+- Google Knowledge Graph entity searches
+- Job search results and detailed job information
+- Job skills data
+
+**Cache Features:**
+- 24-hour TTL (responses considered "dirty" after 1 day)
+- SQLite database storage (`data/api_cache.db`)
+- Automatic cleanup of expired entries
+- Cache statistics and management commands
+
+**Cache Management:**
+```bash
+# View cache statistics
+python scripts/pipeline.py --cache-stats
+
+# List all cache entries
+python scripts/pipeline.py --list-cache
+
+# Search cache entries by term
+python scripts/pipeline.py --search-cache "Machine Learning"
+
+# Search specific API type
+python scripts/pipeline.py --search-cache "job_id:123" --cache-api-type job_details
+
+# Clean expired entries
+python scripts/pipeline.py --clean-dirty-cache
+
+# Clear all cache before running
+python scripts/pipeline.py --clear-cache
+```
 
 ## 📁 Project Structure
 ```

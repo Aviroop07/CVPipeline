@@ -106,3 +106,8 @@ JOB_SEARCH_LIMIT_PER_ROLE = 30  # Number of jobs to fetch per role
 JOB_SEARCH_MAX_TOTAL_JOBS = 20 # Maximum total number of unique jobs to keep
 JOB_SEARCH_SECONDS_BACK = 3600  # Number of seconds back to search for jobs (7 days = 604800 seconds)
 # NOTE: All job searches are filtered for FULL-TIME positions only (job_type=["F"])
+
+# API Cache configuration
+API_CACHE_ENABLED = True  # Enable/disable API caching
+API_CACHE_TTL_HOURS = 24  # Cache TTL in hours (24 hours = 1 day) - responses considered dirty after 1 day
+API_CACHE_DB_FILE = "api_cache.db"  # SQLite database file name

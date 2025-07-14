@@ -11,7 +11,7 @@ import json
 import hashlib
 import logging
 import pathlib
-from typing import Any, Optional, Dict
+from typing import Any, Optional, Dict, List
 from datetime import datetime, timedelta
 import config
 

@@ -226,19 +226,11 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
             "title": job_data.get("title", ""),
             "company": "",
             "location": job_data.get("formattedLocation", ""),
-            "listed_at": job_data.get("listedAt", ""),
-            "application_type": "",
             "workplace_type": "",
-            "employment_type": job_data.get("employmentStatus", {}).get("employmentType", ""),
             "experience_level": job_data.get("experienceLevel", ""),
             "job_url": f"https://www.linkedin.com/jobs/view/{job_id}" if job_id else "",
-            "company_url": "",
             "description": "",
-            "skills": [],
-            "benefits": [],
-            "seniority_level": job_data.get("seniorityLevel", ""),
-            "job_functions": job_data.get("jobFunctions", []),
-            "industries": job_data.get("industries", [])
+            "skills": []
         }
         
         # Fetch detailed job information if API is available and job_id exists
@@ -284,7 +276,7 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                     except Exception as e:
                         log.warning(f"    ⚠️ Error extracting workplace type: {e}")
                     
-                    # Extract apply method URL from the correct path
+                    # Extract apply method URL and update job_url if available
                     try:
                         apply_method = detailed_job.get("applyMethod", {})
                         apply_url = ""
@@ -297,8 +289,9 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         elif "com.linkedin.voyager.jobs.OffsiteApply" in apply_method:
                             apply_url = apply_method["com.linkedin.voyager.jobs.OffsiteApply"].get("companyApplyUrl", "")
                         
-                        job_details["application_type"] = apply_url
-                        job_details["apply_url"] = apply_url  # Add this field for consistency
+                        # Update job_url with the apply URL if available
+                        if apply_url:
+                            job_details["job_url"] = apply_url
                     except Exception as e:
                         log.warning(f"    ⚠️ Error extracting apply URL: {e}")
                     
@@ -317,8 +310,8 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         log.info(f"    🏢 Company: {job_details['company']}")
                     if job_details["workplace_type"]:
                         log.info(f"    🏠 Workplace Type: {job_details['workplace_type']}")
-                    if job_details["application_type"]:
-                        log.info(f"    📝 Apply URL: {job_details['application_type']}")
+                    if job_details["job_url"] and job_details["job_url"] != f"https://www.linkedin.com/jobs/view/{job_id}":
+                        log.info(f"    📝 Job URL: {job_details['job_url']}")
                     if job_details["description"]:
                         desc_length = len(job_details["description"])
                         log.info(f"    📄 Description: {desc_length} characters")

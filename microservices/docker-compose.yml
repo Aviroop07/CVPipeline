@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "8080:8080"
+  linkedin_service:
+    build: ./linkedin_service
+    ports:
+      - "8001:8001"
+  ai_service:
+    build: ./ai_service
+    ports:
+      - "8002:8002"
+  url_validator_service:
+    build: ./url_validator_service
+    ports:
+      - "8003:8003"
+  html_generator_service:
+    build: ./html_generator_service
+    ports:
+      - "8004:8004"
+  pdf_generator_service:
+    build: ./pdf_generator_service
+    ports:
+      - "8005:8005"
+  orchestration_service:
+    build: ./orchestration_service
+    ports:
+      - "8000:8000" 

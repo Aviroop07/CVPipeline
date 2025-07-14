@@ -1,5 +1,26 @@
 # Resume Generation Pipeline
 
+## 🏗️ Microservices Architecture (In Progress)
+
+This project is being refactored to use a microservices architecture for better scalability, maintainability, and deployment flexibility. The new structure will look like this:
+
+```
+microservices/
+├── api_gateway/              # Entry point for all client requests, routes to services
+├── linkedin_service/         # Fetches and transforms LinkedIn profile data
+├── ai_service/               # Handles AI-powered content enhancement (OpenAI)
+├── url_validator_service/    # Validates and discovers URLs
+├── html_generator_service/   # Generates HTML resumes from JSON data
+├── pdf_generator_service/    # Converts HTML resumes to PDF
+├── orchestration_service/    # Coordinates multi-step workflows
+├── shared/                   # Shared code and models between services
+└── docker-compose.yml        # Container orchestration for local development
+```
+
+Each service will be independently deployable (FastAPI-based), with clear API contracts and health checks. This enables scaling, fault isolation, and easier future enhancements.
+
+---
+
 An intelligent, automated resume generation system that transforms LinkedIn profile data into professional, AI-enhanced resumes with validated URLs and multiple output formats.
 
 ## 🎯 Main Objective

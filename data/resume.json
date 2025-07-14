@@ -38,12 +38,8 @@
             "Guidewire ClaimCenter",
             "GPT-4 Vision/Text",
             "Python",
-            "prompt-engineered",
-            "token-cost guardrails",
-            "hierarchical scorer",
-            "80% confidence",
-            "+23 pts",
-            "halved inference latency"
+            "80%",
+            "23 pts"
           ]
         },
         {
@@ -67,7 +63,7 @@
             "layout-transformer",
             "GPT-4 Vision",
             "Mistral OCR",
-            "Python imaging",
+            "Python",
             "Pandas",
             "3s"
           ]
@@ -113,8 +109,7 @@
             "MongoDB",
             "JWT",
             "50 ms",
-            "API Gateway",
-            "client-side service discovery"
+            "API Gateway"
           ]
         }
       ],
@@ -141,7 +136,7 @@
       "institution": "Burdwan Municipal High School",
       "area": "Science",
       "studyType": "Higher Secondary ",
-      "score": "O",
+      "score": "O (93.4%)",
       "startDate": "2019-07",
       "endDate": "2021-03",
       "url": "http://www.bmhschool.com/",
@@ -152,7 +147,7 @@
       "institution": "Burdwan Town School",
       "area": "",
       "studyType": "Secondary",
-      "score": "AA",
+      "score": "AA (95.14%)",
       "startDate": "2011-01",
       "endDate": "2019-03",
       "url": "",
@@ -186,49 +181,50 @@
   "projects": [
     {
       "name": "CVPipeline",
-      "description": "# Resume Generation Pipeline\n\nAn intelligent, automated resume generation system that transforms LinkedIn profile data into professional, AI-enhanced resumes with validated URLs and multiple output fo...",
+      "description": "# Resume Generation Pipeline\r\n\r\nAn intelligent, automated resume generation system that transforms LinkedIn profile data into professional, AI-enhanced resumes with validated URLs and multiple output ...",
       "startDate": "2024-07",
       "endDate": "2025-07",
       "url": "https://github.com/Aviroop07/CVPipeline",
       "points": [
         {
-          "text": "Implemented a 6-step modular pipeline using LinkedIn API, OpenAI API, Google Knowledge Graph API, PyGithub, Playwright, httpx, python-dotenv and requests to fetch, transform, AI-enhance, validate URLs and generate HTML/PDF resumes.",
+          "text": "Implemented a 6-step modular pipeline using LinkedIn API, OpenAI API, Google Knowledge Graph API, PyGithub, and Playwright to fetch, transform, AI-enhance, validate, and generate HTML and PDF resumes.",
           "highlights": [
             "6-step",
             "LinkedIn API",
             "OpenAI API",
             "Google Knowledge Graph API",
             "PyGithub",
-            "Playwright",
-            "httpx",
-            "python-dotenv",
-            "requests"
-          ]
-        },
-        {
-          "text": "Developed async URL validator achieving complete link verification via multi-layer discovery across Google Knowledge Graph API, LinkedIn and profile fallback modules.",
-          "highlights": [
-            "Google Knowledge Graph API",
-            "LinkedIn",
-            "profile fallback modules"
-          ]
-        },
-        {
-          "text": "Generated responsive HTML resumes and print-ready PDFs with Playwright, outputting assets/index.html, assets/styles.css and Aviroop Mitra Resume.pdf.",
-          "highlights": [
-            "HTML",
             "Playwright"
           ]
         },
         {
-          "text": "Configured centralized styling and AI prompts in scripts/config.py to control fonts, color schemes, layout preferences and model settings.",
+          "text": "Developed asynchronous URL validation with httpx and Google Knowledge Graph API across 3 discovery layers to remove broken links.",
           "highlights": [
-            "AI prompts"
+            "httpx",
+            "Google Knowledge Graph API",
+            "3 discovery layers"
+          ]
+        },
+        {
+          "text": "Integrated python-dotenv and requests for secure environment variable management and API integration across 6 pipeline modules.",
+          "highlights": [
+            "python-dotenv",
+            "requests",
+            "6"
+          ]
+        },
+        {
+          "text": "Generated professional, responsive HTML and print-ready PDF resumes in 2 formats with configurable styling and Playwright-based PDF conversion.",
+          "highlights": [
+            "HTML",
+            "PDF",
+            "Playwright",
+            "2 formats"
           ]
         }
       ],
       "period": "Jul, 2024 – Jul, 2025",
-      "commit_count": 56
+      "commit_count": 59
     },
     {
       "name": "VARC_APP",
@@ -238,11 +234,21 @@
       "url": "https://github.com/Aviroop07/VARC_APP",
       "points": [
         {
-          "text": "Developed a Python Streamlit app using web scrapers for The Hindu and The Telegraph with a weighted 20% Business & economics, 50% Science & technology, 20% Art & literary criticism, and 10% Philosophy & sociology distribution to select one daily article.",
+          "text": "Developed a Streamlit front-end with components/ and main.py to provide a clean and intuitive UI.",
           "highlights": [
-            "Python",
-            "Streamlit",
-            "web scrapers",
+            "Streamlit"
+          ]
+        },
+        {
+          "text": "Implemented scrapers in scrapers/ modules to perform web scraping from The Hindu and The Telegraph.",
+          "highlights": [
+            "web scraping"
+          ]
+        },
+        {
+          "text": "Designed a topic-based probability engine distributing 20% Business and economics, 50% Science, environment, and technology, 20% Art and literary criticism, and 10% Philosophy and sociology for daily article selection.",
+          "highlights": [
+            "topic-based probability engine",
             "20%",
             "50%",
             "20%",
@@ -250,19 +256,9 @@
           ]
         },
         {
-          "text": "Structured the codebase with app/components for UI, app/scrapers for crawlers, app/utils for utilities, main.py as the entrypoint, and a data folder to cache articles.",
+          "text": "Integrated caching in data/ directory and utility functions in utils/ to ensure consistent daily article retrieval.",
           "highlights": [
-            "app/components",
-            "app/scrapers",
-            "app/utils",
-            "main.py"
-          ]
-        },
-        {
-          "text": "Enabled 24-hour persistence of the selected article by caching it in the data directory and presenting it via a clean, intuitive Streamlit UI.",
-          "highlights": [
-            "24-hour",
-            "Streamlit UI"
+            "caching"
           ]
         }
       ],
@@ -277,39 +273,36 @@
       "url": "https://github.com/Aviroop07/distributed-p2p-network",
       "points": [
         {
-          "text": "Implemented distributed text processing in Python 3.8+ using 5 Main Nodes (ports 8000–8999) for coordination, load balancing, and health monitoring.",
+          "text": "Implemented a Python 3.8+ distributed text processing system with 5 main nodes, 10 data nodes, and 10 compute nodes (ports 8000-10999) to coordinate tasks, balance load, and monitor health in real time.",
           "highlights": [
             "Python 3.8+",
-            "5 Main Nodes"
+            "5 main nodes",
+            "10 data nodes",
+            "10 compute nodes",
+            "8000-10999"
           ]
         },
         {
-          "text": "Developed chunk-based storage layer with 10 Data Nodes (ports 9000–9999) managing replication and persistence across nodes.",
+          "text": "Developed chunk-based storage and data persistence across 10 data nodes (ports 9000-9999) with replication and capacity distribution to manage text chunks at scale.",
           "highlights": [
-            "10 Data Nodes",
-            "9000–9999"
+            "10 data nodes",
+            "ports 9000-9999"
           ]
         },
         {
-          "text": "Engineered compute cluster with 10 Compute Nodes (ports 10000–10999) performing text chunking, embedding generation, and semantic search.",
+          "text": "Orchestrated semantic search and embedding generation on 10 compute nodes (ports 10000-10999) to perform high-throughput similarity searches and text analysis.",
           "highlights": [
-            "compute cluster",
-            "10 Compute Nodes",
-            "text chunking",
+            "semantic search",
             "embedding generation",
-            "semantic search"
+            "10 compute nodes",
+            "ports 10000-10999",
+            "similarity searches",
+            "text analysis"
           ]
         },
         {
-          "text": "Configured development workflow with virtualenv and pip-managed dependencies, plus automated unit, integration, and frontend tests generating coverage reports.",
-          "highlights": [
-            "virtualenv",
-            "pip",
-            "unit tests",
-            "integration tests",
-            "frontend tests",
-            "coverage reports"
-          ]
+          "text": "Structured a modular architecture with api, core, frontend, models, nodes, services, and utils folders, plus scripts for node initialization, frontend launch, and automated testing across unit, integration, and frontend suites.",
+          "highlights": []
         }
       ],
       "period": "Mar, 2025",
@@ -333,10 +326,22 @@
       "name": "C"
     },
     {
-      "name": "SQL"
+      "name": "Git"
     },
     {
-      "name": "Machine Learning"
+      "name": "Node.js"
+    },
+    {
+      "name": "Angular"
+    },
+    {
+      "name": "Pandas (Software)"
+    },
+    {
+      "name": "NumPy"
+    },
+    {
+      "name": "Scikit-Learn"
     },
     {
       "name": "Deep Learning"
@@ -345,31 +350,16 @@
       "name": "Natural Language Processing (NLP)"
     },
     {
-      "name": "Convolutional Neural Networks (CNN)"
-    },
-    {
       "name": "Transformers"
     },
     {
-      "name": "Recommender Systems"
+      "name": "Convolutional Neural Networks (CNN)"
     },
     {
-      "name": "OpenAI API"
+      "name": "Large Language Models (LLM)"
     },
     {
-      "name": "REST APIs"
-    },
-    {
-      "name": "FastAPI"
-    },
-    {
-      "name": "SQLAlchemy"
-    },
-    {
-      "name": "Scikit-Learn"
-    },
-    {
-      "name": "NumPy"
+      "name": "Prompt Engineering"
     },
     {
       "name": "MySQL"
@@ -378,16 +368,19 @@
       "name": "MongoDB"
     },
     {
-      "name": "Spring Boot"
+      "name": "SQL"
     },
     {
-      "name": "Angular"
+      "name": "Algorithms"
     },
     {
-      "name": "Node.js"
+      "name": "Data Structures"
     },
     {
-      "name": "Cloud Computing"
+      "name": "Graph Theory"
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)"
     }
   ],
   "languages": [
@@ -410,36 +403,34 @@
       "C++",
       "JavaScript",
       "Java",
-      "C",
-      "SQL"
+      "C"
+    ],
+    "Frameworks, Libraries & Tools": [
+      "Git",
+      "Node.js",
+      "Angular",
+      "Pandas (Software)",
+      "NumPy",
+      "Scikit-Learn"
     ],
     "Machine Learning & AI": [
-      "Machine Learning",
       "Deep Learning",
       "Natural Language Processing (NLP)",
-      "Convolutional Neural Networks (CNN)",
       "Transformers",
-      "Recommender Systems"
-    ],
-    "APIs & Libraries": [
-      "OpenAI API",
-      "REST APIs",
-      "FastAPI",
-      "SQLAlchemy",
-      "Scikit-Learn",
-      "NumPy"
+      "Convolutional Neural Networks (CNN)",
+      "Large Language Models (LLM)",
+      "Prompt Engineering"
     ],
     "Databases & Data Storage": [
       "MySQL",
-      "MongoDB"
+      "MongoDB",
+      "SQL"
     ],
-    "Frameworks & Platforms": [
-      "Spring Boot",
-      "Angular",
-      "Node.js"
-    ],
-    "DevOps & Cloud": [
-      "Cloud Computing"
+    "Programming Concepts & Algorithms": [
+      "Algorithms",
+      "Data Structures",
+      "Graph Theory",
+      "Object-Oriented Programming (OOP)"
     ]
   }
 }

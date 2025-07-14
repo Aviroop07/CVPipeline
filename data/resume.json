@@ -64,7 +64,7 @@
             "layout-transformer",
             "GPT-4 Vision",
             "Mistral OCR",
-            "Python",
+            "Python imaging",
             "Pandas",
             "3s"
           ]
@@ -109,9 +109,8 @@
             "Spring Boot",
             "MongoDB",
             "JWT",
-            "50 ms",
             "API Gateway",
-            "client-side service discovery"
+            "50 ms"
           ]
         }
       ],
@@ -189,44 +188,44 @@
       "url": "https://github.com/Aviroop07/CVPipeline",
       "points": [
         {
-          "text": "Implemented a 6-step pipeline with LinkedIn API, OpenAI API, Google Knowledge Graph API, PyGithub, and Playwright to fetch, transform, validate, and generate HTML/PDF resumes.",
+          "text": "Developed a 6-step modular pipeline using LinkedIn API, OpenAI API, Google KG API, PyGithub, and Playwright to auto-generate HTML and PDF resumes.",
           "highlights": [
             "6-step",
             "LinkedIn API",
             "OpenAI API",
-            "Google Knowledge Graph API",
+            "Google KG API",
             "PyGithub",
-            "Playwright"
+            "Playwright",
+            "HTML",
+            "PDF"
           ]
         },
         {
-          "text": "Developed async URL validation and multi-layer discovery with httpx and Google Knowledge Graph API using 24-hour TTL cache across 100+ API calls per run.",
+          "text": "Implemented async URL validation with httpx to verify 100% of links and performed multi-layer discovery via Google Knowledge Graph, LinkedIn, and fallback.",
           "highlights": [
             "httpx",
-            "Google Knowledge Graph API",
-            "24-hour TTL cache",
-            "100+ API calls"
+            "100%",
+            "Google Knowledge Graph",
+            "LinkedIn"
           ]
         },
         {
-          "text": "Engineered AI-driven content optimization with OpenAI API that filtered 50+ skills and highlighted experiences across dedicated processor modules with centralized styling config.",
-          "highlights": [
-            "OpenAI API",
-            "50+"
-          ]
-        },
-        {
-          "text": "Integrated SQLite-based caching and error resilience with python-dotenv and requests, reducing redundant calls by 90% through automatic cleanup and cache stats management.",
+          "text": "Introduced SQLite caching with 24-hour TTL for API calls, reducing redundant requests by 90% and providing cache-stats, clean, and clear commands.",
           "highlights": [
             "SQLite",
-            "python-dotenv",
-            "requests",
             "90%"
+          ]
+        },
+        {
+          "text": "Engineered AI content enhancement in the AI Processor module to filter 100+ skills, extract experiences, and apply configurable styling via scripts/config.py.",
+          "highlights": [
+            "AI",
+            "100+"
           ]
         }
       ],
       "period": "Jul, 2024 – Jul, 2025",
-      "commit_count": 72
+      "commit_count": 74
     },
     {
       "name": "VARC_APP",
@@ -236,29 +235,32 @@
       "url": "https://github.com/Aviroop07/VARC_APP",
       "points": [
         {
-          "text": "Developed a Python Streamlit app with web scraping modules for two news sources (The Hindu, The Telegraph) to fetch and cache daily articles.",
+          "text": "Developed a Streamlit app in app/main.py using Python and pip dependencies to deliver a clean and intuitive daily article selector.",
           "highlights": [
-            "Python",
             "Streamlit",
-            "web scraping",
-            "two news sources"
+            "Python",
+            "pip dependencies"
           ]
         },
         {
-          "text": "Engineered a Python topic-based probability engine within the Streamlit app distributing selection with metrics 50% science, 20% business, 20% art, and 10% philosophy to deliver a single daily article.",
+          "text": "Implemented web scraping modules in app/scrapers/ for The Hindu and The Telegraph to fetch articles from two sources.",
           "highlights": [
-            "Python",
-            "Streamlit",
-            "50%",
+            "web scraping"
+          ]
+        },
+        {
+          "text": "Designed topic-based probability distribution (20% Business, 50% Science, 20% Art, 10% Philosophy) for randomized daily selection.",
+          "highlights": [
+            "probability distribution",
             "20%",
+            "50%",
             "10%"
           ]
         },
         {
-          "text": "Structured Python modules and Streamlit UI components into app/components, app/scrapers, app/utils, and data/ directories to separate UI elements, scraping logic, utilities, and article caching.",
+          "text": "Structured components under app/components/, utilities in app/utils/, and cached data in data/ for modular architecture.",
           "highlights": [
-            "Python",
-            "Streamlit"
+            "modular architecture"
           ]
         }
       ],
@@ -273,35 +275,33 @@
       "url": "https://github.com/Aviroop07/distributed-p2p-network",
       "points": [
         {
-          "text": "Designed distributed Python 3.8+ system with 5 main, 10 data, and 10 compute nodes across ports 8000-10999.",
+          "text": "Implemented a Python 3.8+ distributed text processing system with 5 main nodes (ports 8000-8999) for coordination, load balancing, and health monitoring.",
           "highlights": [
             "Python 3.8+",
-            "5 main, 10 data, and 10 compute nodes",
-            "8000-10999"
+            "5 main nodes"
           ]
         },
         {
-          "text": "Implemented chunk-based storage and replication on 10 data nodes using Python 3.8+ with persistence and load-balanced port distribution (9000-9999).",
+          "text": "Designed 10 data nodes (ports 9000-9999) with chunk-based storage, data replication, and persistence across distributed volumes.",
           "highlights": [
-            "Python 3.8+",
             "10 data nodes",
-            "9000-9999"
+            "ports 9000-9999"
           ]
         },
         {
-          "text": "Developed Python compute pipeline on 10 nodes for text chunking, embedding generation, and semantic search with health monitoring and load balancing.",
+          "text": "Developed 10 compute nodes (ports 10000-10999) using semantic search and embedding generation for real-time text analysis.",
           "highlights": [
-            "Python",
-            "10 nodes"
+            "10 compute nodes",
+            "10000-10999",
+            "semantic search",
+            "embedding generation"
           ]
         },
         {
-          "text": "Created Streamlit frontend at localhost:8501 and API docs at localhost:8000/docs supporting unit, integration, and frontend tests with coverage.",
+          "text": "Integrated API endpoints and Streamlit frontend with automated scripts for node initialization, database setup, and 3-tier unit, integration, and frontend testing.",
           "highlights": [
-            "Streamlit",
-            "unit tests",
-            "integration tests",
-            "frontend tests"
+            "API endpoints",
+            "Streamlit"
           ]
         }
       ],
@@ -311,7 +311,7 @@
   ],
   "skills": [
     {
-      "name": "Python (Programming Language)"
+      "name": "Python"
     },
     {
       "name": "C++"
@@ -323,16 +323,13 @@
       "name": "Java"
     },
     {
-      "name": "C (Programming Language)"
+      "name": "C"
     },
     {
-      "name": "Pandas (Software)"
+      "name": "SQL"
     },
     {
-      "name": "NumPy"
-    },
-    {
-      "name": "Scikit-Learn"
+      "name": "Large Language Models (LLM)"
     },
     {
       "name": "Natural Language Processing (NLP)"
@@ -342,6 +339,33 @@
     },
     {
       "name": "Transformers"
+    },
+    {
+      "name": "Recommender Systems"
+    },
+    {
+      "name": "Scikit-Learn"
+    },
+    {
+      "name": "OpenAI API"
+    },
+    {
+      "name": "REST APIs"
+    },
+    {
+      "name": "SQLAlchemy"
+    },
+    {
+      "name": "Pandas (Software)"
+    },
+    {
+      "name": "NumPy"
+    },
+    {
+      "name": "pytest"
+    },
+    {
+      "name": "Streamlit"
     },
     {
       "name": "FastAPI"
@@ -356,21 +380,6 @@
       "name": "Node.js"
     },
     {
-      "name": "Streamlit"
-    },
-    {
-      "name": "OpenAI API"
-    },
-    {
-      "name": "REST APIs"
-    },
-    {
-      "name": "PIL"
-    },
-    {
-      "name": "SQLAlchemy"
-    },
-    {
       "name": "Jupyter"
     },
     {
@@ -378,18 +387,6 @@
     },
     {
       "name": "MongoDB"
-    },
-    {
-      "name": "SQL"
-    },
-    {
-      "name": "Algorithms"
-    },
-    {
-      "name": "Data Structures"
-    },
-    {
-      "name": "Graph Theory"
     }
   ],
   "languages": [
@@ -408,43 +405,40 @@
   ],
   "skills_by_category": {
     "Programming Languages": [
-      "Python (Programming Language)",
+      "Python",
       "C++",
       "JavaScript",
       "Java",
-      "C (Programming Language)"
+      "C",
+      "SQL"
     ],
-    "Machine Learning & Data Science": [
-      "Pandas (Software)",
-      "NumPy",
-      "Scikit-Learn",
+    "AI & Machine Learning": [
+      "Large Language Models (LLM)",
       "Natural Language Processing (NLP)",
       "Convolutional Neural Networks (CNN)",
-      "Transformers"
-    ],
-    "Web Frameworks & Platforms": [
-      "FastAPI",
-      "Spring Boot",
-      "Angular",
-      "Node.js",
-      "Streamlit"
+      "Transformers",
+      "Recommender Systems",
+      "Scikit-Learn"
     ],
     "APIs & Libraries": [
       "OpenAI API",
       "REST APIs",
-      "PIL",
       "SQLAlchemy",
+      "Pandas (Software)",
+      "NumPy",
+      "pytest"
+    ],
+    "Frameworks & Platforms": [
+      "Streamlit",
+      "FastAPI",
+      "Spring Boot",
+      "Angular",
+      "Node.js",
       "Jupyter"
     ],
     "Databases & Data Storage": [
       "MySQL",
-      "MongoDB",
-      "SQL"
-    ],
-    "Computer Science Fundamentals": [
-      "Algorithms",
-      "Data Structures",
-      "Graph Theory"
+      "MongoDB"
     ]
   }
 }

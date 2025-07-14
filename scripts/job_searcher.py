@@ -143,7 +143,7 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
             job_type=["F"],  # Full-time only - this ensures we only get full-time positions
             location_name=location,
             limit=limit,
-            listed_at=config.JOB_SEARCH_DAYS_BACK * 24 * 60 * 60  # Jobs posted in last N days
+            listed_at=config.JOB_SEARCH_SECONDS_BACK  # Jobs posted in last N seconds
         )
         
         log.info(f"✅ Found {len(jobs)} jobs for '{role}'")
@@ -288,10 +288,12 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
         # Authenticate with LinkedIn
         api = authenticate_linkedin()
         
-        all_jobs = []
+        # Phase 1: Collect all jobs from all roles (basic info only)
+        all_raw_jobs = []
         seen_job_ids = set()  # To avoid duplicates
         
         log.info(f"🚀 Starting ML/AI job search for {len(ML_AI_ROLES)} role variations...")
+        log.info(f"📋 Phase 1: Collecting basic job information...")
         
         for i, role in enumerate(ML_AI_ROLES, 1):
             log.info(f"📋 [{i}/{len(ML_AI_ROLES)}] Searching for: {role}")
@@ -299,26 +301,51 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
             # Search for jobs with this role
             jobs = search_jobs_for_role(api, role, location, jobs_per_role)
             
-            # Process and deduplicate jobs
-            log.info(f"🔍 Processing {len(jobs)} jobs for '{role}' with detailed information...")
-            for j, job in enumerate(jobs, 1):
-                log.debug(f"  Processing job {j}/{len(jobs)} for '{role}'")
-                job_details = extract_job_details(job, api)
-                if job_details and job_details.get("id"):
-                    job_id = job_details["id"]
-                    if job_id not in seen_job_ids:
-                        seen_job_ids.add(job_id)
-                        job_details["search_role"] = role  # Track which role found this job
-                        all_jobs.append(job_details)
-                        log.debug(f"    ✅ Added job: {job_details.get('title', 'Unknown')} at {job_details.get('company', 'Unknown')}")
-                    else:
-                        log.debug(f"    ⏭️ Skipped duplicate job ID: {job_id}")
-                else:
-                    log.debug(f"    ❌ Invalid job data for job {j}")
+            # Collect basic job info and deduplicate by ID
+            for job in jobs:
+                job_id = job.get("entityUrn", "").split(":")[-1] if job.get("entityUrn") else ""
+                if job_id and job_id not in seen_job_ids:
+                    seen_job_ids.add(job_id)
+                    # Store basic job info with role tracking
+                    basic_job_info = {
+                        "raw_data": job,
+                        "search_role": role,
+                        "job_id": job_id
+                    }
+                    all_raw_jobs.append(basic_job_info)
+                    log.debug(f"    ✅ Added basic job: {job.get('title', 'Unknown')} at {job.get('companyDetails', {}).get('company', {}).get('name', 'Unknown')}")
+                elif job_id:
+                    log.debug(f"    ⏭️ Skipped duplicate job ID: {job_id}")
             
             # Add a small delay to avoid rate limiting
             import time
-            time.sleep(3)  # Increased delay to account for detailed job fetching
+            time.sleep(2)
+        
+        log.info(f"📊 Phase 1 complete: Found {len(all_raw_jobs)} unique jobs")
+        
+        # Phase 2: Limit to maximum total jobs and fetch detailed information
+        max_jobs = config.JOB_SEARCH_MAX_TOTAL_JOBS
+        if len(all_raw_jobs) > max_jobs:
+            log.info(f"📋 Limiting to {max_jobs} jobs (from {len(all_raw_jobs)} found)")
+            all_raw_jobs = all_raw_jobs[:max_jobs]
+        
+        log.info(f"📋 Phase 2: Fetching detailed information for {len(all_raw_jobs)} jobs...")
+        
+        # Fetch detailed information for each unique job
+        all_jobs = []
+        for i, job_info in enumerate(all_raw_jobs, 1):
+            log.info(f"🔍 [{i}/{len(all_raw_jobs)}] Fetching details for job ID: {job_info['job_id']}")
+            job_details = extract_job_details(job_info["raw_data"], api)
+            if job_details and job_details.get("id"):
+                job_details["search_role"] = job_info["search_role"]  # Track which role found this job
+                all_jobs.append(job_details)
+                log.debug(f"    ✅ Detailed job: {job_details.get('title', 'Unknown')} at {job_details.get('company', 'Unknown')}")
+            else:
+                log.warning(f"    ❌ Failed to extract details for job ID: {job_info['job_id']}")
+            
+            # Add delay between detailed fetches to avoid rate limiting
+            import time
+            time.sleep(1)
         
         # Count jobs with detailed information
         jobs_with_details = sum(1 for job in all_jobs if job.get("detailed_description") or job.get("detailed_skills"))
@@ -358,7 +385,9 @@ def save_job_results(jobs: List[Dict[str, Any]], output_path: pathlib.Path = Non
             "roles_searched": ML_AI_ROLES,
             "search_location": location or "Global",
             "jobs_per_role": jobs_per_role or config.JOB_SEARCH_LIMIT_PER_ROLE,
-            "days_back": config.JOB_SEARCH_DAYS_BACK,
+            "max_total_jobs": config.JOB_SEARCH_MAX_TOTAL_JOBS,
+            "seconds_back": config.JOB_SEARCH_SECONDS_BACK,
+            "days_back": config.JOB_SEARCH_SECONDS_BACK // (24 * 60 * 60),  # Convert seconds to days for reference
             "detailed_job_info": True,  # Indicate that detailed job information was fetched
             "job_skills_info": True     # Indicate that job skills information was fetched
         },

@@ -509,6 +509,10 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
     if basics.get("public_id"):
         contact_parts.append(f'<a href="https://www.linkedin.com/in/{basics["public_id"]}" target="_blank">LinkedIn</a>')
     
+    # Add GitHub link using config values
+    github_url = f"{config.GITHUB_URL}/{config.GITHUB_USERNAME}"
+    contact_parts.append(f'<a href="{github_url}" target="_blank">GitHub</a>')
+    
     html += " | ".join(contact_parts)
     html += '</div></header><main class="content">'
     

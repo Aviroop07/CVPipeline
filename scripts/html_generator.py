@@ -191,7 +191,6 @@ body {{
         margin-left: {config.HTML_BODY_MARGIN_LEFT};
         margin-right: {config.HTML_BODY_MARGIN_RIGHT};
         padding: {config.HTML_BODY_PADDING};
-        font-size: {config.HTML_FONT_SIZE_BASE_FALLBACK}; /* Fallback for older browsers */
         font-size: {config.HTML_FONT_SIZE_BASE};
     }}
 
@@ -210,7 +209,6 @@ body {{
 }}
 
     .name {{
-        font-size: {config.HTML_FONT_SIZE_NAME_FALLBACK}; /* Fallback for older browsers */
         font-size: {config.HTML_FONT_SIZE_NAME};
         font-weight: bold;
         color: {config.HTML_COLOR_PRIMARY};
@@ -218,7 +216,6 @@ body {{
     }}
 
     .contact-info {{
-        font-size: {config.HTML_FONT_SIZE_CONTACT_FALLBACK}; /* Fallback for older browsers */
         font-size: {config.HTML_FONT_SIZE_CONTACT};
         color: {config.HTML_COLOR_SECONDARY};
         line-height: 1.4;
@@ -244,7 +241,6 @@ body {{
 }}
 
     .section-title {{
-        font-size: {config.HTML_FONT_SIZE_SECTION_FALLBACK}; /* Fallback for older browsers */
         font-size: {config.HTML_FONT_SIZE_SECTION};
         font-weight: bold;
         color: {config.HTML_COLOR_PRIMARY};
@@ -437,7 +433,6 @@ em.highlight,
     }}
     
     .name {{
-        font-size: {config.HTML_FONT_SIZE_NAME_MOBILE_FALLBACK}; /* Fallback for older browsers */
         font-size: {config.HTML_FONT_SIZE_NAME_MOBILE};
     }}
     
@@ -453,7 +448,6 @@ em.highlight,
     }}
     
     .contact-info {{
-        font-size: {config.HTML_FONT_SIZE_CONTACT_MOBILE_FALLBACK}; /* Fallback for older browsers */
         font-size: {config.HTML_FONT_SIZE_CONTACT_MOBILE};
     }}
     

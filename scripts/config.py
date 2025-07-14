@@ -53,22 +53,14 @@ FONT_FORMAT = "opentype"  # "opentype" for .otf, "truetype" for .ttf, "woff2" fo
 
 # HTML generation settings - using configurable font family
 HTML_FONT_FAMILY = f"'{FONT_FAMILY_NAME}', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-HTML_FONT_SIZE_BASE = "1.3vh"      # Base font size (was 12px)
-HTML_FONT_SIZE_NAME = "2vh"      # Name header font size (was 18px)
-HTML_FONT_SIZE_SECTION = "1.6vh"   # Section headers font size (was 14px)
-HTML_FONT_SIZE_CONTACT = "1.3vh"   # Contact info font size (was 12px)
+HTML_FONT_SIZE_BASE = "12px"      # Base font size
+HTML_FONT_SIZE_NAME = "18px"      # Name header font size
+HTML_FONT_SIZE_SECTION = "14px"   # Section headers font size
+HTML_FONT_SIZE_CONTACT = "12px"   # Contact info font size
 
 # Mobile-specific font sizes (for smaller screens)
-HTML_FONT_SIZE_NAME_MOBILE = "2.8vh"     # Name header on mobile (was 24px)
-HTML_FONT_SIZE_CONTACT_MOBILE = "1.4vh" # Contact info on mobile (was 13px)
-
-# Fallback pixel values for browsers that don't support vh units
-HTML_FONT_SIZE_BASE_FALLBACK = "12px"
-HTML_FONT_SIZE_NAME_FALLBACK = "18px"
-HTML_FONT_SIZE_SECTION_FALLBACK = "14px"
-HTML_FONT_SIZE_CONTACT_FALLBACK = "12px"
-HTML_FONT_SIZE_NAME_MOBILE_FALLBACK = "24px"
-HTML_FONT_SIZE_CONTACT_MOBILE_FALLBACK = "13px"
+HTML_FONT_SIZE_NAME_MOBILE = "24px"     # Name header on mobile
+HTML_FONT_SIZE_CONTACT_MOBILE = "13px" # Contact info on mobile
 
 HTML_LINE_HEIGHT = "1.3"
 

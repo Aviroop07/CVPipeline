@@ -97,8 +97,94 @@ def extract_skills_from_skills_data(skills_data: Dict) -> List[str]:
     
     return skill_names
 
+def test_extraction_with_example_data():
+    """Test the extraction functions with the example data to verify they work correctly."""
+    print("🧪 Testing job extraction with example data...")
+    
+    # Test job details extraction
+    try:
+        with open("example_jd.json", "r", encoding="utf-8") as f:
+            job_data = json.load(f)
+        
+        job_details = extract_job_details(job_data)
+        
+        print("✅ Job Details Extraction Test:")
+        print(f"  Company: {job_details.get('company_name', 'NOT FOUND')}")
+        print(f"  Title: {job_details.get('title', 'NOT FOUND')}")
+        print(f"  Workplace Type: {job_details.get('workplace_type', 'NOT FOUND')}")
+        print(f"  Apply URL: {job_details.get('apply_url', 'NOT FOUND')}")
+        print(f"  Location: {job_details.get('formatted_location', 'NOT FOUND')}")
+        print(f"  Description Length: {len(job_details.get('description_text', ''))} characters")
+        
+        # Verify expected values
+        expected_company = "Kenvue"
+        expected_title = "Analyst, Data Science"
+        expected_workplace = "Hybrid"
+        expected_location = "Bengaluru, Karnataka, India"
+        
+        if job_details.get('company_name') == expected_company:
+            print(f"  ✅ Company extraction: PASSED")
+        else:
+            print(f"  ❌ Company extraction: FAILED (expected '{expected_company}', got '{job_details.get('company_name')}')")
+            
+        if job_details.get('title') == expected_title:
+            print(f"  ✅ Title extraction: PASSED")
+        else:
+            print(f"  ❌ Title extraction: FAILED (expected '{expected_title}', got '{job_details.get('title')}')")
+            
+        if job_details.get('workplace_type') == expected_workplace:
+            print(f"  ✅ Workplace type extraction: PASSED")
+        else:
+            print(f"  ❌ Workplace type extraction: FAILED (expected '{expected_workplace}', got '{job_details.get('workplace_type')}')")
+            
+        if job_details.get('formatted_location') == expected_location:
+            print(f"  ✅ Location extraction: PASSED")
+        else:
+            print(f"  ❌ Location extraction: FAILED (expected '{expected_location}', got '{job_details.get('formatted_location')}')")
+        
+    except FileNotFoundError:
+        print("❌ example_jd.json not found")
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing example_jd.json: {e}")
+    except Exception as e:
+        print(f"❌ Error testing job details extraction: {e}")
+    
+    # Test skills extraction
+    try:
+        with open("example_skill.json", "r", encoding="utf-8") as f:
+            skills_data = json.load(f)
+        
+        skills = extract_skills_from_skills_data(skills_data)
+        
+        print("\n✅ Skills Extraction Test:")
+        print(f"  Found {len(skills)} skills")
+        for i, skill in enumerate(skills[:5], 1):
+            print(f"    {i}. {skill}")
+        if len(skills) > 5:
+            print(f"    ... and {len(skills) - 5} more skills")
+        
+        # Verify we found some skills
+        if len(skills) > 0:
+            print(f"  ✅ Skills extraction: PASSED")
+        else:
+            print(f"  ❌ Skills extraction: FAILED (no skills found)")
+        
+    except FileNotFoundError:
+        print("❌ example_skill.json not found")
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing example_skill.json: {e}")
+    except Exception as e:
+        print(f"❌ Error testing skills extraction: {e}")
+
 def main():
     """Example usage of the extraction functions."""
+    
+    # Run tests first
+    test_extraction_with_example_data()
+    
+    print("\n" + "="*60)
+    print("📋 EXTRACTION SUMMARY")
+    print("="*60)
     
     # Load example job data
     try:
@@ -124,7 +210,7 @@ def main():
     
     # Load example skills data
     try:
-        with open("example_skills.json", "r", encoding="utf-8") as f:
+        with open("example_skill.json", "r", encoding="utf-8") as f:
             skills_data = json.load(f)
         
         # Extract skills
@@ -135,7 +221,7 @@ def main():
             print(f"{i}. {skill}")
         
     except FileNotFoundError:
-        print("example_skills.json not found")
+        print("example_skill.json not found")
     except json.JSONDecodeError as e:
         print(f"Error parsing JSON: {e}")
 

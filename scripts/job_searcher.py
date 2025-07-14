@@ -217,37 +217,29 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
         Dict: Cleaned job details with additional information
     """
     try:
-        # Extract basic job information
+        # Extract basic job information first
         job_id = job_data.get("entityUrn", "").split(":")[-1] if job_data.get("entityUrn") else ""
         
+        # Initialize job details with basic info from search results
         job_details = {
             "id": job_id,
             "title": job_data.get("title", ""),
-            "company": job_data.get("companyDetails", {}).get("company", {}).get("name", ""),
+            "company": "",
             "location": job_data.get("formattedLocation", ""),
             "listed_at": job_data.get("listedAt", ""),
-            "application_type": job_data.get("applicationMethod", {}).get("type", ""),
-            "workplace_type": job_data.get("workplaceType", ""),
+            "application_type": "",
+            "workplace_type": "",
             "employment_type": job_data.get("employmentStatus", {}).get("employmentType", ""),
             "experience_level": job_data.get("experienceLevel", ""),
             "job_url": f"https://www.linkedin.com/jobs/view/{job_id}" if job_id else "",
-            "company_url": job_data.get("companyDetails", {}).get("company", {}).get("linkedInUrl", ""),
-            "description": job_data.get("description", ""),
-            "skills": job_data.get("skills", []),
-            "benefits": job_data.get("benefits", []),
+            "company_url": "",
+            "description": "",
+            "skills": [],
+            "benefits": [],
             "seniority_level": job_data.get("seniorityLevel", ""),
             "job_functions": job_data.get("jobFunctions", []),
             "industries": job_data.get("industries", [])
         }
-        
-        # Additional validation: Double-check that this is a full-time position
-        # LinkedIn API should filter this, but we add extra validation
-        employment_status = job_data.get("employmentStatus", {})
-        employment_type = employment_status.get("employmentType", "")
-        
-        # Log if we find non-full-time jobs (shouldn't happen with our filter)
-        if employment_type and employment_type != "FULL_TIME":
-            log.warning(f"Found non-full-time job: {job_details.get('title', 'Unknown')} at {job_details.get('company', 'Unknown')} - Type: {employment_type}")
         
         # Fetch detailed job information if API is available and job_id exists
         if api and job_id:
@@ -265,120 +257,117 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                 else:
                     detailed_job = api.get_job(job_id)
                 
-                # Log the raw response from LinkedIn API
-                log.info(f"🔍 Raw LinkedIn get_job response for job ID {job_id}:")
-                log.info(json.dumps(detailed_job, indent=2, ensure_ascii=False))
-                log.info("=" * 80)
-                
                 if detailed_job:
                     log.info(f"✅ Detailed job data retrieved for job ID: {job_id}")
                     
-                    # Extract additional details from the detailed job response
-                    if "included" in detailed_job:
-                        for item in detailed_job["included"]:
-                            if item.get("$type") == "com.linkedin.voyager.jobs.JobPosting":
-                                # Extract more detailed information
-                                job_details.update({
-                                    "detailed_description": item.get("description", ""),
-                                    "requirements": item.get("requirements", ""),
-                                    "responsibilities": item.get("responsibilities", ""),
-                                    "qualifications": item.get("qualifications", ""),
-                                    "application_instructions": item.get("applicationInstructions", ""),
-                                    "job_posting_id": item.get("jobPostingId", ""),
-                                    "formatted_description": item.get("formattedDescription", ""),
-                                    "workplace_type_detailed": item.get("workplaceType", ""),
-                                    "employment_status_detailed": item.get("employmentStatus", ""),
-                                    "experience_level_detailed": item.get("experienceLevel", ""),
-                                    "seniority_level_detailed": item.get("seniorityLevel", ""),
-                                    "job_functions_detailed": item.get("jobFunctions", []),
-                                    "industries_detailed": item.get("industries", []),
-                                    "skills_detailed": item.get("skills", []),
-                                    "benefits_detailed": item.get("benefits", []),
-                                    "application_method": item.get("applicationMethod", {}),
-                                    "listed_at_detailed": item.get("listedAt", ""),
-                                    "expires_at": item.get("expiresAt", ""),
-                                    "application_deadline": item.get("applicationDeadline", ""),
-                                    "remote_allowed": item.get("remoteAllowed", False),
-                                    "relocation_assistance": item.get("relocationAssistance", False),
-                                    "visa_sponsorship": item.get("visaSponsorship", False)
-                                })
-                                
-                                # Log key detailed information
-                                if item.get("description"):
-                                    desc_length = len(item["description"])
-                                    log.info(f"    📄 Detailed description: {desc_length} characters")
-                                if item.get("requirements"):
-                                    req_length = len(item["requirements"])
-                                    log.info(f"    📋 Requirements: {req_length} characters")
-                                if item.get("responsibilities"):
-                                    resp_length = len(item["responsibilities"])
-                                    log.info(f"    📝 Responsibilities: {resp_length} characters")
-                                if item.get("remoteAllowed") is not None:
-                                    log.info(f"    🏠 Remote allowed: {item['remoteAllowed']}")
-                                if item.get("relocationAssistance") is not None:
-                                    log.info(f"    🚚 Relocation assistance: {item['relocationAssistance']}")
-                                if item.get("visaSponsorship") is not None:
-                                    log.info(f"    🛂 Visa sponsorship: {item['visaSponsorship']}")
-                                break
-                    else:
-                        log.warning(f"    ⚠️ No 'included' data found in detailed job response for job ID: {job_id}")
+                    # Extract company name from the correct path
+                    try:
+                        company_details = detailed_job.get("companyDetails", {})
+                        if "com.linkedin.voyager.deco.jobs.web.shared.WebCompactJobPostingCompany" in company_details:
+                            company_info = company_details["com.linkedin.voyager.deco.jobs.web.shared.WebCompactJobPostingCompany"]
+                            if "companyResolutionResult" in company_info:
+                                job_details["company"] = company_info["companyResolutionResult"].get("name", "")
+                    except Exception as e:
+                        log.warning(f"    ⚠️ Error extracting company name: {e}")
+                    
+                    # Extract workplace type from the correct path
+                    try:
+                        workplace_types = detailed_job.get("workplaceTypes", [])
+                        workplace_resolution = detailed_job.get("workplaceTypesResolutionResults", {})
+                        
+                        workplace_names = []
+                        for workplace_urn in workplace_types:
+                            if workplace_urn in workplace_resolution:
+                                workplace_names.append(workplace_resolution[workplace_urn].get("localizedName", ""))
+                        
+                        job_details["workplace_type"] = ", ".join(workplace_names) if workplace_names else ""
+                    except Exception as e:
+                        log.warning(f"    ⚠️ Error extracting workplace type: {e}")
+                    
+                    # Extract apply method URL from the correct path
+                    try:
+                        apply_method = detailed_job.get("applyMethod", {})
+                        apply_url = ""
+                        
+                        # Check for ComplexOnsiteApply
+                        if "com.linkedin.voyager.jobs.ComplexOnsiteApply" in apply_method:
+                            apply_url = apply_method["com.linkedin.voyager.jobs.ComplexOnsiteApply"].get("easyApplyUrl", "")
+                        
+                        # Check for OffsiteApply
+                        elif "com.linkedin.voyager.jobs.OffsiteApply" in apply_method:
+                            apply_url = apply_method["com.linkedin.voyager.jobs.OffsiteApply"].get("companyApplyUrl", "")
+                        
+                        job_details["application_type"] = apply_url
+                        job_details["apply_url"] = apply_url  # Add this field for consistency
+                    except Exception as e:
+                        log.warning(f"    ⚠️ Error extracting apply URL: {e}")
+                    
+                    # Extract job description text from the correct path
+                    try:
+                        description = detailed_job.get("description", {})
+                        job_details["description"] = description.get("text", "")
+                    except Exception as e:
+                        log.warning(f"    ⚠️ Error extracting description text: {e}")
+                    
+                    # Extract formatted location
+                    job_details["location"] = detailed_job.get("formattedLocation", job_details["location"])
+                    
+                    # Log extracted information
+                    if job_details["company"]:
+                        log.info(f"    🏢 Company: {job_details['company']}")
+                    if job_details["workplace_type"]:
+                        log.info(f"    🏠 Workplace Type: {job_details['workplace_type']}")
+                    if job_details["application_type"]:
+                        log.info(f"    📝 Apply URL: {job_details['application_type']}")
+                    if job_details["description"]:
+                        desc_length = len(job_details["description"])
+                        log.info(f"    📄 Description: {desc_length} characters")
+                    
                 else:
                     log.warning(f"    ⚠️ No detailed job data returned for job ID: {job_id}")
                 
                 # Get job skills information with caching
                 log.info(f"🔍 Fetching job skills for job ID: {job_id}")
-                if config.API_CACHE_ENABLED:
-                    job_skills = api_cache.cached_api_call(
-                        "job_skills",
-                        {"job_id": job_id},
-                        api.get_job_skills,
-                        job_id
-                    )
-                else:
-                    job_skills = api.get_job_skills(job_id)
-                
-                # Log the raw response from LinkedIn API
-                log.info(f"🔍 Raw LinkedIn get_job_skills response for job ID {job_id}:")
-                log.info(json.dumps(job_skills, indent=2, ensure_ascii=False))
-                log.info("=" * 80)
-                
-                if job_skills:
-                    log.info(f"✅ Job skills data retrieved for job ID: {job_id}")
+                try:
+                    if config.API_CACHE_ENABLED:
+                        job_skills = api_cache.cached_api_call(
+                            "job_skills",
+                            {"job_id": job_id},
+                            api.get_job_skills,
+                            job_id
+                        )
+                    else:
+                        job_skills = api.get_job_skills(job_id)
                     
-                    # Extract skills from the job skills response
-                    if "included" in job_skills:
-                        skills_list = []
-                        for item in job_skills["included"]:
-                            if item.get("$type") == "com.linkedin.voyager.jobs.JobSkill":
-                                skill_name = item.get("name", "")
-                                if skill_name:
-                                    skills_list.append({
-                                        "name": skill_name,
-                                        "skill_id": item.get("entityUrn", "").split(":")[-1] if item.get("entityUrn") else "",
-                                        "match_score": item.get("matchScore", 0),
-                                        "required": item.get("required", False),
-                                        "skill_type": item.get("skillType", "")
-                                    })
+                    if job_skills:
+                        log.info(f"✅ Job skills data retrieved for job ID: {job_id}")
                         
-                        if skills_list:
-                            job_details["detailed_skills"] = skills_list
-                            log.info(f"    🎯 Found {len(skills_list)} skills for job ID: {job_id}")
+                        # Extract skills from the job skills response
+                        skill_names = []
+                        skill_matches = job_skills.get("skillMatchStatuses", [])
+                        
+                        for skill_match in skill_matches:
+                            if "skill" in skill_match and "name" in skill_match["skill"]:
+                                skill_names.append(skill_match["skill"]["name"])
+                        
+                        if skill_names:
+                            job_details["skills"] = skill_names
+                            log.info(f"    🎯 Found {len(skill_names)} skills for job ID: {job_id}")
                             
                             # Log the top skills (first 5)
-                            top_skills = skills_list[:5]
+                            top_skills = skill_names[:5]
                             for skill in top_skills:
-                                required_flag = " (Required)" if skill.get("required") else ""
-                                match_score = skill.get("match_score", 0)
-                                log.info(f"      • {skill['name']}{required_flag} (Match: {match_score})")
+                                log.info(f"      • {skill}")
                             
-                            if len(skills_list) > 5:
-                                log.info(f"      ... and {len(skills_list) - 5} more skills")
+                            if len(skill_names) > 5:
+                                log.info(f"      ... and {len(skill_names) - 5} more skills")
                         else:
                             log.info(f"    ℹ️ No skills found for job ID: {job_id}")
                     else:
-                        log.warning(f"    ⚠️ No 'included' data found in job skills response for job ID: {job_id}")
-                else:
-                    log.warning(f"    ⚠️ No job skills data returned for job ID: {job_id}")
+                        log.warning(f"    ⚠️ No job skills data returned for job ID: {job_id}")
+                        
+                except Exception as e:
+                    log.warning(f"    ⚠️ Error fetching job skills for job ID {job_id}: {e}")
                 
             except Exception as e:
                 log.warning(f"⚠️ Error fetching detailed job information for job ID {job_id}: {e}")
@@ -475,8 +464,8 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
             time.sleep(1)
         
         # Count jobs with detailed information
-        jobs_with_details = sum(1 for job in all_jobs if job.get("detailed_description") or job.get("detailed_skills"))
-        jobs_with_skills = sum(1 for job in all_jobs if job.get("detailed_skills"))
+        jobs_with_details = sum(1 for job in all_jobs if job.get("description") or job.get("company"))
+        jobs_with_skills = sum(1 for job in all_jobs if job.get("skills"))
         
         log.info(f"🎉 Job search complete! Found {len(all_jobs)} unique ML/AI positions")
         log.info(f"📊 Detailed information: {jobs_with_details} jobs with detailed info, {jobs_with_skills} jobs with skills data")
@@ -553,8 +542,8 @@ def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pat
     output_path = save_job_results(jobs, location=location, jobs_per_role=jobs_per_role)
     
     # Count jobs with detailed information for final summary
-    jobs_with_details = sum(1 for job in jobs if job.get("detailed_description") or job.get("detailed_skills"))
-    jobs_with_skills = sum(1 for job in jobs if job.get("detailed_skills"))
+    jobs_with_details = sum(1 for job in jobs if job.get("description") or job.get("company"))
+    jobs_with_skills = sum(1 for job in jobs if job.get("skills"))
     
     log.info(f"🎯 Job search pipeline complete! Found {len(jobs)} positions")
     log.info(f"📊 Enhanced data: {jobs_with_details} jobs with detailed descriptions, {jobs_with_skills} jobs with skills analysis")

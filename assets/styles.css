@@ -84,8 +84,7 @@ body {
         margin-left: 35px;
         margin-right: 20px;
         padding: 3px;
-        font-size: 12px; /* Fallback for older browsers */
-        font-size: 1.3vh;
+        font-size: 12px;
     }
 
 .container {
@@ -103,16 +102,14 @@ body {
 }
 
     .name {
-        font-size: 18px; /* Fallback for older browsers */
-        font-size: 2vh;
+        font-size: 18px;
         font-weight: bold;
         color: #2c3e50;
         margin-bottom: 10px;
     }
 
     .contact-info {
-        font-size: 12px; /* Fallback for older browsers */
-        font-size: 1.3vh;
+        font-size: 12px;
         color: #666;
         line-height: 1.4;
     }
@@ -137,8 +134,7 @@ body {
 }
 
     .section-title {
-        font-size: 14px; /* Fallback for older browsers */
-        font-size: 1.6vh;
+        font-size: 14px;
         font-weight: bold;
         color: #2c3e50;
         text-transform: uppercase;
@@ -330,8 +326,7 @@ em.highlight,
     }
     
     .name {
-        font-size: 24px; /* Fallback for older browsers */
-        font-size: 2.8vh;
+        font-size: 24px;
     }
     
     .item-header {
@@ -346,8 +341,7 @@ em.highlight,
     }
     
     .contact-info {
-        font-size: 13px; /* Fallback for older browsers */
-        font-size: 1.4vh;
+        font-size: 13px;
     }
     
     .sub-project {

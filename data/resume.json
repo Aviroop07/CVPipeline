@@ -37,8 +37,9 @@
           "tech_highlights": [
             "Guidewire ClaimCenter",
             "GPT-4 Vision/Text",
-            "async Python",
-            "30-event window",
+            "Python",
+            "prompt-engineered",
+            "token-cost guardrails",
             "80% confidence",
             "+23 pts",
             "halved inference latency"
@@ -62,10 +63,11 @@
           "description": "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
           "tech_highlights": [
             "Streamlit",
+            "PDF-to-image",
             "layout-transformer",
             "GPT-4 Vision",
             "Mistral OCR",
-            "Python imaging",
+            "Python",
             "Pandas",
             "3s"
           ]
@@ -111,7 +113,7 @@
             "MongoDB",
             "JWT",
             "API Gateway",
-            "client-side service discovery",
+            "service discovery",
             "50 ms"
           ]
         }
@@ -190,45 +192,43 @@
       "url": "https://github.com/Aviroop07/CVPipeline",
       "points": [
         {
-          "text": "Implemented a 6-step pipeline using linkedin-api, openai, Google Knowledge Graph API, PyGithub, and Playwright to fetch, transform, AI-enhance, validate, and output HTML/PDF resumes.",
+          "text": "Implemented a 6-step pipeline using LinkedIn API, OpenAI API, Google KG API, PyGithub, and Playwright to fetch, transform, enhance, validate, and output HTML/PDF resumes.",
           "highlights": [
             "6-step",
-            "linkedin-api",
-            "openai",
-            "Google Knowledge Graph API",
+            "LinkedIn API",
+            "OpenAI API",
+            "Google KG API",
             "PyGithub",
+            "Playwright",
+            "HTML/PDF"
+          ]
+        },
+        {
+          "text": "Developed async URL validation with httpx and requests to check 100+ links concurrently and remove broken URLs in step 4.",
+          "highlights": [
+            "httpx",
+            "requests",
+            "100+"
+          ]
+        },
+        {
+          "text": "Configured HTML and PDF Generator modules with Playwright and centralized styling in config.py for consistent professional output.",
+          "highlights": [
+            "HTML",
+            "PDF Generator",
             "Playwright"
           ]
         },
         {
-          "text": "Streamlined async httpx URL validation with multi-layer Google KG→LinkedIn→profile fallback to validate hundreds of URLs and remove broken links.",
+          "text": "Enabled AI Processor module with OpenAI API for skill filtering, experience extraction, and technical highlighting on JSON-Resume data.",
           "highlights": [
-            "httpx",
-            "Google KG",
-            "LinkedIn",
-            "hundreds"
-          ]
-        },
-        {
-          "text": "Generated two output formats—responsive HTML resumes and print-ready PDFs—with configurable styling through centralized config.py supporting fonts, colors, and layouts.",
-          "highlights": [
-            "two",
-            "HTML",
-            "PDFs",
-            "config.py"
-          ]
-        },
-        {
-          "text": "Transformed LinkedIn profile data into JSON-Resume format across six modular steps with python-dotenv credentials and error-resilient fallbacks.",
-          "highlights": [
-            "JSON-Resume",
-            "python-dotenv",
-            "six"
+            "OpenAI API",
+            "JSON-Resume"
           ]
         }
       ],
       "period": "Jul, 2024 – Jul, 2025",
-      "commit_count": 61
+      "commit_count": 63
     },
     {
       "name": "VARC_APP",
@@ -238,36 +238,29 @@
       "url": "https://github.com/Aviroop07/VARC_APP",
       "points": [
         {
-          "text": "Implemented a Streamlit app in Python that selects one daily article from The Hindu and The Telegraph using four topic weights (20% Business, 50% Science & Tech, 20% Arts, 10% Philosophy).",
+          "text": "Implemented a Python Streamlit application that scrapes The Hindu and The Telegraph and applies a topic probability distribution (50% science, 20% business, 20% art, 10% philosophy).",
           "highlights": [
-            "Streamlit",
             "Python",
-            "20% Business",
-            "50% Science & Tech",
-            "20% Arts",
-            "10% Philosophy"
+            "Streamlit",
+            "50%",
+            "20%",
+            "20%",
+            "10%"
           ]
         },
         {
-          "text": "Developed modular Python scrapers in app/scrapers to fetch and cache articles in a data directory for consistent same-day selection.",
+          "text": "Developed a Python scheduler to select and cache one random article daily in the 'data' directory, ensuring the same article is displayed for 24 hours.",
           "highlights": [
-            "Python"
+            "Python",
+            "24 hours"
           ]
         },
         {
-          "text": "Structured the UI via custom components in app/components and utilities in app/utils for a clean, intuitive interface.",
+          "text": "Structured the code into three Python modules: 'app' for Streamlit UI components, 'scrapers' for web scraping ingestion, and 'utils' for helper functions, all orchestrated by main.py.",
           "highlights": [
-            "custom components",
-            "app/components",
-            "utilities",
-            "app/utils"
-          ]
-        },
-        {
-          "text": "Managed dependencies via requirements.txt and launched the app with streamlit run app/main.py for reproducible environment setup.",
-          "highlights": [
-            "requirements.txt",
-            "streamlit"
+            "Python",
+            "Streamlit",
+            "web scraping"
           ]
         }
       ],
@@ -282,32 +275,44 @@
       "url": "https://github.com/Aviroop07/distributed-p2p-network",
       "points": [
         {
-          "text": "Implemented a distributed text processing system in Python 3.8+ leveraging 5 main nodes (ports 8000-8999) for coordination, load balancing, and health monitoring.",
+          "text": "Implemented distributed text processing in Python 3.8 using 5 Main nodes (coordination on ports 8000–8999), 10 Data nodes (storage on ports 9000–9999), and 10 Compute nodes (embedding and similarity search on ports 10000–10999).",
           "highlights": [
-            "Python 3.8+",
-            "5"
+            "Python 3.8",
+            "5 Main nodes",
+            "10 Data nodes",
+            "10 Compute nodes"
           ]
         },
         {
-          "text": "Developed chunk-based storage on 10 data nodes (ports 9000-9999) with data replication, persistence, and capacity management.",
+          "text": "Developed chunk-based storage and replication with semantic search capabilities, load balancing, and health monitoring across 25 nodes to ensure real-time node management and data persistence.",
           "highlights": [
-            "10 data nodes"
+            "chunk-based storage",
+            "replication",
+            "semantic search",
+            "load balancing",
+            "health monitoring",
+            "25 nodes"
           ]
         },
         {
-          "text": "Engineered 10 compute nodes (ports 10000-10999) for text chunking, embedding generation, semantic search, and real-time node management.",
+          "text": "Integrated REST API and Streamlit frontend with dependencies managed via virtualenv and pip (requirements.txt) served at http://localhost:8501 and API docs at http://localhost:8000/docs.",
           "highlights": [
-            "10",
-            "10000-10999"
-          ]
-        },
-        {
-          "text": "Integrated a microservice API with Swagger documentation and a Streamlit frontend at localhost:8501 alongside automated unit, integration, and frontend tests.",
-          "highlights": [
-            "microservice API",
-            "Swagger",
+            "REST API",
             "Streamlit",
-            "automated unit, integration, and frontend tests"
+            "virtualenv",
+            "pip",
+            "requirements.txt"
+          ]
+        },
+        {
+          "text": "Established automated testing pipelines running unit, integration, and frontend tests with coverage report generation, achieving 100% test coverage.",
+          "highlights": [
+            "automated testing pipelines",
+            "unit tests",
+            "integration tests",
+            "frontend tests",
+            "coverage report generation",
+            "100%"
           ]
         }
       ],
@@ -326,13 +331,13 @@
       "name": "JavaScript"
     },
     {
+      "name": "SQL"
+    },
+    {
       "name": "Java"
     },
     {
       "name": "C (Programming Language)"
-    },
-    {
-      "name": "SQL"
     },
     {
       "name": "Machine Learning"
@@ -344,31 +349,40 @@
       "name": "Natural Language Processing (NLP)"
     },
     {
-      "name": "Large Language Models (LLM)"
-    },
-    {
       "name": "Convolutional Neural Networks (CNN)"
     },
     {
       "name": "Transformers"
     },
     {
-      "name": "Spring Boot"
-    },
-    {
-      "name": "Angular"
-    },
-    {
-      "name": "Node.js"
-    },
-    {
-      "name": "FastAPI"
+      "name": "Scikit-Learn"
     },
     {
       "name": "REST APIs"
     },
     {
+      "name": "SQLAlchemy"
+    },
+    {
+      "name": "Node.js"
+    },
+    {
+      "name": "Angular"
+    },
+    {
+      "name": "FastAPI"
+    },
+    {
       "name": "OpenAI API"
+    },
+    {
+      "name": "Cloud Computing"
+    },
+    {
+      "name": "API Gateways"
+    },
+    {
+      "name": "Git"
     },
     {
       "name": "MySQL"
@@ -377,37 +391,16 @@
       "name": "MongoDB"
     },
     {
-      "name": "SQLAlchemy"
-    },
-    {
-      "name": "Pandas (Software)"
-    },
-    {
-      "name": "NumPy"
-    },
-    {
-      "name": "PIL"
-    },
-    {
-      "name": "Git"
-    },
-    {
       "name": "pytest"
-    },
-    {
-      "name": "Jupyter"
-    },
-    {
-      "name": "Algorithms"
-    },
-    {
-      "name": "Data Structures"
     },
     {
       "name": "Graph Theory"
     },
     {
       "name": "Object-Oriented Programming (OOP)"
+    },
+    {
+      "name": "Jupyter"
     }
   ],
   "languages": [
@@ -429,44 +422,40 @@
       "Python (Programming Language)",
       "C++",
       "JavaScript",
+      "SQL",
       "Java",
-      "C (Programming Language)",
-      "SQL"
+      "C (Programming Language)"
     ],
-    "Machine Learning & AI": [
+    "Machine Learning & Data Science": [
       "Machine Learning",
       "Deep Learning",
       "Natural Language Processing (NLP)",
-      "Large Language Models (LLM)",
       "Convolutional Neural Networks (CNN)",
-      "Transformers"
+      "Transformers",
+      "Scikit-Learn"
     ],
-    "Web Development & APIs": [
-      "Spring Boot",
-      "Angular",
-      "Node.js",
-      "FastAPI",
+    "APIs & Libraries": [
       "REST APIs",
+      "SQLAlchemy",
+      "Node.js",
+      "Angular",
+      "FastAPI",
       "OpenAI API"
     ],
-    "Databases & Data Processing": [
+    "DevOps & Cloud": [
+      "Cloud Computing",
+      "API Gateways",
+      "Git"
+    ],
+    "Databases & Data Storage": [
       "MySQL",
-      "MongoDB",
-      "SQLAlchemy",
-      "Pandas (Software)",
-      "NumPy",
-      "PIL"
+      "MongoDB"
     ],
-    "Developer Tools & Frameworks": [
-      "Git",
+    "Software Development & Tools": [
       "pytest",
-      "Jupyter"
-    ],
-    "Computer Science Fundamentals": [
-      "Algorithms",
-      "Data Structures",
       "Graph Theory",
-      "Object-Oriented Programming (OOP)"
+      "Object-Oriented Programming (OOP)",
+      "Jupyter"
     ]
   }
 }

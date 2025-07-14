@@ -23,6 +23,8 @@ RESUME_JSON_FILE = "resume.json"
 RESUME_PDF_FILE = "Aviroop Mitra Resume.pdf"
 RESUME_HTML_FILE = "index.html"
 LINKEDIN_RAW_FILE = "linkedin_raw.json"
+JOB_SEARCH_RESULTS_FILE = "job_search_results.json"
+JOB_ROLES_FILE = "ml_ai_job_roles.txt"
 
 # Prompt files
 FILTER_SKILLS_PROMPT = "filter_skills.txt"
@@ -97,3 +99,9 @@ KG_URL = "https://kgsearch.googleapis.com/v1/entities:search"
 GITHUB_URL = "https://github.com"
 README_FILE = "README.md"
 GITHUB_USERNAME = "Aviroop07"  # Default GitHub username
+
+# Job search configuration
+JOB_SEARCH_LOCATION = "United States"  # Default location for job search
+JOB_SEARCH_LIMIT_PER_ROLE = 30  # Number of jobs to fetch per role
+JOB_SEARCH_DAYS_BACK = 7  # Number of days back to search for jobs
+# NOTE: All job searches are filtered for FULL-TIME positions only (job_type=["F"])

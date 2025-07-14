@@ -1,0 +1,74 @@
+# Machine Learning and Artificial Intelligence Job Roles
+# This file contains all job role variations used for LinkedIn job search
+# Each role is searched separately to find relevant ML/AI positions
+# IMPORTANT: All searches are filtered for FULL-TIME positions only
+
+## Core ML/AI Roles
+Machine Learning Engineer
+Machine Learning Scientist
+ML Engineer
+ML Scientist
+Artificial Intelligence Engineer
+AI Engineer
+AI Scientist
+Data Scientist
+Applied Scientist
+Research Scientist
+ML Research Engineer
+AI Research Engineer
+
+## Specialized Roles
+Deep Learning Engineer
+Computer Vision Engineer
+NLP Engineer
+Natural Language Processing Engineer
+Computer Vision Scientist
+NLP Scientist
+Deep Learning Scientist
+MLOps Engineer
+ML Platform Engineer
+AI Platform Engineer
+
+## Senior/Lead Roles
+Senior Machine Learning Engineer
+Senior ML Engineer
+Senior AI Engineer
+Lead Machine Learning Engineer
+Lead ML Engineer
+Lead AI Engineer
+Principal Machine Learning Engineer
+Principal ML Engineer
+Principal AI Engineer
+
+## Alternative Titles
+Machine Learning Developer
+AI Developer
+ML Developer
+Machine Learning Specialist
+AI Specialist
+ML Specialist
+Machine Learning Architect
+AI Architect
+ML Architect
+
+## Research Focused
+Machine Learning Researcher
+AI Researcher
+ML Researcher
+Research Engineer
+Applied Research Scientist
+Machine Learning Research Engineer
+AI Research Scientist
+
+## Industry Specific
+ML Software Engineer
+AI Software Engineer
+Machine Learning Software Engineer
+AI/ML Engineer
+ML/AI Engineer
+Machine Learning & AI Engineer
+AI & Machine Learning Engineer
+
+# Total: 50+ job role variations
+# These roles are automatically searched for full-time positions
+# Jobs are deduplicated to avoid the same position appearing multiple times 

@@ -37,6 +37,7 @@ from github_processor import enhance_resume_with_github_projects
 from html_generator import generate_html_resume_file
 from pdf_generator import generate_pdf_resume
 from url_validator import validate_resume_urls
+from job_searcher import search_and_save_jobs
 import config
 
 # Set up logging
@@ -82,6 +83,7 @@ def print_pipeline_summary(start_time: float, steps_completed: int, total_steps:
         log.info(f"🎉 Resume generation pipeline completed successfully!")
         log.info(f"📄 HTML saved to: {config.ASSETS_DIR}/{config.RESUME_HTML_FILE}")
         log.info(f"📄 PDF saved to: {config.ASSETS_DIR}/{config.RESUME_PDF_FILE}")
+        log.info(f"💼 Job search results saved to: {config.ASSETS_DIR}/{config.JOB_SEARCH_RESULTS_FILE}")
     else:
         log.warning(f"⚠️  Pipeline incomplete. Check logs above for errors.")
 
@@ -213,7 +215,21 @@ def step_7_generate_pdf() -> bool:
         print_step_error("PDF generation", str(e))
         return False
 
-def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, skip_github: bool = False, output_dir: Optional[str] = None) -> bool:
+def step_8_job_search(skip: bool = False) -> bool:
+    """Step 8: Search for ML/AI jobs and save results."""
+    if skip:
+        log.info("⏭️  Skipping job search (--skip-job-search flag provided)")
+        return True
+    
+    try:
+        jobs_path = search_and_save_jobs()
+        print_step_success("Job search", f"Job search results saved to {jobs_path}")
+        return True
+    except Exception as e:
+        print_step_error("Job search", str(e))
+        return False
+
+def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, skip_github: bool = False, skip_job_search: bool = False, output_dir: Optional[str] = None) -> bool:
     """
     Run the complete resume generation pipeline.
     
@@ -221,20 +237,21 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, skip_gi
         skip_linkedin (bool): Skip LinkedIn fetching step
         skip_openai (bool): Skip OpenAI processing step
         skip_github (bool): Skip GitHub repository processing step
+        skip_job_search (bool): Skip job search step
         output_dir (str, optional): Custom output directory
         
     Returns:
         bool: True if pipeline completed successfully, False otherwise
     """
     start_time = time.time()
-    total_steps = 7
+    total_steps = 8
     steps_completed = 0
     
     log.info(f"\n🚀 Starting Resume Generation Pipeline")
     log.info(f"📁 Working directory: {ROOT}")
     if output_dir:
         log.info(f"📂 Output directory: {output_dir}")
-    log.info(f"⚙️  Configuration: LinkedIn={'Skip' if skip_linkedin else 'Fetch'}, OpenAI={'Skip' if skip_openai else 'Process'}, GitHub={'Skip' if skip_github else 'Process'}")
+    log.info(f"⚙️  Configuration: LinkedIn={'Skip' if skip_linkedin else 'Fetch'}, OpenAI={'Skip' if skip_openai else 'Process'}, GitHub={'Skip' if skip_github else 'Process'}, JobSearch={'Skip' if skip_job_search else 'Search'}")
     
     # Step 1: Fetch LinkedIn Data
     print_step_header(1, total_steps, "FETCH LINKEDIN DATA", 
@@ -299,6 +316,15 @@ def run_pipeline(skip_linkedin: bool = False, skip_openai: bool = False, skip_gi
         print_pipeline_summary(start_time, steps_completed, total_steps)
         return False
     
+    # Step 8: Job Search
+    print_step_header(8, total_steps, "JOB SEARCH", 
+                     "Search for ML/AI full-time positions and save results")
+    if step_8_job_search(skip=skip_job_search):
+        steps_completed += 1
+    else:
+        print_pipeline_summary(start_time, steps_completed, total_steps)
+        return False
+    
     # Pipeline completed successfully
     print_pipeline_summary(start_time, steps_completed, total_steps)
     return True
@@ -314,7 +340,8 @@ Examples:
   python scripts/pipeline.py --skip-linkedin   # Skip LinkedIn fetch, use existing data
   python scripts/pipeline.py --skip-openai     # Skip OpenAI processing
   python scripts/pipeline.py --skip-github     # Skip GitHub repository processing
-  python scripts/pipeline.py --skip-linkedin --skip-openai --skip-github  # Only generate HTML and PDF from existing JSON
+  python scripts/pipeline.py --skip-job-search # Skip job search step
+  python scripts/pipeline.py --skip-linkedin --skip-openai --skip-github --skip-job-search  # Only generate HTML and PDF from existing JSON
         """
     )
     
@@ -334,6 +361,12 @@ Examples:
         "--skip-github",
         action="store_true", 
         help="Skip GitHub repository processing step"
+    )
+    
+    parser.add_argument(
+        "--skip-job-search",
+        action="store_true", 
+        help="Skip job search step"
     )
     
     parser.add_argument(
@@ -359,6 +392,7 @@ Examples:
         skip_linkedin=args.skip_linkedin,
         skip_openai=args.skip_openai,
         skip_github=args.skip_github,
+        skip_job_search=args.skip_job_search,
         output_dir=args.output_dir
     )
     

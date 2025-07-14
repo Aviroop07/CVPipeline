@@ -147,6 +147,37 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
         )
         
         log.info(f"✅ Found {len(jobs)} jobs for '{role}'")
+        
+        # Print details of each job found
+        if jobs:
+            log.info(f"📋 Jobs found for '{role}':")
+            for i, job in enumerate(jobs, 1):
+                job_id = job.get("entityUrn", "").split(":")[-1] if job.get("entityUrn") else "N/A"
+                title = job.get("title", "Unknown Title")
+                company = job.get("companyDetails", {}).get("company", {}).get("name", "Unknown Company")
+                location = job.get("formattedLocation", "Unknown Location")
+                employment_type = job.get("employmentStatus", {}).get("employmentType", "Unknown")
+                
+                log.info(f"  {i:2d}. {title}")
+                log.info(f"      Company: {company}")
+                log.info(f"      Location: {location}")
+                log.info(f"      Job ID: {job_id}")
+                log.info(f"      Employment Type: {employment_type}")
+                
+                # Log additional details if available
+                if job.get("experienceLevel"):
+                    log.info(f"      Experience Level: {job['experienceLevel']}")
+                if job.get("seniorityLevel"):
+                    log.info(f"      Seniority Level: {job['seniorityLevel']}")
+                if job.get("workplaceType"):
+                    log.info(f"      Workplace Type: {job['workplaceType']}")
+                if job.get("listedAt"):
+                    log.info(f"      Listed At: {job['listedAt']}")
+                
+                log.info("")  # Empty line for readability
+        else:
+            log.info(f"  No jobs found for '{role}'")
+        
         return jobs
         
     except Exception as e:
@@ -199,11 +230,13 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
         # Fetch detailed job information if API is available and job_id exists
         if api and job_id:
             try:
-                log.debug(f"🔍 Fetching detailed job information for job ID: {job_id}")
+                log.info(f"🔍 Fetching detailed job information for job ID: {job_id}")
                 
                 # Get detailed job information
                 detailed_job = api.get_job(job_id)
                 if detailed_job:
+                    log.info(f"✅ Detailed job data retrieved for job ID: {job_id}")
+                    
                     # Extract additional details from the detailed job response
                     if "included" in detailed_job:
                         for item in detailed_job["included"]:
@@ -233,13 +266,35 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                                     "relocation_assistance": item.get("relocationAssistance", False),
                                     "visa_sponsorship": item.get("visaSponsorship", False)
                                 })
+                                
+                                # Log key detailed information
+                                if item.get("description"):
+                                    desc_length = len(item["description"])
+                                    log.info(f"    📄 Detailed description: {desc_length} characters")
+                                if item.get("requirements"):
+                                    req_length = len(item["requirements"])
+                                    log.info(f"    📋 Requirements: {req_length} characters")
+                                if item.get("responsibilities"):
+                                    resp_length = len(item["responsibilities"])
+                                    log.info(f"    📝 Responsibilities: {resp_length} characters")
+                                if item.get("remoteAllowed") is not None:
+                                    log.info(f"    🏠 Remote allowed: {item['remoteAllowed']}")
+                                if item.get("relocationAssistance") is not None:
+                                    log.info(f"    🚚 Relocation assistance: {item['relocationAssistance']}")
+                                if item.get("visaSponsorship") is not None:
+                                    log.info(f"    🛂 Visa sponsorship: {item['visaSponsorship']}")
                                 break
-                    
-                    log.debug(f"✅ Detailed job information fetched for job ID: {job_id}")
+                    else:
+                        log.warning(f"    ⚠️ No 'included' data found in detailed job response for job ID: {job_id}")
+                else:
+                    log.warning(f"    ⚠️ No detailed job data returned for job ID: {job_id}")
                 
                 # Get job skills information
+                log.info(f"🔍 Fetching job skills for job ID: {job_id}")
                 job_skills = api.get_job_skills(job_id)
                 if job_skills:
+                    log.info(f"✅ Job skills data retrieved for job ID: {job_id}")
+                    
                     # Extract skills from the job skills response
                     if "included" in job_skills:
                         skills_list = []
@@ -257,7 +312,23 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         
                         if skills_list:
                             job_details["detailed_skills"] = skills_list
-                            log.debug(f"✅ Job skills fetched for job ID: {job_id} - {len(skills_list)} skills found")
+                            log.info(f"    🎯 Found {len(skills_list)} skills for job ID: {job_id}")
+                            
+                            # Log the top skills (first 5)
+                            top_skills = skills_list[:5]
+                            for skill in top_skills:
+                                required_flag = " (Required)" if skill.get("required") else ""
+                                match_score = skill.get("match_score", 0)
+                                log.info(f"      • {skill['name']}{required_flag} (Match: {match_score})")
+                            
+                            if len(skills_list) > 5:
+                                log.info(f"      ... and {len(skills_list) - 5} more skills")
+                        else:
+                            log.info(f"    ℹ️ No skills found for job ID: {job_id}")
+                    else:
+                        log.warning(f"    ⚠️ No 'included' data found in job skills response for job ID: {job_id}")
+                else:
+                    log.warning(f"    ⚠️ No job skills data returned for job ID: {job_id}")
                 
             except Exception as e:
                 log.warning(f"⚠️ Error fetching detailed job information for job ID {job_id}: {e}")

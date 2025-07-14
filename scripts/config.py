@@ -103,6 +103,6 @@ GITHUB_USERNAME = "Aviroop07"  # Default GitHub username
 # Job search configuration
 JOB_SEARCH_LOCATION = "United States"  # Default location for job search
 JOB_SEARCH_LIMIT_PER_ROLE = 30  # Number of jobs to fetch per role
-JOB_SEARCH_MAX_TOTAL_JOBS = 500  # Maximum total number of unique jobs to keep
+JOB_SEARCH_MAX_TOTAL_JOBS = 20 # Maximum total number of unique jobs to keep
 JOB_SEARCH_SECONDS_BACK = 3600  # Number of seconds back to search for jobs (7 days = 604800 seconds)
 # NOTE: All job searches are filtered for FULL-TIME positions only (job_type=["F"])

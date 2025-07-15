@@ -16,67 +16,7 @@
       "endDate": "2025-07",
       "summary": "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025\nAutomated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.\n\nDocument Intelligence Platform — Carelon Health | Mar–May 2025\nStreamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
       "url": "https://www.linkedin.com/company/neurologicai/",
-      "public_id": "neurologicai",
-      "extracted_projects": [
-        {
-          "title": "Intelligent Claim Orchestration in Guideware",
-          "company": "Skan AI",
-          "duration": {
-            "start": {
-              "day": null,
-              "month": 5,
-              "year": 2025
-            },
-            "end": {
-              "day": null,
-              "month": 6,
-              "year": 2025
-            }
-          },
-          "description": "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.",
-          "tech_highlights": [
-            "Guidewire ClaimCenter",
-            "GPT-4 Vision/Text",
-            "Python",
-            "80%",
-            "23 pts",
-            "halved inference latency"
-          ]
-        },
-        {
-          "title": "Document Intelligence Platform",
-          "company": "Carelon Health",
-          "duration": {
-            "start": {
-              "day": null,
-              "month": 3,
-              "year": 2025
-            },
-            "end": {
-              "day": null,
-              "month": 5,
-              "year": 2025
-            }
-          },
-          "description": "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
-          "tech_highlights": [
-            "Streamlit",
-            "layout-transformer",
-            "GPT-4 Vision",
-            "Mistral OCR",
-            "Python imaging",
-            "Pandas",
-            "3s"
-          ]
-        }
-      ],
-      "points": [
-        "Intelligent Claim Orchestration in Guideware — Skan AI | May–Jun 2025",
-        "Automated claim creation and assignment in Guidewire ClaimCenter with a vision-to-reasoning pipeline that pairs GPT-4 Vision/Text (async Python, prompt-engineered with token-cost guardrails) and a hierarchical scorer operating on a 30-event window. Delivered 80% confidence (+23 pts over benchmark) and halved inference latency.",
-        "Document Intelligence Platform — Carelon Health | Mar–May 2025",
-        "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy."
-      ],
-      "period": "Nov, 2023 – Jul, 2025"
+      "public_id": "neurologicai"
     },
     {
       "name": "PwC India",
@@ -86,39 +26,7 @@
       "endDate": "2024-07",
       "summary": "Full-Stack Ticket Platform | Jun–Jul 2024\nAngular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
       "url": "http://www.pwc.com",
-      "public_id": "m/012_78",
-      "extracted_projects": [
-        {
-          "title": "Full-Stack Ticket Platform",
-          "company": null,
-          "duration": {
-            "start": {
-              "day": null,
-              "month": 6,
-              "year": 2024
-            },
-            "end": {
-              "day": null,
-              "month": 7,
-              "year": 2024
-            }
-          },
-          "description": "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out.",
-          "tech_highlights": [
-            "Angular",
-            "Spring Boot",
-            "MongoDB",
-            "JWT",
-            "API Gateway",
-            "50 ms"
-          ]
-        }
-      ],
-      "points": [
-        "Full-Stack Ticket Platform | Jun–Jul 2024",
-        "Angular + Spring Boot + MongoDB stack with JWT-secured role-based access. Provides a real-time ticket dashboard, template creation/search, appraisal & query threads, and an animated UI—while keeping CRUD latency under 50 ms. An API Gateway and client-side service discovery route traffic to horizontally duplicated ticket and auth services for effortless scale-out."
-      ],
-      "period": "Jun – Jul, 2024"
+      "public_id": "m/012_78"
     }
   ],
   "education": [
@@ -130,8 +38,7 @@
       "startDate": "2021-12",
       "endDate": "2025-07",
       "url": "",
-      "public_id": "",
-      "period": "Dec, 2021 – Jul, 2025"
+      "public_id": ""
     },
     {
       "institution": "Burdwan Municipal High School",
@@ -141,8 +48,7 @@
       "startDate": "2019-07",
       "endDate": "2021-03",
       "url": "http://www.bmhschool.com/",
-      "public_id": "m/0b3xpm",
-      "period": "Jul, 2019 – Mar, 2021"
+      "public_id": "m/0b3xpm"
     },
     {
       "institution": "Burdwan Town School",
@@ -152,28 +58,27 @@
       "startDate": "2011-01",
       "endDate": "2019-03",
       "url": "",
-      "public_id": "",
-      "period": "Jan, 2011 – Mar, 2019"
+      "public_id": ""
     }
   ],
   "awards": [
     {
       "title": "GATE CS, 2025",
-      "date": "Feb, 2025",
+      "date": "2025-02",
       "awarder": "",
       "summary": "AIR 65, 99.96 percentile",
       "url": ""
     },
     {
       "title": "Senior Scholar",
-      "date": "Jul, 2022",
+      "date": "2022-07",
       "awarder": "Jagadish Bose National Science Talent Search",
       "summary": "98.98 percentile",
       "url": ""
     },
     {
       "title": "Junior Scholar",
-      "date": "Mar, 2020",
+      "date": "2020-03",
       "awarder": "Jagadish Bose National Science Talent Search",
       "summary": "98.5 percentile",
       "url": ""
@@ -181,179 +86,84 @@
   ],
   "projects": [
     {
-      "name": "CVPipeline",
-      "description": "# Resume Generation Pipeline\r\n\r\nAn intelligent, automated resume generation system that transforms LinkedIn profile data into professional, AI-enhanced resumes with validated URLs and multiple output ...",
-      "startDate": "2024-07",
-      "endDate": "2025-07",
-      "url": "https://github.com/Aviroop07/CVPipeline",
-      "points": [
-        {
-          "text": "Developed a 6-step pipeline using linkedin-api, OpenAI API, Google Knowledge Graph API, PyGithub, and Playwright to fetch, transform, AI-enhance, validate, and export HTML/PDF resumes.",
-          "highlights": [
-            "6-step",
-            "linkedin-api",
-            "OpenAI API",
-            "Google Knowledge Graph API",
-            "PyGithub",
-            "Playwright"
-          ]
-        },
-        {
-          "text": "Implemented URL validation with httpx and a 3-layer discovery via Google Knowledge Graph API, LinkedIn, and profile fallback to validate URLs.",
-          "highlights": [
-            "httpx",
-            "Google Knowledge Graph API",
-            "LinkedIn"
-          ]
-        },
-        {
-          "text": "Designed a 3-stage AI Processor leveraging OpenAI API for skill filtering, project extraction, and technical highlighting to optimize content.",
-          "highlights": [
-            "3-stage",
-            "OpenAI API"
-          ]
-        },
-        {
-          "text": "Implemented SQLite-based API caching with a 24-hour TTL and automated cleanup to minimize redundant API calls.",
-          "highlights": [
-            "SQLite",
-            "API caching",
-            "24-hour TTL",
-            "automated cleanup"
-          ]
-        }
-      ],
-      "period": "Jul, 2024 – Jul, 2025",
-      "commit_count": 79
+      "name": "Distributed P2P Network",
+      "description": "Built a simulation of P2P network using FastAPI, Streamlit and Distributed Computing knowledge where peers can upload and view files (similar to Bit torrent)",
+      "startDate": "2025-02",
+      "endDate": "2025-05",
+      "url": ""
     },
     {
-      "name": "VARC_APP",
-      "description": "# Daily Article Selector\n\nA Streamlit application that selects a random article daily from The Hindu or The Telegraph based on specified topic probabilities:\n\n- Business and economics (20%)\n- Science,...",
-      "startDate": "2025-04",
-      "endDate": "2025-04",
-      "url": "https://github.com/Aviroop07/VARC_APP",
-      "points": [
-        {
-          "text": "Developed a Streamlit application in Python that selects one random article daily based on topic probability distribution: Business 20%, Science 50%, Art 20%, Philosophy 10%.",
-          "highlights": [
-            "Streamlit",
-            "Python",
-            "Business 20%",
-            "Science 50%",
-            "Art 20%",
-            "Philosophy 10%"
-          ]
-        },
-        {
-          "text": "Implemented web scraping modules in scrapers/ directory to fetch and cache articles from multiple sources with utility functions in utils/ for parsing and normalization.",
-          "highlights": [
-            "web scraping",
-            "parsing",
-            "normalization"
-          ]
-        },
-        {
-          "text": "Structured a clean and intuitive UI using Streamlit components in app/components/ and a main app entrypoint in app/main.py for user interaction.",
-          "highlights": [
-            "Streamlit"
-          ]
-        },
-        {
-          "text": "Organized repository into app/, data/, and requirements.txt enabling reproducible setup and dependency management with pip install -r requirements.txt.",
-          "highlights": [
-            "requirements.txt",
-            "pip install -r requirements.txt"
-          ]
-        }
-      ],
-      "period": "Apr, 2025",
-      "commit_count": 20
+      "name": "LinkedIn Puzzle Solver",
+      "description": "• Developed a Streamlit-based web application to solve the Queens game, a logic puzzle from LinkedIn News.\n• Created a user-friendly interface with custom styling using HTML and CSS for enhanced visual appeal.\n• Integrated image processing using the Python PIL library to guide users on valid and invalid image uploads.",
+      "startDate": "2024-08",
+      "endDate": "2024-08",
+      "url": ""
     },
     {
-      "name": "distributed-p2p-network",
-      "description": "# Distributed Text Processing System\n\nA distributed system for processing and analyzing text data using multiple nodes for computation and storage.\n\n## System Architecture\n\nThe system consists of thre...",
-      "startDate": "2025-03",
-      "endDate": "2025-03",
-      "url": "https://github.com/Aviroop07/distributed-p2p-network",
-      "points": [
-        {
-          "text": "Implemented distributed text processing with Python 3.8+ across 5 Main nodes, 10 Data nodes, and 10 Compute nodes spanning ports 8000–10999.",
-          "highlights": [
-            "Python 3.8+",
-            "5 Main nodes",
-            "10 Data nodes",
-            "10 Compute nodes"
-          ]
-        },
-        {
-          "text": "Developed chunk-based storage on 10 Data nodes with data replication ensuring high persistence.",
-          "highlights": [
-            "chunk-based storage",
-            "10 Data nodes",
-            "data replication"
-          ]
-        },
-        {
-          "text": "Integrated embedding generation and semantic search on 10 Compute nodes enabling real-time similarity analysis.",
-          "highlights": [
-            "embedding generation",
-            "semantic search",
-            "10"
-          ]
-        },
-        {
-          "text": "Orchestrated task distribution, load balancing, and health monitoring via 5 Main nodes managing API (port 8000) and frontend (port 8501).",
-          "highlights": [
-            "5 Main nodes"
-          ]
-        }
-      ],
-      "period": "Mar, 2025",
-      "commit_count": 1
+      "name": "Compiler Design Project",
+      "description": "• Implemented a bottom up parser in C language for a simple C like language with for loops, variable\n declarations and functions\n• Designed an LR(1) automaton to generate parsing tables and handle grammar rules for a C-like language.\n• Integrated a lexical analyzer and symbol table to tokenize input, manage scope, and validate identifiers and types during parsing.",
+      "startDate": "2024-02",
+      "endDate": "2024-04",
+      "url": ""
     }
   ],
   "skills": [
     {
-      "name": "Python (Programming Language)"
+      "name": "Prompt Engineering"
     },
     {
-      "name": "C++"
-    },
-    {
-      "name": "JavaScript"
-    },
-    {
-      "name": "Java"
-    },
-    {
-      "name": "C (Programming Language)"
+      "name": "DSA"
     },
     {
       "name": "OpenAI API"
     },
     {
-      "name": "FastAPI"
-    },
-    {
-      "name": "Streamlit"
-    },
-    {
-      "name": "Pandas (Software)"
-    },
-    {
-      "name": "NumPy"
-    },
-    {
-      "name": "Scikit-Learn"
+      "name": "Machine Learning"
     },
     {
       "name": "Large Language Models (LLM)"
     },
     {
+      "name": "API Gateways"
+    },
+    {
       "name": "Natural Language Processing (NLP)"
     },
     {
+      "name": "Python (Programming Language)"
+    },
+    {
       "name": "Recommender Systems"
+    },
+    {
+      "name": "C++"
+    },
+    {
+      "name": "MySQL"
+    },
+    {
+      "name": "Streamlit"
+    },
+    {
+      "name": "PIL"
+    },
+    {
+      "name": "Graph Theory"
+    },
+    {
+      "name": "pytest"
+    },
+    {
+      "name": "REST APIs"
+    },
+    {
+      "name": "Cloud Computing"
+    },
+    {
+      "name": "FastAPI"
+    },
+    {
+      "name": "SQLAlchemy"
     },
     {
       "name": "Convolutional Neural Networks (CNN)"
@@ -362,22 +172,91 @@
       "name": "Transformers"
     },
     {
-      "name": "MySQL"
+      "name": "Creative Problem Solving"
+    },
+    {
+      "name": "Debugging Code"
+    },
+    {
+      "name": "Debugging"
+    },
+    {
+      "name": "Presentation Skills"
+    },
+    {
+      "name": "Spring Boot"
+    },
+    {
+      "name": "Angular"
     },
     {
       "name": "MongoDB"
     },
     {
-      "name": "SQL"
+      "name": "Deep Learning"
     },
     {
-      "name": "pytest"
+      "name": "JavaScript"
+    },
+    {
+      "name": "SQL"
     },
     {
       "name": "Git"
     },
     {
+      "name": "Pandas (Software)"
+    },
+    {
+      "name": "Scikit-Learn"
+    },
+    {
+      "name": "Node.js"
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)"
+    },
+    {
+      "name": "NumPy"
+    },
+    {
+      "name": "Java"
+    },
+    {
+      "name": "Data Structures"
+    },
+    {
+      "name": "C (Programming Language)"
+    },
+    {
+      "name": "Programming"
+    },
+    {
+      "name": "Software Development"
+    },
+    {
+      "name": "Algorithms"
+    },
+    {
+      "name": "Computer Science"
+    },
+    {
       "name": "Jupyter"
+    },
+    {
+      "name": "Engineering"
+    },
+    {
+      "name": "Communication"
+    },
+    {
+      "name": "Analytical Skills"
+    },
+    {
+      "name": "Problem Solving"
+    },
+    {
+      "name": "Mathematics"
     }
   ],
   "languages": [
@@ -393,41 +272,5 @@
       "language": "French",
       "fluency": "ELEMENTARY"
     }
-  ],
-  "skills_by_category": {
-    "Programming Languages": [
-      "Python (Programming Language)",
-      "C++",
-      "JavaScript",
-      "Java",
-      "C (Programming Language)"
-    ],
-    "APIs & Libraries": [
-      "OpenAI API",
-      "FastAPI",
-      "Streamlit",
-      "Pandas (Software)",
-      "NumPy",
-      "Scikit-Learn"
-    ],
-    "Machine Learning & AI": [
-      "Large Language Models (LLM)",
-      "Natural Language Processing (NLP)",
-      "Recommender Systems",
-      "Convolutional Neural Networks (CNN)",
-      "Transformers"
-    ],
-    "Databases & Data Storage": [
-      "MySQL",
-      "MongoDB",
-      "SQL"
-    ],
-    "Testing & QA": [
-      "pytest"
-    ],
-    "Tools & Platforms": [
-      "Git",
-      "Jupyter"
-    ]
-  }
+  ]
 }

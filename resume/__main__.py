@@ -8,7 +8,6 @@ from resume.html.generator import generate_html_resume_file
 from resume.html.pdf import generate_pdf_resume
 from resume.utils.url_validator import validate_resume_urls
 from resume.jobs.searcher import search_and_save_jobs
-from resume.utils import config
 
 
 def main():

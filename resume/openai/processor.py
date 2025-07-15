@@ -16,6 +16,7 @@ from typing import List, Dict, Any
 from string import Template as StrTemplate
 from resume.utils import config
 import dotenv
+from resume.utils.api_cache import get_cache
 
 RESUME_JSON = config.PROJECT_ROOT / config.DATA_DIR / config.RESUME_JSON_FILE
 PROMPTS_DIR = config.PROJECT_ROOT / config.PROMPTS_DIR
@@ -49,7 +50,7 @@ def load_prompt_template(name: str, **kwargs) -> str:
 
 
 async def call_openai_api_async(prompt: str = None, messages: list = None) -> str:
-    """Send prompt or messages to OpenAI chat API (asynchronous version).
+    """Send prompt or messages to OpenAI chat API (async version) with caching.
     
     Args:
         prompt (str, optional): Simple prompt to send (will be converted to messages format)
@@ -60,48 +61,66 @@ async def call_openai_api_async(prompt: str = None, messages: list = None) -> st
     """
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        log.debug("OPENAI_API_KEY not set ??? skipping call")
+        log.debug("[OpenAI] OPENAI_API_KEY not set – skipping call")
         return ""
     
     # Convert prompt to messages format if needed
     if prompt and not messages:
         messages = [{"role": "user", "content": prompt}]
     elif not messages:
-        log.warning("No prompt or messages provided to OpenAI API")
+        log.warning("[OpenAI] No prompt or messages provided to OpenAI API")
         return ""
     
-    try:
+    cache = get_cache()
+    cache_key = {"messages": messages}
+
+    cached = cache.get("openai_chat", cache_key)
+    if cached is not None:
+        log.info(f"[OpenAI] Cache hit for {cache_key}")
+        return cached
+
+    async def make_openai_request():
         from openai import AsyncOpenAI  # requires openai >= 1.x
         
         # Log messages before making the call
-        log.debug("???? OpenAI API Call - Messages:")
+        log.debug("[OpenAI] API Call - Messages:")
         log.debug(json.dumps(messages, indent=2, ensure_ascii=False))
         log.debug("=" * 60)
-        
-        log.debug("Calling OpenAI with %d messages", len(messages))
+        log.debug(f"[OpenAI] Calling OpenAI with {len(messages)} messages")
 
-        client = AsyncOpenAI(api_key=api_key)
+        # Use context manager to ensure proper cleanup
+        async with AsyncOpenAI(api_key=api_key) as client:
+            response = await client.chat.completions.create(
+                model=config.OPENAI_MODEL,
+                messages=messages,
+                temperature=config.OPENAI_TEMPERATURE,
+                reasoning_effort=config.OPENAI_REASONING_EFFORT
+            )
 
-        response = await client.chat.completions.create(
-            model=config.OPENAI_MODEL,
-            messages=messages,
-            temperature=config.OPENAI_TEMPERATURE,
-            reasoning_effort=config.OPENAI_REASONING_EFFORT
-        )
+            result = response.choices[0].message.content.strip()
+            
+            # Log the response from OpenAI
+            log.debug("[OpenAI] API Response:")
+            log.debug(result)
+            log.debug("=" * 60)
+            log.debug(f"[OpenAI] Response received ({len(result)} chars)")
+            log.debug(f"[OpenAI] Response: {result}")
+            return result
 
-        result = response.choices[0].message.content.strip()
-        
-        # Log the response from OpenAI
-        log.debug("???? OpenAI API Response:")
-        log.debug(result)
-        log.debug("=" * 60)
-        
-        log.debug("OpenAI response received (%d chars)", len(result))
-        log.debug("OpenAI response: %s", result)
-        return result
-    except Exception as exc:
-        log.warning("OpenAI call failed: %s", exc)
-        return ""
+    # Use cached API call
+    async def make_openai_request_and_serialize():
+        result = await make_openai_request()
+        # Ensure the result is a JSON object
+        return {"response": result}
+
+    log.info(f"[OpenAI] Request: {json.dumps(messages, indent=2, ensure_ascii=False)}")
+    
+    result = await make_openai_request()
+
+    log.info(f"[OpenAI] Response: {result}")
+
+    cache.set("openai_chat", cache_key, result)
+    return result
 
 def sort_chronologically(items: List[Dict[str, Any]], date_key: str = None, end_date_key: str = None) -> List[Dict[str, Any]]:
     """Sort items chronologically (descending - latest first), prioritizing end dates.
@@ -179,18 +198,16 @@ async def filter_and_categorize_skills_with_openai_async(skills: List[str]) -> D
     # Load the system prompt
     system_prompt = load_prompt_template(config.FILTER_SKILLS_PROMPT)
     
-    # Create messages with system prompt and user skills list
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": [
-            {"type": "text", "text": "Input Skills as a list of strings: "},
-            {"type": "text", "text" : f'{skills}'}
-        ]}
-    ]
-    
-    log.info("Filtering %d skills via OpenAI (async)", len(skills))
+    # Ensure consistent structure for messages
+    messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "text", "text": "Input Skills as a list of strings: "}, {"type": "text", "text" : f'{skills}'}]}]
+
+    # Cache the response
+    cache = get_cache()
+    cache_key = {"messages": messages}
     response = await call_openai_api_async(messages=messages)
-    log.debug("Skill filtering raw response: %s", response)
+    cache.set("openai_chat", cache_key, response)
+
+    log.info("🔍 Filtering %d skills via OpenAI (async)", len(skills))
     if not response:
         return {"General": skills}
 
@@ -205,14 +222,14 @@ async def filter_and_categorize_skills_with_openai_async(skills: List[str]) -> D
             total_filtered = sum(len(skill_list) if isinstance(skill_list, list) else 0 
                                for skill_list in result.values())
             
-            log.info("Filtered and categorized: kept %d/%d skills in %d categories", 
+            log.info("✅ Filtered and categorized: kept %d/%d skills in %d categories", 
                     total_filtered, len(skills), len(result))
             return result if total_filtered > 0 else {"General": skills}
         else:
-            log.warning("No JSON object found in response")
+            log.warning("⚠️ No JSON object found in response")
             return {"General": skills}
     except Exception as exc:
-        log.warning("Failed to parse filtered skills JSON: %s", exc)
+        log.warning("❌ Failed to parse filtered skills JSON: %s", exc)
         return {"General": skills}
 
 
@@ -230,9 +247,9 @@ async def extract_bullet_points_async(text: str) -> List[str]:
         return []
 
     # If already contains newline/bullets, split heuristically
-    if "\n" in text or "???" in text:
-        raw_parts = re.split(r"[\n???]\s*", text)
-        parts = [p.strip(" ???-\t") for p in raw_parts if p.strip()]
+    if "\n" in text or "⚠️" in text:
+        raw_parts = re.split(r"[\n⚠️]\s*", text)
+        parts = [p.strip(" ⚠️-\t") for p in raw_parts if p.strip()]
         return parts
 
     # If sentence longer than POINT_WORD_THRESHOLD words, ask OpenAI to break down
@@ -241,14 +258,16 @@ async def extract_bullet_points_async(text: str) -> List[str]:
         return [text.strip()]
 
     prompt = load_prompt_template(config.EXTRACT_POINTS_PROMPT, raw_text=text)
-    log.info("Requesting point extraction (%d words) via OpenAI (async)", word_count)
-    resp = await call_openai_api_async(prompt)
-    log.debug("Point extraction raw response: %s", resp)
+    response = await call_openai_api_async(prompt=prompt)
+    cache = get_cache()
+    cache_key = {"prompt": prompt}
+    cache.set("openai_chat", cache_key, response)
+    log.info("🔍 Requesting point extraction (%d words) via OpenAI (async)", word_count)
     try:
-        points = json.loads(resp)
+        points = json.loads(response)
         return points if isinstance(points, list) else [text]
     except Exception as exc:
-        log.warning("Failed to parse points JSON: %s", exc)
+        log.warning("❌ Failed to parse points JSON: %s", exc)
         return [text]
 
 
@@ -261,7 +280,7 @@ def format_date_range(start: str|None, end: str|None) -> str:
         end (str|None): End date in YYYY-MM format (None means present)
         
     Returns:
-        str: Formatted date range (e.g., "Jan, 2020 ??? Present")
+        str: Formatted date range (e.g., "Jan, 2020 – Present")
     """
     if not start:
         return ""
@@ -280,13 +299,13 @@ def format_date_range(start: str|None, end: str|None) -> str:
             ye_int = int(ye)
             em = config.MONTHS[me-1]
         except Exception:
-            return f"{sm}, {ys} ??? {end}"
+            return f"{sm}, {ys} – {end}"
 
         if ys_int == ye_int:
-            return f"{sm} ??? {em}, {ys}"
-        return f"{sm}, {ys} ??? {em}, {ye}"
+            return f"{sm} – {em}, {ys}"
+        return f"{sm}, {ys} – {em}, {ye}"
     else:
-        return f"{sm}, {ys} ??? Present"
+        return f"{sm}, {ys} – Present"
 
 def format_single_date(date: str|None) -> str:
     """Format single date from YYYY-MM string.
@@ -319,7 +338,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
     Returns:
         Dict: Enhanced resume data
     """
-    log.info("Processing resume data with OpenAI API (async)...")
+    log.info("🚀 Processing resume data with OpenAI API (async)...")
     
     # Chronological ordering (latest first) - prioritize end dates
     data["work"] = sort_chronologically(data.get("work", []), "startDate", "endDate")
@@ -328,7 +347,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
     data["awards"] = sort_chronologically(data.get("awards", []))
 
     # Phase 1: Start independent async operations
-    log.info("Phase 1: Starting independent OpenAI operations...")
+    log.info("📋 Phase 1: Starting independent OpenAI operations...")
     
     # Skills filtering - completely independent
     skill_names = [s["name"] for s in data.get("skills", [])]
@@ -359,7 +378,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
             project_tasks.append((i, task))
     
     # Phase 2: Wait for experience extraction to complete
-    log.info("Phase 2: Processing experience extraction results...")
+    log.info("🔄 Phase 2: Processing experience extraction results...")
     
     # Wait for all experience extractions to complete
     for i, task in experience_tasks:
@@ -369,7 +388,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
         work_experiences[i]["period"] = format_date_range(work_experiences[i].get("startDate"), work_experiences[i].get("endDate"))
     
     # Phase 3: Now run tech highlighting for all extracted projects in parallel
-    log.info("Phase 3: Running tech highlighting for extracted projects...")
+    log.info("⚡ Phase 3: Running tech highlighting for extracted projects...")
     
     tech_highlight_tasks = []
     for w in work_experiences:
@@ -386,7 +405,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
         project["tech_highlights"] = highlights
     
     # Phase 4: Wait for remaining independent tasks
-    log.info("Phase 4: Finalizing remaining tasks...")
+    log.info("🎯 Phase 4: Finalizing remaining tasks...")
     
     # Wait for skills filtering to complete
     categorized = await skills_task
@@ -407,6 +426,26 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
         projects[i]["points"] = points
         projects[i]["period"] = format_date_range(projects[i].get("startDate"), projects[i].get("endDate"))
     
+    # Phase 5: Add tech highlighting for personal projects from LinkedIn
+    log.info("🎨 Phase 5: Adding tech highlighting for personal projects...")
+    
+    personal_project_highlight_tasks = []
+    for i, p in enumerate(projects):
+        if p.get("description"):
+            log.info(f"🔍 Adding tech highlighting for personal project {i+1}: {p.get('name', 'Unknown')}")
+            task = asyncio.create_task(
+                highlight_tech_skills_async(p["description"])
+            )
+            personal_project_highlight_tasks.append((p, task))
+        else:
+            log.debug(f"⚠️ Personal project {i+1} ({p.get('name', 'Unknown')}) has no description")
+    
+    # Wait for all personal project tech highlighting to complete
+    for project, task in personal_project_highlight_tasks:
+        highlights = await task
+        project["tech_highlights"] = highlights
+        log.info(f"✅ Added {len(highlights)} tech highlights to project: {project.get('name', 'Unknown')}")
+    
     # Format dates for education and awards
     for e in data.get("education", []):
         e["period"] = format_date_range(e.get("startDate"), e.get("endDate"))
@@ -415,7 +454,7 @@ async def process_resume_with_openai_async(data: Dict[str, Any]) -> Dict[str, An
         a["date"] = format_single_date(a.get("date"))
 
     log.debug("Data after OpenAI processing keys: %s", list(data.keys()))
-    log.info("OpenAI processing completed successfully (async)")
+    log.info("✅ OpenAI processing completed successfully (async)")
 
     return data
 
@@ -436,10 +475,10 @@ def load_resume_data(input_path=None):
     if input_path is None:
         input_path = RESUME_JSON
     if not (input_path.exists()):
-        log.error(f"{config.RESUME_JSON_FILE} not found ??? aborting")
+        log.error(f"{config.RESUME_JSON_FILE} not found ⚠️ aborting")
         sys.exit(1)
 
-    log.info(f"Loading {config.RESUME_JSON_FILE}")
+    log.info(f"[OpenAI] Loading {config.RESUME_JSON_FILE}")
     return json.loads(input_path.read_text(encoding="utf-8"))
 
 def save_enhanced_resume_data(data: Dict[str, Any], output_path=None):
@@ -456,7 +495,7 @@ def save_enhanced_resume_data(data: Dict[str, Any], output_path=None):
         output_path = RESUME_JSON
         
     output_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
-    log.info(f"Enhanced {config.RESUME_JSON_FILE} saved successfully")
+    log.info(f"[OpenAI] Enhanced {config.RESUME_JSON_FILE} saved successfully")
     return output_path
 
 def enhance_resume_with_openai():
@@ -497,7 +536,7 @@ async def extract_experience_projects_async(experience_text: str) -> List[Dict[s
         # Load the examples
         examples_path = PROMPTS_DIR / "experience_examples.json"
         if not examples_path.exists():
-            log.warning("Experience examples file not found, using fallback extraction")
+            log.warning("⚠️ Experience examples file not found, using fallback extraction")
             return []
         
         examples_data = json.loads(examples_path.read_text(encoding="utf-8"))
@@ -512,7 +551,7 @@ async def extract_experience_projects_async(experience_text: str) -> List[Dict[s
             ]}
         ]
         
-        log.info("Extracting experience projects via OpenAI (async) (%d chars)", len(experience_text))
+        log.info("🔍 Extracting experience projects via OpenAI (async) (%d chars)", len(experience_text))
         response = await call_openai_api_async(messages=messages)
         
         if not response:
@@ -528,7 +567,7 @@ async def extract_experience_projects_async(experience_text: str) -> List[Dict[s
                 json_text = response
             
             projects = json.loads(json_text)
-            log.info("Extracted %d projects from experience", len(projects))
+            log.info("✅ Extracted %d projects from experience", len(projects))
             return projects if isinstance(projects, list) else []
             
         except json.JSONDecodeError as e:
@@ -561,7 +600,7 @@ async def highlight_tech_skills_async(description: str) -> List[str]:
         # Load the examples
         examples_path = PROMPTS_DIR / "highlight_examples.json"
         if not examples_path.exists():
-            log.warning("Tech highlighting examples file not found")
+            log.warning("⚠️ Tech highlighting examples file not found")
             return []
         
         examples_data = json.loads(examples_path.read_text(encoding="utf-8"))
@@ -592,7 +631,7 @@ async def highlight_tech_skills_async(description: str) -> List[str]:
             ]
         })
         
-        log.info("Highlighting tech skills via OpenAI (async) (%d chars)", len(description))
+        log.info("🔍 Highlighting tech skills via OpenAI (async) (%d chars)", len(description))
         response = await call_openai_api_async(messages=messages)
         
         if not response:
@@ -615,7 +654,7 @@ async def highlight_tech_skills_async(description: str) -> List[str]:
                 import ast
                 highlights = ast.literal_eval(list_text)
             
-            log.info("Extracted %d tech highlights", len(highlights))
+            log.info("✅ Extracted %d tech highlights", len(highlights))
             return highlights if isinstance(highlights, list) else []
             
         except (json.JSONDecodeError, ValueError, SyntaxError) as e:
@@ -626,6 +665,36 @@ async def highlight_tech_skills_async(description: str) -> List[str]:
     except Exception as e:
         log.warning("Tech highlighting failed: %s", e)
         return []
+
+
+
+async def highlight_tech_skills_batch_async(descriptions: list) -> list:
+    """Batch extract technical skills and quantitative impacts from a list of project descriptions (async)."""
+    if not descriptions:
+        return [[] for _ in descriptions]
+
+    # Process each description individually for better reliability
+    log.info(f"🔍 Highlighting tech skills for {len(descriptions)} points individually...")
+    
+    tasks = []
+    for description in descriptions:
+        task = asyncio.create_task(highlight_tech_skills_async(description))
+        tasks.append(task)
+    
+    # Wait for all tasks to complete
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    
+    # Handle any exceptions and ensure we return the right format
+    highlights_list = []
+    for i, result in enumerate(results):
+        if isinstance(result, Exception):
+            log.warning(f"Tech highlighting failed for point {i}: {result}")
+            highlights_list.append([])
+        else:
+            highlights_list.append(result)
+    
+    log.info(f"✅ Completed tech highlighting for {len(descriptions)} points")
+    return highlights_list
 
 
 

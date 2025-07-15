@@ -39,7 +39,7 @@ def url_works(url: str, *, timeout: float = 5.0) -> bool:
         bool: True if URL is accessible, False otherwise
     """
     if not HTTPX_AVAILABLE:
-        log.warning("httpx not available - skipping URL validation")
+        log.warning("[URL] httpx not available - skipping URL validation")
         return True  # Assume URL works if we can't check
     
     if not url or not url.strip():
@@ -56,14 +56,14 @@ def url_works(url: str, *, timeout: float = 5.0) -> bool:
     port = parsed.port or (443 if parsed.scheme == "https" else 80)
 
     try:
-        # 1 ??? DNS + TCP reachability test (cheaper than a full HTTP round-trip)
-        log.debug(f"Testing TCP connection to {host}:{port}")
+        # 1. DNS and TCP reachability test (cheaper than a full HTTP round-trip)
+        log.debug(f"[URL] Testing TCP connection to {host}:{port}")
         socket.create_connection((host, port), timeout=timeout).close()
     except OSError as e:
-        log.debug(f"TCP connection failed for {test_url}: {e}")
+        log.debug(f"[URL] TCP connection failed for {test_url}: {e}")
         return False
 
-    # 2 ??? HTTP(S) test
+    # 2. HTTP(S) test
     try:
         with httpx.Client(
             follow_redirects=True, 
@@ -71,22 +71,22 @@ def url_works(url: str, *, timeout: float = 5.0) -> bool:
             headers={"User-Agent": "resume-generator/1.0"}
         ) as cli:
             # Try HEAD first (fastest probe)
-            log.debug(f"Testing HEAD request to {test_url}")
+            log.debug(f"[URL] Testing HEAD request to {test_url}")
             r = cli.head(test_url)
             if r.status_code in OK:
-                log.debug(f"URL {test_url} works (HEAD {r.status_code})")
+                log.debug(f"[URL] URL {test_url} works (HEAD {r.status_code})")
                 return True
             if r.status_code == 405:  # HEAD not allowed
-                log.debug(f"HEAD not allowed for {test_url}, trying GET")
+                log.debug(f"[URL] HEAD not allowed for {test_url}, trying GET")
                 r = cli.get(test_url, stream=True)
                 success = r.status_code in OK
-                log.debug(f"URL {test_url} {'works' if success else 'failed'} (GET {r.status_code})")
+                log.debug(f"[URL] URL {test_url} {'works' if success else 'failed'} (GET {r.status_code})")
                 return success
             else:
-                log.debug(f"URL {test_url} failed with status {r.status_code}")
+                log.debug(f"[URL] URL {test_url} failed with status {r.status_code}")
                 return False
     except httpx.RequestError as e:
-        log.debug(f"HTTP request failed for {test_url}: {e}")
+        log.debug(f"[URL] HTTP request failed for {test_url}: {e}")
         return False
 
 async def probe_async(url: str, *, timeout: float = 5.0, client: Optional[httpx.AsyncClient] = None) -> bool:
@@ -156,7 +156,7 @@ async def bulk_check_async(urls: List[str], concurrency: int = 10) -> Dict[str, 
         Dict[str, bool]: Mapping of URL to validation result
     """
     if not HTTPX_AVAILABLE:
-        log.warning("httpx not available - assuming all URLs work")
+        log.warning("[URL] httpx not available - assuming all URLs work")
         return {url: True for url in urls}
     
     async with httpx.AsyncClient(
@@ -169,7 +169,7 @@ async def bulk_check_async(urls: List[str], concurrency: int = 10) -> Dict[str, 
         async def guarded(u):
             async with sem:
                 result = await probe_async(u, client=shared)
-                log.debug(f"URL validation: {u} -> {'???' if result else '???'}")
+                log.debug(f"[URL] URL validation: {u} -> {'OK' if result else 'FAIL'}")
                 return u, result
         
         results = await asyncio.gather(*(guarded(u) for u in urls))
@@ -201,18 +201,18 @@ def validate_url_with_fallback(url: str, fallback_url: str = "", timeout: float 
         str: Working URL or empty string if none work
     """
     if url and url_works(url, timeout=timeout):
-        log.info(f"??? Primary URL works: {url}")
+        log.info(f"[URL] Primary URL works: {url}")
         return url
     elif url:
-        log.warning(f"??? Primary URL failed: {url}")
+        log.warning(f"[URL] Primary URL failed: {url}")
     
     if fallback_url and url_works(fallback_url, timeout=timeout):
-        log.info(f"??? Fallback URL works: {fallback_url}")
+        log.info(f"[URL] Fallback URL works: {fallback_url}")
         return fallback_url
     elif fallback_url:
-        log.warning(f"??? Fallback URL failed: {fallback_url}")
+        log.warning(f"[URL] Fallback URL failed: {fallback_url}")
     
-    log.warning("??? No working URLs found")
+    log.warning("[URL] No working URLs found")
     return ""
 
 def validate_resume_urls(resume_data: dict) -> dict:
@@ -226,7 +226,7 @@ def validate_resume_urls(resume_data: dict) -> dict:
         dict: Resume data with validated URLs
     """
     if not HTTPX_AVAILABLE:
-        log.warning("httpx not available - skipping URL validation")
+        log.warning("[URL] httpx not available - skipping URL validation")
         return resume_data
     
     # Collect all URLs from resume data
@@ -253,10 +253,10 @@ def validate_resume_urls(resume_data: dict) -> dict:
             urls_to_check.append(award["url"])
     
     if not urls_to_check:
-        log.info("No URLs found to validate")
+        log.info("[URL] No URLs found to validate")
         return resume_data
     
-    log.info(f"Validating {len(urls_to_check)} URLs...")
+    log.info(f"[URL] Validating {len(urls_to_check)} URLs...")
     
     # Check all URLs
     url_results = bulk_check(urls_to_check)
@@ -264,28 +264,28 @@ def validate_resume_urls(resume_data: dict) -> dict:
     # Update resume data based on validation results
     for work in resume_data.get("work", []):
         if work.get("url") and not url_results.get(work["url"], True):
-            log.warning(f"Removing broken work URL: {work['url']}")
+            log.warning(f"[URL] Removing broken work URL: {work['url']}")
             work["url"] = ""
     
     for edu in resume_data.get("education", []):
         if edu.get("url") and not url_results.get(edu["url"], True):
-            log.warning(f"Removing broken education URL: {edu['url']}")
+            log.warning(f"[URL] Removing broken education URL: {edu['url']}")
             edu["url"] = ""
     
     for project in resume_data.get("projects", []):
         if project.get("url") and not url_results.get(project["url"], True):
-            log.warning(f"Removing broken project URL: {project['url']}")
+            log.warning(f"[URL] Removing broken project URL: {project['url']}")
             project["url"] = ""
     
     for award in resume_data.get("awards", []):
         if award.get("url") and not url_results.get(award["url"], True):
-            log.warning(f"Removing broken award URL: {award['url']}")
+            log.warning(f"[URL] Removing broken award URL: {award['url']}")
             award["url"] = ""
     
     # Report results
     working_count = sum(1 for result in url_results.values() if result)
     total_count = len(url_results)
-    log.info(f"URL validation complete: {working_count}/{total_count} URLs working")
+    log.info(f"[URL] URL validation complete: {working_count}/{total_count} URLs working")
     
     return resume_data
 
@@ -299,15 +299,15 @@ def main():
         "invalid-url"
     ]
     
-    log.info("Testing individual URL validation:")
+    log.info("[URL] Testing individual URL validation:")
     for url in test_urls:
         result = url_works(url)
-        log.info(f"  {url}: {'???' if result else '???'}")
+        log.info(f"[URL]   {url}: {'OK' if result else 'FAIL'}")
     
-    log.info("\nTesting bulk URL validation:")
+    log.info("[URL] Testing bulk URL validation:")
     results = bulk_check(test_urls)
     for url, result in results.items():
-        log.info(f"  {url}: {'???' if result else '???'}")
+        log.info(f"[URL]   {url}: {'OK' if result else 'FAIL'}")
 
 if __name__ == "__main__":
     main() 

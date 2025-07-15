@@ -132,7 +132,7 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
         List[Dict]: List of job search results
     """
     try:
-        log.info(f"???? Searching for '{role}' positions (FULL-TIME ONLY)...")
+        log.info("🔍 Searching for '{role}' positions (FULL-TIME ONLY)...")
         
         # Prepare request data for caching
         request_data = {
@@ -140,7 +140,7 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
             "job_type": ["F"],  # Full-time only
             "location_name": location,
             "limit": limit,
-            "listed_at": config.JOB_SEARCH_SECONDS_BACK
+            "listed_at": config.CACHE_TTL_SECONDS
         }
         
         # Use cached API call if enabled
@@ -153,7 +153,7 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
                 job_type=["F"],  # Full-time only - this ensures we only get full-time positions
                 location_name=location,
                 limit=limit,
-                listed_at=config.JOB_SEARCH_SECONDS_BACK  # Jobs posted in last N seconds
+                listed_at=config.CACHE_TTL_SECONDS  # Jobs posted in last N seconds
             )
         else:
             # Direct API call without caching
@@ -162,14 +162,14 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
                 job_type=["F"],  # Full-time only - this ensures we only get full-time positions
                 location_name=location,
                 limit=limit,
-                listed_at=config.JOB_SEARCH_SECONDS_BACK  # Jobs posted in last N seconds
+                listed_at=config.CACHE_TTL_SECONDS  # Jobs posted in last N seconds
             )
         
-        log.info(f"??? Found {len(jobs)} jobs for '{role}'")
+        log.info(f"✅ Found {len(jobs)} jobs for '{role}'")
         
         # Print details of each job found
         if jobs:
-            log.info(f"???? Jobs found for '{role}':")
+            log.info(f"🔍 Jobs found for '{role}':")
             for i, job in enumerate(jobs, 1):
                 job_id = job.get("entityUrn", "").split(":")[-1] if job.get("entityUrn") else "N/A"
                 title = job.get("title", "Unknown Title")
@@ -200,7 +200,7 @@ def search_jobs_for_role(api, role: str, location: str = None, limit: int = 50) 
         return jobs
         
     except Exception as e:
-        log.error(f"??? Error searching for '{role}': {e}")
+        log.error(f"❌ Error searching for '{role}': {e}")
         return []
 
 def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
@@ -233,7 +233,7 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
         # Fetch detailed job information if API is available and job_id exists
         if api and job_id:
             try:
-                log.info(f"???? Fetching detailed job information for job ID: {job_id}")
+                log.info(f"🔍 Fetching detailed job information for job ID: {job_id}")
                 
                 # Get detailed job information with caching
                 if config.API_CACHE_ENABLED:
@@ -247,7 +247,7 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                     detailed_job = api.get_job(job_id)
                 
                 if detailed_job:
-                    log.info(f"??? Detailed job data retrieved for job ID: {job_id}")
+                    log.info(f"✅ Detailed job data retrieved for job ID: {job_id}")
                     
                     # Extract company name from the correct path
                     try:
@@ -257,7 +257,7 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                             if "companyResolutionResult" in company_info:
                                 job_details["company"] = company_info["companyResolutionResult"].get("name", "")
                     except Exception as e:
-                        log.warning(f"    ?????? Error extracting company name: {e}")
+                        log.warning(f"⚠️ Error extracting company name: {e}")
                     
                     # Extract workplace type from the correct path
                     try:
@@ -271,7 +271,7 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         
                         job_details["workplace_type"] = ", ".join(workplace_names) if workplace_names else ""
                     except Exception as e:
-                        log.warning(f"    ?????? Error extracting workplace type: {e}")
+                        log.warning(f"⚠️ Error extracting workplace type: {e}")
                     
                     # Extract apply method URL and update job_url if available
                     try:
@@ -290,34 +290,34 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         if apply_url:
                             job_details["job_url"] = apply_url
                     except Exception as e:
-                        log.warning(f"    ?????? Error extracting apply URL: {e}")
+                        log.warning(f"⚠️ Error extracting apply URL: {e}")
                     
                     # Extract job description text from the correct path
                     try:
                         description = detailed_job.get("description", {})
                         job_details["description"] = description.get("text", "")
                     except Exception as e:
-                        log.warning(f"    ?????? Error extracting description text: {e}")
+                        log.warning(f"⚠️ Error extracting description text: {e}")
                     
                     # Extract formatted location
                     job_details["location"] = detailed_job.get("formattedLocation", job_details["location"])
                     
                     # Log extracted information
                     if job_details["company"]:
-                        log.info(f"    ???? Company: {job_details['company']}")
+                        log.info(f"    ⚠️ Company: {job_details['company']}")
                     if job_details["workplace_type"]:
-                        log.info(f"    ???? Workplace Type: {job_details['workplace_type']}")
+                        log.info(f"    ⚠️ Workplace Type: {job_details['workplace_type']}")
                     if job_details["job_url"] and job_details["job_url"] != f"https://www.linkedin.com/jobs/view/{job_id}":
-                        log.info(f"    ???? Job URL: {job_details['job_url']}")
+                        log.info(f"    ⚠️ Job URL: {job_details['job_url']}")
                     if job_details["description"]:
                         desc_length = len(job_details["description"])
-                        log.info(f"    ???? Description: {desc_length} characters")
+                        log.info(f"    ⚠️ Description: {desc_length} characters")
                     
                 else:
-                    log.warning(f"    ?????? No detailed job data returned for job ID: {job_id}")
+                    log.warning(f"⚠️ No detailed job data returned for job ID: {job_id}")
                 
                 # Get job skills information with caching
-                log.info(f"???? Fetching job skills for job ID: {job_id}")
+                log.info(f"🔍 Fetching job skills for job ID: {job_id}")
                 try:
                     if config.API_CACHE_ENABLED:
                         job_skills = api_cache.cached_api_call(
@@ -330,7 +330,7 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         job_skills = api.get_job_skills(job_id)
                     
                     if job_skills:
-                        log.info(f"??? Job skills data retrieved for job ID: {job_id}")
+                        log.info(f"✅ Job skills data retrieved for job ID: {job_id}")
                         
                         # Extract skills from the job skills response
                         skill_names = []
@@ -342,31 +342,31 @@ def extract_job_details(job_data: Dict[str, Any], api=None) -> Dict[str, Any]:
                         
                         if skill_names:
                             job_details["skills"] = skill_names
-                            log.info(f"    ???? Found {len(skill_names)} skills for job ID: {job_id}")
+                            log.info(f"    ⚠️ Found {len(skill_names)} skills for job ID: {job_id}")
                             
                             # Log the top skills (first 5)
                             top_skills = skill_names[:5]
                             for skill in top_skills:
-                                log.info(f"      ??? {skill}")
+                                log.info(f"      ⚠️ {skill}")
                             
                             if len(skill_names) > 5:
                                 log.info(f"      ... and {len(skill_names) - 5} more skills")
                         else:
-                            log.info(f"    ?????? No skills found for job ID: {job_id}")
+                            log.info(f"    ⚠️ No skills found for job ID: {job_id}")
                     else:
-                        log.warning(f"    ?????? No job skills data returned for job ID: {job_id}")
+                        log.warning(f"⚠️ No job skills data returned for job ID: {job_id}")
                         
                 except Exception as e:
-                    log.warning(f"    ?????? Error fetching job skills for job ID {job_id}: {e}")
+                    log.warning(f"⚠️ Error fetching job skills for job ID {job_id}: {e}")
                 
             except Exception as e:
-                log.warning(f"?????? Error fetching detailed job information for job ID {job_id}: {e}")
+                log.warning(f"⚠️ Error fetching detailed job information for job ID {job_id}: {e}")
                 # Continue with basic job details if detailed fetching fails
         
         return job_details
         
     except Exception as e:
-        log.error(f"??? Error extracting job details: {e}")
+        log.error(f"❌ Error extracting job details: {e}")
         return {}
 
 def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[Dict[str, Any]]:
@@ -392,17 +392,17 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
         if config.API_CACHE_ENABLED:
             dirty_cleared = api_cache.clean_dirty_cache()
             if dirty_cleared > 0:
-                log.info(f"???? Cleaned {dirty_cleared} dirty (expired) cache entries at start")
+                log.info(f"🧹 Cleaned {dirty_cleared} dirty (expired) cache entries at start")
         
         # Phase 1: Collect all jobs from all roles (basic info only)
         all_raw_jobs = []
         seen_job_ids = set()  # To avoid duplicates
         
-        log.info(f"???? Starting ML/AI job search for {len(ML_AI_ROLES)} role variations...")
-        log.info(f"???? Phase 1: Collecting basic job information...")
+        log.info(f"🚀 Starting ML/AI job search for {len(ML_AI_ROLES)} role variations...")
+        log.info(f"🚀 Phase 1: Collecting basic job information...")
         
         for i, role in enumerate(ML_AI_ROLES, 1):
-            log.info(f"???? [{i}/{len(ML_AI_ROLES)}] Searching for: {role}")
+            log.info(f"🚀 [{i}/{len(ML_AI_ROLES)}] Searching for: {role}")
             
             # Search for jobs with this role
             jobs = search_jobs_for_role(api, role, location, jobs_per_role)
@@ -419,35 +419,35 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
                         "job_id": job_id
                     }
                     all_raw_jobs.append(basic_job_info)
-                    log.debug(f"    ??? Added basic job: {job.get('title', 'Unknown')} at {job.get('companyDetails', {}).get('company', {}).get('name', 'Unknown')}")
+                    log.debug(f"    ⚠️ Added basic job: {job.get('title', 'Unknown')} at {job.get('companyDetails', {}).get('company', {}).get('name', 'Unknown')}")
                 elif job_id:
-                    log.debug(f"    ?????? Skipped duplicate job ID: {job_id}")
+                    log.debug(f"    ⚠️ Skipped duplicate job ID: {job_id}")
             
             # Add a small delay to avoid rate limiting
             import time
             time.sleep(2)
         
-        log.info(f"???? Phase 1 complete: Found {len(all_raw_jobs)} unique jobs")
+        log.info(f"✅ Phase 1 complete: Found {len(all_raw_jobs)} unique jobs")
         
         # Phase 2: Limit to maximum total jobs and fetch detailed information
         max_jobs = config.JOB_SEARCH_MAX_TOTAL_JOBS
         if len(all_raw_jobs) > max_jobs:
-            log.info(f"???? Limiting to {max_jobs} jobs (from {len(all_raw_jobs)} found)")
+            log.info(f"🚀 Limiting to {max_jobs} jobs (from {len(all_raw_jobs)} found)")
             all_raw_jobs = all_raw_jobs[:max_jobs]
         
-        log.info(f"???? Phase 2: Fetching detailed information for {len(all_raw_jobs)} jobs...")
+        log.info(f"🚀 Phase 2: Fetching detailed information for {len(all_raw_jobs)} jobs...")
         
         # Fetch detailed information for each unique job
         all_jobs = []
         for i, job_info in enumerate(all_raw_jobs, 1):
-            log.info(f"???? [{i}/{len(all_raw_jobs)}] Fetching details for job ID: {job_info['job_id']}")
+            log.info(f"🚀 [{i}/{len(all_raw_jobs)}] Fetching details for job ID: {job_info['job_id']}")
             job_details = extract_job_details(job_info["raw_data"], api)
             if job_details and job_details.get("id"):
                 job_details["search_role"] = job_info["search_role"]  # Track which role found this job
                 all_jobs.append(job_details)
-                log.debug(f"    ??? Detailed job: {job_details.get('title', 'Unknown')} at {job_details.get('company', 'Unknown')}")
+                log.debug(f"    ⚠️ Detailed job: {job_details.get('title', 'Unknown')} at {job_details.get('company', 'Unknown')}")
             else:
-                log.warning(f"    ??? Failed to extract details for job ID: {job_info['job_id']}")
+                log.warning(f"    ⚠️ Failed to extract details for job ID: {job_info['job_id']}")
             
             # Add delay between detailed fetches to avoid rate limiting
             import time
@@ -457,12 +457,12 @@ def search_ml_ai_jobs(location: str = None, jobs_per_role: int = None) -> List[D
         jobs_with_details = sum(1 for job in all_jobs if job.get("description") or job.get("company"))
         jobs_with_skills = sum(1 for job in all_jobs if job.get("skills"))
         
-        log.info(f"???? Job search complete! Found {len(all_jobs)} unique ML/AI positions")
-        log.info(f"???? Detailed information: {jobs_with_details} jobs with detailed info, {jobs_with_skills} jobs with skills data")
+        log.info(f"🚀 Job search complete! Found {len(all_jobs)} unique ML/AI positions")
+        log.info(f"📊 Detailed information: {jobs_with_details} jobs with detailed info, {jobs_with_skills} jobs with skills data")
         return all_jobs
         
     except Exception as e:
-        log.error(f"??? Job search failed: {e}")
+        log.error(f"❌ Job search failed: {e}")
         return []
 
 def save_job_results(jobs: List[Dict[str, Any]], output_path: pathlib.Path = None, location: str = None, jobs_per_role: int = None) -> pathlib.Path:
@@ -492,8 +492,8 @@ def save_job_results(jobs: List[Dict[str, Any]], output_path: pathlib.Path = Non
             "search_location": location or "Global",
             "jobs_per_role": jobs_per_role or config.JOB_SEARCH_LIMIT_PER_ROLE,
             "max_total_jobs": config.JOB_SEARCH_MAX_TOTAL_JOBS,
-            "seconds_back": config.JOB_SEARCH_SECONDS_BACK,
-            "days_back": config.JOB_SEARCH_SECONDS_BACK // (24 * 60 * 60),  # Convert seconds to days for reference
+            "seconds_back": config.CACHE_TTL_SECONDS,
+            "days_back": config.CACHE_TTL_SECONDS // (24 * 60 * 60),  # Convert seconds to days for reference
             "detailed_job_info": True,  # Indicate that detailed job information was fetched
             "job_skills_info": True     # Indicate that job skills information was fetched
         },
@@ -506,7 +506,7 @@ def save_job_results(jobs: List[Dict[str, Any]], output_path: pathlib.Path = Non
         encoding="utf-8"
     )
     
-    log.info(f"??? Job search results saved to {output_path.relative_to(config.PROJECT_ROOT)}")
+    log.info(f"📝 Job search results saved to {output_path.relative_to(config.PROJECT_ROOT)}")
     return output_path
 
 def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pathlib.Path:
@@ -519,7 +519,7 @@ def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pat
     Returns:
         pathlib.Path: Path to saved job results file
     """
-    log.info("???? Starting ML/AI job search pipeline...")
+    log.info("🚀 Starting ML/AI job search pipeline...")
     
     # Search for jobs
     jobs = search_ml_ai_jobs(location, jobs_per_role)
@@ -535,12 +535,12 @@ def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pat
     jobs_with_details = sum(1 for job in jobs if job.get("description") or job.get("company"))
     jobs_with_skills = sum(1 for job in jobs if job.get("skills"))
     
-    log.info(f"???? Job search pipeline complete! Found {len(jobs)} positions")
-    log.info(f"???? Enhanced data: {jobs_with_details} jobs with detailed descriptions, {jobs_with_skills} jobs with skills analysis")
+    log.info(f"✅ Job search pipeline complete! Found {len(jobs)} positions")
+    log.info(f"📊 Enhanced data: {jobs_with_details} jobs with detailed descriptions, {jobs_with_skills} jobs with skills analysis")
     
     # Print cache statistics if caching is enabled
     if config.API_CACHE_ENABLED:
-        log.info("???? Final API Cache Statistics:")
+        log.info("📊 Final API Cache Statistics:")
         stats = api_cache.get_cache_stats()
         if stats:
             log.info(f"  Total entries: {stats.get('total_entries', 0)}")
@@ -551,11 +551,11 @@ def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pat
             # Show cache freshness information
             freshness = api_cache.get_cache_freshness()
             if freshness.get("status") == "dirty":
-                log.warning(f"?????? Cache is dirty: {freshness.get('expired_entries', 0)} expired entries")
+                log.warning(f"⚠️ Cache is dirty: {freshness.get('expired_entries', 0)} expired entries")
             elif freshness.get("status") == "mostly_fresh":
-                log.info(f"?????? Cache is mostly fresh: {freshness.get('freshness_percentage', 0)}% valid")
+                log.info(f"ℹ️ Cache is mostly fresh: {freshness.get('freshness_percentage', 0)}% valid")
             else:
-                log.info(f"??? Cache is fresh: {freshness.get('freshness_percentage', 0)}% valid")
+                log.info(f"✅ Cache is fresh: {freshness.get('freshness_percentage', 0)}% valid")
             
             # Show entries by API type
             entries_by_type = stats.get('entries_by_type', {})
@@ -564,7 +564,7 @@ def search_and_save_jobs(location: str = None, jobs_per_role: int = None) -> pat
                 for api_type, count in entries_by_type.items():
                     log.info(f"    {api_type}: {count}")
         else:
-            log.info("?????? No cache statistics available")
+            log.info("ℹ️ No cache statistics available")
     
     return output_path
 
@@ -621,11 +621,11 @@ def add_job_role(new_role: str, category: str = "Additional Roles") -> bool:
         with open(job_roles_file, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
         
-        log.info(f"??? Added new role '{new_role}' to category '{category}'")
+        log.info(f"📝 Added new role '{new_role}' to category '{category}'")
         return True
         
     except Exception as e:
-        log.error(f"??? Error adding job role: {e}")
+        log.error(f"❌ Error adding job role: {e}")
         return False
 
 def list_job_roles() -> List[str]:

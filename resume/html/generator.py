@@ -478,6 +478,57 @@ em.highlight,
 """
     return css
 
+def _format_date(date_dict):
+    """Convert date dict to YYYY-MM format.
+    
+    Args:
+        date_dict (dict): Date dict with 'year' and 'month' keys
+        
+    Returns:
+        str: Date in YYYY-MM format, or None if invalid
+    """
+    if not date_dict: 
+        return None
+    y = date_dict.get("year")
+    m = date_dict.get("month", 1)
+    return f"{y:04d}-{m:02d}" if y else None
+
+def _format_date_range(start_date, end_date):
+    """Format date range from start and end dates.
+    
+    Args:
+        start_date (str): Start date in YYYY-MM format
+        end_date (str): End date in YYYY-MM format or None for present
+        
+    Returns:
+        str: Formatted date range
+    """
+    if not start_date:
+        return ""
+    
+    try:
+        # Parse start date
+        start_year, start_month = start_date.split("-")
+        start_month_name = config.MONTHS[int(start_month) - 1]
+        
+        # Parse end date
+        if end_date:
+            end_year, end_month = end_date.split("-")
+            end_month_name = config.MONTHS[int(end_month) - 1]
+            
+            if start_year == end_year:
+                if start_month == end_month:
+                    return f"{start_month_name}, {start_year}"
+                else:
+                    return f"{start_month_name} – {end_month_name}, {start_year}"
+            else:
+                return f"{start_month_name}, {start_year} – {end_month_name}, {end_year}"
+        else:
+            return f"{start_month_name}, {start_year} – Present"
+            
+    except Exception:
+        return f"{start_date} – {end_date if end_date else 'Present'}"
+
 def generate_html_resume(data: Dict[str, Any]) -> str:
     """Generate HTML resume from resume data.
     
@@ -494,7 +545,7 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
     skills_by_category = data.get("skills_by_category", {})
     awards = data.get("awards", [])
     
-    # Start building HTML (no linebreaks)
+    # Start building HTML
     html = f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{clean_text(basics.get("name", "Resume"))}</title><link rel="stylesheet" href="styles.css"></head><body><div class="container"><header class="header"><h1 class="name">{clean_text(basics.get("name", ""))}</h1><div class="contact-info">'
     
     # Contact information
@@ -535,7 +586,7 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
             
             html += '</div>'
             
-            # Render extracted projects only (no original points or summary)
+            # Render extracted projects with detailed timelines
             if job.get("extracted_projects"):
                 html += '<div class="extracted-projects">'
                 for i, project in enumerate(job["extracted_projects"]):
@@ -586,29 +637,29 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
                                         date_range = f"{start_month_name}, {start_year}"
                                     # Same year, different months
                                     elif start_year == end_year:
-                                        date_range = f"{start_month_name} ??? {end_month_name}, {start_year}"
+                                        date_range = f"{start_month_name} – {end_month_name}, {start_year}"
                                     # Different years
                                     else:
-                                        date_range = f"{start_month_name}, {start_year} ??? {end_month_name}, {end_year}"
+                                        date_range = f"{start_month_name}, {start_year} – {end_month_name}, {end_year}"
                                 elif end_year and not end_month:
                                     # End year only, no month
-                                    date_range = f"{start_month_name}, {start_year} ??? {end_year}"
+                                    date_range = f"{start_month_name}, {start_year} – {end_year}"
                                 else:
                                     # No end date
-                                    date_range = f"{start_month_name}, {start_year} ??? Present"
+                                    date_range = f"{start_month_name}, {start_year} – Present"
                                 
                                 html += f'<div class="item-date">{clean_text(date_range)}</div>'
                             elif start_year:
                                 # Start year only, no month
                                 if end_year:
-                                    date_range = f"{start_year} ??? {end_year}"
+                                    date_range = f"{start_year} – {end_year}"
                                 else:
-                                    date_range = f"{start_year} ??? Present"
+                                    date_range = f"{start_year} – Present"
                                 html += f'<div class="item-date">{clean_text(date_range)}</div>'
                         
                         html += '</div>'
                         
-                        # Add description if available
+                        # Add description if available with tech highlighting
                         if project.get("description"):
                             description = clean_text(project["description"])
                             
@@ -687,6 +738,22 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
             
             html += '</div>'
             
+            # Add project description if available - REMOVED for OpenAI processing
+            # Project descriptions will be processed by OpenAI and added as points
+            # if project.get("description"):
+            #     html += f'<div class="item-description">{clean_text(project["description"])}</div>'
+            
+            # Add project description with tech highlighting if available (for personal projects from LinkedIn)
+            if project.get("description") and project.get("tech_highlights"):
+                # Use the render_highlighted_text function which handles HTML escaping properly
+                description = render_highlighted_text(project["description"], project["tech_highlights"])
+                log.debug(f"🎨 Applied tech highlighting to project: {project.get('name', 'Unknown')} with {len(project['tech_highlights'])} highlights")
+                html += f'<div class="item-description">{description}</div>'
+            elif project.get("description") and not project.get("tech_highlights"):
+                log.debug(f"⚠️ Project {project.get('name', 'Unknown')} has description but no tech highlights")
+            elif not project.get("description") and project.get("tech_highlights"):
+                log.debug(f"⚠️ Project {project.get('name', 'Unknown')} has tech highlights but no description")
+            
             if project.get("points"):
                 if len(project["points"]) == 1:
                     # Single point - render as paragraph, not list
@@ -708,8 +775,6 @@ def generate_html_resume(data: Dict[str, Any]) -> str:
                             # Old string format
                             html += f'<li>{clean_text(point)}</li>'
                     html += '</ul>'
-            elif project.get("description"):
-                html += f'<div class="item-description">{clean_text(project["description"])}</div>'
             
             html += '</div>'
         
@@ -779,10 +844,9 @@ def load_resume_data(input_path=None):
     if input_path is None:
         input_path = RESUME_JSON
     if not (input_path.exists()):
-        log.error(f"{config.RESUME_JSON_FILE} not found ??? aborting")
+        log.error(f"[HTML] {config.RESUME_JSON_FILE} not found – aborting")
         sys.exit(1)
-
-    log.info(f"Loading {config.RESUME_JSON_FILE}")
+    log.info(f"[HTML] Loading {config.RESUME_JSON_FILE}")
     return json.loads(input_path.read_text(encoding="utf-8"))
 
 def save_html_resume(html_content: str, output_path=None):
@@ -802,7 +866,7 @@ def save_html_resume(html_content: str, output_path=None):
     output_path.parent.mkdir(exist_ok=True)
     
     output_path.write_text(html_content, encoding="utf-8")
-    log.info("HTML resume generated ??? %s", output_path.relative_to(config.PROJECT_ROOT))
+    log.info("HTML resume generated ✅ %s", output_path.relative_to(config.PROJECT_ROOT))
     return output_path
 
 def save_css_file(css_content: str, output_path=None):
@@ -822,7 +886,7 @@ def save_css_file(css_content: str, output_path=None):
     output_path.parent.mkdir(exist_ok=True)
     
     output_path.write_text(css_content, encoding="utf-8")
-    log.info("CSS file generated ??? %s", output_path.relative_to(config.PROJECT_ROOT))
+    log.info("CSS file generated ✅ %s", output_path.relative_to(config.PROJECT_ROOT))
     return output_path
 
 

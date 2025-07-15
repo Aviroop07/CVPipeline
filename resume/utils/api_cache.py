@@ -14,6 +14,7 @@ import pathlib
 from typing import Any, Optional, Dict, List
 from datetime import datetime, timedelta
 from resume.utils import config
+import os
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
@@ -30,7 +31,9 @@ class APICache:
             cache_ttl_hours (int, optional): Cache TTL in hours (defaults to config value)
         """
         self.db_path = db_path or (config.PROJECT_ROOT / config.DATA_DIR / config.API_CACHE_DB_FILE)
-        self.cache_ttl_hours = cache_ttl_hours or config.API_CACHE_TTL_HOURS
+        # Convert seconds to hours for timedelta (which expects hours)
+        cache_ttl_seconds = cache_ttl_hours or config.CACHE_TTL_SECONDS
+        self.cache_ttl_hours = cache_ttl_seconds // 3600  # Convert seconds to hours
         
         # Ensure data directory exists
         self.db_path.parent.mkdir(exist_ok=True)
@@ -41,7 +44,7 @@ class APICache:
     def _init_db(self):
         """Initialize the SQLite database with required tables."""
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Create cache table with additional searchable fields
@@ -80,10 +83,10 @@ class APICache:
                 """)
                 
                 conn.commit()
-                log.debug(f"??? API cache database initialized at {self.db_path}")
+                log.debug(f"✅ API cache database initialized at {self.db_path}")
                 
         except Exception as e:
-            log.error(f"??? Failed to initialize API cache database: {e}")
+            log.error(f"❌ Failed to initialize API cache database: {e}")
             raise
     
     def _generate_cache_key(self, api_type: str, request_data: Dict[str, Any]) -> str:
@@ -200,7 +203,7 @@ class APICache:
         try:
             cache_key = self._generate_cache_key(api_type, request_data)
             
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Get cached response
@@ -214,7 +217,7 @@ class APICache:
                 
                 if result:
                     response_data, expires_at = result
-                    log.debug(f"??? Cache hit for {api_type}: {cache_key}")
+                    log.debug(f"✅ Cache hit for {api_type}: {cache_key}")
                     return json.loads(response_data)
                 else:
                     # Check if there's an expired entry
@@ -226,13 +229,13 @@ class APICache:
                     
                     if expired_result:
                         expired_at = expired_result[0]
-                        log.debug(f"???? Cache expired for {api_type}: {cache_key} (expired at {expired_at})")
+                        log.debug(f"🕐 Cache expired for {api_type}: {cache_key} (expired at {expired_at})")
                     else:
-                        log.debug(f"??? Cache miss for {api_type}: {cache_key}")
+                        log.debug(f"❌ Cache miss for {api_type}: {cache_key}")
                     return None
                     
         except Exception as e:
-            log.warning(f"?????? Error reading from cache: {e}")
+            log.warning(f"⚠️ Error reading from cache: {e}")
             return None
     
     def set(self, api_type: str, request_data: Dict[str, Any], response_data: Dict[str, Any]) -> bool:
@@ -252,7 +255,7 @@ class APICache:
             request_summary = self._generate_request_summary(api_type, request_data)
             response_size = len(json.dumps(response_data, ensure_ascii=False))
             
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Insert or replace cached response with additional metadata
@@ -271,11 +274,11 @@ class APICache:
                 ))
                 
                 conn.commit()
-                log.debug(f"??? Cached response for {api_type}: {cache_key} (summary: {request_summary})")
+                log.debug(f"✅ Cached response for {api_type}: {cache_key} (summary: {request_summary})")
                 return True
                 
         except Exception as e:
-            log.warning(f"?????? Error writing to cache: {e}")
+            log.warning(f"⚠️ Error writing to cache: {e}")
             return False
     
     def clear_expired(self) -> int:
@@ -285,7 +288,7 @@ class APICache:
             int: Number of expired entries removed
         """
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Count expired entries
@@ -304,12 +307,12 @@ class APICache:
                 conn.commit()
                 
                 if expired_count > 0:
-                    log.info(f"???? Cleared {expired_count} expired cache entries")
+                    log.info(f"🧹 Cleared {expired_count} expired cache entries")
                 
                 return expired_count
                 
         except Exception as e:
-            log.warning(f"?????? Error clearing expired cache: {e}")
+            log.warning(f"⚠️ Error clearing expired cache: {e}")
             return 0
     
     def clear_all(self) -> int:
@@ -319,7 +322,7 @@ class APICache:
             int: Number of entries removed
         """
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Count all entries
@@ -330,11 +333,11 @@ class APICache:
                 cursor.execute("DELETE FROM api_cache")
                 conn.commit()
                 
-                log.info(f"???? Cleared all {total_count} cache entries")
+                log.info(f"🧹 Cleared all {total_count} cache entries")
                 return total_count
                 
         except Exception as e:
-            log.warning(f"?????? Error clearing all cache: {e}")
+            log.warning(f"⚠️ Error clearing all cache: {e}")
             return 0
     
     def search_cache(self, search_term: str = None, api_type: str = None, limit: int = 50) -> List[Dict[str, Any]]:
@@ -349,7 +352,7 @@ class APICache:
             List[Dict]: List of matching cache entries
         """
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Build query based on search criteria
@@ -392,7 +395,7 @@ class APICache:
                 return entries
                 
         except Exception as e:
-            log.warning(f"?????? Error searching cache: {e}")
+            log.warning(f"⚠️ Error searching cache: {e}")
             return []
     
     def list_cache_entries(self, api_type: str = None, status: str = "valid", limit: int = 20) -> List[Dict[str, Any]]:
@@ -407,7 +410,7 @@ class APICache:
             List[Dict]: List of cache entries
         """
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Build query
@@ -452,7 +455,7 @@ class APICache:
                 return entries
                 
         except Exception as e:
-            log.warning(f"?????? Error listing cache entries: {e}")
+            log.warning(f"⚠️ Error listing cache entries: {e}")
             return []
     
     def get_stats(self) -> Dict[str, Any]:
@@ -462,7 +465,7 @@ class APICache:
             Dict[str, Any]: Cache statistics
         """
         try:
-            with sqlite3.connect(self.db_path) as conn:
+            with sqlite3.connect(self.db_path, timeout=30) as conn:
                 cursor = conn.cursor()
                 
                 # Total entries
@@ -501,11 +504,11 @@ class APICache:
                 }
                 
         except Exception as e:
-            log.warning(f"?????? Error getting cache stats: {e}")
+            log.warning(f"⚠️ Error getting cache stats: {e}")
             return {}
                 
         except Exception as e:
-            log.warning(f"?????? Error getting cache stats: {e}")
+            log.warning(f"⚠️ Error getting cache stats: {e}")
             return {}
 
 # Global cache instance
@@ -521,6 +524,25 @@ def get_cache() -> APICache:
     if _cache_instance is None:
         _cache_instance = APICache()
     return _cache_instance
+
+def get_cache_path():
+    """Return the absolute path to the cache database file."""
+    return config.PROJECT_ROOT / config.DATA_DIR / pathlib.Path(config.API_CACHE_DB_FILE)
+
+def clear_cache(expired_only: bool = True) -> int:
+    """Clear cache entries.
+    
+    Args:
+        expired_only (bool): If True, only clear expired entries. If False, clear all.
+        
+    Returns:
+        int: Number of entries removed
+    """
+    cache = get_cache()
+    if expired_only:
+        return cache.clear_expired()
+    else:
+        return cache.clear_all()
 
 def cached_api_call(api_type: str, request_data: Dict[str, Any], api_function, *args, **kwargs):
     """Execute an API call with caching.
@@ -540,11 +562,11 @@ def cached_api_call(api_type: str, request_data: Dict[str, Any], api_function, *
     # Try to get from cache first
     cached_response = cache.get(api_type, request_data)
     if cached_response is not None:
-        log.info(f"???? Using cached response for {api_type}")
+        log.info(f"🚀 Using cached response for {api_type}")
         return cached_response
     
     # If not in cache, make the API call
-    log.info(f"???? Making fresh API call for {api_type}")
+    log.info(f"🚀 Making fresh API call for {api_type}")
     response = api_function(*args, **kwargs)
     
     # Cache the response
@@ -553,20 +575,14 @@ def cached_api_call(api_type: str, request_data: Dict[str, Any], api_function, *
     
     return response
 
-def clear_cache(expired_only: bool = True) -> int:
-    """Clear cache entries.
-    
-    Args:
-        expired_only (bool): If True, only clear expired entries. If False, clear all.
-        
-    Returns:
-        int: Number of entries removed
-    """
+async def cached_api_call_async(api_type, request_data, coro, *args, **kwargs):
     cache = get_cache()
-    if expired_only:
-        return cache.clear_expired()
-    else:
-        return cache.clear_all()
+    hit = cache.get(api_type, request_data)
+    if hit is not None:
+        return hit
+    result = await coro(*args, **kwargs)
+    cache.set(api_type, request_data, result)
+    return result
 
 def clean_dirty_cache() -> int:
     """Clean dirty (expired) cache entries.
@@ -659,7 +675,7 @@ def print_cache_stats():
     """Print cache statistics to console."""
     stats = get_cache_stats()
     if stats:
-        log.info("???? API Cache Statistics:")
+        log.info("📊 API Cache Statistics:")
         log.info(f"  Total entries: {stats.get('total_entries', 0)}")
         log.info(f"  Valid entries: {stats.get('valid_entries', 0)}")
         log.info(f"  Expired entries: {stats.get('expired_entries', 0)}")
@@ -672,7 +688,7 @@ def print_cache_stats():
             log.info(f"  Cache freshness: {valid_percentage:.1f}% valid")
             
             if stats.get('expired_entries', 0) > 0:
-                log.info(f"  ?????? {stats.get('expired_entries', 0)} entries are dirty (expired)")
+                log.info(f"  ⚠️ {stats.get('expired_entries', 0)} entries are dirty (expired)")
         
         entries_by_type = stats.get('entries_by_type', {})
         if entries_by_type:
@@ -680,14 +696,14 @@ def print_cache_stats():
             for api_type, count in entries_by_type.items():
                 log.info(f"    {api_type}: {count}")
     else:
-        log.warning("?????? Could not retrieve cache statistics")
+        log.warning("⚠️ Could not retrieve cache statistics")
 
 if __name__ == "__main__":
     # Test the cache functionality
     print_cache_stats()
     
     # Clear expired entries
-    cleared = clear_cache(expired_only=True)
+    cleared = clear_cache()
     if cleared > 0:
         log.info(f"Cleared {cleared} expired entries")
     

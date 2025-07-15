@@ -47,7 +47,7 @@ def html_to_pdf(html_path: pathlib.Path, out_path: pathlib.Path):
                 print_background=True
             )
             browser.close()
-        log.info("PDF generated using Playwright ??? %s", out_path.relative_to(config.PROJECT_ROOT))
+        log.info("PDF generated using Playwright at %s", out_path.relative_to(config.PROJECT_ROOT))
     except Exception as e:
         log.error(f"PDF generation failed: {e}")
         sys.exit(1)

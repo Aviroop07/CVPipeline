@@ -78,24 +78,24 @@ GOOGLE_KG_API=your_google_kg_api_key
 ### Quick Start
 ```bash
 # Complete pipeline: LinkedIn → Transform → AI → Validate → HTML → PDF
-python scripts/pipeline.py
+python -m resume
 
 # Skip LinkedIn fetch, use existing data
-python scripts/pipeline.py --skip-linkedin
+python -m resume --skip-linkedin
 
 # Skip AI processing
-python scripts/pipeline.py --skip-openai
+python -m resume --skip-openai
 
 # Skip job search step
-python scripts/pipeline.py --skip-job-search
+python -m resume --skip-job-search
 
 # Generate only HTML and PDF from existing JSON
-python scripts/pipeline.py --skip-linkedin --skip-openai --skip-github --skip-job-search
+python -m resume --skip-linkedin --skip-openai --skip-github --skip-job-search
 
 # Cache management
-python scripts/pipeline.py --cache-stats          # Show cache statistics
-python scripts/pipeline.py --clean-dirty-cache    # Clean expired cache entries
-python scripts/pipeline.py --clear-cache          # Clear all cache before running
+python -m resume --cache-stats          # Show cache statistics
+python -m resume --clean-dirty-cache    # Clean expired cache entries
+python -m resume --clear-cache          # Clear all cache before running
 ```
 
 ### Individual Steps
@@ -128,7 +128,7 @@ python -m resume.html.pdf
 - `data/api_cache.db` - SQLite database for API response caching
 
 ### Configuration
-All styling and behavior is controlled through `scripts/config.py`:
+All styling and behavior is controlled through `resume/utils/config.py`:
 - Font family and sizes
 - Color scheme and spacing
 - AI model settings
@@ -154,28 +154,28 @@ The pipeline includes a comprehensive caching system to avoid redundant API call
 **Cache Management:**
 ```bash
 # View cache statistics
-python scripts/pipeline.py --cache-stats
+python -m resume --cache-stats
 
 # List all cache entries
-python scripts/pipeline.py --list-cache
+python -m resume --list-cache
 
 # Search cache entries by term
-python scripts/pipeline.py --search-cache "Machine Learning"
+python -m resume --search-cache "Machine Learning"
 
 # Search specific API type
-python scripts/pipeline.py --search-cache "job_id:123" --cache-api-type job_details
+python -m resume --search-cache "job_id:123" --cache-api-type job_details
 
 # Clean expired entries
-python scripts/pipeline.py --clean-dirty-cache
+python -m resume --clean-dirty-cache
 
 # Clear all cache before running
-python scripts/pipeline.py --clear-cache
+python -m resume --clear-cache
 ```
 
 ## 📁 Project Structure
 ```
 CVPipeline/
-├── resume/            # Core resume processing modules (NEW)
+├── resume/            # Core resume processing modules (production-ready)
 │   ├── linkedin/
 │   │   ├── fetcher.py
 │   │   └── transformer.py
@@ -194,7 +194,6 @@ CVPipeline/
 │       ├── api_cache.py
 │       ├── url_validator.py
 │       └── entity_search.py
-├── scripts/           # Pipeline entry point (pipeline.py)
 ├── assets/            # Generated HTML, CSS, and PDF files
 ├── data/              # LinkedIn raw data and JSON resume
 ├── prompts/           # AI prompt templates and examples

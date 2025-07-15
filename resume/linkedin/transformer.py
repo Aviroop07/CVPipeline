@@ -69,7 +69,7 @@ def _extract_urn_id_from_entity_urn(entity_urn: str) -> str:
             if parts:
                 return parts[0].strip()
     except Exception as e:
-        log.error(f' 54c Error extracting URN ID from {entity_urn}: {e}')
+        log.error(f'❌ Error extracting URN ID from {entity_urn}: {e}')
     return ""
 
 def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tuple[str, str]:
@@ -82,7 +82,7 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
     Returns:
         Tuple[str, str]: (LinkedIn company URL, public_id) or ("", "") if not found
     """
-    log.info(f' 50d LinkedIn fallback search for company: {name}')
+    log.info(f'🔍 LinkedIn fallback search for company: {name}')
     if not name:
         return "", ""
     
@@ -104,12 +104,12 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
             if linkedin_name and entity_search.names_match(name, linkedin_name):
                 universal_name = company_data["universalName"]
                 url = f"https://www.linkedin.com/company/{universal_name}/"
-                log.info(f' 505 Found matching LinkedIn URL for {name}: {url} (result: {linkedin_name})')
+                log.info(f'Found matching LinkedIn URL for {name}: {url} (result: {linkedin_name})')
                 return url, universal_name
             else:
-                log.warning(f' 6a0 LinkedIn name mismatch for {name}: got "{linkedin_name}", skipping')
+                log.warning(f'⚠️ LinkedIn name mismatch for {name}: got "{linkedin_name}", skipping')
     except Exception as e:
-        log.error(f' 54c Error with get_company for {name}: {e}')
+        log.error(f'❌ Error with get_company for {name}: {e}')
     
     try:
         # Try search_companies with higher limit to check multiple results (with caching)
@@ -123,14 +123,14 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
         else:
             search_results = _get_linkedin_api().search_companies(keywords=[name], limit=10)
         
-        log.info(f' 50d Found {len(search_results)} company search results for {name}')
+        log.info(f'Found {len(search_results)} company search results for {name}')
         if search_results:
             for i, result in enumerate(search_results):
                 result_name = result.get("name", "")
                 if not result_name:
                     continue
                     
-                log.debug(f' 50d Checking result {i+1}: "{result_name}"')
+                log.debug(f'Checking result {i+1}: "{result_name}"')
                 try:
                     if config.API_CACHE_ENABLED:
                         company_data = api_cache.cached_api_call(
@@ -148,20 +148,20 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
                         if linkedin_name and entity_search.names_match(name, linkedin_name):
                             universal_name = company_data["universalName"]
                             url = f"https://www.linkedin.com/company/{universal_name}/"
-                            log.info(f' 505 Found matching LinkedIn URL for {name} via search result {i+1}: {url} (result: {linkedin_name})')
+                            log.info(f'Found matching LinkedIn URL for {name} via search result {i+1}: {url} (result: {linkedin_name})')
                             return url, universal_name
                         else:
-                            log.debug(f' 6a0 LinkedIn search name mismatch for {name}: got "{linkedin_name}", checking next result')
+                            log.debug(f'LinkedIn search name mismatch for {name}: got "{linkedin_name}", checking next result')
                 except Exception as e:
-                    log.warning(f' 54c Error getting company data for search result {i+1}: {e}')
+                    log.warning(f'Error getting company data for search result {i+1}: {e}')
     except Exception as e:
-        log.error(f' 54c Error with search_companies for {name}: {e}')
+        log.error(f'❌ Error with search_companies for {name}: {e}')
     
     # Try profile fallback using entity URN if available
     if entity_urn:
         urn_id = _extract_urn_id_from_entity_urn(entity_urn)
         if urn_id:
-            log.info(f' 50d Trying profile fallback for {name} using URN ID: {urn_id}')
+            log.info(f'Trying profile fallback for {name} using URN ID: {urn_id}')
             try:
                 if config.API_CACHE_ENABLED:
                     profile_data = api_cache.cached_api_call(
@@ -176,11 +176,11 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
                 if profile_data:
                     # Look for work experience matching the company name
                     experiences = profile_data.get("experience", [])
-                    log.debug(f' 50d Found {len(experiences)} experiences in profile for {name}')
+                    log.debug(f'Found {len(experiences)} experiences in profile for {name}')
                     for i, exp in enumerate(experiences):
                         exp_company = exp.get("companyName", "")
                         if exp_company and entity_search.names_match(name, exp_company):
-                            log.info(f' 505 Profile experience "{exp_company}" matches "{name}"')
+                            log.info(f'Profile experience "{exp_company}" matches "{name}"')
                             # Try to get company data from the experience
                             company_urn = exp.get("companyUrn", "")
                             if company_urn:
@@ -200,14 +200,14 @@ def _linkedin_company_search_fallback(name: str, entity_urn: str = None) -> Tupl
                                     if company_data and company_data.get("universalName"):
                                         universal_name = company_data["universalName"]
                                         url = f"https://www.linkedin.com/company/{universal_name}/"
-                                        log.info(f' 505 Found LinkedIn URL for {name} via profile fallback: {url}')
+                                        log.info(f'Found LinkedIn URL for {name} via profile fallback: {url}')
                                         return url, universal_name
                                 except Exception as e:
-                                    log.warning(f' 54c Error getting company from profile fallback: {e}')
+                                    log.warning(f'Error getting company from profile fallback: {e}')
             except Exception as e:
-                log.error(f' 54c Error with profile fallback for {name}: {e}')
+                log.error(f'❌ Error with profile fallback for {name}: {e}')
     
-    log.warning(f' 54c No LinkedIn URL found for company: {name}')
+    log.warning(f"❌ No LinkedIn URL found for company: {name}")
     return "", ""
 
 def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple[str, str]:
@@ -220,7 +220,7 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
     Returns:
         Tuple[str, str]: (LinkedIn school URL, public_id) or ("", "") if not found
     """
-    log.info(f' 393 LinkedIn fallback search for school: {name}')
+    log.info(f'🎓 LinkedIn fallback search for school: {name}')
     if not name:
         return "", ""
     
@@ -242,12 +242,12 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
             if linkedin_name and entity_search.names_match(name, linkedin_name):
                 universal_name = school_data["universalName"]
                 url = f"https://www.linkedin.com/school/{universal_name}/"
-                log.info(f' 505 Found matching LinkedIn URL for {name}: {url} (result: {linkedin_name})')
+                log.info(f'Found matching LinkedIn URL for {name}: {url} (result: {linkedin_name})')
                 return url, universal_name
             else:
-                log.warning(f' 6a0 LinkedIn school name mismatch for {name}: got "{linkedin_name}", skipping')
+                log.warning(f'⚠️ LinkedIn school name mismatch for {name}: got "{linkedin_name}", skipping')
     except Exception as e:
-        log.error(f' 54c Error with get_school for {name}: {e}')
+        log.error(f'❌ Error with get_school for {name}: {e}')
     
     try:
         # Try search_companies (schools often appear in company search) with higher limit (with caching)
@@ -261,14 +261,14 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
         else:
             search_results = _get_linkedin_api().search_companies(keywords=[name], limit=10)
         
-        log.info(f' 50d Found {len(search_results)} company search results for school {name}')
+        log.info(f'Found {len(search_results)} company search results for school {name}')
         if search_results:
             for i, result in enumerate(search_results):
                 result_name = result.get("name", "")
                 if not result_name:
                     continue
                     
-                log.debug(f' 50d Checking school result {i+1}: "{result_name}"')
+                log.debug(f'Checking school result {i+1}: "{result_name}"')
                 try:
                     if config.API_CACHE_ENABLED:
                         school_data = api_cache.cached_api_call(
@@ -286,20 +286,20 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
                         if linkedin_name and entity_search.names_match(name, linkedin_name):
                             universal_name = school_data["universalName"]
                             url = f"https://www.linkedin.com/school/{universal_name}/"
-                            log.info(f' 505 Found matching LinkedIn URL for {name} via search result {i+1}: {url} (result: {linkedin_name})')
+                            log.info(f'Found matching LinkedIn URL for {name} via search result {i+1}: {url} (result: {linkedin_name})')
                             return url, universal_name
                         else:
-                            log.debug(f' 6a0 LinkedIn school search name mismatch for {name}: got "{linkedin_name}", checking next result')
+                            log.debug(f'LinkedIn school search name mismatch for {name}: got "{linkedin_name}", checking next result')
                 except Exception as e:
-                    log.warning(f' 54c Error getting school data for search result {i+1}: {e}')
+                    log.warning(f'Error getting school data for search result {i+1}: {e}')
     except Exception as e:
-        log.error(f' 54c Error with search_companies for school {name}: {e}')
+        log.error(f'❌ Error with search_companies for school {name}: {e}')
     
     # Try profile fallback using entity URN if available
     if entity_urn:
         urn_id = _extract_urn_id_from_entity_urn(entity_urn)
         if urn_id:
-            log.info(f' 393 Trying profile fallback for school {name} using URN ID: {urn_id}')
+            log.info(f'Trying profile fallback for school {name} using URN ID: {urn_id}')
             try:
                 if config.API_CACHE_ENABLED:
                     profile_data = api_cache.cached_api_call(
@@ -314,11 +314,11 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
                 if profile_data:
                     # Look for education experience matching the school name
                     education_entries = profile_data.get("education", [])
-                    log.debug(f' 50d Found {len(education_entries)} education entries in profile for {name}')
+                    log.debug(f'Found {len(education_entries)} education entries in profile for {name}')
                     for i, edu in enumerate(education_entries):
                         edu_school = edu.get("schoolName", "")
                         if edu_school and entity_search.names_match(name, edu_school):
-                            log.info(f' 505 Profile education "{edu_school}" matches "{name}"')
+                            log.info(f'Profile education "{edu_school}" matches "{name}"')
                             # Try to get school data from the education entry
                             school_urn = edu.get("schoolUrn", "")
                             if school_urn:
@@ -338,14 +338,14 @@ def _linkedin_school_search_fallback(name: str, entity_urn: str = None) -> Tuple
                                     if school_data and school_data.get("universalName"):
                                         universal_name = school_data["universalName"]
                                         url = f"https://www.linkedin.com/school/{universal_name}/"
-                                        log.info(f' 505 Found LinkedIn URL for {name} via profile fallback: {url}')
+                                        log.info(f'Found LinkedIn URL for {name} via profile fallback: {url}')
                                         return url, universal_name
                                 except Exception as e:
-                                    log.warning(f' 54c Error getting school from profile fallback: {e}')
+                                    log.warning(f'Error getting school from profile fallback: {e}')
             except Exception as e:
-                log.error(f' 54c Error with profile fallback for school {name}: {e}')
+                log.error(f'❌ Error with profile fallback for school {name}: {e}')
     
-    log.warning(f' 54c No LinkedIn URL found for school: {name}')
+    log.warning(f"❌ No LinkedIn URL found for school: {name}")
     return "", ""
 
 def _company_url_and_id(name: str, company_urn: str = None, entity_urn: str = None) -> Tuple[str, str]:
@@ -364,24 +364,24 @@ def _company_url_and_id(name: str, company_urn: str = None, entity_urn: str = No
     if url and entity_id:
         # Validate the URL works
         if url_validator.url_works(url, timeout=10.0):
-            log.info(f" 505 Google KG URL validated for {name}: {url}")
+            log.info(f"Google KG URL validated for {name}: {url}")
             return url, entity_id
         else:
-            log.warning(f" 54c Google KG URL failed validation for {name}: {url}")
+            log.warning(f"Google KG URL failed validation for {name}: {url}")
     
     # Fallback to LinkedIn search
-    log.info(f" 504 Google KG failed for {name}, trying LinkedIn fallback...")
+    log.info(f"Google KG failed for {name}, trying LinkedIn fallback...")
     linkedin_url, linkedin_id = _linkedin_company_search_fallback(name, entity_urn)
     if linkedin_url and linkedin_id:
         # Validate LinkedIn URL
         if url_validator.url_works(linkedin_url, timeout=10.0):
-            log.info(f" 505 LinkedIn URL validated for {name}: {linkedin_url}")
+            log.info(f"LinkedIn URL validated for {name}: {linkedin_url}")
             return linkedin_url, linkedin_id
         else:
-            log.warning(f" 54c LinkedIn URL failed validation for {name}: {linkedin_url}")
+            log.warning(f"LinkedIn URL failed validation for {name}: {linkedin_url}")
     
     # Both methods failed or URLs don't work
-    log.warning(f" 54c No working URLs found for company: {name}")
+    log.warning(f"❌ No working URLs found for company: {name}")
     return "", ""
 
 def _company_url(name: str, company_urn: str = None, entity_urn: str = None) -> str:
@@ -414,24 +414,24 @@ def _school_url_and_id(name: str, school_urn: str = None, entity_urn: str = None
     if url and entity_id:
         # Validate the URL works
         if url_validator.url_works(url, timeout=10.0):
-            log.info(f" 505 Google KG URL validated for {name}: {url}")
+            log.info(f"Google KG URL validated for {name}: {url}")
             return url, entity_id
         else:
-            log.warning(f" 54c Google KG URL failed validation for {name}: {url}")
+            log.warning(f"Google KG URL failed validation for {name}: {url}")
     
     # Fallback to LinkedIn search
-    log.info(f" 504 Google KG failed for {name}, trying LinkedIn fallback...")
+    log.info(f"Google KG failed for {name}, trying LinkedIn fallback...")
     linkedin_url, linkedin_id = _linkedin_school_search_fallback(name, entity_urn)
     if linkedin_url and linkedin_id:
         # Validate LinkedIn URL
         if url_validator.url_works(linkedin_url, timeout=10.0):
-            log.info(f" 505 LinkedIn URL validated for {name}: {linkedin_url}")
+            log.info(f"LinkedIn URL validated for {name}: {linkedin_url}")
             return linkedin_url, linkedin_id
         else:
-            log.warning(f" 54c LinkedIn URL failed validation for {name}: {linkedin_url}")
+            log.warning(f"LinkedIn URL failed validation for {name}: {linkedin_url}")
     
     # Both methods failed or URLs don't work
-    log.warning(f" 54c No working URLs found for school: {name}")
+    log.warning(f"❌ No working URLs found for school: {name}")
     return "", ""
 
 def _school_url(name: str, school_urn: str = None, entity_urn: str = None) -> str:
@@ -587,7 +587,7 @@ async def transform_linkedin_to_resume_async(raw_data: Dict[str, Any]) -> Dict[s
     
     # Wait for all URL extractions to complete
     if work_tasks or education_tasks:
-        log.info(f" 680 Processing {len(work_tasks)} work experiences and {len(education_tasks)} education entries concurrently...")
+        log.info(f"🚀 Processing {len(work_tasks)} work experiences and {len(education_tasks)} education entries concurrently...")
         
         # Use asyncio.gather to run all tasks concurrently
         all_tasks = work_tasks + education_tasks
@@ -600,7 +600,7 @@ async def transform_linkedin_to_resume_async(raw_data: Dict[str, Any]) -> Dict[s
         # Handle results and exceptions
         for i, result in enumerate(work_results):
             if isinstance(result, Exception):
-                log.error(f" 54c Error processing work experience {i}: {result}")
+                log.error(f"❌ Error processing work experience {i}: {result}")
                 # Create a fallback entry
                 w = raw_data["experience"][i]
                 resume_data["work"].append({
@@ -618,7 +618,7 @@ async def transform_linkedin_to_resume_async(raw_data: Dict[str, Any]) -> Dict[s
         
         for i, result in enumerate(education_results):
             if isinstance(result, Exception):
-                log.error(f" 54c Error processing education entry {i}: {result}")
+                log.error(f"❌ Error processing education entry {i}: {result}")
                 # Create a fallback entry
                 e = raw_data["education"][i]
                 resume_data["education"].append({
@@ -663,7 +663,7 @@ def load_linkedin_data(input_path=None):
     if input_path is None:
         input_path = config.PROJECT_ROOT / config.DATA_DIR / config.LINKEDIN_RAW_FILE
     if not (input_path.exists()):
-        sys.exit(f" 516  Run the LinkedIn scraper first  {config.DATA_DIR}/{config.LINKEDIN_RAW_FILE} missing.")
+        sys.exit(f"Run the LinkedIn scraper first  {config.DATA_DIR}/{config.LINKEDIN_RAW_FILE} missing.")
     
     return json.loads(input_path.read_text(encoding="utf-8"))
 
@@ -681,7 +681,7 @@ def save_resume_data(resume_data, output_path=None):
         output_path = config.PROJECT_ROOT / config.DATA_DIR / config.RESUME_JSON_FILE
         
     output_path.write_text(json.dumps(resume_data, indent=2, ensure_ascii=False), encoding="utf-8")
-    log.info(f" 505  {config.DATA_DIR}/{config.RESUME_JSON_FILE} refreshed.")
+    log.info(f"✅  {config.DATA_DIR}/{config.RESUME_JSON_FILE} refreshed.")
     return output_path
 
 def transform_linkedin_data():
@@ -707,7 +707,7 @@ def transform_linkedin_data():
             old_resume = json.loads(file_content)
 
     if new_resume == old_resume:
-        log.info(" 513  No changes  r e9sum e9 already up-to-date.")
+        log.info("ℹ  No changes – résumé already up-to-date.")
         sys.exit(1)  # signals "skip commit" to the Action
 
     # Save transformed data

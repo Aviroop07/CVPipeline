@@ -173,7 +173,7 @@ def search_entity_kg(query: str, entity_type: str = "") -> Tuple[str, str]:
     if not query.strip():
         return "", ""
     
-    log.info(f"???? Searching Knowledge Graph for: {query}")
+    log.info(f"[KG] Request: query={query}, entity_type={entity_type}")
     
     try:
         search_url = prepare_kg_search_url(query, entity_type)
@@ -200,7 +200,7 @@ def search_entity_kg(query: str, entity_type: str = "") -> Tuple[str, str]:
             response.raise_for_status()
             kg_data = response.json()
         
-        log.debug(f"KG API response: {json.dumps(kg_data, indent=2)}")
+        log.info(f"[KG] Response: {json.dumps(kg_data, indent=2, ensure_ascii=False)}")
         
         # Check if we have results
         items = kg_data.get("itemListElement", [])
@@ -217,12 +217,12 @@ def search_entity_kg(query: str, entity_type: str = "") -> Tuple[str, str]:
             if official_url and result_name:
                 # Validate that the result name matches our query
                 if names_match(query, result_name):
-                    log.info(f"??? Found matching official URL for {query}: {official_url} (result: {result_name})")
+                    log.info("✅ Found matching official URL for %s: %s (result: %s)", query, official_url, result_name)
                     return official_url, entity_id
                 else:
-                    log.debug(f"?????? Name mismatch for {query}: got '{result_name}', skipping")
+                    log.debug(f"⚠️ Name mismatch for {query}: got '{result_name}', skipping")
         
-        log.info(f"??? No matching official URL found in Knowledge Graph results for: {query}")
+        log.info(f"❌ No matching official URL found in Knowledge Graph results for: {query}")
         return "", ""
         
     except Exception as e:
@@ -238,7 +238,7 @@ def search_company_kg(name: str) -> Tuple[str, str]:
     Returns:
         Tuple[str, str]: (Official company website URL, entity_id) or ("", "") if not found
     """
-    log.info(f"???? Searching for company: {name}")
+    log.info(f"🔍 Searching for company: {name}")
     
     # Try with Corporation type first
     url, entity_id = search_entity_kg(name, "Corporation")
@@ -258,7 +258,7 @@ def search_company_kg(name: str) -> Tuple[str, str]:
             if url:
                 return url, entity_id
     
-    log.info(f"??? No company official URL found for: {name}")
+    log.info(f"❌ No company official URL found for: {name}")
     return "", ""
 
 def search_school_kg(name: str) -> Tuple[str, str]:
@@ -270,7 +270,7 @@ def search_school_kg(name: str) -> Tuple[str, str]:
     Returns:
         Tuple[str, str]: (Official school website URL, entity_id) or ("", "") if not found
     """
-    log.info(f"???? Searching for school: {name}")
+    log.info(f"🎓 Searching for school: {name}")
     
     # Try with EducationalOrganization type first
     url, entity_id = search_entity_kg(name, "EducationalOrganization")
@@ -295,7 +295,7 @@ def search_school_kg(name: str) -> Tuple[str, str]:
             if url:
                 return url, entity_id
     
-    log.info(f"??? No school official URL found for: {name}")
+    log.info(f"❌ No school official URL found for: {name}")
     return "", ""
 
 # Legacy functions for backward compatibility with linkedin_transformer.py

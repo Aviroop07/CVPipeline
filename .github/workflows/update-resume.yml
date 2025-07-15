@@ -43,7 +43,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GOOGLE_KG_API: ${{ secrets.GOOGLE_KG_API }}
           PAT_GITHUB: ${{ secrets.PAT_GITHUB }}
-        run: python scripts/pipeline.py
+        run: python -m resume  # Updated: run the resume package as the new pipeline entry point
         continue-on-error: true
 
       # 5 — commit only if something changed

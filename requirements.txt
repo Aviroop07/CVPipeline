@@ -5,3 +5,5 @@ openai
 playwright
 httpx
 PyGithub
+# If using editable install for local development, uncomment:
+# -e ./resume

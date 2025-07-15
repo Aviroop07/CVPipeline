@@ -101,22 +101,22 @@ python scripts/pipeline.py --clear-cache          # Clear all cache before runni
 ### Individual Steps
 ```bash
 # Step 1: Fetch LinkedIn data
-python scripts/linkedin_fetcher.py
+python -m resume.linkedin.fetcher
 
 # Step 2: Transform to JSON-Resume format
-python scripts/linkedin_transformer.py
+python -m resume.linkedin.transformer
 
 # Step 3: AI enhancement
-python scripts/openai_processor.py
+python -m resume.openai.processor
 
 # Step 4: Validate URLs
-python scripts/url_validator.py
+python -m resume.utils.url_validator
 
 # Step 5: Generate HTML
-python scripts/html_generator.py
+python -m resume.html.generator
 
 # Step 6: Generate PDF
-python scripts/pdf_generator.py
+python -m resume.html.pdf
 ```
 
 ### Output Files
@@ -175,11 +175,30 @@ python scripts/pipeline.py --clear-cache
 ## 📁 Project Structure
 ```
 CVPipeline/
-├── scripts/           # Core pipeline modules
-├── assets/           # Generated HTML, CSS, and PDF files
-├── data/             # LinkedIn raw data and JSON resume
-├── prompts/          # AI prompt templates and examples
-└── requirements.txt  # Python dependencies
+├── resume/            # Core resume processing modules (NEW)
+│   ├── linkedin/
+│   │   ├── fetcher.py
+│   │   └── transformer.py
+│   ├── github/
+│   │   └── processor.py
+│   ├── openai/
+│   │   └── processor.py
+│   ├── jobs/
+│   │   ├── searcher.py
+│   │   └── extractor.py
+│   ├── html/
+│   │   ├── generator.py
+│   │   └── pdf.py
+│   └── utils/
+│       ├── config.py
+│       ├── api_cache.py
+│       ├── url_validator.py
+│       └── entity_search.py
+├── scripts/           # Pipeline entry point (pipeline.py)
+├── assets/            # Generated HTML, CSS, and PDF files
+├── data/              # LinkedIn raw data and JSON resume
+├── prompts/           # AI prompt templates and examples
+└── requirements.txt   # Python dependencies
 ```
 
 ## 🤝 Contributing

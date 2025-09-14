@@ -38,9 +38,12 @@
             "Guidewire ClaimCenter",
             "GPT-4 Vision/Text",
             "Python",
+            "prompt-engineered",
+            "token-cost guardrails",
+            "hierarchical scorer",
             "30-event window",
-            "80% confidence",
-            "+23 pts",
+            "80%",
+            "23 pts",
             "halved inference latency"
           ]
         },
@@ -62,6 +65,7 @@
           "description": "Streamlit-based interface drives a PDF-to-image flow where a layout-transformer isolates semantic zones; cropped sections are passed to async GPT-4 Vision (backed by Mistral OCR and Python imaging) and rendered with Pandas. The generalized architecture now ingests diverse healthcare documents and keeps end-to-end latency under 3s without sacrificing accuracy.",
           "tech_highlights": [
             "Streamlit",
+            "PDF-to-image",
             "layout-transformer",
             "GPT-4 Vision",
             "Mistral OCR",
@@ -111,7 +115,8 @@
             "MongoDB",
             "JWT",
             "50 ms",
-            "API Gateway"
+            "API Gateway",
+            "client-side service discovery"
           ]
         }
       ],
@@ -185,53 +190,47 @@
       "name": "CVPipeline",
       "description": "# Resume Generation Pipeline\r\n\r\nAn intelligent, automated resume generation system that transforms LinkedIn profile data into professional, AI-enhanced resumes with validated URLs and multiple output ...",
       "startDate": "2024-07",
-      "endDate": "2025-08",
+      "endDate": "2025-09",
       "url": "https://github.com/Aviroop07/CVPipeline",
       "points": [
         {
-          "text": "Implemented a 6-step modular pipeline (linkedin_fetcher, linkedin_transformer, openai_processor, url_validator, html_generator, pdf_generator) using linkedin-api, OpenAI API, PyGithub, and Playwright.",
+          "text": "Implemented a 6-step modular pipeline using linkedin-api, OpenAI API, Google Knowledge Graph API, PyGithub and Playwright to fetch LinkedIn data, transform JSON-Resume, enhance content, validate URLs, and generate HTML and PDF resumes.",
           "highlights": [
-            "6-step",
             "linkedin-api",
             "OpenAI API",
+            "Google Knowledge Graph API",
             "PyGithub",
             "Playwright"
           ]
         },
         {
-          "text": "Enhanced AI-driven skill filtering and extracted 100% of profile data while validating 200+ URLs via OpenAI, Google KG, and LinkedIn APIs.",
+          "text": "Developed AI-powered content optimization with OpenAI to filter skills, extract projects, and highlight technologies across consistent styling.",
           "highlights": [
-            "AI-driven",
-            "100%",
-            "200+",
-            "OpenAI",
-            "Google KG",
-            "LinkedIn APIs"
+            "AI-powered",
+            "OpenAI"
           ]
         },
         {
-          "text": "Generated responsive HTML resumes and print-ready PDFs with Playwright achieving 100% style consistency and configurable layouts via config.py.",
+          "text": "Integrated async HTTP processing with httpx and python-dotenv for secure credential management and concurrent URL validation of hundreds of links.",
           "highlights": [
-            "HTML",
-            "Playwright",
-            "100%"
+            "async HTTP processing",
+            "httpx",
+            "python-dotenv",
+            "concurrent URL validation",
+            "hundreds of links"
           ]
         },
         {
-          "text": "Cached API responses in SQLite with a 24-hour TTL, reducing redundant calls by 90% across LinkedIn, Google KG, GitHub, and job search endpoints.",
+          "text": "Established SQLite-based API response caching with 24-hour TTL to avoid redundant calls and ensure error resilience.",
           "highlights": [
             "SQLite",
-            "24-hour TTL",
-            "90%",
-            "LinkedIn",
-            "Google KG",
-            "GitHub",
-            "job search endpoints"
+            "API response caching",
+            "24-hour TTL"
           ]
         }
       ],
-      "period": "Jul, 2024 – Aug, 2025",
-      "commit_count": 87
+      "period": "Jul, 2024 – Sep, 2025",
+      "commit_count": 88
     },
     {
       "name": "VARC_APP",
@@ -241,32 +240,29 @@
       "url": "https://github.com/Aviroop07/VARC_APP",
       "points": [
         {
-          "text": "Developed a Streamlit application using Python to scrape articles from The Hindu and The Telegraph via custom scraper modules.",
+          "text": "Developed a Streamlit app in Python that applies a 20% business & economics, 50% science & technology, 20% art & literary criticism, and 10% philosophy & sociology distribution to select one article daily from two sources, The Hindu and The Telegraph.",
           "highlights": [
             "Streamlit",
-            "Python"
-          ]
-        },
-        {
-          "text": "Configured daily random selection using topic probabilities: 50% sci/tech, 20% business/econ, 20% art/lit criticism and 10% philosophy/sociology.",
-          "highlights": [
+            "Python",
+            "20%",
             "50%",
             "20%",
             "10%"
           ]
         },
         {
-          "text": "Implemented a component-based architecture with scrapers/, components/, utils/ and main.py for modular web scraping, UI rendering and utility functions.",
+          "text": "Implemented web scraping modules in app/scrapers for two news sources, utility functions in app/utils, and caching in data to ensure a consistent daily article, managed via pip dependencies in requirements.txt.",
           "highlights": [
-            "component-based architecture",
-            "modular web scraping",
-            "UI rendering"
+            "web scraping",
+            "caching",
+            "pip dependencies",
+            "requirements.txt"
           ]
         },
         {
-          "text": "Managed cached article storage under data/ with dependencies pinned in requirements.txt for reproducible setups.",
+          "text": "Structured the VARC_APP codebase into four directories—app/components, app/scrapers, app/utils, and data—with main.py under app as the entry point to deliver a clean, intuitive Streamlit UI.",
           "highlights": [
-            "requirements.txt"
+            "Streamlit"
           ]
         }
       ],
@@ -281,31 +277,41 @@
       "url": "https://github.com/Aviroop07/distributed-p2p-network",
       "points": [
         {
-          "text": "Implemented distributed text processing in Python 3.8+ with 5 main, 10 data, and 10 compute nodes orchestrating load balancing and health monitoring.",
-          "highlights": [
-            "Python"
-          ]
-        },
-        {
-          "text": "Developed chunk-based storage in Python 3.8+ on 10 data nodes with replication and persistence leveraging semantic search for similarity analysis.",
-          "highlights": [
-            "Python 3.8+",
-            "10 data nodes"
-          ]
-        },
-        {
-          "text": "Integrated Python across 10 compute nodes for text chunking, embedding generation, and node management supporting similarity searches.",
+          "text": "Implemented a distributed text processing system in Python 3.8+ with 5 Main, 10 Data, and 10 Compute Nodes on ports 8000–10999.",
           "highlights": [
             "Python",
-            "10 compute nodes"
+            "5 Main",
+            "10 Data",
+            "10 Compute Nodes"
           ]
         },
         {
-          "text": "Structured into 7 modules (api, core, frontend, models, nodes, services, utils) plus Python scripts and tests validated across 4 test suites.",
+          "text": "Developed chunk-based storage with data replication, persistence, semantic search, health monitoring, and load balancing across nodes.",
           "highlights": [
-            "7 modules",
-            "Python",
-            "4 test suites"
+            "chunk-based storage",
+            "data replication",
+            "persistence",
+            "semantic search",
+            "health monitoring",
+            "load balancing"
+          ]
+        },
+        {
+          "text": "Structured the code into app/api, core, frontend, models, nodes, and services with scripts for DB init and node orchestration.",
+          "highlights": [
+            "DB init",
+            "node orchestration"
+          ]
+        },
+        {
+          "text": "Automated unit, integration, and frontend tests generating coverage reports via pip-managed dependencies in a virtual environment.",
+          "highlights": [
+            "unit tests",
+            "integration tests",
+            "frontend tests",
+            "coverage reports",
+            "pip-managed dependencies",
+            "virtual environment"
           ]
         }
       ],
@@ -324,19 +330,19 @@
       "name": "JavaScript"
     },
     {
-      "name": "SQL"
-    },
-    {
       "name": "Java"
     },
     {
       "name": "C"
     },
     {
+      "name": "SQL"
+    },
+    {
       "name": "Machine Learning"
     },
     {
-      "name": "Prompt Engineering"
+      "name": "Deep Learning"
     },
     {
       "name": "Natural Language Processing (NLP)"
@@ -345,10 +351,10 @@
       "name": "Transformers"
     },
     {
-      "name": "Large Language Models (LLM)"
+      "name": "Scikit-Learn"
     },
     {
-      "name": "Deep Learning"
+      "name": "NumPy"
     },
     {
       "name": "OpenAI API"
@@ -357,16 +363,16 @@
       "name": "REST APIs"
     },
     {
+      "name": "FastAPI"
+    },
+    {
       "name": "SQLAlchemy"
     },
     {
-      "name": "Pandas (Software)"
+      "name": "PIL"
     },
     {
-      "name": "Scikit-Learn"
-    },
-    {
-      "name": "NumPy"
+      "name": "pytest"
     },
     {
       "name": "MySQL"
@@ -375,25 +381,22 @@
       "name": "MongoDB"
     },
     {
-      "name": "Streamlit"
-    },
-    {
-      "name": "FastAPI"
+      "name": "Angular"
     },
     {
       "name": "Spring Boot"
     },
     {
-      "name": "Angular"
-    },
-    {
       "name": "Node.js"
     },
     {
-      "name": "Jupyter"
+      "name": "Object-Oriented Programming (OOP)"
     },
     {
-      "name": "pytest"
+      "name": "Debugging Code"
+    },
+    {
+      "name": "Git"
     }
   ],
   "languages": [
@@ -415,40 +418,39 @@
       "Python",
       "C++",
       "JavaScript",
-      "SQL",
       "Java",
-      "C"
+      "C",
+      "SQL"
     ],
-    "Machine Learning & AI": [
+    "AI & Data Science": [
       "Machine Learning",
-      "Prompt Engineering",
+      "Deep Learning",
       "Natural Language Processing (NLP)",
       "Transformers",
-      "Large Language Models (LLM)",
-      "Deep Learning"
+      "Scikit-Learn",
+      "NumPy"
     ],
     "APIs & Libraries": [
       "OpenAI API",
       "REST APIs",
+      "FastAPI",
       "SQLAlchemy",
-      "Pandas (Software)",
-      "Scikit-Learn",
-      "NumPy"
+      "PIL",
+      "pytest"
     ],
     "Databases & Data Storage": [
       "MySQL",
       "MongoDB"
     ],
-    "Frameworks & Tools": [
-      "Streamlit",
-      "FastAPI",
-      "Spring Boot",
+    "Web Development": [
       "Angular",
-      "Node.js",
-      "Jupyter"
+      "Spring Boot",
+      "Node.js"
     ],
-    "Testing & QA": [
-      "pytest"
+    "Software Engineering": [
+      "Object-Oriented Programming (OOP)",
+      "Debugging Code",
+      "Git"
     ]
   }
 }
